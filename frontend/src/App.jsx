@@ -1,13 +1,11 @@
-import Navbar from "./components/Navbar";
+﻿import Navbar from "./components/Navbar";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
     <div>
       <Navbar />
-
-      <h1>Happy Drops</h1>
-      <p>Your website is starting successfully 🚀</p>
-      <p>Hurray ! </p>
+      <AboutUs />
     </div>
   );
 }
