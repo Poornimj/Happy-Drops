@@ -3,10 +3,10 @@
   --muted: #677065;
   --green: #315c38;
   --soft-green: #dfeada;
-  --lavender: #a97ac7;
-  --soft-lavender: #f3edf8;
+  --lavender: #7f9f73;
+  --soft-lavender: #f4f1e8;
   --cream: #fbf8f1;
-  --line: #e4d6ec;
+  --line: #d8ddcf;
   --white: #ffffff;
   font-family: "Segoe UI", Arial, sans-serif;
   color: var(--ink);
@@ -281,13 +281,16 @@ a {
   border-radius: 12px;
 }
 
-.value-grid span {
-  width: 48px;
-  height: 48px;
+.value-icon,
+.step-icon {
+  width: 56px;
+  height: 56px;
   margin: 0 auto 18px;
-  display: block;
+  display: grid;
+  place-items: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, #d7c5e7, #dfeada);
+  background: #dfeada;
+  color: #315c38;
 }
 
 .about-mission {
@@ -401,3 +404,4 @@ a {
     flex-direction: column;
   }
 }
+
