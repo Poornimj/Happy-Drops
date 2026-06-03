@@ -405,3 +405,46 @@ a {
   }
 }
 
+
+/* About Us purple icon correction */
+.about-values {
+  background: #f4edf8;
+}
+
+.value-grid article,
+.process-row article {
+  border-color: #dcc8ef;
+  box-shadow: 0 14px 30px rgba(166, 122, 197, 0.12);
+}
+
+.value-icon,
+.step-icon {
+  background: #eadff2;
+  color: #8f61b6;
+}
+
+.value-icon svg,
+.step-icon svg,
+.value-icon svg *,
+.step-icon svg * {
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.process-row strong {
+  background: #a67ac5;
+  color: #ffffff;
+}
+
+.primary-action,
+.login-button {
+  background: #a67ac5;
+}
+
+.secondary-action {
+  color: #8f61b6;
+  border-color: #dcc8ef;
+}
