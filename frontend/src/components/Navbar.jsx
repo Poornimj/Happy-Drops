@@ -1,10 +1,10 @@
-﻿import happyDropsLogo from "../assets/images/happy-drops-logo.jpeg";
+﻿import happyDropsNavbarLogo from "../assets/images/happy-drops-navbar-logo.jpeg";
 
 function Navbar() {
   return (
     <nav className="navbar">
       <a className="brand" href="#" aria-label="Happy Drops home">
-        <img src={happyDropsLogo} alt="Happy Drops" />
+        <img src={happyDropsNavbarLogo} alt="Happy Drops" />
       </a>
 
       <div className="nav-links">
