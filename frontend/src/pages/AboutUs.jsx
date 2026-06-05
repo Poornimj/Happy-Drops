@@ -109,31 +109,23 @@ const steps = [
 function AboutUs() {
   return (
     <main className="about-page">
-            <section className="about-hero about-hero-whole-banner">
+                  <section className="about-hero about-hero-wide-image">
         <div className="about-hero-copy">
           <p className="section-kicker">Empowering wellness naturally</p>
-          <h1>
-            Personalized Wellness,<br />
-            Powered by Nature <span>&amp; AI</span>
-          </h1>
+          <h1>About Happy Drops</h1>
           <p>
-            Discover tailored essential oil recipes, nutrition guidance, and
-            wellness tools for a happier, healthier you and your family.
+            Happy Drops brings together nature-powered products, family wellness
+            support, and personalized recommendations to help people feel
+            healthier, calmer, and more confident in their daily care.
           </p>
           <div className="about-hero-actions">
-            <a href="#" className="primary-action">Get My Recommendation</a>
-            <a href="#" className="secondary-action">Book a Workshop</a>
-            <a href="#" className="secondary-action">Explore Products</a>
-          </div>
-          <div className="hero-feature-row">
-            <span>AI-Powered Personalization</span>
-            <span>Expert-Reviewed Wellness Guidance</span>
-            <span>Safe &amp; Natural Family Friendly</span>
+            <a href="#mission" className="primary-action">Our Mission</a>
+            <a href="#values" className="secondary-action">Our Values</a>
           </div>
         </div>
 
-        <div className="hero-bottle-scene">
-          <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
+        <div className="about-hero-image-scene" aria-hidden="true">
+          <img src={confirmedBottle} alt="" />
         </div>
       </section>
 
@@ -247,5 +239,6 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
 
 
