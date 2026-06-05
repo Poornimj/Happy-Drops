@@ -1098,3 +1098,88 @@ a {
     object-position: 58% center !important;
   }
 }
+
+/* Remove blank area family hero fix */
+.about-family-wide-banner {
+  position: relative !important;
+  width: min(1120px, calc(100% - 32px)) !important;
+  aspect-ratio: 16 / 7 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: clamp(34px, 4.8vw, 58px) clamp(34px, 5.2vw, 72px) !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  background: #fbf8f1 !important;
+  border-radius: 14px !important;
+}
+
+.about-family-banner-image {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+}
+
+.about-family-banner-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  background: rgba(251, 248, 241, 0.16) !important;
+  pointer-events: none !important;
+}
+
+.about-family-wide-banner .about-hero-copy {
+  position: relative !important;
+  z-index: 2 !important;
+  max-width: 610px !important;
+  text-shadow:
+    0 2px 18px rgba(251, 248, 241, 0.84),
+    0 0 3px rgba(251, 248, 241, 0.96) !important;
+}
+
+.about-family-wide-banner h1 {
+  max-width: 540px !important;
+  margin-bottom: 22px !important;
+  color: #173f27 !important;
+  font-size: clamp(44px, 6.6vw, 84px) !important;
+  line-height: 1.04 !important;
+}
+
+.about-family-wide-banner .about-hero-copy > p:not(.section-kicker) {
+  max-width: 590px !important;
+  color: #173f27 !important;
+  font-size: clamp(16px, 1.55vw, 19px) !important;
+  font-weight: 650 !important;
+  line-height: 1.65 !important;
+}
+
+.about-family-wide-banner .about-hero-actions {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .about-family-wide-banner {
+    aspect-ratio: auto !important;
+    min-height: 620px !important;
+    padding: 32px 22px !important;
+    align-items: flex-start !important;
+  }
+
+  .about-family-banner-image {
+    object-fit: cover !important;
+    object-position: 62% center !important;
+  }
+
+  .about-family-banner-overlay {
+    background: rgba(251, 248, 241, 0.28) !important;
+  }
+}
