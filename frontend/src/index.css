@@ -1059,3 +1059,42 @@ a {
     background: rgba(251, 248, 241, 0.28) !important;
   }
 }
+
+/* Less zoom family hero image fix */
+.about-family-wide-banner {
+  background:
+    linear-gradient(90deg, #fbf8f1 0%, #f4f1e8 100%) !important;
+}
+
+.about-family-banner-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  background:
+    linear-gradient(90deg, #fbf8f1 0%, #f4f1e8 100%) !important;
+}
+
+.about-family-banner-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.42) 0%,
+      rgba(251, 248, 241, 0.22) 30%,
+      rgba(251, 248, 241, 0.06) 58%,
+      rgba(251, 248, 241, 0) 100%
+    ) !important;
+}
+
+.about-family-wide-banner .about-hero-copy {
+  text-shadow:
+    0 2px 18px rgba(251, 248, 241, 0.82),
+    0 0 3px rgba(251, 248, 241, 0.95) !important;
+}
+
+@media (max-width: 900px) {
+  .about-family-banner-image {
+    object-fit: cover !important;
+    object-position: 58% center !important;
+  }
+}
