@@ -110,9 +110,13 @@ const steps = [
 function AboutUs() {
   return (
     <main className="about-page">
-                        <section
-        className="about-hero about-family-wide-banner"
-      >
+                              <section className="about-hero about-family-wide-banner">
+        <img
+          className="about-family-banner-image"
+          src={familyHeroBanner}
+          alt="Happy Drops family wellness garden"
+        />
+        <div className="about-family-banner-overlay"></div>
         <div className="about-hero-copy">
           <p className="section-kicker">Empowering wellness naturally</p>
           <h1>About Happy Drops</h1>
@@ -234,6 +238,7 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
 
 
 

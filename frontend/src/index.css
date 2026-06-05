@@ -858,3 +858,89 @@ a {
     font-size: clamp(42px, 13vw, 66px);
   }
 }
+
+/* Visible Happy Drops family hero image */
+.about-family-wide-banner {
+  position: relative;
+  min-height: 520px;
+  padding: 58px 64px;
+  display: block;
+  overflow: hidden;
+  background: #fbf8f1;
+  border-radius: 14px;
+}
+
+.about-family-banner-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center right;
+  border-radius: 14px;
+}
+
+.about-family-banner-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(251, 248, 241, 0.98) 0%,
+    rgba(251, 248, 241, 0.92) 31%,
+    rgba(251, 248, 241, 0.48) 54%,
+    rgba(251, 248, 241, 0.08) 78%,
+    rgba(251, 248, 241, 0.02) 100%
+  );
+}
+
+.about-family-wide-banner .about-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+
+.about-family-wide-banner h1 {
+  max-width: 560px;
+  margin-bottom: 24px;
+  color: #173f27;
+  font-size: clamp(52px, 7vw, 94px);
+  line-height: 1.04;
+}
+
+.about-family-wide-banner .about-hero-copy > p:not(.section-kicker) {
+  max-width: 590px;
+  color: #4f655a;
+  font-size: 19px;
+  line-height: 1.75;
+}
+
+.about-family-wide-banner .about-hero-actions {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .about-family-wide-banner {
+    min-height: 620px;
+    padding: 32px 22px;
+  }
+
+  .about-family-banner-image {
+    object-position: 64% center;
+  }
+
+  .about-family-banner-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(251, 248, 241, 0.98) 0%,
+      rgba(251, 248, 241, 0.86) 43%,
+      rgba(251, 248, 241, 0.18) 100%
+    );
+  }
+
+  .about-family-wide-banner h1 {
+    font-size: clamp(42px, 13vw, 66px);
+  }
+}
