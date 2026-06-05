@@ -944,3 +944,41 @@ a {
     font-size: clamp(42px, 13vw, 66px);
   }
 }
+
+/* Softer family hero shade correction */
+.about-family-banner-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.54) 0%,
+      rgba(251, 248, 241, 0.34) 28%,
+      rgba(251, 248, 241, 0.12) 52%,
+      rgba(251, 248, 241, 0) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(251, 248, 241, 0.04) 0%,
+      rgba(251, 248, 241, 0.02) 58%,
+      rgba(251, 248, 241, 0.08) 100%
+    );
+}
+
+.about-family-wide-banner .about-hero-copy {
+  text-shadow: 0 1px 18px rgba(251, 248, 241, 0.72);
+}
+
+.about-family-wide-banner .about-hero-copy > p:not(.section-kicker) {
+  color: #234c35;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .about-family-banner-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(251, 248, 241, 0.7) 0%,
+      rgba(251, 248, 241, 0.42) 42%,
+      rgba(251, 248, 241, 0.08) 100%
+    );
+  }
+}
