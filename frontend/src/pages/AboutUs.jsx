@@ -1,7 +1,7 @@
-﻿import aboutHero from "../assets/images/about-hero.png";
-import aboutStory from "../assets/images/about-story.png";
+﻿import aboutStory from "../assets/images/about-story.png";
 import aboutMission from "../assets/images/about-mission.png";
-import aboutBottle from "../assets/images/about-bottle.png";
+import confirmedBottle from "../assets/images/confirmed-bottle.png";
+import happyDropsLogo from "../assets/images/happy-drops-logo.jpeg";
 
 function LeafIcon() {
   return (
@@ -111,6 +111,11 @@ function AboutUs() {
     <main className="about-page">
       <section className="about-hero">
         <div className="about-hero-copy">
+          <img
+            className="about-logo-mark"
+            src={happyDropsLogo}
+            alt="Happy Drops logo"
+          />
           <p className="section-kicker">Empowering wellness naturally</p>
           <h1>About Happy Drops</h1>
           <p>
@@ -123,10 +128,15 @@ function AboutUs() {
             <a href="#values" className="secondary-action">Our Values</a>
           </div>
         </div>
-        <img src={aboutHero} alt="Happy Drops lavender essential oil bottle" />
+        <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
       </section>
 
       <section className="about-intro">
+        <img
+          className="about-brand-logo"
+          src={happyDropsLogo}
+          alt="Happy Drops logo"
+        />
         <p className="section-kicker">Rooted in nature</p>
         <h2>Growing Wellness Together</h2>
         <p>
@@ -138,7 +148,7 @@ function AboutUs() {
       </section>
 
       <section className="about-story">
-        <img src={aboutStory} alt="Happy Drops wellness tray with lavender oil" />
+        <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
         <div>
           <p className="section-kicker">Our Story</p>
           <h2>Natural care made easier for every home</h2>
@@ -156,17 +166,24 @@ function AboutUs() {
         </div>
       </section>
 
-      <section className="about-values" id="values">
+            <section className="about-values about-values-showcase" id="values">
         <p className="section-kicker">What we believe in</p>
         <h2>Our Values</h2>
-        <div className="value-grid">
-          {values.map((value) => (
-            <article key={value.title}>
-              <span className="value-icon">{value.icon}</span>
-              <h3>{value.title}</h3>
-              <p>{value.text}</p>
-            </article>
-          ))}
+        <div className="values-showcase">
+          <img
+            className="values-bottle-image"
+            src={confirmedBottle}
+            alt="Happy Drops Anti Wrinkle bottle"
+          />
+          <div className="value-grid">
+            {values.map((value) => (
+              <article key={value.title}>
+                <span className="value-icon">{value.icon}</span>
+                <h3>{value.title}</h3>
+                <p>{value.text}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -182,7 +199,7 @@ function AboutUs() {
           </p>
           <a href="#" className="primary-action">Create Your Wellness Profile</a>
         </div>
-        <img src={aboutMission} alt="Happy Drops lavender bottle and candle" />
+        <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
       </section>
 
       <section className="about-process">
@@ -199,14 +216,19 @@ function AboutUs() {
         </div>
       </section>
 
-      <section className="about-cta">
-        <img src={aboutBottle} alt="Happy Drops lavender essential oil product" />
+            <section className="about-cta happy-drops-footer-cta">
+        <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle product" />
         <div>
+          <img
+            className="footer-happy-logo"
+            src={happyDropsLogo}
+            alt="Happy Drops logo"
+          />
           <p className="section-kicker">Happy Drops</p>
           <h2>Start your natural wellness journey today</h2>
           <p>
-            Discover personalized wellness support, calming lavender products,
-            and workshops created for healthier, happier families.
+            Join Happy Drops customers living healthier lives with natural wellness
+            care, personalized recommendations, and trusted product guidance.
           </p>
           <div className="about-hero-actions">
             <a href="#" className="primary-action">Get My Recommendation</a>
@@ -219,3 +241,4 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
