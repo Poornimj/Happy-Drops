@@ -1,4 +1,5 @@
 ﻿import aboutStory from "../assets/images/about-story.png";
+import familyHeroBanner from "../assets/images/happy-drops-family-hero-banner.png";
 import aboutMission from "../assets/images/about-mission.png";
 import confirmedBottle from "../assets/images/confirmed-bottle.png";
 import happyDropsLogo from "../assets/images/happy-drops-logo.jpeg";
@@ -109,7 +110,9 @@ const steps = [
 function AboutUs() {
   return (
     <main className="about-page">
-                  <section className="about-hero about-hero-wide-image">
+                        <section
+        className="about-hero about-family-wide-banner"
+      >
         <div className="about-hero-copy">
           <p className="section-kicker">Empowering wellness naturally</p>
           <h1>About Happy Drops</h1>
@@ -118,14 +121,6 @@ function AboutUs() {
             support, and personalized recommendations to help people feel
             healthier, calmer, and more confident in their daily care.
           </p>
-          <div className="about-hero-actions">
-            <a href="#mission" className="primary-action">Our Mission</a>
-            <a href="#values" className="secondary-action">Our Values</a>
-          </div>
-        </div>
-
-        <div className="about-hero-image-scene" aria-hidden="true">
-          <img src={confirmedBottle} alt="" />
         </div>
       </section>
 
@@ -239,6 +234,9 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
+
+
 
 
 
