@@ -1255,3 +1255,39 @@ a {
     height: 58px !important;
   }
 }
+
+/* Exact navbar logo without box */
+.navbar {
+  min-height: 84px !important;
+}
+
+.brand {
+  display: flex !important;
+  align-items: center !important;
+  width: 210px !important;
+  flex: 0 0 210px !important;
+  background: transparent !important;
+}
+
+.brand img {
+  width: 100% !important;
+  height: 70px !important;
+  display: block !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 900px) {
+  .brand {
+    width: 188px !important;
+    flex-basis: 188px !important;
+  }
+
+  .brand img {
+    height: 64px !important;
+  }
+}

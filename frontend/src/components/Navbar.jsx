@@ -1,4 +1,4 @@
-﻿import happyDropsLogo from "../assets/logos/happy-drops-navbar-logo.svg";
+﻿import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 
 function Navbar() {
   return (
