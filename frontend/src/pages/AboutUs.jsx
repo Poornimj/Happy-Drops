@@ -110,7 +110,7 @@ const steps = [
 function AboutUs() {
   return (
     <main className="about-page">
-                                    <section className="about-hero about-two-person-longevity-banner">
+                                          <section className="about-hero about-two-person-longevity-banner">
         <img
           className="about-longevity-banner-image"
           src={twoPersonHeroBanner}
@@ -119,10 +119,10 @@ function AboutUs() {
         <div className="about-longevity-banner-overlay"></div>
         <div className="about-hero-copy">
           <p className="section-kicker">Empowering wellness naturally</p>
-          <h1>
-            Personalized Wellness,<br />
-            Designed for Longevity
-          </h1>
+          <h1>About Happy Drops</h1>
+          <p className="hero-support-line">
+            Personalized Wellness, Designed for Longevity
+          </p>
           <p>
             Happy Drops brings together nature-powered products, family wellness
             support, and personalized recommendations to help people feel
@@ -241,6 +241,7 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
 
 
 

@@ -1407,3 +1407,68 @@ a {
     background: rgba(251, 248, 241, 0.28) !important;
   }
 }
+
+/* About hero title and face visibility fix */
+.about-two-person-longevity-banner {
+  padding-left: clamp(32px, 4.8vw, 58px) !important;
+  padding-right: clamp(28px, 4vw, 52px) !important;
+}
+
+.about-two-person-longevity-banner .about-hero-copy {
+  max-width: 470px !important;
+}
+
+.about-two-person-longevity-banner h1 {
+  max-width: 430px !important;
+  margin-bottom: 16px !important;
+  color: #173f27 !important;
+  font-size: clamp(44px, 5.8vw, 78px) !important;
+  line-height: 1.04 !important;
+}
+
+.hero-support-line {
+  max-width: 440px !important;
+  margin: 0 0 16px !important;
+  color: #315c38 !important;
+  font-family: Georgia, serif !important;
+  font-size: clamp(22px, 2.5vw, 34px) !important;
+  font-weight: 700 !important;
+  line-height: 1.18 !important;
+}
+
+.about-two-person-longevity-banner .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
+  max-width: 470px !important;
+  color: #173f27 !important;
+  font-size: clamp(15px, 1.35vw, 18px) !important;
+  font-weight: 650 !important;
+  line-height: 1.62 !important;
+}
+
+.about-longevity-banner-image {
+  object-position: center center !important;
+}
+
+.about-longevity-banner-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.48) 0%,
+      rgba(251, 248, 241, 0.26) 30%,
+      rgba(251, 248, 241, 0.06) 49%,
+      rgba(251, 248, 241, 0) 100%
+    ) !important;
+}
+
+@media (max-width: 900px) {
+  .about-two-person-longevity-banner .about-hero-copy {
+    max-width: 100% !important;
+  }
+
+  .about-two-person-longevity-banner h1 {
+    max-width: 360px !important;
+  }
+
+  .about-longevity-banner-image {
+    object-position: 66% center !important;
+  }
+}
