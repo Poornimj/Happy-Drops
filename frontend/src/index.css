@@ -1219,3 +1219,39 @@ a {
     height: 66px !important;
   }
 }
+
+/* Correct SVG navbar logo fix */
+.navbar {
+  min-height: 82px !important;
+}
+
+.brand {
+  display: flex !important;
+  align-items: center !important;
+  width: 188px !important;
+  flex: 0 0 188px !important;
+  background: transparent !important;
+}
+
+.brand img {
+  width: 100% !important;
+  height: 62px !important;
+  display: block !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 900px) {
+  .brand {
+    width: 170px !important;
+    flex-basis: 170px !important;
+  }
+
+  .brand img {
+    height: 58px !important;
+  }
+}
