@@ -1472,3 +1472,55 @@ a {
     object-position: 66% center !important;
   }
 }
+
+/* Growing wellness all-labels section */
+.about-intro-split {
+  padding: 68px 0 34px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr) !important;
+  gap: 46px !important;
+  align-items: center !important;
+  text-align: left !important;
+}
+
+.about-intro-copy {
+  max-width: 560px !important;
+}
+
+.about-intro-split h2 {
+  margin-bottom: 18px !important;
+  color: #173f27 !important;
+  font-size: clamp(34px, 4.5vw, 54px) !important;
+  line-height: 1.1 !important;
+}
+
+.about-intro-split p:last-child {
+  max-width: 560px !important;
+  margin: 0 !important;
+  color: #4f655a !important;
+  font-size: 18px !important;
+  line-height: 1.75 !important;
+}
+
+.about-intro-image {
+  width: 100% !important;
+  min-height: 390px !important;
+  max-height: 460px !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+  box-shadow: 0 24px 58px rgba(49, 92, 56, 0.14) !important;
+}
+
+@media (max-width: 900px) {
+  .about-intro-split {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding-top: 46px !important;
+  }
+
+  .about-intro-image {
+    min-height: 300px !important;
+  }
+}
