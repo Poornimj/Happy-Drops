@@ -1291,3 +1291,28 @@ a {
     height: 64px !important;
   }
 }
+
+/* Slightly bigger navbar logo */
+.navbar {
+  min-height: 92px !important;
+}
+
+.brand {
+  width: 245px !important;
+  flex-basis: 245px !important;
+}
+
+.brand img {
+  height: 82px !important;
+}
+
+@media (max-width: 900px) {
+  .brand {
+    width: 210px !important;
+    flex-basis: 210px !important;
+  }
+
+  .brand img {
+    height: 72px !important;
+  }
+}
