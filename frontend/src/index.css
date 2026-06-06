@@ -1649,3 +1649,51 @@ a {
     min-height: 300px !important;
   }
 }
+
+/* Navbar icon buttons correction */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.nav-icon {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #315c38;
+  background: #fbf8f1;
+  border: 1px solid #dcc8ef;
+  border-radius: 50%;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.nav-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.9;
+}
+
+.nav-icon:hover {
+  color: #ffffff;
+  background: #a67ac5;
+  transform: translateY(-1px);
+}
+
+.login-button {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .nav-icons {
+    gap: 10px;
+  }
+
+  .nav-icon {
+    width: 40px;
+    height: 40px;
+  }
+}

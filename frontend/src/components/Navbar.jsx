@@ -1,4 +1,9 @@
-﻿import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
+﻿import {
+  HiOutlineSearch,
+  HiOutlineShoppingCart,
+  HiOutlineUser,
+} from "react-icons/hi";
+import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 
 function Navbar() {
   return (
@@ -16,7 +21,19 @@ function Navbar() {
         <a href="#">About Us</a>
       </div>
 
-      <button className="login-button">Login / Sign Up</button>
+      <div className="nav-icons">
+        <a href="#" className="nav-icon" aria-label="Search">
+          <HiOutlineSearch />
+        </a>
+
+        <a href="#" className="nav-icon" aria-label="Account">
+          <HiOutlineUser />
+        </a>
+
+        <a href="#" className="nav-icon" aria-label="Shopping cart">
+          <HiOutlineShoppingCart />
+        </a>
+      </div>
     </nav>
   );
 }
