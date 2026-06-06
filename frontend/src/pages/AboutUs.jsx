@@ -1,5 +1,5 @@
 ﻿import twoPersonHeroBanner from "../assets/images/happy-drops-two-person-hero-banner.png";
-import growingWellnessAllLabelsImage from "../assets/images/happy-drops-growing-wellness-all-labels.png";
+import growingWellnessHarvestImage from "../assets/images/happy-drops-growing-wellness-harvest.png";
 import ourStoryHomeWellnessImage from "../assets/images/happy-drops-our-story-home-wellness.png";
 import aboutMission from "../assets/images/about-mission.png";
 import confirmedBottle from "../assets/images/confirmed-bottle.png";
@@ -132,7 +132,7 @@ function AboutUs() {
         </div>
       </section>
 
-                  <section className="about-intro about-intro-split">
+                        <section className="about-intro about-intro-split">
         <div className="about-intro-copy">
           <p className="section-kicker">Rooted in nature</p>
           <h2>Growing Wellness Together</h2>
@@ -145,8 +145,8 @@ function AboutUs() {
         </div>
         <img
           className="about-intro-image"
-          src={growingWellnessAllLabelsImage}
-          alt="Happy Drops labeled bottles being prepared with herbs and wellness tools"
+          src={growingWellnessHarvestImage}
+          alt="Hands gathering lavender and eucalyptus in a natural garden"
         />
       </section>
 
@@ -247,6 +247,7 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
 
 
 
