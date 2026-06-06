@@ -1,5 +1,5 @@
 ﻿import aboutStory from "../assets/images/about-story.png";
-import familyHeroBanner from "../assets/images/happy-drops-family-hero-banner.png";
+import twoPersonHeroBanner from "../assets/images/happy-drops-two-person-hero-banner.png";
 import aboutMission from "../assets/images/about-mission.png";
 import confirmedBottle from "../assets/images/confirmed-bottle.png";
 import happyDropsLogo from "../assets/images/happy-drops-logo.jpeg";
@@ -110,20 +110,23 @@ const steps = [
 function AboutUs() {
   return (
     <main className="about-page">
-                              <section className="about-hero about-family-wide-banner">
+                                    <section className="about-hero about-two-person-longevity-banner">
         <img
-          className="about-family-banner-image"
-          src={familyHeroBanner}
-          alt="Happy Drops family wellness garden"
+          className="about-longevity-banner-image"
+          src={twoPersonHeroBanner}
+          alt="Happy Drops natural longevity wellness"
         />
-        <div className="about-family-banner-overlay"></div>
+        <div className="about-longevity-banner-overlay"></div>
         <div className="about-hero-copy">
           <p className="section-kicker">Empowering wellness naturally</p>
-          <h1>About Happy Drops</h1>
+          <h1>
+            Personalized Wellness,<br />
+            Designed for Longevity
+          </h1>
           <p>
             Happy Drops brings together nature-powered products, family wellness
             support, and personalized recommendations to help people feel
-            healthier, calmer, and more confident in their daily care.
+            healthier and more confident in their daily care.
           </p>
         </div>
       </section>
@@ -238,6 +241,7 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
 
 
 
