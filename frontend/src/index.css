@@ -1995,3 +1995,74 @@ a {
     font-size: clamp(38px, 12vw, 60px) !important;
   }
 }
+
+/* Show full fruit hero image correction */
+.about-calm-image-hero {
+  width: min(1120px, calc(100% - 32px)) !important;
+  aspect-ratio: 16 / 9 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 36px 52px !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  border-radius: 14px !important;
+  background: #fbf8f1 !important;
+}
+
+.about-calm-hero-image {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+}
+
+.about-calm-hero-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.5) 0%,
+      rgba(251, 248, 241, 0.28) 34%,
+      rgba(251, 248, 241, 0.08) 58%,
+      rgba(251, 248, 241, 0) 100%
+    ) !important;
+}
+
+.about-calm-image-hero .about-hero-copy {
+  max-width: 455px !important;
+}
+
+.about-calm-image-hero h1 {
+  font-size: clamp(42px, 5vw, 68px) !important;
+  line-height: 1.02 !important;
+  margin-bottom: 12px !important;
+}
+
+.about-calm-image-hero .hero-support-line {
+  font-size: clamp(18px, 1.8vw, 25px) !important;
+  margin-bottom: 12px !important;
+}
+
+.about-calm-image-hero .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
+  font-size: clamp(13px, 1.12vw, 15px) !important;
+  line-height: 1.54 !important;
+  max-width: 440px !important;
+}
+
+@media (max-width: 900px) {
+  .about-calm-image-hero {
+    aspect-ratio: auto !important;
+    min-height: 620px !important;
+    padding: 30px 22px !important;
+    align-items: flex-start !important;
+  }
+
+  .about-calm-hero-image {
+    object-position: 62% center !important;
+  }
+}
