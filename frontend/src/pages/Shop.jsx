@@ -4,7 +4,7 @@ import "./Shop.css";
 import { HiOutlineSearch, HiOutlineUser, HiOutlineShoppingCart } from "react-icons/hi";
 
 
-import logo from "../assets/logos/happy-drops-exact-logo-no-box.png";
+import logo from "../assets/logos/Logo.jpeg";
 import lavenderHero from "../assets/images/SkinDryness.png";
 import immunityOil from "../assets/images/Immunityoil.png";
 import painReliefOil from "../assets/images/Painreliefoil.png";
@@ -37,11 +37,8 @@ function Shop() {
     <div className="shop-page">
       <header className="navbar">
         <Link to="/" className="logo">
-          <img src={logo} alt="Happy Drops" />
-          <div>
-            <h2>Happy</h2>
-            <span>Drops</span>
-          </div>
+          <img src={logo}  />
+          
         </Link>
 
         <nav className="nav-links">

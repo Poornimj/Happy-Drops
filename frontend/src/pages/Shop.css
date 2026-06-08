@@ -1,9 +1,14 @@
 .shop-page {
-  max-width: 1120px;
+  width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
   background: #ffffff;
-  color: #182238;
-  font-family: Arial, sans-serif;
+  color: #173f27;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+.shop-page h1,
+.shop-page h2,
+.shop-page h3 {
+  font-family: Georgia, serif;
 }
 
 .navbar {
@@ -20,7 +25,7 @@
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: #182238;
+   color: #173f27;
 }
 
 .logo img {
