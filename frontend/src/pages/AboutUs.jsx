@@ -165,7 +165,7 @@ function AboutUs() {
             workshops that fit real life.
           </p>
           <p>
-            Every experience is designed to feel warm, calm, and useful, from
+            Every experience is designed to feel calm, connected, and useful, from
             creating a wellness profile to receiving recommendations and booking
             a workshop.
           </p>
@@ -247,6 +247,7 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
 
 
 
