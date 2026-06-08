@@ -4,7 +4,7 @@ import "./Shop.css";
 import { HiOutlineSearch, HiOutlineUser, HiOutlineShoppingCart } from "react-icons/hi";
 
 
-import logo from "../assets/logos/Logo.jpeg";
+import logo from "../assets/logos/happy-drops-exact-logo-no-box.jpeg";
 import lavenderHero from "../assets/images/SkinDryness.png";
 import immunityOil from "../assets/images/Immunityoil.png";
 import painReliefOil from "../assets/images/Painreliefoil.png";

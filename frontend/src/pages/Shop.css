@@ -14,10 +14,18 @@
 .navbar {
   height: 76px;
   padding: 0 18px;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
   justify-content: space-between;
   background: #ffffff;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  align-items: center;
 }
 
 .logo {
@@ -58,6 +66,7 @@
   color: #173f27;
   text-decoration: none;
   font-size: 14px;
+  font-weight: 700;
 }
 
 .nav-links .active {
