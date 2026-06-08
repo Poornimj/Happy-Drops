@@ -1,7 +1,7 @@
-﻿import twoPersonHeroBanner from "../assets/images/happy-drops-two-person-hero-banner.png";
-import growingWellnessHarvestImage from "../assets/images/happy-drops-growing-wellness-harvest.png";
+﻿import aboutMission from "../assets/images/about-mission.png";
+import heroCalmImage from "../assets/images/happy-drops-hero-calm.jpeg";
+import growingHarvestImage from "../assets/images/happy-drops-growing-harvest.jpeg";
 import ourStoryHomeWellnessImage from "../assets/images/happy-drops-our-story-home-wellness.png";
-import aboutMission from "../assets/images/about-mission.png";
 import confirmedBottle from "../assets/images/confirmed-bottle.png";
 import happyDropsLogo from "../assets/images/happy-drops-logo.jpeg";
 
@@ -111,13 +111,13 @@ const steps = [
 function AboutUs() {
   return (
     <main className="about-page">
-                                          <section className="about-hero about-two-person-longevity-banner">
+                                                <section className="about-hero about-calm-image-hero">
         <img
-          className="about-longevity-banner-image"
-          src={twoPersonHeroBanner}
-          alt="Happy Drops natural longevity wellness"
+          className="about-calm-hero-image"
+          src={heroCalmImage}
+          alt="Happy Drops wellness with two people and Anti Wrinkle bottle"
         />
-        <div className="about-longevity-banner-overlay"></div>
+        <div className="about-calm-hero-overlay"></div>
         <div className="about-hero-copy">
           <p className="section-kicker">Empowering wellness naturally</p>
           <h1>About Happy Drops</h1>
@@ -132,7 +132,7 @@ function AboutUs() {
         </div>
       </section>
 
-                        <section className="about-intro about-intro-split">
+                              <section className="about-intro about-intro-split">
         <div className="about-intro-copy">
           <p className="section-kicker">Rooted in nature</p>
           <h2>Growing Wellness Together</h2>
@@ -145,12 +145,12 @@ function AboutUs() {
         </div>
         <img
           className="about-intro-image"
-          src={growingWellnessHarvestImage}
-          alt="Hands gathering lavender and eucalyptus in a natural garden"
+          src={growingHarvestImage}
+          alt="Hands harvesting natural herbs in a garden"
         />
       </section>
 
-            <section className="about-story about-story-home">
+                  <section className="about-story about-story-home">
         <img
           src={ourStoryHomeWellnessImage}
           alt="Natural home wellness routine with herbs and guidance"
@@ -247,6 +247,7 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
 
 
 

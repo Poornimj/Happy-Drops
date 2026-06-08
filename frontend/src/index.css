@@ -1697,3 +1697,170 @@ a {
     height: 40px;
   }
 }
+
+/* Three confirmed About images correction */
+.about-calm-image-hero {
+  position: relative !important;
+  width: min(1120px, calc(100% - 32px)) !important;
+  aspect-ratio: 16 / 7 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: clamp(34px, 4.8vw, 58px) clamp(34px, 5.2vw, 72px) !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  background: #fbf8f1 !important;
+  border-radius: 14px !important;
+  isolation: isolate;
+}
+
+.about-calm-hero-image {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+}
+
+.about-calm-hero-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.48) 0%,
+      rgba(251, 248, 241, 0.26) 31%,
+      rgba(251, 248, 241, 0.08) 55%,
+      rgba(251, 248, 241, 0) 100%
+    ) !important;
+  pointer-events: none !important;
+}
+
+.about-calm-image-hero .about-hero-copy {
+  position: relative !important;
+  z-index: 2 !important;
+  max-width: 500px !important;
+  text-shadow:
+    0 2px 18px rgba(251, 248, 241, 0.86),
+    0 0 3px rgba(251, 248, 241, 0.96) !important;
+}
+
+.about-calm-image-hero h1 {
+  max-width: 430px !important;
+  margin-bottom: 16px !important;
+  color: #173f27 !important;
+  font-size: clamp(44px, 5.8vw, 78px) !important;
+  line-height: 1.04 !important;
+}
+
+.about-calm-image-hero .hero-support-line {
+  max-width: 450px !important;
+  margin: 0 0 16px !important;
+  color: #315c38 !important;
+  font-family: Georgia, serif !important;
+  font-size: clamp(22px, 2.4vw, 32px) !important;
+  font-weight: 700 !important;
+  line-height: 1.18 !important;
+}
+
+.about-calm-image-hero .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
+  max-width: 490px !important;
+  color: #173f27 !important;
+  font-size: clamp(15px, 1.35vw, 18px) !important;
+  font-weight: 650 !important;
+  line-height: 1.62 !important;
+}
+
+.about-intro-split {
+  padding: 68px 0 34px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr) !important;
+  gap: 46px !important;
+  align-items: center !important;
+  text-align: left !important;
+}
+
+.about-intro-copy {
+  max-width: 560px !important;
+}
+
+.about-intro-split h2 {
+  margin-bottom: 18px !important;
+  color: #173f27 !important;
+  font-size: clamp(34px, 4.5vw, 54px) !important;
+  line-height: 1.1 !important;
+}
+
+.about-intro-split p:last-child {
+  max-width: 560px !important;
+  margin: 0 !important;
+  color: #4f655a !important;
+  font-size: 18px !important;
+  line-height: 1.75 !important;
+}
+
+.about-intro-image,
+.about-story-home > img {
+  width: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+  box-shadow: 0 24px 58px rgba(49, 92, 56, 0.14) !important;
+}
+
+.about-intro-image {
+  min-height: 390px !important;
+  max-height: 460px !important;
+}
+
+.about-story-home {
+  margin-top: 56px !important;
+}
+
+.about-story-home > img {
+  min-height: 430px !important;
+  max-height: 520px !important;
+}
+
+.about-story-home div {
+  padding: 20px 28px !important;
+}
+
+@media (max-width: 900px) {
+  .about-calm-image-hero {
+    aspect-ratio: auto !important;
+    min-height: 620px !important;
+    padding: 32px 22px !important;
+    align-items: flex-start !important;
+  }
+
+  .about-calm-hero-image {
+    object-position: 66% center !important;
+  }
+
+  .about-calm-hero-overlay {
+    background: rgba(251, 248, 241, 0.28) !important;
+  }
+
+  .about-intro-split {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding-top: 46px !important;
+  }
+
+  .about-intro-image {
+    min-height: 300px !important;
+  }
+
+  .about-story-home > img {
+    min-height: 320px !important;
+  }
+}
