@@ -1,8 +1,8 @@
 ﻿import aboutMission from "../assets/images/about-mission.png";
+import confirmedBottle from "../assets/images/confirmed-bottle.png";
 import heroCalmImage from "../assets/images/happy-drops-hero-calm.jpeg";
 import growingHarvestImage from "../assets/images/happy-drops-growing-harvest.jpeg";
 import ourStoryHomeWellnessImage from "../assets/images/happy-drops-our-story-home-wellness.png";
-import confirmedBottle from "../assets/images/confirmed-bottle.png";
 import happyDropsLogo from "../assets/images/happy-drops-logo.jpeg";
 
 function LeafIcon() {
@@ -172,24 +172,38 @@ function AboutUs() {
         </div>
       </section>
 
-            <section className="about-values about-values-showcase" id="values">
+                  <section className="about-values about-values-showcase-v2" id="values">
         <p className="section-kicker">What we believe in</p>
         <h2>Our Values</h2>
-        <div className="values-showcase">
-          <img
-            className="values-bottle-image"
-            src={confirmedBottle}
-            alt="Happy Drops Anti Wrinkle bottle"
-          />
-          <div className="value-grid">
-            {values.map((value) => (
-              <article key={value.title}>
-                <span className="value-icon">{value.icon}</span>
-                <h3>{value.title}</h3>
-                <p>{value.text}</p>
-              </article>
-            ))}
+
+        <div className="values-scene-grid">
+          <article className="values-scene-card value-card-natural">
+            <span className="value-icon">{values[0].icon}</span>
+            <h3>{values[0].title}</h3>
+            <p>{values[0].text}</p>
+          </article>
+
+          <article className="values-scene-card value-card-family">
+            <span className="value-icon">{values[1].icon}</span>
+            <h3>{values[1].title}</h3>
+            <p>{values[1].text}</p>
+          </article>
+
+          <div className="values-scene-bottle">
+            <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
           </div>
+
+          <article className="values-scene-card value-card-expert">
+            <span className="value-icon">{values[2].icon}</span>
+            <h3>{values[2].title}</h3>
+            <p>{values[2].text}</p>
+          </article>
+
+          <article className="values-scene-card value-card-sustainable">
+            <span className="value-icon">{values[3].icon}</span>
+            <h3>{values[3].title}</h3>
+            <p>{values[3].text}</p>
+          </article>
         </div>
       </section>
 
@@ -205,7 +219,6 @@ function AboutUs() {
           </p>
           <a href="#" className="primary-action">Create Your Wellness Profile</a>
         </div>
-        <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
       </section>
 
       <section className="about-process">
@@ -223,7 +236,6 @@ function AboutUs() {
       </section>
 
             <section className="about-cta happy-drops-footer-cta">
-        <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle product" />
         <div>
           <img
             className="footer-happy-logo"
@@ -247,6 +259,7 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
 
 
 
