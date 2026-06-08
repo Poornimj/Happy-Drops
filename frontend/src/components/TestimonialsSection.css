@@ -1,0 +1,413 @@
+.testimonials {
+  padding: 50px 40px 70px;
+  background: linear-gradient(180deg, #f5eff9 0%, #f0e8f5 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 196, 225, 0.3), transparent);
+}
+
+.testimonials h2 {
+  color: #31533b;
+  font-size: 42px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #31533b 0%, #5a7a5f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.leaf-divider {
+  color: #6e8b57;
+  margin-bottom: 40px;
+  font-size: 22px;
+  letter-spacing: 8px;
+  opacity: 0.8;
+}
+
+.testimonial-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #1f2937;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-btn:hover {
+  background: white;
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-grid {
+  display: flex;
+  gap: 24px;
+}
+
+.testimonial-card {
+  width: 250px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 24px;
+  border-radius: 20px;
+  text-align: left;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+.testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+.testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+
+.testimonial-card.slide-in-right {
+  animation: slideInRightScale 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.slide-in-left {
+  animation: slideInLeftScale 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.slide-left {
+  animation: slideLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.slide-right {
+  animation: slideRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.slide-fade-left {
+  animation: slideFadeLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.slide-fade-right {
+  animation: slideFadeRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.fade-out-left {
+  animation: fadeOutLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.move-to-left {
+  animation: moveToLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.enter-from-right {
+  animation: enterFromRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.enter-from-left {
+  animation: enterFromLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.move-to-center {
+  animation: moveToCenter 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.fade-out-right {
+  animation: fadeOutRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.shift-left {
+  animation: shiftLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.shift-right {
+  animation: shiftRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.shift-left-all {
+  animation: shiftLeftAll 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.shift-right-all {
+  animation: shiftRightAll 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.slide-out-left {
+  animation: slideOutLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.testimonial-card.slide-out-right {
+  animation: slideOutRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRightScale {
+  from {
+    opacity: 0;
+    transform: translateX(60px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideInLeftScale {
+  from {
+    opacity: 0;
+    transform: translateX(-60px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-20px);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(20px);
+  }
+}
+
+@keyframes slideFadeLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFadeRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+}
+
+@keyframes moveToLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes enterFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes enterFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes moveToCenter {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(30px);
+  }
+}
+
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+@keyframes shiftLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes shiftRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(30px);
+  }
+}
+
+@keyframes shiftLeftAll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50px);
+  }
+}
+
+@keyframes shiftRightAll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50px);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.12),
+    0 0 45px rgba(212, 196, 225, 0.2);
+  border-color: rgba(212, 196, 225, 0.3);
+}
+
+.stars {
+  color: #f4b400;
+  margin-bottom: 16px;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.testimonial-card p {
+  color: #4b5563;
+  line-height: 1.8;
+  min-height: 60px;
+  font-size: 14px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.user-info img {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 2px solid rgba(212, 196, 225, 0.3);
+  transition: border-color 0.3s ease;
+}
+
+.testimonial-card:hover .user-info img {
+  border-color: rgba(212, 196, 225, 0.5);
+}
+
+.user-info span {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 15px;
+}
