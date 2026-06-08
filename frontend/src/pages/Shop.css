@@ -55,13 +55,13 @@
 }
 
 .nav-links a {
-  color: #000;
+  color: #173f27;
   text-decoration: none;
   font-size: 14px;
 }
 
 .nav-links .active {
-  border-bottom: 5px solid #a892c8;
+  border-bottom: 5px solid #a67ac5;
   padding-bottom: 18px;
 }
 
@@ -74,9 +74,10 @@
 .login-btn {
   padding: 12px 22px;
   border-radius: 22px;
-  background: #9b82c2;
+  background: #a67ac5;
   color: white;
   text-decoration: none;
+  border-radius: 999px;
   font-weight: 700;
 }
 
@@ -151,10 +152,11 @@
   display: inline-block;
   border-radius: 22px;
   padding: 10px 22px;
-  background: #a991c4;
+  background: #a67ac5;
   color: white;
   text-decoration: none;
   font-family: Georgia, serif;
+  border-radius: 999px;
   font-weight: 700;
 }
 
@@ -187,9 +189,9 @@
 .category {
   min-width: 145px;
   padding: 10px 22px;
-  border-radius: 22px;
-  background: #d1c5df;
-  color: #182238;
+  border-radius: 999px;
+  background:  #eadff2;
+  color: #173f27;
   text-align: center;
   text-decoration: none;
   font-family: Georgia, serif;
@@ -197,7 +199,7 @@
 }
 
 .category.active {
-  background: #182238;
+  background: #173f27;
   color: white;
 }
 
@@ -210,7 +212,7 @@
 .product-card {
   position: relative;
   overflow: hidden;
-  border: 1px solid #ddd2ea;
+  border: 1px solid #eadff2;
   border-radius: 10px;
   background: white;
   color: inherit;
@@ -224,7 +226,7 @@
   display: block;
   object-fit: contain !important;
   object-position: center !important;
-  background: #f7f2f8;
+  background: #fbf8f1;
 }
 
 .product-card {
@@ -246,7 +248,7 @@
   margin: 4px 0 8px;
   font-family: Georgia, serif;
   font-size: 13px;
-  color: #8a818a;
+  color: #4f655a;
 }
 
 .rating span {
@@ -260,28 +262,29 @@
 
 .product-info h4 {
   margin: 0 0 8px;
-  color: #9b82c2;
+  color:  #a67ac5;
   font-size: 18px;
 }
 
 .cart-btn {
   width: 86%;
-  height: 30px;
+  height: 34px;
   margin: 0 auto;
   display: block;
   border: none;
-  border-radius: 9px;
-  background: #bec8b2;
-  color: #000;
+  border-radius: 999px;
+  background: #f4f1e8;
+  color: #173f27;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
 }
 .bundle {
-  margin: 40px 32px 20px;
+  margin: 40px 0 20px;
   padding: 28px 36px;
-  border-radius: 10px;
-  background: #f3eef8;
+  border-radius: 14px;
+  background: #eadff2;
+  color: #173f27;
   display: grid;
   grid-template-columns: 220px 1fr 180px;
   align-items: center;
