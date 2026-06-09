@@ -1,4 +1,5 @@
 ﻿import {
+  HiOutlineGlobeAlt,
   HiOutlineSearch,
   HiOutlineShoppingCart,
   HiOutlineUser,
@@ -21,18 +22,29 @@ function Navbar() {
         <a href="#">About Us</a>
       </div>
 
-      <div className="nav-icons">
-        <a href="#" className="nav-icon" aria-label="Search">
-          <HiOutlineSearch />
-        </a>
+      <div className="nav-actions">
+        <div className="language-switcher" aria-label="Language selector">
+          <HiOutlineGlobeAlt />
+          <a href="#">EN</a>
+          <span></span>
+          <a href="#">FI</a>
+          <span></span>
+          <a href="#">ä¸­æ–‡</a>
+        </div>
 
-        <a href="#" className="nav-icon" aria-label="Account">
-          <HiOutlineUser />
-        </a>
+        <div className="nav-icons">
+          <a href="#" className="nav-icon" aria-label="Search">
+            <HiOutlineSearch />
+          </a>
 
-        <a href="#" className="nav-icon" aria-label="Shopping cart">
-          <HiOutlineShoppingCart />
-        </a>
+          <a href="#" className="nav-icon" aria-label="Account">
+            <HiOutlineUser />
+          </a>
+
+          <a href="#" className="nav-icon" aria-label="Shopping cart">
+            <HiOutlineShoppingCart />
+          </a>
+        </div>
       </div>
     </nav>
   );
