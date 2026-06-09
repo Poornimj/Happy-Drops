@@ -2723,3 +2723,28 @@ a {
   }
 }
 /* End Happy Drops real values cards */
+
+/* Happy Drops finished values image */
+.about-values-finished-image {
+  width: min(1120px, calc(100% - 32px));
+  margin: 62px auto 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  background: transparent !important;
+  border-radius: 14px !important;
+  box-shadow: 0 22px 58px rgba(49, 92, 56, 0.10);
+}
+
+.about-values-finished-image img {
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+}
+
+@media (max-width: 700px) {
+  .about-values-finished-image {
+    width: min(100% - 24px, 1120px);
+    margin-top: 42px !important;
+  }
+}
+/* End Happy Drops finished values image */
