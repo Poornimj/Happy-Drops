@@ -916,7 +916,7 @@ main {
   background: var(--soft-cream);
 }
 
-.recipe-modal-header img {
+.recipe-header-image {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -926,8 +926,9 @@ main {
   object-position: center;
 }
 
-.recipe-modal-header::after {
-  display: none;
+.wellness-modal h3 {
+  margin-right: 42px;
+  font-size: 26px;
 }
 
 .recipe-modal-header h3 {
@@ -941,18 +942,15 @@ main {
   line-height: 1.12;
 }
 
-.wellness-modal h3 {
-  margin-right: 42px;
-  font-size: 26px;
-}
-
-.wellness-modal img {
+.wellness-list-image {
   width: 100%;
+  max-height: calc(100vh - 84px);
   height: auto;
   display: block;
   margin-top: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
+  object-fit: contain;
 }
 
 .modal-intro {

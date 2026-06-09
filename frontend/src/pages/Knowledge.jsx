@@ -407,7 +407,7 @@ export default function Knowledge() {
             </button>
 
             <div className="recipe-modal-header">
-              <img src={knowledgeRecipe} alt="" aria-hidden="true" />
+              <img className="recipe-header-image" src={knowledgeRecipe} alt="" aria-hidden="true" />
               <h3 id="recipe-title">Custom Recipe & Pricing</h3>
             </div>
 
@@ -434,7 +434,12 @@ export default function Knowledge() {
               x
             </button>
 
-            <img id="wellness-title" src={knowledgeWellnessList} alt="Foundational wellness list" />
+            <img
+              id="wellness-title"
+              className="wellness-list-image"
+              src={knowledgeWellnessList}
+              alt="Foundational wellness list"
+            />
           </div>
         </div>
       )}
