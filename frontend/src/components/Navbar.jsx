@@ -29,7 +29,7 @@ function Navbar() {
           <span></span>
           <a href="#">FI</a>
           <span></span>
-          <a href="#">ä¸­æ–‡</a>
+          <a href="#">中文</a>
         </div>
 
         <div className="nav-icons">
