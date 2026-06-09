@@ -220,45 +220,12 @@ function AboutUs() {
         </div>
         <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
       </section>
-
-      <section className="about-process">
-        <p className="section-kicker">How it works</p>
-        <h2>Your path to better everyday wellness</h2>
-        <div className="process-row">
-          {steps.map((step, index) => (
-            <article key={step.text}>
-              <span className="step-icon">{step.icon}</span>
-              <strong>{index + 1}</strong>
-              <p>{step.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-            <section className="about-cta happy-drops-footer-cta">
-        <div>
-          <img
-            className="footer-happy-logo"
-            src={happyDropsLogo}
-            alt="Happy Drops logo"
-          />
-          <p className="section-kicker">Happy Drops</p>
-          <h2>Start your natural wellness journey today</h2>
-          <p>
-            Join Happy Drops customers living healthier lives with natural wellness
-            care, personalized recommendations, and trusted product guidance.
-          </p>
-          <div className="about-hero-actions">
-            <a href="#" className="primary-action">Get My Recommendation</a>
-            <a href="#" className="secondary-action">Book a Workshop</a>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
 
 export default AboutUs;
+
 
 
 
