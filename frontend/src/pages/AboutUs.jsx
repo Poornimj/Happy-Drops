@@ -1,4 +1,5 @@
 ﻿import aboutMission from "../assets/images/about-mission.png";
+import happyDropsValuesLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 import footerLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 import confirmedBottle from "../assets/images/confirmed-bottle.png";
 import heroCalmImage from "../assets/images/happy-drops-hero-calm.jpeg";
@@ -173,36 +174,58 @@ function AboutUs() {
         </div>
       </section>
 
-                  <section className="about-values about-values-showcase-v2" id="values">
-        <p className="section-kicker">What we believe in</p>
-        <h2>Our Values</h2>
+                        <section className="about-values about-values-real-cards" id="values">
+        <div className="values-brand-mark">
+          <img src={happyDropsValuesLogo} alt="Happy Drops" />
+        </div>
 
-        <div className="values-scene-grid">
-          <article className="values-scene-card value-card-natural">
-            <span className="value-icon">{values[0].icon}</span>
-            <h3>{values[0].title}</h3>
-            <p>{values[0].text}</p>
+        <div className="real-values-grid">
+          <article className="real-value-card real-value-health">
+            <span className="real-drop"></span>
+            <p className="real-kicker">The First Real</p>
+            <h3>
+              Real <em>Health</em>
+            </h3>
+            <p>
+              Plant ancient knowledge â€” health as a <strong>visible result of wisdom and trust.</strong>
+            </p>
           </article>
 
-          <article className="values-scene-card value-card-family">
-            <span className="value-icon">{values[1].icon}</span>
-            <h3>{values[1].title}</h3>
-            <p>{values[1].text}</p>
+          <article className="real-value-card real-value-wealth">
+            <span className="real-drop"></span>
+            <p className="real-kicker">The Second Real</p>
+            <h3>
+              Real <em>Wealth</em>
+            </h3>
+            <p>
+              Investing in longevity with quality of life, where your body and mind have the
+              <strong> best energy to live fulfilled moments.</strong>
+            </p>
           </article>
 
-          <div className="values-scene-bottle">
-          </div>
-
-          <article className="values-scene-card value-card-expert">
-            <span className="value-icon">{values[2].icon}</span>
-            <h3>{values[2].title}</h3>
-            <p>{values[2].text}</p>
+          <article className="real-value-card real-value-happiness">
+            <span className="real-drop"></span>
+            <p className="real-kicker">The Third Real</p>
+            <h3>
+              Real <em>Happiness</em>
+            </h3>
+            <p>
+              When you feel that you know how to manage your
+              <strong> mind, body, heart and time</strong> â€” because you know how to take care of it
+              through the knowledge of the essential oils, and all the wisdom lifestyle that it brings with it.
+            </p>
           </article>
 
-          <article className="values-scene-card value-card-sustainable">
-            <span className="value-icon">{values[3].icon}</span>
-            <h3>{values[3].title}</h3>
-            <p>{values[3].text}</p>
+          <article className="real-value-card real-value-sustainability">
+            <span className="real-drop"></span>
+            <p className="real-kicker">The Fourth Real</p>
+            <h3>
+              Real <em>Sustainability</em>
+            </h3>
+            <p>
+              Caring for the plants, the people and the land behind every drop â€” so the source and the
+              wisdom <strong>regenerate, never run out.</strong>
+            </p>
           </article>
         </div>
       </section>
@@ -269,6 +292,7 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
 
 
 
