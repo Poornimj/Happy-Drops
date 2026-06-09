@@ -287,8 +287,16 @@ main {
   align-items: stretch;
 }
 
+.left-panel {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 18px;
+}
+
 .how-card,
 .ask-card,
+.wellness-card,
 .order-tracker {
   border: 1px solid #e7ded0;
   border-radius: 10px;
@@ -306,6 +314,7 @@ main {
 .question-panel {
   min-width: 0;
   display: grid;
+  grid-template-rows: auto 1fr;
   gap: 18px;
   background: transparent;
 }
@@ -314,14 +323,28 @@ main {
   padding: 18px 20px;
 }
 
+.wellness-card {
+  min-height: 150px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+}
+
 .order-tracker {
   padding: 18px 20px 20px;
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .how-card h3,
 .question-panel h3,
+.wellness-card h3,
 .tracker-heading h3,
-.recipe-modal h3 {
+.recipe-modal h3,
+.wellness-modal h3 {
   margin: 0;
   color: var(--dark-green);
   font-family: Georgia, serif;
@@ -329,8 +352,26 @@ main {
 
 .how-card h3,
 .question-panel h3,
+.wellness-card h3,
 .tracker-heading h3 {
   font-size: 23px;
+}
+
+.wellness-card h3 {
+  line-height: 1.18;
+}
+
+.wellness-card p {
+  margin: 8px 0 0;
+  color: var(--text-muted);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.wellness-view-btn {
+  width: 120px;
+  flex: 0 0 auto;
 }
 
 .steps-list {
@@ -371,6 +412,11 @@ main {
   color: var(--white);
   box-shadow: 0 5px 14px rgba(166, 122, 197, 0.24);
   z-index: 1;
+}
+
+.step-icon {
+  background: #c7a3df;
+  box-shadow: 0 5px 14px rgba(166, 122, 197, 0.22);
 }
 
 .step-icon svg,
@@ -489,19 +535,48 @@ main {
   border-radius: 10px;
   background: var(--white);
   box-shadow: 0 8px 18px rgba(49, 92, 56, 0.06);
+  cursor: default;
 }
 
-.status-card .avatar {
-  width: 44px;
-  height: 44px;
+.status-card .avatar,
+.order-avatar {
+  width: 46px;
+  height: 46px;
   background: var(--soft-purple);
   color: var(--purple-dark);
   box-shadow: none;
 }
 
-.status-card .avatar svg {
-  width: 23px;
-  height: 23px;
+.status-card .order-avatar.order-avatar-question {
+  background: #f2e8fb;
+  color: #7b3fc6;
+}
+
+.status-card .order-avatar.order-avatar-user {
+  background: #e8f3ed;
+  color: #1f7a45;
+}
+
+.status-card .order-avatar.order-avatar-leaf {
+  background: #edf7df;
+  color: #4b9a2f;
+}
+
+.status-card .order-avatar.order-avatar-card {
+  background: #e8f0ff;
+  color: #2f67c8;
+}
+
+.status-card .order-avatar.order-avatar-bottle {
+  background: #fff0df;
+  color: #d1651f;
+}
+
+.status-card .avatar svg,
+.order-avatar svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
 }
 
 .status-text strong {
@@ -589,8 +664,7 @@ main {
 
 .pickup-empty-box,
 .pickup-image-box {
-  height: 235px;
-  min-height: 0;
+  min-height: 235px;
   border: 2px solid var(--border);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.88);
@@ -599,12 +673,13 @@ main {
 }
 
 .pickup-empty-box {
+  height: auto;
   padding: 22px 24px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 12px;
   font-family: "Segoe UI", Arial, sans-serif;
+  overflow: visible;
 }
 
 .pickup-card-heading {
@@ -617,9 +692,9 @@ main {
 .pickup-card-heading h3 {
   margin: 0;
   color: var(--brand-green);
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: Georgia, serif;
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .pickup-card-heading p {
@@ -633,64 +708,160 @@ main {
 .pickup-status {
   padding: 6px 12px;
   border-radius: 999px;
-  background: var(--soft-purple);
-  color: var(--purple-dark);
   font-size: 11px;
   font-weight: 800;
   white-space: nowrap;
 }
 
-.pickup-message {
-  display: grid;
-  gap: 6px;
+.pickup-status.ready {
+  background: var(--soft-purple);
+  color: var(--purple-dark);
+}
+
+.pickup-status.processing {
+  background: #fff0e2;
+  color: #b96218;
+}
+
+.receive-intro {
   margin: 0;
   color: var(--text-muted);
   font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
 }
 
-.pickup-message p {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1.28;
+.receive-options {
+  display: grid;
+  gap: 10px;
 }
 
-.pickup-time-box {
-  width: min(100%, 440px);
+.receive-method {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.78);
+  overflow: hidden;
+}
+
+.receive-method.open {
+  box-shadow: 0 8px 18px rgba(49, 92, 56, 0.06);
+}
+
+.receive-toggle {
+  width: 100%;
+  min-height: 42px;
+  border: 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 14px;
+  background: var(--white);
+  color: var(--brand-green);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.receive-toggle span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.receive-toggle svg {
+  width: 20px;
+  height: 20px;
+  color: var(--purple);
+}
+
+.receive-method.open .receive-toggle > svg {
+  transform: rotate(180deg);
+}
+
+.receive-details {
+  display: grid;
   gap: 10px;
-  padding: 9px 14px;
-  border-radius: 10px;
-  background: var(--purple);
-  color: var(--white);
+  padding: 12px 14px 14px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
-.pickup-time-box svg {
-  width: 28px;
-  height: 28px;
-  flex: 0 0 auto;
+.receive-details strong,
+.receive-details p {
+  margin: 0;
 }
 
-.pickup-time-box div {
-  display: grid;
-  gap: 2px;
-  padding-left: 10px;
-  border-left: 1px solid rgba(255, 255, 255, 0.45);
+.receive-details strong {
+  color: var(--brand-green);
+  font-size: 14px;
+  font-weight: 800;
 }
 
-.pickup-time-box span {
+.receive-details p {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.address-preview {
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #e7ded0;
+  border-radius: 8px;
+  background: var(--soft-cream);
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.delivery-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.secondary-btn,
+.confirm-btn {
+  min-height: 34px;
+  border-radius: 999px;
+  padding: 0 16px;
+  cursor: pointer;
   font-size: 12px;
+  font-weight: 800;
 }
 
-.pickup-time-box strong {
-  font-size: 16px;
-  line-height: 1.1;
+.secondary-btn {
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--purple-dark);
+}
+
+.confirm-btn {
+  border: 1px solid transparent;
+  background: var(--purple);
+  color: var(--white);
+}
+
+.confirm-btn.confirmed {
+  background: var(--brand-green);
+  color: var(--white);
+}
+
+.address-input {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-muted);
+  background: var(--white);
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .pickup-image-box {
+  height: 235px;
   padding: 7px;
   display: flex;
 }
@@ -716,15 +887,72 @@ main {
 
 .recipe-modal {
   position: relative;
-  width: min(100%, 520px);
-  padding: 30px;
+  width: min(100%, 760px);
+  padding: 32px;
   border-radius: 12px;
   background: var(--white);
   box-shadow: 0 24px 70px rgba(23, 63, 39, 0.24);
 }
 
-.recipe-modal h3 {
-  font-size: 28px;
+.wellness-modal {
+  position: relative;
+  width: min(100%, 980px);
+  max-height: calc(100vh - 48px);
+  padding: 18px;
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: 0 24px 70px rgba(23, 63, 39, 0.24);
+  overflow: auto;
+}
+
+.recipe-modal-header {
+  position: relative;
+  min-height: 190px;
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--soft-cream);
+}
+
+.recipe-modal-header img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.recipe-modal-header::after {
+  display: none;
+}
+
+.recipe-modal-header h3 {
+  position: relative;
+  z-index: 1;
+  max-width: 430px;
+  margin: 0;
+  color: var(--dark-green);
+  font-family: Georgia, serif;
+  font-size: 38px;
+  line-height: 1.12;
+}
+
+.wellness-modal h3 {
+  margin-right: 42px;
+  font-size: 26px;
+}
+
+.wellness-modal img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
 
 .modal-intro {
@@ -735,8 +963,8 @@ main {
 
 .modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 12px;
+  right: 12px;
   width: 34px;
   height: 34px;
   border: 0;
@@ -747,29 +975,38 @@ main {
   cursor: pointer;
 }
 
-.recipe-detail-list {
-  display: grid;
-  gap: 12px;
-  margin-bottom: 20px;
+.recipe-modal .modal-close {
+  top: 18px;
+  right: 18px;
+  z-index: 3;
 }
 
-.recipe-detail-list div,
+.recipe-display-space {
+  min-height: 260px;
+  margin: 24px 0;
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  background: rgba(244, 241, 232, 0.52);
+  color: var(--text-muted);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+}
+
 .price-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  padding: 14px 16px;
+  padding: 18px 22px;
   border-radius: 8px;
-  background: var(--cream);
 }
 
-.recipe-detail-list span,
 .price-row span {
   color: var(--text-muted);
 }
 
-.recipe-detail-list strong,
 .price-row strong {
   color: var(--dark-green);
 }
@@ -780,8 +1017,28 @@ main {
 }
 
 .price-row strong {
-  font-size: 22px;
+  font-size: 18px;
   color: var(--purple-dark);
+}
+
+.price-placeholder {
+  min-width: 180px;
+  min-height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--purple-dark);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.payment-note {
+  margin: 0;
+  color: var(--text-muted);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
 }
 
 .modal-action {
@@ -948,6 +1205,7 @@ main {
 
   .how-card,
   .ask-card,
+  .wellness-card,
   .order-tracker {
     padding: 18px;
   }
@@ -959,6 +1217,15 @@ main {
   }
 
   .question-actions .primary-btn {
+    width: 100%;
+  }
+
+  .wellness-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .wellness-view-btn {
     width: 100%;
   }
 

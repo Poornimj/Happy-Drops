@@ -3,6 +3,19 @@ import Navbar from "../components/Navbar";
 import knowledgeHeader from "../assets/images/knowledge-header.png";
 import knowledgeReady from "../assets/images/knowledge-ready.png";
 import knowledgeFooter from "../assets/images/knowledge-footer.png";
+import knowledgeWellnessList from "../assets/images/knowledge-wellness-list.png";
+import knowledgeRecipe from "../assets/images/knowledge-recipe.png";
+import {
+  LuCircleCheck,
+  LuCircleHelp,
+  LuChevronDown,
+  LuCreditCard,
+  LuLeaf,
+  LuMapPin,
+  LuPillBottle,
+  LuTruck,
+  LuUser,
+} from "react-icons/lu";
 import "../index.css";
 
 const steps = [
@@ -14,45 +27,86 @@ const steps = [
   ["bag", "Ready for Pickup", "Your essential oil is ready. You can pick it up at Nature Power Happiness Academy."],
 ];
 
-const orderSteps = [
-  {
-    icon: "question",
-    title: "You",
-    text: "What essential oil can help with stress and better sleep?",
-    time: "25 Aug 2026 - 10:30 AM",
-    status: "done",
-  },
-  {
-    icon: "user",
-    title: "Aromatherapist Review",
-    text: "Our aromatherapist has reviewed your question.",
-    time: "25 Aug 2026 - 11:15 AM",
-    status: "done",
-  },
-  {
-    icon: "leaf",
-    title: "Personalized Recipe",
-    text: "Here is your custom blend recipe and pricing.",
-    time: "25 Aug 2026 - 11:45 AM",
-    status: "done",
-    action: "recipe",
-  },
-  {
-    icon: "card",
-    title: "Payment",
-    text: "Please complete your payment to continue.",
-    time: "25 Aug 2026 - 12:10 PM",
-    status: "processing",
-    action: "payment",
-  },
-  {
-    icon: "bottle",
-    title: "Oil Creation Started",
-    text: "We will start creating your custom essential oil blend after payment.",
-    time: "25 Aug 2026 - 01:00 PM",
-    status: "processing",
-  },
-];
+const customerQuestion = "What essential oil can help with stress and better sleep?";
+
+const stageRank = {
+  question_saved: 1,
+  sent_to_aromatherapist: 2,
+  recipe_sent: 3,
+  paid: 4,
+  oil_sent: 5,
+};
+
+const orderStage = "recipe_sent";
+
+function getOrderSteps(stage) {
+  const rank = stageRank[stage] || 1;
+
+  return [
+    {
+      icon: "question",
+      title: "You",
+      text: customerQuestion,
+      time: "25 Aug 2026 - 10:30 AM",
+      status: rank >= 1 ? "done" : "processing",
+    },
+    {
+      icon: "user",
+      title: "Aromatherapist Review",
+      text:
+        rank >= 3
+          ? "Our aromatherapist has reviewed your question."
+          : "Your question has been sent to our aromatherapist by email.",
+      time: "25 Aug 2026 - 11:15 AM",
+      status: rank >= 3 ? "done" : "processing",
+    },
+    {
+      icon: "leaf",
+      title: "Personalized Recipe",
+      text:
+        rank >= 3
+          ? "Here is your custom blend recipe and pricing."
+          : "Your custom recipe will appear after aromatherapist review.",
+      time: "25 Aug 2026 - 11:45 AM",
+      status: rank >= 4 ? "done" : "processing",
+      action: rank >= 3 ? "recipe" : null,
+    },
+    {
+      icon: "card",
+      title: "Payment",
+      text:
+        rank >= 4
+          ? "Your payment has been received."
+          : "Please complete your payment to continue.",
+      time: "25 Aug 2026 - 12:10 PM",
+      status: rank >= 4 ? "done" : "processing",
+      action: rank >= 3 && rank < 4 ? "payment" : null,
+    },
+    {
+      icon: "bottle",
+      title: "Oil Creation Started",
+      text:
+        rank >= 5
+          ? "Your essential oil has been created and sent to you."
+          : "We will start creating your custom essential oil blend after payment.",
+      time: "25 Aug 2026 - 01:00 PM",
+      status: rank >= 5 ? "done" : "processing",
+    },
+  ];
+}
+
+function OrderIcon({ name }) {
+  const icons = {
+    question: LuCircleHelp,
+    user: LuUser,
+    leaf: LuLeaf,
+    card: LuCreditCard,
+    bottle: LuPillBottle,
+  };
+  const Icon = icons[name] || LuCircleHelp;
+
+  return <Icon aria-hidden="true" />;
+}
 
 function LockIcon() {
   return (
@@ -125,6 +179,16 @@ function CalendarIcon() {
 
 export default function Knowledge() {
   const [isRecipeOpen, setIsRecipeOpen] = useState(false);
+  const [isWellnessOpen, setIsWellnessOpen] = useState(false);
+  const [openReceiveMethod, setOpenReceiveMethod] = useState("pickup");
+  const [isPickupConfirmed, setIsPickupConfirmed] = useState(false);
+  const [isDeliveryConfirmed, setIsDeliveryConfirmed] = useState(false);
+  const [isAddressOpen, setIsAddressOpen] = useState(false);
+  const [deliveryAddress, setDeliveryAddress] = useState(
+    "Hämeentie 135 A, 00560 Helsinki"
+  );
+  const orderSteps = getOrderSteps(orderStage);
+  const readyEmailSent = true;
 
   return (
     <div className="knowledge-page">
@@ -151,24 +215,37 @@ export default function Knowledge() {
         </section>
 
         <section className="hub-layout">
-          <aside className="how-card">
-            <h3>How It Works</h3>
+          <aside className="left-panel">
+            <section className="wellness-card">
+              <div>
+                <h3>Discover Your Foundational Wellness List</h3>
+                <p>Simple natural wellness support for everyday wellbeing.</p>
+              </div>
 
-            <div className="steps-list">
-              {steps.map(([icon, title, text], index) => (
-                <div className="step-item" key={title}>
-                  <div className="step-icon">
-                    <StepIcon name={icon} />
-                  </div>
+              <button className="primary-btn wellness-view-btn" type="button" onClick={() => setIsWellnessOpen(true)}>
+                View
+              </button>
+            </section>
 
-                  <div className="step-body">
-                    <span>{index + 1}</span>
-                    <h4>{title}</h4>
-                    <p>{text}</p>
+            <section className="how-card">
+              <h3>How It Works</h3>
+
+              <div className="steps-list">
+                {steps.map(([icon, title, text], index) => (
+                  <div className="step-item" key={title}>
+                    <div className="step-icon">
+                      <StepIcon name={icon} />
+                    </div>
+
+                    <div className="step-body">
+                      <span>{index + 1}</span>
+                      <h4>{title}</h4>
+                      <p>{text}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </section>
           </aside>
 
           <section className="question-panel">
@@ -195,8 +272,8 @@ export default function Knowledge() {
               <div className="status-timeline">
                 {orderSteps.map((step) => (
                   <article className="status-card" key={step.title}>
-                    <div className="avatar">
-                      <StepIcon name={step.icon} />
+                    <div className={`avatar order-avatar order-avatar-${step.icon}`}>
+                      <OrderIcon name={step.icon} />
                     </div>
 
                     <div className="status-text">
@@ -210,14 +287,16 @@ export default function Knowledge() {
                       )}
 
                       {step.action === "payment" && (
-                        <button className="mini-btn" type="button">Pay Now</button>
+                        <button className="mini-btn" type="button" onClick={() => setIsRecipeOpen(true)}>
+                          Pay Now
+                        </button>
                       )}
                     </div>
 
                     <div className="status-side">
                       <time>{step.time}</time>
                       <span className={`status-pill ${step.status}`}>
-                        {step.status === "done" && <StepIcon name="check" />}
+                        {step.status === "done" && <LuCircleCheck aria-hidden="true" />}
                         {step.status === "done" ? "Done" : "Processing"}
                       </span>
                     </div>
@@ -233,21 +312,83 @@ export default function Knowledge() {
             <div className="pickup-card-heading">
               <div>
                 <h3>Personalized Oil Blend</h3>
-                <p>Made Just for You</p>
               </div>
-              <span className="pickup-status">Ready for Pickup</span>
+              <span className={`pickup-status ${readyEmailSent ? "ready" : "processing"}`}>
+                {readyEmailSent ? "Ready for Pickup" : "Processing"}
+              </span>
             </div>
 
-            <div className="pickup-message">
-              <p>Your essential oil is ready.</p>
-              <p>You can pick it up at Helsinki XR Center, Hämeentie 135 A, 00560 Helsinki.</p>
-            </div>
+            <p className="receive-intro">
+              Please select your preferred method to receive your customized essential oil.
+            </p>
 
-            <div className="pickup-time-box">
-              <CalendarIcon />
-              <div>
-                <span>Pickup every Wednesday</span>
-                <strong>between 3 PM - 6 PM</strong>
+            <div className="receive-options">
+              <div className={`receive-method ${openReceiveMethod === "pickup" ? "open" : ""}`}>
+                <button
+                  className="receive-toggle"
+                  type="button"
+                  onClick={() => setOpenReceiveMethod(openReceiveMethod === "pickup" ? "" : "pickup")}
+                  aria-expanded={openReceiveMethod === "pickup"}
+                >
+                  <span>
+                    <LuMapPin aria-hidden="true" />
+                    Pickup
+                  </span>
+                  <LuChevronDown aria-hidden="true" />
+                </button>
+
+                {openReceiveMethod === "pickup" && (
+                  <div className="receive-details">
+                    <p>
+                      Your essential oil is ready for pickup at Helsinki XR Center,
+                      Hämeentie 135 A, 00560 Helsinki. Pickup available every Friday
+                      between 3 PM - 6 PM.
+                    </p>
+                    <button
+                      className={`confirm-btn ${isPickupConfirmed ? "confirmed" : ""}`}
+                      type="button"
+                      onClick={() => setIsPickupConfirmed((isConfirmed) => !isConfirmed)}
+                    >
+                      {isPickupConfirmed ? "Pickup Confirmed" : "Confirm Pickup"}
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <div className={`receive-method ${openReceiveMethod === "delivery" ? "open" : ""}`}>
+                <button
+                  className="receive-toggle"
+                  type="button"
+                  onClick={() => setOpenReceiveMethod(openReceiveMethod === "delivery" ? "" : "delivery")}
+                  aria-expanded={openReceiveMethod === "delivery"}
+                >
+                  <span>
+                    <LuTruck aria-hidden="true" />
+                    Delivery
+                  </span>
+                  <LuChevronDown aria-hidden="true" />
+                </button>
+
+                {openReceiveMethod === "delivery" && (
+                  <div className="receive-details">
+                    <strong>Delivery Details</strong>
+                    <p>We will deliver your customized essential oil to the address.</p>
+                    <div className="address-preview">{deliveryAddress}</div>
+
+                    <div className="delivery-actions">
+                      <button className="secondary-btn" type="button" onClick={() => setIsAddressOpen(true)}>
+                        Edit Address
+                      </button>
+                      <button
+                        className={`confirm-btn ${isDeliveryConfirmed ? "confirmed" : ""}`}
+                        type="button"
+                        onClick={() => setIsDeliveryConfirmed((isConfirmed) => !isConfirmed)}
+                      >
+                        {isDeliveryConfirmed ? "Delivery Confirmed" : "Confirm Delivery"}
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -265,22 +406,58 @@ export default function Knowledge() {
               x
             </button>
 
-            <h3 id="recipe-title">Recipe & Price</h3>
-            <p className="modal-intro">Custom calming blend recommendation for stress relief and better sleep.</p>
+            <div className="recipe-modal-header">
+              <img src={knowledgeRecipe} alt="" aria-hidden="true" />
+              <h3 id="recipe-title">Custom Recipe & Pricing</h3>
+            </div>
 
-            <div className="recipe-detail-list">
-              <div><span>Lavender Essential Oil</span><strong>5 drops</strong></div>
-              <div><span>Frankincense Essential Oil</span><strong>3 drops</strong></div>
-              <div><span>Sweet Orange Essential Oil</span><strong>2 drops</strong></div>
-              <div><span>Jojoba Carrier Oil</span><strong>15 ml</strong></div>
+            <div className="recipe-display-space">
+              <span>Recipe details will display here.</span>
             </div>
 
             <div className="price-row">
               <span>Total Price</span>
-              <strong>EUR 24.90</strong>
+              <strong className="price-placeholder">Price will display here</strong>
             </div>
 
-            <button className="primary-btn modal-action" type="button">Continue to Payment</button>
+            <p className="payment-note">
+              Your personalized oil blend is ready to be created. Please complete your payment to begin the preparation process.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {isWellnessOpen && (
+        <div className="modal-backdrop" role="presentation">
+          <div className="wellness-modal" role="dialog" aria-modal="true" aria-labelledby="wellness-title">
+            <button className="modal-close" type="button" aria-label="Close wellness list" onClick={() => setIsWellnessOpen(false)}>
+              x
+            </button>
+
+            <img id="wellness-title" src={knowledgeWellnessList} alt="Foundational wellness list" />
+          </div>
+        </div>
+      )}
+
+      {isAddressOpen && (
+        <div className="modal-backdrop" role="presentation">
+          <div className="recipe-modal address-modal" role="dialog" aria-modal="true" aria-labelledby="address-title">
+            <button className="modal-close" type="button" aria-label="Close address editor" onClick={() => setIsAddressOpen(false)}>
+              x
+            </button>
+
+            <h3 id="address-title">Edit Delivery Address</h3>
+            <p className="modal-intro">Update the delivery address for your customized essential oil.</p>
+
+            <textarea
+              className="address-input"
+              value={deliveryAddress}
+              onChange={(event) => setDeliveryAddress(event.target.value)}
+            />
+
+            <button className="primary-btn modal-action" type="button" onClick={() => setIsAddressOpen(false)}>
+              Save Address
+            </button>
           </div>
         </div>
       )}
