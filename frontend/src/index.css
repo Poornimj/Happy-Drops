@@ -2217,3 +2217,17 @@ a {
     max-height: 360px;
   }
 }
+
+/* Mission confirmed bottle image correction */
+.about-mission-confirmed {
+  background: #dfeada !important;
+}
+
+.about-mission-confirmed img {
+  width: 100% !important;
+  max-height: 430px !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: #fbf8f1 !important;
+  border-radius: 8px !important;
+}

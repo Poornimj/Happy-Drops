@@ -190,7 +190,6 @@ function AboutUs() {
           </article>
 
           <div className="values-scene-bottle">
-            <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
           </div>
 
           <article className="values-scene-card value-card-expert">
@@ -207,7 +206,7 @@ function AboutUs() {
         </div>
       </section>
 
-      <section className="about-mission" id="mission">
+            <section className="about-mission about-mission-confirmed" id="mission">
         <div>
           <p className="section-kicker">Our Mission</p>
           <h2>Personal wellness, guided by nature and care</h2>
@@ -219,6 +218,7 @@ function AboutUs() {
           </p>
           <a href="#" className="primary-action">Create Your Wellness Profile</a>
         </div>
+        <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
       </section>
 
       <section className="about-process">
@@ -259,6 +259,7 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
 
 
 
