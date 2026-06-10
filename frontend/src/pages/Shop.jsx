@@ -11,24 +11,27 @@ import DriedLavenderHero from "../assets/images/DriedLavenderHero.jpeg";
 
 
 import SkinCare from "../assets/images/SkinDryness.png";
-import immunityOil from "../assets/images/Immunityoil.png";
-import painReliefOil from "../assets/images/Painreliefoil.png";
-import sleepOil from "../assets/images/Sleepoil.png";
-import sleepSupportOil from "../assets/images/Sleepsupportoil.png";
-import stressOil from "../assets/images/Stressoil.png";
-import hairOil from "../assets/images/Hairoil.png";
+import immunityOil from "../assets/images/BoostImmunity.png";
+import painReliefOil from "../assets/images/JointEase.png";
+import sleepOil from "../assets/images/TwilightDrops .png";
+import sleepSupportOil from "../assets/images/Cherishmood.png";
+import stressOil from "../assets/images/HeadacheReleif.png";
+import hairOil from "../assets/images/BoostHairGrowth.png";
 import SleepSupOil from "../assets/images/SleepSupOil.png";
+import SkinTightOil from "../assets/images/SkinTightning.png";
 
 
 const products = [
   { id: 1, name: "Skin and Beauty", desc: "Radiant skin care", price: "24.90", badge: "Best Seller", reviews: 120 ,image: SkinCare },
   { id: 2, name: "Sleep and Relaxation", desc: "Calm mind and reduce stress", price: "29.90", badge: "Popular", reviews: 98, image: sleepOil},
-  { id: 3, name: "Hair Care", desc: "Nourishing hair care", price: "24.90", reviews: 76, image: hairOil},
-  { id: 4, name: "Sleep Support Blend", desc: "Relaxation and better sleep", price: "24.90", reviews: 120, image: sleepSupportOil },
-  { id: 5, name: "Pain and relief", desc: "Soothing body relief", price: "24.90", reviews: 120, image: painReliefOil },
-  { id: 6, name: "Boost Immunity", desc: "Immune defense support", price: "24.90", reviews: 120, image:immunityOil},
-  { id: 7, name: "Stress and Mood", desc: "Calm mood balance", price: "24.90", reviews: 120, image: stressOil },
- 
+  { id: 3, name: "Hair Care", desc: "Nourishing hair care", price: "26.90", reviews: 76, image: hairOil},
+  { id: 4, name: "Sleep Support Blend", desc: "Relaxation and better sleep", price: "23.00", reviews: 120, image: sleepSupportOil },
+  { id: 5, name: "Pain and relief", desc: "Soothing body relief", price: "22.00", reviews: 120, image: painReliefOil },
+  { id: 6, name: "Boost Immunity", desc: "Immune defense support", price: "19.90", reviews: 120, image:immunityOil},
+  { id: 7, name: "Stress and Mood", desc: "Calm mood balance", price: "21.90", reviews: 120, image: stressOil },
+  { id: 8, name: "Skin Tightening", desc: "Firm and youthful skin", price: "27.90", reviews: 120, image: SkinTightOil },
+
+
 ];
 
 function Shop() {

@@ -146,10 +146,29 @@
   background: #fbf8f1;
 }
 
-.product-card {
-  text-decoration: none;
-  color: inherit;
+.product-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #173f27;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
+
+.product-badge.purple {
+  background: #a67ac5;
+}
+
+.product-badge.dark {
+  background: #173f27;
+}
+
+
 .product-info {
   padding: 12px 14px 10px;
 }
