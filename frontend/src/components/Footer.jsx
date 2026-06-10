@@ -7,8 +7,8 @@ function Footer() {
         <div className="footer-brand">
           <img src={happyDropsLogo} alt="Happy Drops" className="footer-logo" />
           <p>
-            Empowering people to live happier, healthier lives through the
-            healing power of nature.
+            Empowering people to live happier, healthier lives and achieve longevity 
+            through the healing power of nature.
           </p>
         </div>
 
