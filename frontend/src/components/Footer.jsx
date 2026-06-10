@@ -1,4 +1,4 @@
-﻿import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
+import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 
 function Footer() {
   return (
@@ -41,7 +41,7 @@ function Footer() {
           <h4>Get in Touch</h4>
           <p>info@happydrops.com</p>
           <p>Helsinki XR Center</p>
-          <p>Hameentie 135 A</p>
+          <p>{"H\u00E4meentie 135 A"}</p>
           <p>00560 Helsinki</p>
           <p>Finland</p>
         </div>

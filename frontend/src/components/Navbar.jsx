@@ -1,4 +1,4 @@
-﻿import {
+import {
   HiOutlineGlobeAlt,
   HiOutlineSearch,
   HiOutlineShoppingCart,
@@ -29,7 +29,7 @@ function Navbar() {
           <span></span>
           <a href="#">FI</a>
           <span></span>
-          <a href="#">ä¸­æ–‡</a>
+          <a href="#">{"\u4E2D\u6587"}</a>
         </div>
 
         <div className="nav-icons">
