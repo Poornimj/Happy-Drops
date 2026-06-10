@@ -197,8 +197,8 @@ function AboutUs() {
         <div className="footer-brand">
           <img src={footerLogo} alt="Happy Drops" />
           <p>
-            Empowering people to live happier, healthier lives through the
-            healing power of nature.
+            Empowering people to live happier, healthier lives and achieve 
+            longevity through the healing power of nature.
           </p>
         </div>
 
