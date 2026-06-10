@@ -5,7 +5,7 @@ import "./Shop.css";
 
 import Navbar from "../components/Navbar.jsx"
 import Footer from "../components/Footer.jsx"
-
+import { HiOutlineShoppingCart } from "react-icons/hi";
 
 import DriedLavenderHero from "../assets/images/DriedLavenderHero.jpeg";
 
@@ -17,6 +17,7 @@ import sleepOil from "../assets/images/Sleepoil.png";
 import sleepSupportOil from "../assets/images/Sleepsupportoil.png";
 import stressOil from "../assets/images/Stressoil.png";
 import hairOil from "../assets/images/Hairoil.png";
+import SleepSupOil from "../assets/images/SleepSupOil.png";
 
 
 const products = [
@@ -103,6 +104,7 @@ function Shop() {
                 </div>
                 <h4>€ {product.price}</h4>
                 <button className="cart-btn" onClick={(event) => addToCart(event, product)}>
+                  <HiOutlineShoppingCart />
                   Add to Cart
                 </button>
               </div>
@@ -112,24 +114,71 @@ function Shop() {
       </section>
 
       <section className="bundle">
-        <img src={sleepSupportOil} alt="Sleep bundle" />
-        <div>
-          <h2>Sleep & Relaxation Bundle</h2>
-          <p>Everything you need for deeper sleep and total relaxation</p>
-          <div className="bundle-items">
-            <span>Lavender Essential Oil</span>
-            <span>Sleep Pillow</span>
-            <span>Chamomile Essential Oil</span>
-            <span>Relaxing Sleep Sound Pack</span>
-          </div>
-        </div>
-        <div className="bundle-price">
-          <h3>€ 79.90</h3>
-          <p>€ 104.80</p>
-          <span>Save 24%</span>
-          <Link to="/product/bundle" className="bundle-btn">View Bundle</Link>
-        </div>
-      </section>
+  <div className="bundle-visual">
+    <img src={SleepSupOil} alt="Sleep and relaxation bundle" />
+  </div>
+
+  <div className="bundle-content">
+    <h2>Sleep & Relaxation Bundle</h2>
+    <p>Everything you need for deeper sleep and total relaxation</p>
+
+    <div className="bundle-items">
+      <span><b>✓</b> Lavender Essential Oil</span>
+      <span><b>✓</b> Sleep Pillow</span>
+      <span><b>✓</b> Chamomile Essential Oil</span>
+      <span><b>✓</b> Relaxing Sleep Sound Pack</span>
+    </div>
+  </div>
+
+  <div className="bundle-price">
+    <h3>€ 79.90</h3>
+    <p>€ 104.80</p>
+    <span>Save 24%</span>
+    <Link to="/product/bundle" className="bundle-btn">View Bundle</Link>
+  </div>
+</section>
+
+<section className="benefits-strip">
+  <div className="benefit">
+    <span>◉</span>
+    <div>
+      <h4>Deep Relaxation</h4>
+      <p>Calm your mind</p>
+    </div>
+  </div>
+
+  <div className="benefit">
+    <span>✿</span>
+    <div>
+      <h4>Inner Balance</h4>
+      <p>Restore harmony</p>
+    </div>
+  </div>
+
+  <div className="benefit">
+    <span>♡</span>
+    <div>
+      <h4>Emotional Release</h4>
+      <p>Let go, heal</p>
+    </div>
+  </div>
+
+  <div className="benefit">
+    <span>▣</span>
+    <div>
+      <h4>Fast Delivery</h4>
+      <p>2-4 business days</p>
+    </div>
+  </div>
+
+  <div className="benefit">
+    <span>▤</span>
+    <div>
+      <h4>Secure Payment</h4>
+      <p>Safe & encrypted</p>
+    </div>
+  </div>
+</section>
     </main>
 
     <Footer />
