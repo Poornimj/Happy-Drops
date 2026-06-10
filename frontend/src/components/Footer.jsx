@@ -24,7 +24,6 @@ function Footer() {
 
         <div className="footer-column">
           <h4>Customer Care</h4>
-          <a href="#">FAQs</a>
           <a href="#">Shipping & Delivery</a>
           <a href="#">Privacy Policy</a>
           <a href="#">Terms & Conditions</a>
@@ -42,7 +41,7 @@ function Footer() {
           <h4>Get in Touch</h4>
           <p>info@happydrops.com</p>
           <p>Helsinki XR Center</p>
-          <p>Hameentie 135 A</p>
+          <p>HÃ¤meentie 135 A</p>
           <p>00560 Helsinki</p>
           <p>Finland</p>
         </div>

@@ -1,15 +1,15 @@
 ﻿import {
+  HiOutlineCalendar,
   HiOutlineClipboardList,
   HiOutlineHeart,
   HiOutlineSparkles,
   HiOutlineTrendingUp,
   HiOutlineUserGroup,
-  HiOutlineCalendar,
 } from "react-icons/hi";
 import Footer from "../components/Footer";
 import confirmedBottle from "../assets/images/auth-confirmed-bottle.png";
 
-const profileBenefits = [
+const benefits = [
   {
     icon: <HiOutlineSparkles />,
     title: "Personalized wellness recommendations",
@@ -45,17 +45,18 @@ function Signup() {
           <div>
             <h1>Create Your Wellness Profile</h1>
             <p>
-              Combining Eastern wisdom and Western knowledge with a holistic point of view
-              and preventive solutions to support you and your family&apos;s wellbeing.
+              Combining Eastern wisdom and Western knowledge with a holistic point
+              of view and preventive solutions to support you and your family's
+              wellbeing.
             </p>
           </div>
-          <div className="profile-hero-image">
-            <span className="lavender-bunch"></span>
+          <div className="profile-product-hero">
+            <span className="lavender-branch"></span>
             <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
           </div>
         </section>
 
-        <div className="profile-steps" aria-label="Profile steps">
+        <div className="profile-steps">
           <div className="profile-step active">
             <span>1</span>
             <p>Personal Information</p>
@@ -75,30 +76,12 @@ function Signup() {
             </div>
 
             <div className="form-grid">
-              <label>
-                First Name <strong>*</strong>
-                <input type="text" placeholder="Enter your first name" />
-              </label>
-              <label>
-                Family Name <strong>*</strong>
-                <input type="text" placeholder="Enter your family name" />
-              </label>
-              <label>
-                Email Address <strong>*</strong>
-                <input type="email" placeholder="Enter your email" />
-              </label>
-              <label>
-                Phone Number
-                <input type="tel" placeholder="+358  Enter your phone number" />
-              </label>
-              <label>
-                Address
-                <input type="text" placeholder="Enter your address" />
-              </label>
-              <label>
-                Age
-                <input type="number" placeholder="Enter your age" />
-              </label>
+              <label>First Name <strong>*</strong><input placeholder="Enter your first name" /></label>
+              <label>Family Name <strong>*</strong><input placeholder="Enter your family name" /></label>
+              <label>Email Address <strong>*</strong><input placeholder="Enter your email" type="email" /></label>
+              <label>Phone Number<input placeholder="+358  Enter your phone number" /></label>
+              <label>Address<input placeholder="Enter your address" /></label>
+              <label>Age<input placeholder="Enter your age" type="number" /></label>
             </div>
 
             <div className="form-section-title">
@@ -107,53 +90,20 @@ function Signup() {
             </div>
 
             <div className="form-grid">
-              <label>
-                Current Symptoms <strong>*</strong>
-                <select>
-                  <option>Select all that apply</option>
-                </select>
-              </label>
-              <label>
-                How long have you had these symptoms? <strong>*</strong>
-                <select>
-                  <option>Select duration</option>
-                </select>
-              </label>
-              <label>
-                How often do they occur? <strong>*</strong>
-                <select>
-                  <option>Select frequency</option>
-                </select>
-              </label>
+              <label>Current Symptoms <strong>*</strong><select><option>Select all that apply</option></select></label>
+              <label>How long have you had these symptoms? <strong>*</strong><select><option>Select duration</option></select></label>
+              <label>How often do they occur? <strong>*</strong><select><option>Select frequency</option></select></label>
               <fieldset>
                 <legend>Are you taking any medication?</legend>
                 <label className="radio-option"><input type="radio" name="medication" /> Yes</label>
                 <label className="radio-option"><input type="radio" name="medication" defaultChecked /> No</label>
               </fieldset>
-              <label className="full-width">
-                If yes, please specify the medication and reason
-                <input type="text" placeholder="Medication name and reason" />
-              </label>
-              <label>
-                Do you have any ongoing illness or medical condition?
-                <textarea placeholder="Please describe"></textarea>
-              </label>
-              <label>
-                Do you have any relevant family medical history?
-                <textarea placeholder="Please describe"></textarea>
-              </label>
-              <label>
-                What treatments have you already tried?
-                <textarea placeholder="Medication, physiotherapy, nutrition plan, essential oils, other"></textarea>
-              </label>
-              <label>
-                Do you have any chronic diseases?
-                <textarea placeholder="Please describe"></textarea>
-              </label>
-              <label className="full-width">
-                What are your current wellness goals?
-                <input type="text" placeholder="Tell us what you would like to improve in your health and wellbeing" />
-              </label>
+              <label className="full-width">If yes, please specify the medication and reason<input placeholder="Medication name and reason" /></label>
+              <label>Do you have any ongoing illness or medical condition?<textarea placeholder="Please describe"></textarea></label>
+              <label>Do you have any relevant family medical history?<textarea placeholder="Please describe"></textarea></label>
+              <label>What treatments have you already tried?<textarea placeholder="Medication, physiotherapy, nutrition plan, essential oils, other"></textarea></label>
+              <label>Do you have any chronic diseases?<textarea placeholder="Please describe"></textarea></label>
+              <label className="full-width">What are your current wellness goals?<input placeholder="Tell us what you would like to improve in your health and wellbeing" /></label>
             </div>
 
             <div className="language-options">
@@ -168,7 +118,9 @@ function Signup() {
               I agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a>
             </label>
 
-            <button className="profile-submit" type="button">Continue to Wellness Assessment</button>
+            <button className="profile-submit" type="button">
+              Continue to Wellness Assessment
+            </button>
           </form>
 
           <aside className="profile-benefits">
@@ -177,7 +129,7 @@ function Signup() {
               <h2>Why Create a Profile?</h2>
             </div>
 
-            {profileBenefits.map((benefit) => (
+            {benefits.map((benefit) => (
               <article key={benefit.title}>
                 <span>{benefit.icon}</span>
                 <div>
