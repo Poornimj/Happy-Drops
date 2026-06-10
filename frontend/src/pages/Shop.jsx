@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Shop.css";
 
@@ -37,27 +36,30 @@ function Shop() {
   };
 
   return (
-    <div className="shop-page">
-      <Navbar/>
-      
+  <>
+    <Navbar />
 
+    <main className="Page-shell shop-page">
+      {/* hero */}
       <section
-  className="hero"
-  style={{ backgroundImage: `url(${lavenderHero})` }}
->
-  <div className="hero-text">
-    <h1> Discover Natural Products for Wellness and Longevity</h1>
-    <p>
-      Essential oils, wellness tools,
-      <br />
-      nutrition support and relaxation products.
-    </p>
+        className="hero"
+        style={{ backgroundImage: `url(${lavenderHero})` }}
+      >
+        <div className="hero-text">
+          <h1>Discover Natural Products for Wellness and Longevity</h1>
+          <p>
+            Essential oils, wellness tools,
+            <br />
+            nutrition support and relaxation products.
+          </p>
 
-    <a href="#featured" className="best-btn">
-      Shop Best Sellers
-    </a>
-  </div>
-</section>
+          <a href="#featured" className="best-btn">
+            Shop Best Sellers
+          </a>
+        </div>
+      </section>
+
+      {/* categories */}
 
       <section className="categories">
         <h2>Browse Categories</h2>
@@ -69,6 +71,9 @@ function Shop() {
           <Link to="/category/food-supplements" className="category">Food Supplements</Link>
         </div>
       </section>
+
+
+       {/* featured products */}
 
       <section className="featured-products" id="featured">
         <h2>Featured Products</h2>
@@ -120,12 +125,11 @@ function Shop() {
           <Link to="/product/bundle" className="bundle-btn">View Bundle</Link>
         </div>
       </section>
+    </main>
 
-      <Footer/>
-
-     
-    </div>
-  );
+    <Footer />
+  </>
+);
 }
 
 export default Shop;
