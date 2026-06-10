@@ -598,3 +598,110 @@ body {
   }
 }
 /* End wellness navbar overflow correction */
+/* Profile form alignment and natural product image */
+html,
+body,
+#root {
+  border: 0 !important;
+  outline: 0 !important;
+  overflow-x: hidden !important;
+}
+
+.profile-page {
+  border: 0 !important;
+  outline: 0 !important;
+}
+
+.profile-page,
+.profile-form,
+.profile-form *,
+.profile-benefits,
+.profile-benefits * {
+  text-align: left;
+}
+
+.profile-steps,
+.profile-steps * {
+  text-align: center;
+}
+
+.form-grid label,
+.form-grid fieldset,
+.form-grid legend,
+.language-options,
+.privacy-check {
+  display: block;
+  text-align: left !important;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  text-align: left !important;
+}
+
+.radio-option,
+.privacy-check,
+.language-options label {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 7px;
+}
+
+.language-options {
+  display: flex !important;
+  align-items: center;
+}
+
+.profile-benefits {
+  position: relative !important;
+  padding-bottom: 122px !important;
+  overflow: visible !important;
+}
+
+.benefits-product-image {
+  position: absolute !important;
+  right: 28px !important;
+  bottom: -24px !important;
+  width: 270px !important;
+  height: 155px !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.benefits-product-image::before,
+.benefits-product-image::after {
+  display: none !important;
+}
+
+.benefits-product-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 980px) {
+  .profile-benefits {
+    padding-bottom: 30px !important;
+    overflow: hidden !important;
+  }
+
+  .benefits-product-image {
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(100%, 320px) !important;
+    height: 175px !important;
+    margin-top: 24px !important;
+  }
+}
+/* End profile form alignment and natural product image */
