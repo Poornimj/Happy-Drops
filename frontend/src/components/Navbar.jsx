@@ -1,44 +1,50 @@
-import React from "react";
-import knowledgeLogo from "../assets/logos/knowledge-logo.png";
 import {
+  HiOutlineGlobeAlt,
   HiOutlineSearch,
-  HiOutlineUser,
   HiOutlineShoppingCart,
+  HiOutlineUser,
 } from "react-icons/hi";
+import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 
 function Navbar() {
   return (
-    <header className="navbar">
-      <div className="navbar-inner">
-        <a href="/" className="brand">
-          <img className="logo" src={knowledgeLogo} alt="Happy Drops" />
-        </a>
+    <nav className="navbar">
+      <a className="brand" href="#" aria-label="Happy Drops home">
+        <img src={happyDropsLogo} alt="Happy Drops" className="logo" />
+      </a>
 
-        <nav className="navbar-menu" aria-label="Main navigation">
-          <a href="/knowledge" className="active">Knowledge</a>
-          <a href="/workshops">Workshops</a>
-          <a href="/therapists">Therapists</a>
-          <a href="/suppliers">Suppliers</a>
-          <a href="/shop">Shop</a>
-          <a href="/about-us">About Us</a>
-        </nav>
+      <div className="nav-links">
+        <a href="#">Knowledge</a>
+        <a href="#">Workshops</a>
+        <a href="#">Therapists</a>
+        <a href="#">Suppliers</a>
+        <a href="#">Shop</a>
+        <a href="#">About Us</a>
+      </div>
+
+      <div className="nav-actions">
+        <div className="language-switcher" aria-label="Language selector">
+          <HiOutlineGlobeAlt />
+          <a href="#">EN</a>
+          <span></span>
+          <a href="#">FI</a>
+          <span></span>
+          <a href="#">中文</a>
+        </div>
 
         <div className="nav-icons">
           <a href="#" className="nav-icon" aria-label="Search">
             <HiOutlineSearch />
           </a>
-
-          <a href="/signup" className="nav-icon" aria-label="Login or Sign Up">
+          <a href="#" className="nav-icon" aria-label="Account">
             <HiOutlineUser />
           </a>
-
-          <a href="#" className="nav-icon cart-icon" aria-label="Shopping cart">
+          <a href="#" className="nav-icon" aria-label="Shopping cart">
             <HiOutlineShoppingCart />
-            <span>0</span>
           </a>
         </div>
       </div>
-    </header>
+    </nav>
   );
 }
 

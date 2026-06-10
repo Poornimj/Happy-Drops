@@ -40,108 +40,6 @@ textarea {
   background: var(--cream);
 }
 
-.navbar {
-  width: 100%;
-  background: var(--white);
-  border-bottom: 1px solid #e9e4dc;
-}
-
-.navbar-inner {
-  width: var(--page-width);
-  min-height: 98px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 120px minmax(0, 1fr) auto;
-  align-items: center;
-  column-gap: 32px;
-}
-
-.brand {
-  width: 120px;
-  flex-basis: 120px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.logo {
-  width: 108px;
-  height: 82px;
-  display: block;
-  object-fit: contain;
-  object-position: left center;
-}
-
-.navbar-menu {
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-}
-
-.navbar-menu a {
-  position: relative;
-  color: var(--dark-green);
-  font-size: 15px;
-  font-weight: 700;
-  padding: 38px 0 32px;
-  white-space: nowrap;
-}
-
-.navbar-menu a.active {
-  color: var(--purple-dark);
-}
-
-.navbar-menu a.active::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 24px;
-  height: 4px;
-  border-radius: 999px;
-  background: var(--purple);
-}
-
-.nav-icons {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 18px;
-  flex-shrink: 0;
-}
-
-.nav-icon {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--dark-green);
-  font-size: 28px;
-  text-decoration: none;
-}
-
-.nav-icon:hover {
-  color: var(--purple);
-}
-
-.cart-icon span {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--purple);
-  color: var(--white);
-  display: grid;
-  place-items: center;
-  font-size: 12px;
-  font-weight: 800;
-}
-
 .primary-btn,
 .mini-btn {
   border: 0;
@@ -287,16 +185,10 @@ main {
   align-items: stretch;
 }
 
-.left-panel {
-  min-width: 0;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 18px;
-}
-
 .how-card,
 .ask-card,
 .wellness-card,
+.wellness-image-card,
 .order-tracker {
   border: 1px solid #e7ded0;
   border-radius: 10px;
@@ -323,15 +215,49 @@ main {
   padding: 18px 20px;
 }
 
-.wellness-card {
-  min-height: 150px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.ask-card-wide {
+  width: 100%;
+  margin: 0 auto 18px;
+}
+
+.wellness-row {
+  width: 100%;
+  margin: 0 auto 24px;
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr) 170px;
   gap: 18px;
+  align-items: stretch;
+}
+
+.wellness-image-card {
+  min-height: 132px;
+  padding: 7px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.wellness-image-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 118px;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.wellness-card {
+  min-height: 132px;
+  padding: 20px 24px;
+  display: grid;
+  place-items: center;
   text-align: center;
+}
+
+.wellness-card > div {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
 }
 
 .order-tracker {
@@ -340,6 +266,7 @@ main {
 }
 
 .how-card h3,
+.ask-card h3,
 .question-panel h3,
 .wellness-card h3,
 .tracker-heading h3,
@@ -351,6 +278,7 @@ main {
 }
 
 .how-card h3,
+.ask-card h3,
 .question-panel h3,
 .wellness-card h3,
 .tracker-heading h3 {
@@ -371,7 +299,7 @@ main {
 
 .wellness-view-btn {
   width: 120px;
-  flex: 0 0 auto;
+  margin-top: 4px;
 }
 
 .steps-list {
@@ -471,9 +399,17 @@ main {
 }
 
 .my-questions-link {
+  border: 0;
+  background: transparent;
+  color: var(--purple-dark);
   cursor: pointer;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
 }
 
+.ask-card textarea,
 .question-panel textarea {
   width: 100%;
   min-height: 72px;
@@ -486,6 +422,7 @@ main {
   outline: none;
 }
 
+.ask-card textarea:focus,
 .question-panel textarea:focus {
   border-color: var(--purple);
   box-shadow: 0 0 0 3px rgba(166, 122, 197, 0.15);
@@ -650,7 +587,12 @@ main {
   min-height: 32px;
   margin-top: 10px;
   padding: 0 18px;
+  width: 166px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 12px;
+  text-decoration: none;
 }
 
 .pickup-section {
@@ -729,6 +671,35 @@ main {
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 14px;
   line-height: 1.45;
+}
+
+.pickup-detail-content {
+  display: grid;
+  gap: 10px;
+  color: var(--text-muted);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.pickup-detail-content p {
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.pickup-detail-content p svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: var(--purple);
+}
+
+.pickup-save-btn {
+  width: min(100%, 260px);
+  margin-top: 6px;
 }
 
 .receive-options {
@@ -860,6 +831,65 @@ main {
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
+.pickup-date-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.pickup-date-fields label {
+  display: grid;
+  gap: 7px;
+  color: var(--dark-green);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.pickup-date-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-muted);
+  background: var(--white);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+}
+
+.pickup-date-input:focus {
+  outline: none;
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(166, 122, 197, 0.15);
+}
+
+.pickup-date-input[readonly] {
+  background: var(--soft-cream);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.form-error {
+  margin: -6px 0 14px;
+  color: #b54848;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.pickup-modal-actions {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 12px;
+}
+
+.pickup-modal-actions .secondary-btn,
+.pickup-modal-actions .confirm-btn {
+  min-height: 44px;
+}
+
 .pickup-image-box {
   height: 235px;
   padding: 7px;
@@ -887,17 +917,19 @@ main {
 
 .recipe-modal {
   position: relative;
-  width: min(100%, 760px);
-  padding: 32px;
+  width: min(100% - 32px, 760px);
+  max-height: calc(100vh - 32px);
+  padding: 24px;
   border-radius: 12px;
   background: var(--white);
   box-shadow: 0 24px 70px rgba(23, 63, 39, 0.24);
+  overflow-y: auto;
 }
 
 .wellness-modal {
   position: relative;
-  width: min(100%, 980px);
-  max-height: calc(100vh - 48px);
+  width: min(100% - 32px, 980px);
+  height: min(92vh, 860px);
   padding: 18px;
   border-radius: 12px;
   background: var(--white);
@@ -907,7 +939,7 @@ main {
 
 .recipe-modal-header {
   position: relative;
-  min-height: 190px;
+  min-height: 175px;
   display: flex;
   align-items: center;
   padding: 30px;
@@ -938,19 +970,222 @@ main {
   margin: 0;
   color: var(--dark-green);
   font-family: Georgia, serif;
-  font-size: 38px;
+  font-size: 32px;
   line-height: 1.12;
 }
 
 .wellness-list-image {
-  width: 100%;
-  max-height: calc(100vh - 84px);
+  width: min(100%, 860px);
+  min-width: 760px;
   height: auto;
   display: block;
+  margin: 0 auto;
   margin-top: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
-  object-fit: contain;
+}
+
+.history-modal {
+  position: relative;
+  width: min(100% - 32px, 980px);
+  max-height: calc(100vh - 48px);
+  padding: 30px;
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: 0 24px 70px rgba(23, 63, 39, 0.24);
+  overflow-y: auto;
+}
+
+.history-modal h3 {
+  margin: 0 44px 10px;
+  color: var(--dark-green);
+  font-family: Georgia, serif;
+  font-size: 34px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.history-intro {
+  margin: 0 0 18px;
+  color: var(--text-muted);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  text-align: center;
+}
+
+.history-tabs {
+  width: min(100%, 430px);
+  height: 50px;
+  margin: 0 auto 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #e7ded0;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.history-tabs button {
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.history-tabs button.active {
+  background: linear-gradient(180deg, #7d58b0, #5f3d91);
+  color: var(--white);
+  box-shadow: inset 0 -3px 0 var(--purple);
+}
+
+.history-tabs svg {
+  width: 20px;
+  height: 20px;
+}
+
+.history-list {
+  display: grid;
+  gap: 14px;
+}
+
+.history-card {
+  width: 100%;
+  border: 1px solid #e7ded0;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1.35fr minmax(0, 3.6fr);
+  padding: 0;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 8px 18px rgba(49, 92, 56, 0.08);
+  cursor: pointer;
+  text-align: left;
+  transform: scale(0.98);
+  opacity: 0.78;
+  transition: transform 160ms ease, opacity 160ms ease, box-shadow 160ms ease;
+}
+
+.history-card.active,
+.history-card:hover {
+  position: relative;
+  z-index: 2;
+  transform: scale(1);
+  opacity: 1;
+  box-shadow: 0 16px 34px rgba(49, 92, 56, 0.16);
+}
+
+.history-card:nth-child(odd) {
+  background: #fbf8ff;
+}
+
+.history-card:nth-child(even) {
+  background: #fbf8f1;
+}
+
+.history-question {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 28px;
+  border-right: 1px solid #eee8dc;
+}
+
+.history-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--soft-purple);
+  color: var(--purple-dark);
+}
+
+.history-empty-space {
+  min-height: 46px;
+  display: block;
+}
+
+.history-date-space {
+  min-height: 30px;
+}
+
+.history-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.history-question strong {
+  color: var(--dark-green);
+  font-family: Georgia, serif;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.history-question small,
+.history-grid span {
+  color: var(--text-muted);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 12px;
+}
+
+.history-question > span:not(.history-icon),
+.history-empty-space strong,
+.history-empty-space span,
+.history-grid strong {
+  color: var(--dark-green);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.history-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.history-grid::after {
+  content: "";
+  position: absolute;
+  left: calc(100% / 3);
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: #eee8dc;
+  pointer-events: none;
+}
+
+.history-cell {
+  min-height: 112px;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  padding: 22px;
+  border-right: 1px solid #eee8dc;
+}
+
+.history-cell-recipe {
+  grid-row: span 2;
+  align-content: start;
+  padding-top: 46px;
+}
+
+.history-cell-location {
+  grid-column: 2;
+}
+
+.history-grid svg {
+  width: 20px;
+  height: 20px;
+  color: var(--purple);
 }
 
 .modal-intro {
@@ -980,8 +1215,8 @@ main {
 }
 
 .recipe-display-space {
-  min-height: 260px;
-  margin: 24px 0;
+  min-height: 180px;
+  margin: 20px 0;
   display: grid;
   place-items: center;
   border: 1px dashed var(--border);
@@ -1043,44 +1278,19 @@ main {
   width: 100%;
 }
 
-.site-footer {
-  width: var(--page-width);
-  height: 410px;
-  margin: 22px auto 24px;
-  padding: 12px 18px;
-  overflow: hidden;
-  border-radius: 18px;
-  background: var(--white);
-}
-
-.site-footer img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center 47%;
-  border-radius: 16px;
-  transform: scaleX(0.985) scaleY(1.01);
-  transform-origin: center center;
-}
-
 @media (max-width: 1100px) {
-  .navbar-inner {
-    grid-template-columns: 110px minmax(0, 1fr) auto;
-    column-gap: 22px;
-  }
-
-  .navbar-menu {
-    gap: 18px;
-  }
-
-  .navbar-menu a {
-    font-size: 14px;
-  }
 
   .hub-layout {
     grid-template-columns: 1fr;
     align-items: start;
+  }
+
+  .wellness-row {
+    grid-template-columns: 1fr;
+  }
+
+  .wellness-image-card {
+    min-height: 210px;
   }
 
   .how-card {
@@ -1095,48 +1305,6 @@ main {
 }
 
 @media (max-width: 900px) {
-  .navbar-inner {
-    min-height: auto;
-    padding: 14px 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
-  }
-
-  .brand {
-    width: 110px;
-    flex-basis: 110px;
-  }
-
-  .logo {
-    width: 104px;
-    height: 72px;
-  }
-
-  .navbar-menu {
-    order: 4;
-    width: 100%;
-    justify-content: flex-start;
-    gap: 22px;
-    overflow-x: auto;
-  }
-
-  .navbar-menu a {
-    padding: 10px 0 16px;
-  }
-
-  .navbar-menu a.active::after {
-    bottom: 5px;
-  }
-
-  .nav-icons {
-    margin-left: auto;
-    gap: 14px;
-  }
-
-  .nav-icon {
-    font-size: 25px;
-  }
 
   .status-card {
     grid-template-columns: 50px 1fr;
@@ -1201,6 +1369,11 @@ main {
     gap: 22px;
   }
 
+  .wellness-row {
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
   .how-card,
   .ask-card,
   .wellness-card,
@@ -1227,6 +1400,35 @@ main {
     width: 100%;
   }
 
+  .pickup-date-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .pickup-modal-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .history-modal {
+    padding: 22px;
+  }
+
+  .history-card {
+    grid-template-columns: 1fr;
+  }
+
+  .history-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .history-cell {
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .history-cell-location {
+    grid-column: auto;
+  }
+
   .status-card {
     padding: 14px;
   }
@@ -1248,20 +1450,6 @@ main {
 
   .pickup-time-box strong {
     font-size: 15px;
-  }
-
-  .site-footer {
-    width: var(--page-width);
-    height: 320px;
-    margin: 20px auto 18px;
-    padding: 8px 12px;
-    border-radius: 14px;
-  }
-
-  .site-footer img {
-    object-position: center 47%;
-    border-radius: 12px;
-    transform: scaleX(0.985) scaleY(1.01);
   }
 }
 

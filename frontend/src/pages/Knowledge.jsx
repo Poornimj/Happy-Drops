@@ -1,19 +1,23 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import knowledgeHeader from "../assets/images/knowledge-header.png";
-import knowledgeReady from "../assets/images/knowledge-ready.png";
-import knowledgeFooter from "../assets/images/knowledge-footer.png";
+import knowledgeReady from "../assets/images/knowledg-ready.png";
 import knowledgeWellnessList from "../assets/images/knowledge-wellness-list.png";
+import knowledgeWellnessImage from "../assets/images/knowledge-wellness-image.png";
+import knowledgeWellnessImageTwo from "../assets/images/knowledge-wellness-image-two.png";
 import knowledgeRecipe from "../assets/images/knowledge-recipe.png";
 import {
   LuCircleCheck,
   LuCircleHelp,
-  LuChevronDown,
+  LuClock,
   LuCreditCard,
+  LuMessageCircle,
   LuLeaf,
   LuMapPin,
   LuPillBottle,
-  LuTruck,
+  LuShoppingBag,
+  LuTag,
   LuUser,
 } from "react-icons/lu";
 import "../index.css";
@@ -38,6 +42,29 @@ const stageRank = {
 };
 
 const orderStage = "recipe_sent";
+
+const questionHistory = [
+  {
+    id: 1,
+    question: "Do you have a blend that supports focus and mental clarity?",
+    submittedDate: "18 Jul 2026",
+    recipe: "Focus & Clarity Blend",
+    price: "EUR 59.00",
+    paymentDate: "19 Jul 2026",
+    pickupLocation: "Helsinki XR Center, Hämeentie 135 A, 00560 Helsinki",
+    purchasedDate: "19 Jul 2026",
+  },
+  {
+    id: 2,
+    question: "What essential oil can help with stress and better sleep?",
+    submittedDate: "25 Aug 2026",
+    recipe: "Calm Sleep Blend",
+    price: "Price will display here",
+    paymentDate: "Payment date will display here",
+    pickupLocation: "Helsinki XR Center, Hämeentie 135 A, 00560 Helsinki",
+    purchasedDate: "Purchased date will display here",
+  },
+];
 
 function getOrderSteps(stage) {
   const rank = stageRank[stage] || 1;
@@ -180,13 +207,13 @@ function CalendarIcon() {
 export default function Knowledge() {
   const [isRecipeOpen, setIsRecipeOpen] = useState(false);
   const [isWellnessOpen, setIsWellnessOpen] = useState(false);
-  const [openReceiveMethod, setOpenReceiveMethod] = useState("pickup");
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [activeHistoryId, setActiveHistoryId] = useState(questionHistory[0].id);
   const [isPickupConfirmed, setIsPickupConfirmed] = useState(false);
-  const [isDeliveryConfirmed, setIsDeliveryConfirmed] = useState(false);
-  const [isAddressOpen, setIsAddressOpen] = useState(false);
-  const [deliveryAddress, setDeliveryAddress] = useState(
-    "Hämeentie 135 A, 00560 Helsinki"
-  );
+  const [isPickupDateOpen, setIsPickupDateOpen] = useState(false);
+  const [pickupDate, setPickupDate] = useState("");
+  const [pickupTime, setPickupTime] = useState("");
+  const [pickupError, setPickupError] = useState("");
   const orderSteps = getOrderSteps(orderStage);
   const readyEmailSent = true;
 
@@ -214,96 +241,102 @@ export default function Knowledge() {
           </div>
         </section>
 
-        <section className="hub-layout">
-          <aside className="left-panel">
-            <section className="wellness-card">
-              <div>
-                <h3>Discover Your Foundational Wellness List</h3>
-                <p>Simple natural wellness support for everyday wellbeing.</p>
-              </div>
+        <section className="ask-card ask-card-wide">
+          <div className="panel-heading">
+            <h3>Ask Your Question</h3>
+            <button className="my-questions-link" type="button" onClick={() => setIsHistoryOpen(true)}>
+              View My History <span aria-hidden="true">-&gt;</span>
+            </button>
+          </div>
+
+          <textarea placeholder="Type your question here" />
+
+          <div className="question-actions">
+            <button className="primary-btn" type="button">Submit</button>
+          </div>
+        </section>
+
+        <section className="wellness-row">
+          <button className="wellness-image-card" type="button" onClick={() => setIsWellnessOpen(true)}>
+            <img src={knowledgeWellnessImage} alt="Foundational wellness preview" />
+          </button>
+
+          <section className="wellness-card">
+            <div>
+              <h3>Discover Your Foundational Wellness List</h3>
+              <p>Simple natural wellness support for everyday wellbeing.</p>
 
               <button className="primary-btn wellness-view-btn" type="button" onClick={() => setIsWellnessOpen(true)}>
                 View
               </button>
-            </section>
+            </div>
+          </section>
 
-            <section className="how-card">
-              <h3>How It Works</h3>
+          <button className="wellness-image-card" type="button" onClick={() => setIsWellnessOpen(true)}>
+            <img src={knowledgeWellnessImageTwo} alt="Foundational wellness preview" />
+          </button>
+        </section>
 
-              <div className="steps-list">
-                {steps.map(([icon, title, text], index) => (
-                  <div className="step-item" key={title}>
-                    <div className="step-icon">
-                      <StepIcon name={icon} />
-                    </div>
+        <section className="hub-layout">
+          <section className="how-card">
+            <h3>How It Works</h3>
 
-                    <div className="step-body">
-                      <span>{index + 1}</span>
-                      <h4>{title}</h4>
-                      <p>{text}</p>
-                    </div>
+            <div className="steps-list">
+              {steps.map(([icon, title, text], index) => (
+                <div className="step-item" key={title}>
+                  <div className="step-icon">
+                    <StepIcon name={icon} />
                   </div>
-                ))}
-              </div>
-            </section>
-          </aside>
 
-          <section className="question-panel">
-            <section className="ask-card">
-              <div className="panel-heading">
-                <h3>Ask Your Question</h3>
-                <a className="my-questions-link" href="/my-questions">
-                  View My Questions <span aria-hidden="true">-&gt;</span>
-                </a>
-              </div>
+                  <div className="step-body">
+                    <span>{index + 1}</span>
+                    <h4>{title}</h4>
+                    <p>{text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
 
-              <textarea placeholder="Type your question here" />
+          <section className="order-tracker">
+            <div className="tracker-heading">
+              <h3>Track Your Order</h3>
+            </div>
 
-              <div className="question-actions">
-                <button className="primary-btn" type="button">Submit</button>
-              </div>
-            </section>
+            <div className="status-timeline">
+              {orderSteps.map((step) => (
+                <article className="status-card" key={step.title}>
+                  <div className={`avatar order-avatar order-avatar-${step.icon}`}>
+                    <OrderIcon name={step.icon} />
+                  </div>
 
-            <section className="order-tracker">
-              <div className="tracker-heading">
-                <h3>Track Your Order</h3>
-              </div>
+                  <div className="status-text">
+                    <strong>{step.title}</strong>
+                    <p>{step.text}</p>
 
-              <div className="status-timeline">
-                {orderSteps.map((step) => (
-                  <article className="status-card" key={step.title}>
-                    <div className={`avatar order-avatar order-avatar-${step.icon}`}>
-                      <OrderIcon name={step.icon} />
-                    </div>
+                    {step.action === "recipe" && (
+                      <button className="mini-btn" type="button" onClick={() => setIsRecipeOpen(true)}>
+                        View Recipe & Price
+                      </button>
+                    )}
 
-                    <div className="status-text">
-                      <strong>{step.title}</strong>
-                      <p>{step.text}</p>
+                    {step.action === "payment" && (
+                      <a className="mini-btn" href="/payment">
+                        Pay Now
+                      </a>
+                    )}
+                  </div>
 
-                      {step.action === "recipe" && (
-                        <button className="mini-btn" type="button" onClick={() => setIsRecipeOpen(true)}>
-                          View Recipe & Price
-                        </button>
-                      )}
-
-                      {step.action === "payment" && (
-                        <button className="mini-btn" type="button" onClick={() => setIsRecipeOpen(true)}>
-                          Pay Now
-                        </button>
-                      )}
-                    </div>
-
-                    <div className="status-side">
-                      <time>{step.time}</time>
-                      <span className={`status-pill ${step.status}`}>
-                        {step.status === "done" && <LuCircleCheck aria-hidden="true" />}
-                        {step.status === "done" ? "Done" : "Processing"}
-                      </span>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </section>
+                  <div className="status-side">
+                    <time>{step.time}</time>
+                    <span className={`status-pill ${step.status}`}>
+                      {step.status === "done" && <LuCircleCheck aria-hidden="true" />}
+                      {step.status === "done" ? "Done" : "Processing"}
+                    </span>
+                  </div>
+                </article>
+              ))}
+            </div>
           </section>
         </section>
 
@@ -314,82 +347,30 @@ export default function Knowledge() {
                 <h3>Personalized Oil Blend</h3>
               </div>
               <span className={`pickup-status ${readyEmailSent ? "ready" : "processing"}`}>
-                {readyEmailSent ? "Ready for Pickup" : "Processing"}
+                {readyEmailSent ? "Ready" : "Processing"}
               </span>
             </div>
 
-            <p className="receive-intro">
-              Please select your preferred method to receive your customized essential oil.
-            </p>
+            <div className="pickup-detail-content">
+              <p>
+                <LuMapPin aria-hidden="true" />
+                <span>
+                  Your essential oil is ready for pickup at Helsinki XR Center,
+                  Hämeentie 135 A, 00560 Helsinki.
+                </span>
+              </p>
+              <p>
+                <LuClock aria-hidden="true" />
+                <span>Pickup available every Friday between 3 PM - 6 PM.</span>
+              </p>
 
-            <div className="receive-options">
-              <div className={`receive-method ${openReceiveMethod === "pickup" ? "open" : ""}`}>
-                <button
-                  className="receive-toggle"
-                  type="button"
-                  onClick={() => setOpenReceiveMethod(openReceiveMethod === "pickup" ? "" : "pickup")}
-                  aria-expanded={openReceiveMethod === "pickup"}
-                >
-                  <span>
-                    <LuMapPin aria-hidden="true" />
-                    Pickup
-                  </span>
-                  <LuChevronDown aria-hidden="true" />
-                </button>
-
-                {openReceiveMethod === "pickup" && (
-                  <div className="receive-details">
-                    <p>
-                      Your essential oil is ready for pickup at Helsinki XR Center,
-                      Hämeentie 135 A, 00560 Helsinki. Pickup available every Friday
-                      between 3 PM - 6 PM.
-                    </p>
-                    <button
-                      className={`confirm-btn ${isPickupConfirmed ? "confirmed" : ""}`}
-                      type="button"
-                      onClick={() => setIsPickupConfirmed((isConfirmed) => !isConfirmed)}
-                    >
-                      {isPickupConfirmed ? "Pickup Confirmed" : "Confirm Pickup"}
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              <div className={`receive-method ${openReceiveMethod === "delivery" ? "open" : ""}`}>
-                <button
-                  className="receive-toggle"
-                  type="button"
-                  onClick={() => setOpenReceiveMethod(openReceiveMethod === "delivery" ? "" : "delivery")}
-                  aria-expanded={openReceiveMethod === "delivery"}
-                >
-                  <span>
-                    <LuTruck aria-hidden="true" />
-                    Delivery
-                  </span>
-                  <LuChevronDown aria-hidden="true" />
-                </button>
-
-                {openReceiveMethod === "delivery" && (
-                  <div className="receive-details">
-                    <strong>Delivery Details</strong>
-                    <p>We will deliver your customized essential oil to the address.</p>
-                    <div className="address-preview">{deliveryAddress}</div>
-
-                    <div className="delivery-actions">
-                      <button className="secondary-btn" type="button" onClick={() => setIsAddressOpen(true)}>
-                        Edit Address
-                      </button>
-                      <button
-                        className={`confirm-btn ${isDeliveryConfirmed ? "confirmed" : ""}`}
-                        type="button"
-                        onClick={() => setIsDeliveryConfirmed((isConfirmed) => !isConfirmed)}
-                      >
-                        {isDeliveryConfirmed ? "Delivery Confirmed" : "Confirm Delivery"}
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
+              <button
+                className={`confirm-btn pickup-save-btn ${isPickupConfirmed ? "confirmed" : ""}`}
+                type="button"
+                onClick={() => setIsPickupDateOpen(true)}
+              >
+                {isPickupConfirmed ? "Pickup Confirmed" : "Save Pickup Date"}
+              </button>
             </div>
           </div>
 
@@ -408,7 +389,10 @@ export default function Knowledge() {
 
             <div className="recipe-modal-header">
               <img className="recipe-header-image" src={knowledgeRecipe} alt="" aria-hidden="true" />
-              <h3 id="recipe-title">Custom Recipe & Pricing</h3>
+              <h3 id="recipe-title">
+                Custom Recipe &<br />
+                Pricing
+              </h3>
             </div>
 
             <div className="recipe-display-space">
@@ -444,32 +428,156 @@ export default function Knowledge() {
         </div>
       )}
 
-      {isAddressOpen && (
+      {isHistoryOpen && (
         <div className="modal-backdrop" role="presentation">
-          <div className="recipe-modal address-modal" role="dialog" aria-modal="true" aria-labelledby="address-title">
-            <button className="modal-close" type="button" aria-label="Close address editor" onClick={() => setIsAddressOpen(false)}>
+          <div className="history-modal" role="dialog" aria-modal="true" aria-labelledby="history-title">
+            <button className="modal-close" type="button" aria-label="Close question history" onClick={() => setIsHistoryOpen(false)}>
               x
             </button>
 
-            <h3 id="address-title">Edit Delivery Address</h3>
-            <p className="modal-intro">Update the delivery address for your customized essential oil.</p>
+            <h3 id="history-title">My Questions and Purchase History</h3>
+            <p className="history-intro">
+              Review your previous questions, recipes, payments, and pickup details.
+            </p>
 
-            <textarea
-              className="address-input"
-              value={deliveryAddress}
-              onChange={(event) => setDeliveryAddress(event.target.value)}
-            />
+            <div className="history-tabs" aria-label="History views">
+              <button className="active" type="button">
+                <LuMessageCircle aria-hidden="true" />
+                My Questions
+              </button>
+              <button type="button">
+                <LuShoppingBag aria-hidden="true" />
+                Purchase History
+              </button>
+            </div>
 
-            <button className="primary-btn modal-action" type="button" onClick={() => setIsAddressOpen(false)}>
-              Save Address
-            </button>
+            <div className="history-list">
+              {questionHistory.map((item) => (
+                <button
+                  className={`history-card ${activeHistoryId === item.id ? "active" : ""}`}
+                  type="button"
+                  key={item.id}
+                  onClick={() => setActiveHistoryId(item.id)}
+                >
+                  <div className="history-question">
+                    <span className="history-icon">
+                      <LuMessageCircle aria-hidden="true" />
+                    </span>
+                    <small>Question</small>
+                    <div className="history-empty-space">
+                      <strong>{item.question}</strong>
+                    </div>
+                    <small>Submitted Date</small>
+                    <div className="history-empty-space history-date-space">
+                      <span>{item.submittedDate}</span>
+                    </div>
+                  </div>
+
+                  <div className="history-grid">
+                    <div className="history-cell history-cell-recipe">
+                      <LuLeaf aria-hidden="true" />
+                      <span>Recipe</span>
+                      <strong>{item.recipe}</strong>
+                    </div>
+                    <div className="history-cell history-cell-price">
+                      <LuTag aria-hidden="true" />
+                      <span>Price</span>
+                      <strong>{item.price}</strong>
+                    </div>
+                    <div className="history-cell history-cell-payment">
+                      <LuClock aria-hidden="true" />
+                      <span>Payment Date</span>
+                      <strong>{item.paymentDate}</strong>
+                    </div>
+                    <div className="history-cell history-cell-location">
+                      <LuMapPin aria-hidden="true" />
+                      <span>Pickup Location</span>
+                      <strong>{item.pickupLocation}</strong>
+                    </div>
+                    <div className="history-cell history-cell-purchased">
+                      <LuClock aria-hidden="true" />
+                      <span>Purchased Date</span>
+                      <strong>{item.purchasedDate}</strong>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
 
-      <footer className="site-footer" aria-label="Happy Drops footer">
-        <img src={knowledgeFooter} alt="Happy Drops footer with quick links, customer care, account details, and contact information" />
-      </footer>
+      {isPickupDateOpen && (
+        <div className="modal-backdrop" role="presentation">
+          <div className="recipe-modal pickup-date-modal" role="dialog" aria-modal="true" aria-labelledby="pickup-date-title">
+            <button className="modal-close" type="button" aria-label="Close pickup date window" onClick={() => setIsPickupDateOpen(false)}>
+              x
+            </button>
+
+            <h3 id="pickup-date-title">Save Pickup Date</h3>
+            <p className="modal-intro">Please enter your preferred pickup date and time.</p>
+
+            <div className="pickup-date-fields">
+              <label>
+                <span>Date</span>
+                <input
+                  className="pickup-date-input"
+                  type="text"
+                  placeholder="Example: Friday 25 Aug 2026"
+                  value={pickupDate}
+                  readOnly={isPickupConfirmed}
+                  onChange={(event) => setPickupDate(event.target.value)}
+                />
+              </label>
+
+              <label>
+                <span>Time</span>
+                <input
+                  className="pickup-date-input"
+                  type="text"
+                  placeholder="Example: 3:30 PM"
+                  value={pickupTime}
+                  readOnly={isPickupConfirmed}
+                  onChange={(event) => setPickupTime(event.target.value)}
+                />
+              </label>
+            </div>
+
+            {pickupError && <p className="form-error">{pickupError}</p>}
+
+            <div className="pickup-modal-actions">
+              <button
+                className="secondary-btn"
+                type="button"
+                onClick={() => {
+                  setIsPickupConfirmed(false);
+                  setPickupError("");
+                }}
+              >
+                Edit
+              </button>
+
+              <button
+                className={`confirm-btn ${isPickupConfirmed ? "confirmed" : ""}`}
+                type="button"
+                onClick={() => {
+                  if (!pickupDate.trim() || !pickupTime.trim()) {
+                    setPickupError("Pickup date and time are required.");
+                    return;
+                  }
+
+                  setPickupError("");
+                  setIsPickupConfirmed(true);
+                }}
+              >
+                {isPickupConfirmed ? "Pickup Confirmed" : "Confirm"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <Footer />
     </div>
   );
 }
