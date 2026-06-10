@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
+import "../shared.css"
 import "./Shop.css";
 
 
 import Navbar from "../components/Navbar.jsx"
 import Footer from "../components/Footer.jsx"
-import "../shared.css"
 
 
-import lavenderHero from "../assets/images/SkinDryness.png";
+import DriedLavenderHero from "../assets/images/DriedLavenderHero.jpeg";
+
+
+import SkinCare from "../assets/images/SkinDryness.png";
 import immunityOil from "../assets/images/Immunityoil.png";
 import painReliefOil from "../assets/images/Painreliefoil.png";
 import sleepOil from "../assets/images/Sleepoil.png";
@@ -17,7 +20,7 @@ import hairOil from "../assets/images/Hairoil.png";
 
 
 const products = [
-  { id: 1, name: "Skin and Beauty", desc: "Radiant skin care", price: "24.90", badge: "Best Seller", reviews: 120 ,image: lavenderHero },
+  { id: 1, name: "Skin and Beauty", desc: "Radiant skin care", price: "24.90", badge: "Best Seller", reviews: 120 ,image: SkinCare },
   { id: 2, name: "Sleep and Relaxation", desc: "Calm mind and reduce stress", price: "29.90", badge: "Popular", reviews: 98, image: sleepOil},
   { id: 3, name: "Hair Care", desc: "Nourishing hair care", price: "24.90", reviews: 76, image: hairOil},
   { id: 4, name: "Sleep Support Blend", desc: "Relaxation and better sleep", price: "24.90", reviews: 120, image: sleepSupportOil },
@@ -36,14 +39,16 @@ function Shop() {
   };
 
   return (
-  <>
-    <Navbar />
+     <>
+     <div className="shop-nav-adjust">
+      <Navbar />
+    </div>
 
-    <main className="Page-shell shop-page">
+    <main className="page-shell shop-page">
       {/* hero */}
       <section
         className="hero"
-        style={{ backgroundImage: `url(${lavenderHero})` }}
+        style={{ backgroundImage: `url(${DriedLavenderHero})` }}
       >
         <div className="hero-text">
           <h1>Discover Natural Products for Wellness and Longevity</h1>
