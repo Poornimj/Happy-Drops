@@ -1,4 +1,4 @@
-﻿import {
+import {
   HiOutlineCalendar,
   HiOutlineClipboardList,
   HiOutlineHeart,
@@ -8,6 +8,8 @@
 } from "react-icons/hi";
 import Footer from "../components/Footer";
 import confirmedBottle from "../assets/images/auth-confirmed-bottle.png";
+import profileHeroBanner from "../assets/images/wellness-profile-hero-banner.png";
+import profileSideProduct from "../assets/images/wellness-profile-side-product.png";
 
 const benefits = [
   {
@@ -41,7 +43,8 @@ function Signup() {
   return (
     <>
       <main className="profile-page">
-        <section className="profile-hero">
+        <section className="profile-hero profile-hero-with-image">
+          <img src={profileHeroBanner} alt="Happy Drops lavender wellness profile banner" />
           <div className="profile-hero-copy">
             <h1>Create Your Wellness Profile</h1>
             <p>
@@ -49,13 +52,6 @@ function Signup() {
               of view and preventive solutions to support you and your family's
               wellbeing.
             </p>
-          </div>
-          <div className="profile-product-hero">
-            <div className="lavender-sweep"></div>
-            <div className="hero-bottle-stage">
-              <span className="hero-lavender"></span>
-              <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
-            </div>
           </div>
         </section>
 
@@ -142,9 +138,8 @@ function Signup() {
               </article>
             ))}
 
-            <div className="benefits-product">
-              <span className="benefits-lavender"></span>
-              <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
+            <div className="benefits-product benefits-product-image">
+              <img src={profileSideProduct} alt="Happy Drops bottle with lavender candle and vase" />
             </div>
           </aside>
         </section>
