@@ -41,7 +41,7 @@ function Footer() {
           <h4>Get in Touch</h4>
           <p>info@happydrops.com</p>
           <p>Helsinki XR Center</p>
-          <p>HÃ¤meentie 135 A</p>
+          <p>Hameentie 135 A</p>
           <p>00560 Helsinki</p>
           <p>Finland</p>
         </div>

@@ -42,7 +42,7 @@ function Signup() {
     <>
       <main className="profile-page">
         <section className="profile-hero">
-          <div>
+          <div className="profile-hero-copy">
             <h1>Create Your Wellness Profile</h1>
             <p>
               Combining Eastern wisdom and Western knowledge with a holistic point
@@ -51,7 +51,7 @@ function Signup() {
             </p>
           </div>
           <div className="profile-product-hero">
-            <span className="lavender-branch"></span>
+            <div className="lavender-sweep"></div>
             <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
           </div>
         </section>
