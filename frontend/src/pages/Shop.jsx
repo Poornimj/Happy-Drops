@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Shop.css";
-import { HiOutlineSearch, HiOutlineUser, HiOutlineShoppingCart } from "react-icons/hi";
 
 
-import logo from "../assets/logos/happy-drops-exact-logo-no-box.jpeg";
+import Navbar from "../components/Navbar.jsx"
+import Footer from "../components/Footer.jsx"
+import "../shared.css"
+
+
 import lavenderHero from "../assets/images/SkinDryness.png";
 import immunityOil from "../assets/images/Immunityoil.png";
 import painReliefOil from "../assets/images/Painreliefoil.png";
@@ -26,7 +29,7 @@ const products = [
 ];
 
 function Shop() {
-  const [language, setLanguage] = useState("EN");
+  
 
   const addToCart = (event, product) => {
     event.preventDefault();
@@ -35,44 +38,8 @@ function Shop() {
 
   return (
     <div className="shop-page">
-      <header className="navbar">
-        <Link to="/" className="logo">
-          <img src={logo}  />
-          
-        </Link>
-
-        <nav className="nav-links">
-          <Link to="/knowledge">Knowledge</Link>
-          <Link to="/workshops">Workshops</Link>
-          <Link to="/therapists">Therapists</Link>
-          <Link to="/suppliers">Suppliers</Link>
-          <Link to="/" className="active">Shop</Link>
-          <Link to="/about">About Us</Link>
-        </nav>
-        <div className="nav-icons">
-  <a href="#" className="nav-icon">
-    <HiOutlineSearch />
-  </a>
-
-  <a href="#" className="nav-icon">
-    <HiOutlineUser />
-  </a>
-
-  <a href="#" className="nav-icon">
-    <HiOutlineShoppingCart />
-  </a>
-</div>
-
-        <div className="nav-actions">
-          <span className="globe">◎</span>
-          <select value={language} onChange={(e) => setLanguage(e.target.value)}>
-            <option>EN</option>
-            <option>SI</option>
-            <option>FI</option>
-          </select>
-          
-        </div>
-      </header>
+      <Navbar/>
+      
 
       <section
   className="hero"
@@ -154,37 +121,9 @@ function Shop() {
         </div>
       </section>
 
-      <footer className="footer">
-        <div>
-          <img src={logo} alt="Nature Power" />
-          <h3>NATURE POWER</h3>
-          <p>Empowering people to live happier, healthier lives through the healing power of nature.</p>
-        </div>
+      <Footer/>
 
-        <div>
-          <h4>Quick Links</h4>
-          <Link to="/">Home</Link>
-          <Link to="/category/all-products">Products</Link>
-          <Link to="/workshops">Workshops</Link>
-          <Link to="/about">About Us</Link>
-        </div>
-
-        <div>
-          <h4>Customer Care</h4>
-          <p>FAQs</p>
-          <p>Shipping & Delivery</p>
-          <p>Returns</p>
-          <p>Privacy Policy</p>
-        </div>
-
-        <div>
-          <h4>Get in Touch</h4>
-          <p>hello@naturepower.app</p>
-          <p>+358 41 311 9098</p>
-          <p>Hämeentie 135 A</p>
-          <p>00560 Helsinki, Finland</p>
-        </div>
-      </footer>
+     
     </div>
   );
 }
