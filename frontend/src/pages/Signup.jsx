@@ -52,7 +52,10 @@ function Signup() {
           </div>
           <div className="profile-product-hero">
             <div className="lavender-sweep"></div>
-            <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
+            <div className="hero-bottle-stage">
+              <span className="hero-lavender"></span>
+              <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
+            </div>
           </div>
         </section>
 
@@ -140,6 +143,7 @@ function Signup() {
             ))}
 
             <div className="benefits-product">
+              <span className="benefits-lavender"></span>
               <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
             </div>
           </aside>
@@ -151,3 +155,4 @@ function Signup() {
 }
 
 export default Signup;
+
