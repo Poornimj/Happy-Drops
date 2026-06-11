@@ -1,4 +1,4 @@
-﻿import {
+import {
   HiOutlineGlobeAlt,
   HiOutlineSearch,
   HiOutlineShoppingCart,
@@ -9,7 +9,7 @@ import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 function Navbar() {
   return (
     <nav className="navbar">
-      <a className="brand" href="#" aria-label="Happy Drops home">
+      <a className="brand" href="/" aria-label="Happy Drops home">
         <img src={happyDropsLogo} alt="Happy Drops" />
       </a>
 

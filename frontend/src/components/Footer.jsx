@@ -5,7 +5,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="footer-inner">
         <div className="footer-brand">
-          <img src={happyDropsLogo} alt="Happy Drops" className="footer-logo" />
+          <a className="footer-logo-link" href="/" aria-label="Happy Drops home"><img src={happyDropsLogo} alt="Happy Drops" className="footer-logo" /></a>
           <p>
             Empowering people to live happier, healthier lives and achieve longevity
             through the healing power of nature.

@@ -259,3 +259,102 @@ body {
     gap: 22px;
   }
 }
+/* About navbar footer logo font size correction */
+.navbar {
+  min-height: 118px !important;
+  gap: 24px !important;
+}
+
+.brand {
+  width: 275px !important;
+  flex: 0 0 275px !important;
+  cursor: pointer !important;
+}
+
+.logo {
+  width: 275px !important;
+  height: 96px !important;
+  object-fit: contain !important;
+}
+
+.nav-links {
+  gap: 24px !important;
+}
+
+.nav-links a {
+  font-size: 17px !important;
+  line-height: 1.2 !important;
+}
+
+.language-switcher {
+  font-size: 17px !important;
+}
+
+.language-switcher svg {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.nav-icon {
+  width: 56px !important;
+  height: 56px !important;
+}
+
+.nav-icon svg {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+.footer-logo-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+}
+
+.footer-logo {
+  width: 245px !important;
+  height: 125px !important;
+  object-fit: contain !important;
+  margin-bottom: 18px !important;
+}
+
+.footer-column h4 {
+  font-size: 18px !important;
+}
+
+.footer-brand p,
+.footer-column p,
+.footer-column a {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+}
+
+@media (max-width: 1050px) {
+  .brand {
+    width: 230px !important;
+    flex-basis: 230px !important;
+  }
+
+  .logo {
+    width: 230px !important;
+    height: 82px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand {
+    width: 215px !important;
+    flex-basis: 215px !important;
+  }
+
+  .logo {
+    width: 215px !important;
+    height: 76px !important;
+  }
+
+  .footer-logo {
+    width: 220px !important;
+    height: 112px !important;
+  }
+}
+/* End about navbar footer logo font size correction */
