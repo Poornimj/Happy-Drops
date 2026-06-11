@@ -501,3 +501,110 @@ body {
   }
 }
 /* End about final footer navbar polish */
+/* About full footer page address final fix */
+.navbar {
+  width: min(1480px, calc(100% - 32px)) !important;
+  margin: 0 auto !important;
+}
+
+.brand {
+  width: 310px !important;
+  flex: 0 0 310px !important;
+}
+
+.logo {
+  width: 310px !important;
+  height: 108px !important;
+  object-fit: contain !important;
+}
+
+.site-footer {
+  width: 100vw !important;
+  max-width: none !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  margin-top: 56px !important;
+  padding: 42px 0 46px !important;
+  border-top: 1px solid #dfe5d8 !important;
+  background: #ffffff !important;
+}
+
+.footer-inner {
+  width: min(1480px, calc(100% - 64px)) !important;
+  max-width: 1480px !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: 1.35fr 1fr 1fr 1fr 1.08fr !important;
+  gap: 58px !important;
+  align-items: start !important;
+}
+
+.footer-brand {
+  max-width: 340px !important;
+}
+
+.footer-logo {
+  width: 280px !important;
+  height: 142px !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin-bottom: 18px !important;
+}
+
+.site-footer .footer-column h4 {
+  margin: 0 0 18px !important;
+  color: var(--dark-green) !important;
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+  font-weight: 800 !important;
+}
+
+.site-footer .footer-brand p,
+.site-footer .footer-column p,
+.site-footer .footer-column a,
+.site-footer .footer-column:last-child p {
+  margin: 0 0 14px !important;
+  color: var(--text-green) !important;
+  font-family: "Segoe UI", Arial, sans-serif !important;
+  font-size: 18px !important;
+  line-height: 1.58 !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+}
+
+.site-footer .footer-column:last-child p:first-of-type {
+  font-size: 18px !important;
+  line-height: 1.58 !important;
+}
+
+@media (max-width: 1050px) {
+  .brand {
+    width: 235px !important;
+    flex-basis: 235px !important;
+  }
+
+  .logo {
+    width: 235px !important;
+    height: 84px !important;
+  }
+
+  .footer-inner {
+    width: min(100% - 32px, 1480px) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 30px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-inner {
+    width: min(100% - 24px, 1480px) !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .footer-logo {
+    width: 230px !important;
+    height: 118px !important;
+  }
+}
+/* End about full footer page address final fix */

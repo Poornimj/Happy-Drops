@@ -2855,3 +2855,46 @@ a {
   align-items: center !important;
 }
 /* End about mission photo full visibility fix */
+/* About full page sections final fix */
+.about-page {
+  width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+.about-hero,
+.about-intro,
+.about-story,
+.about-values,
+.about-mission,
+.about-process,
+.about-cta,
+.about-values-finished-image {
+  width: min(1480px, calc(100% - 64px)) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.about-mission img,
+.about-story img {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 14px !important;
+  display: block !important;
+}
+
+@media (max-width: 600px) {
+  .about-hero,
+  .about-intro,
+  .about-story,
+  .about-values,
+  .about-mission,
+  .about-process,
+  .about-cta,
+  .about-values-finished-image {
+    width: min(100% - 24px, 1480px) !important;
+  }
+}
+/* End about full page sections final fix */
