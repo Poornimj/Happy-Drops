@@ -1,49 +1,58 @@
-import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
+import logo from "../assets/logos/happy-drops-exact-logo-no-box.png";
+import "./Footer.css";
 
 function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="footer-inner">
+    <footer className="footer">
+      <div className="footer-container">
         <div className="footer-brand">
-          <img src={happyDropsLogo} alt="Happy Drops" className="footer-logo" />
-          <p>
-            Empowering people to live happier, healthier lives and achieve longevity
-            through the healing power of nature.
+          <img src={logo} alt="Happy Drops" className="footer-logo" />
+          <p className="brand-description">
+            Empowering people to live happier, healthier lives and achieve
+            longevity through the healing power of nature.
           </p>
         </div>
 
         <div className="footer-column">
           <h4>Quick Links</h4>
-          <a href="#">Home</a>
-          <a href="#">Shop</a>
-          <a href="#">Workshops</a>
-          <a href="#">About Us</a>
-          <a href="#">Therapists</a>
-          <a href="#">Suppliers</a>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Workshops</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Therapists</a></li>
+            <li><a href="#">Suppliers</a></li>
+          </ul>
         </div>
 
         <div className="footer-column">
           <h4>Customer Care</h4>
-          <a href="#">Shipping & Delivery</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms & Conditions</a>
+          <ul>
+            <li><a href="#">Shipping & Delivery</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+          </ul>
         </div>
 
         <div className="footer-column">
           <h4>My Account</h4>
-          <a href="#">Login / Register</a>
-          <a href="#">My Profile</a>
-          <a href="#">Wishlist</a>
-          <a href="#">Track Order</a>
+          <ul>
+            <li><a href="#">Login / Register</a></li>
+            <li><a href="#">My Profile</a></li>
+            <li><a href="#">Wishlist</a></li>
+            <li><a href="#">Track Order</a></li>
+          </ul>
         </div>
 
         <div className="footer-column">
           <h4>Get in Touch</h4>
-          <p>info@happydrops.com</p>
-          <p>Helsinki XR Center</p>
-          <p>{"H\u00E4meentie 135 A"}</p>
-          <p>00560 Helsinki</p>
-          <p>Finland</p>
+          <ul>
+            <li>info@happydrops.com</li>
+            <li>Helsinki XR Center</li>
+            <li>Ilmarentie 135 A</li>
+            <li>00560 Helsinki</li>
+            <li>Finland</li>
+          </ul>
         </div>
       </div>
     </footer>
