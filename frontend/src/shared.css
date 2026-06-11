@@ -390,3 +390,114 @@ body {
   }
 }
 /* End about full width layout correction */
+/* About final footer navbar polish */
+.navbar {
+  width: min(1480px, calc(100% - 32px)) !important;
+  min-height: 124px !important;
+  gap: 26px !important;
+}
+
+.brand {
+  width: 300px !important;
+  flex: 0 0 300px !important;
+}
+
+.logo {
+  width: 300px !important;
+  height: 104px !important;
+  object-fit: contain !important;
+}
+
+.nav-links a,
+.language-switcher {
+  font-size: 17px !important;
+}
+
+.site-footer {
+  width: 100% !important;
+  max-width: none !important;
+  margin-top: 56px !important;
+  padding: 38px max(32px, calc((100vw - 1480px) / 2)) 42px !important;
+  border-top: 1px solid #dfe5d8 !important;
+  background: #ffffff !important;
+}
+
+.footer-inner {
+  width: 100% !important;
+  max-width: 1480px !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: 1.45fr 1fr 1fr 1fr 1fr !important;
+  gap: 54px !important;
+  align-items: start !important;
+}
+
+.footer-brand {
+  max-width: 330px !important;
+}
+
+.footer-logo {
+  width: 270px !important;
+  height: 138px !important;
+  object-fit: contain !important;
+  margin-bottom: 18px !important;
+}
+
+.site-footer .footer-column h4 {
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+  margin-bottom: 18px !important;
+}
+
+.site-footer .footer-brand p,
+.site-footer .footer-column p,
+.site-footer .footer-column a {
+  font-size: 18px !important;
+  line-height: 1.58 !important;
+  font-weight: 400 !important;
+  color: var(--text-green) !important;
+}
+
+.site-footer .footer-column p,
+.site-footer .footer-column a {
+  margin-bottom: 14px !important;
+}
+
+@media (max-width: 1050px) {
+  .navbar {
+    width: min(100% - 32px, 1480px) !important;
+    min-height: auto !important;
+  }
+
+  .brand {
+    width: 235px !important;
+    flex-basis: 235px !important;
+  }
+
+  .logo {
+    width: 235px !important;
+    height: 84px !important;
+  }
+
+  .footer-inner {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-footer {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .footer-logo {
+    width: 230px !important;
+    height: 118px !important;
+  }
+}
+/* End about final footer navbar polish */

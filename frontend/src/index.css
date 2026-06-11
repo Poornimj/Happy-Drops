@@ -2836,3 +2836,22 @@ a {
   }
 }
 /* End about content full width correction */
+/* About mission photo full visibility fix */
+.about-mission img,
+.about-story img {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 14px !important;
+  background: #fbf8f1 !important;
+  display: block !important;
+}
+
+.about-mission,
+.about-story {
+  align-items: center !important;
+}
+/* End about mission photo full visibility fix */
