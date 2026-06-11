@@ -373,3 +373,20 @@ body {
   line-height: 1.25 !important;
 }
 /* End about footer address font size fix */
+/* About full width layout correction */
+.navbar,
+.site-footer {
+  width: min(1440px, calc(100% - 32px)) !important;
+}
+
+.footer-inner {
+  width: 100% !important;
+}
+
+@media (max-width: 600px) {
+  .navbar,
+  .site-footer {
+    width: min(100% - 24px, 1440px) !important;
+  }
+}
+/* End about full width layout correction */

@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --ink: #152338;
   --muted: #677065;
   --green: #315c38;
@@ -2810,3 +2810,29 @@ a {
   }
 }
 /* End Happy Drops mission seamless image */
+
+/* About content full width correction */
+.about-hero,
+.about-intro,
+.about-story,
+.about-values,
+.about-mission,
+.about-process,
+.about-cta,
+.about-values-finished-image {
+  width: min(1440px, calc(100% - 32px)) !important;
+}
+
+@media (max-width: 600px) {
+  .about-hero,
+  .about-intro,
+  .about-story,
+  .about-values,
+  .about-mission,
+  .about-process,
+  .about-cta,
+  .about-values-finished-image {
+    width: min(100% - 24px, 1440px) !important;
+  }
+}
+/* End about content full width correction */
