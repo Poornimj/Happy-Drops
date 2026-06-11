@@ -1,4 +1,4 @@
-﻿import aboutMission from "../assets/images/mission.png";
+import aboutMission from "../assets/images/mission.png";
 import valuesFourRealImage from "../assets/images/happy-drops-values-four-real.png";
 import happyDropsValuesLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 import footerLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
@@ -8,6 +8,7 @@ import growingHarvestImage from "../assets/images/happy-drops-growing-harvest.jp
 import ourStoryHomeWellnessImage from "../assets/images/happy-drops-our-story-home-wellness.png";
 import happyDropsLogo from "../assets/images/happy-drops-logo.jpeg";
 
+import Footer from "../components/Footer";
 function LeafIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
