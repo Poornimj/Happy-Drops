@@ -358,3 +358,18 @@ body {
   }
 }
 /* End about navbar footer logo font size correction */
+/* About footer address font size fix */
+.site-footer .footer-column p,
+.site-footer .footer-column a,
+.site-footer .footer-brand p {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+  color: var(--text-green) !important;
+}
+
+.site-footer .footer-column h4 {
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+}
+/* End about footer address font size fix */
