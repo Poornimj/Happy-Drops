@@ -999,3 +999,89 @@ body,
   }
 }
 /* End about footer normal font final correction */
+
+/* Final footer correction: full-width line, spread columns, smaller matching text */
+.site-footer {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 52px 0 0 !important;
+  padding: 0 !important;
+  border-top: 0 !important;
+  background: #ffffff !important;
+}
+
+.site-footer::before {
+  content: "" !important;
+  display: block !important;
+  width: 100vw !important;
+  height: 1px !important;
+  margin-left: calc(50% - 50vw) !important;
+  background: #dfe5d8 !important;
+}
+
+.site-footer .footer-inner {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 42px clamp(42px, 5vw, 82px) 44px !important;
+  display: grid !important;
+  grid-template-columns: 1.45fr repeat(4, 1fr) !important;
+  column-gap: clamp(42px, 5.5vw, 108px) !important;
+  align-items: start !important;
+}
+
+.site-footer .footer-brand {
+  max-width: 300px !important;
+}
+
+.site-footer .footer-logo {
+  width: 230px !important;
+  height: 118px !important;
+  object-fit: contain !important;
+  margin: 0 0 16px !important;
+}
+
+.site-footer .footer-column h4 {
+  margin: 0 0 18px !important;
+  color: #173f27 !important;
+  font-size: 16px !important;
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+}
+
+.site-footer .footer-brand p,
+.site-footer .footer-column a,
+.site-footer .footer-column p,
+.site-footer .footer-column:last-child p {
+  margin: 0 0 12px !important;
+  color: #001333 !important;
+  font-family: "Segoe UI", Arial, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+}
+
+.site-footer .footer-brand p {
+  color: #4f655a !important;
+}
+
+.site-footer .footer-column {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+@media (max-width: 900px) {
+  .site-footer .footer-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    row-gap: 28px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-footer .footer-inner {
+    grid-template-columns: 1fr !important;
+    padding: 32px 24px !important;
+  }
+}
