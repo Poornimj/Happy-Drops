@@ -608,3 +608,82 @@ body {
   }
 }
 /* End about full footer page address final fix */
+/* About final full footer spread fix */
+html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.site-footer {
+  width: 100vw !important;
+  max-width: none !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  margin-top: 56px !important;
+  padding: 42px 0 46px !important;
+  border-top: 1px solid #d9dfd1 !important;
+  background: #ffffff !important;
+}
+
+.footer-inner {
+  width: calc(100vw - 96px) !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: minmax(260px, 1.2fr) repeat(4, minmax(190px, 1fr)) !important;
+  gap: clamp(34px, 5vw, 92px) !important;
+  align-items: start !important;
+}
+
+.footer-brand {
+  max-width: 360px !important;
+}
+
+.footer-logo {
+  width: 285px !important;
+  height: 145px !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin-bottom: 18px !important;
+}
+
+.site-footer .footer-column h4 {
+  margin: 0 0 18px !important;
+  color: var(--dark-green) !important;
+  font-size: 18px !important;
+  line-height: 1.25 !important;
+  font-weight: 800 !important;
+}
+
+.site-footer .footer-brand p,
+.site-footer .footer-column p,
+.site-footer .footer-column a,
+.site-footer .footer-column:last-child p,
+.site-footer .footer-column:last-child p:first-of-type {
+  margin: 0 0 14px !important;
+  color: var(--text-green) !important;
+  font-family: "Segoe UI", Arial, sans-serif !important;
+  font-size: 18px !important;
+  line-height: 1.58 !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+}
+
+@media (max-width: 1050px) {
+  .footer-inner {
+    width: calc(100vw - 32px) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 30px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-inner {
+    width: calc(100vw - 24px) !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+/* End about final full footer spread fix */
