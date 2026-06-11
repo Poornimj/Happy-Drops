@@ -2981,3 +2981,63 @@ a {
   background: transparent !important;
 }
 /* End about show full image final */
+/* About final hero text and image sizing */
+.about-hero .section-kicker,
+.about-hero-copy .section-kicker {
+  font-size: 17px !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.08em !important;
+}
+
+.about-hero h2,
+.about-hero .hero-subtitle,
+.about-hero-copy h2 {
+  font-size: clamp(32px, 2.6vw, 44px) !important;
+  line-height: 1.12 !important;
+}
+
+.about-hero p,
+.about-hero-copy p {
+  font-size: 19px !important;
+  line-height: 1.6 !important;
+}
+
+.about-story {
+  grid-template-columns: minmax(420px, 0.86fr) minmax(420px, 1.14fr) !important;
+  align-items: center !important;
+}
+
+.about-story img {
+  width: 100% !important;
+  max-width: 720px !important;
+  height: auto !important;
+  max-height: 560px !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 14px !important;
+  justify-self: center !important;
+}
+
+.about-mission img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 560px !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 14px !important;
+}
+
+@media (max-width: 900px) {
+  .about-story {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-story img,
+  .about-mission img {
+    max-width: 100% !important;
+    max-height: none !important;
+  }
+}
+/* End about final hero text and image sizing */
