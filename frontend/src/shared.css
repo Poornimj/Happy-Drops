@@ -1362,3 +1362,50 @@ body .site-footer .footer-brand p {
 body .site-footer .footer-column {
   gap: 0 !important;
 }
+
+/* HAPPY DROPS FINAL FOOTER SMALL TEXT START */
+html body .site-footer,
+html body .site-footer .footer-inner {
+  border-top: 0 !important;
+}
+
+html body .site-footer::before,
+html body .site-footer::after,
+html body .site-footer .footer-inner::before,
+html body .site-footer .footer-inner::after {
+  content: none !important;
+  display: none !important;
+}
+
+html body .site-footer .footer-column h4 {
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+  margin: 0 0 14px !important;
+  color: #173f27 !important;
+}
+
+html body .site-footer .footer-inner .footer-column a,
+html body .site-footer .footer-inner .footer-column p,
+html body .site-footer .footer-inner .footer-column:last-child a,
+html body .site-footer .footer-inner .footer-column:last-child p {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 400 !important;
+  margin: 0 0 9px !important;
+  color: #001333 !important;
+  text-decoration: none !important;
+}
+
+html body .site-footer .footer-brand p {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 400 !important;
+  margin: 0 !important;
+  color: #4f655a !important;
+}
+
+html body .site-footer .footer-logo {
+  object-fit: contain !important;
+}
+/* HAPPY DROPS FINAL FOOTER SMALL TEXT END */
