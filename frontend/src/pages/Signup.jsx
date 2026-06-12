@@ -1,4 +1,4 @@
-import {
+﻿import {
   HiOutlineCalendar,
   HiOutlineClipboardList,
   HiOutlineHeart,
@@ -6,11 +6,11 @@ import {
   HiOutlineTrendingUp,
   HiOutlineUserGroup,
 } from "react-icons/hi";
-import Footer from "../components/Footer";
-import confirmedBottle from "../assets/images/auth-confirmed-bottle.png";
+
 import profileHeroBanner from "../assets/images/wellness-profile-hero-banner.png";
 import profileSideProduct from "../assets/images/wellness-profile-side-product.png";
 
+import "./Signup.css";
 const benefits = [
   {
     icon: <HiOutlineSparkles />,
@@ -143,11 +143,11 @@ function Signup() {
             </div>
           </aside>
         </section>
-      </main>
-      <Footer />
-    </>
+      </main></>
   );
 }
 
 export default Signup;
+
+
 
