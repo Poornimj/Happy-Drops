@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --dark-green: #173f27;
   --brand-green: #315c38;
   --purple: #a67ac5;
@@ -1409,3 +1409,197 @@ html body .site-footer .footer-logo {
   object-fit: contain !important;
 }
 /* HAPPY DROPS FINAL FOOTER SMALL TEXT END */
+
+/* HAPPY DROPS CLEAN SHARED LAYOUT START */
+:root {
+  --hd-page-width: 1120px;
+  --hd-page-gutter: 32px;
+  --hd-ink: #0f1d31;
+  --hd-green: #315c38;
+  --hd-dark-green: #173f27;
+  --hd-muted: #4f655a;
+  --hd-purple: #a67ac5;
+  --hd-border-purple: #dcc8ef;
+  --hd-white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--hd-white);
+  color: var(--hd-ink);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-container {
+  width: min(var(--hd-page-width), calc(100% - var(--hd-page-gutter)));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shared-footer {
+  width: min(var(--hd-page-width), calc(100% - var(--hd-page-gutter))) !important;
+  margin: 44px auto 0 !important;
+  padding: 28px 8px 30px !important;
+  display: grid !important;
+  grid-template-columns: 1.35fr repeat(4, 1fr) !important;
+  column-gap: 42px !important;
+  border-top: 0 !important;
+  background: #ffffff !important;
+  color: #0f1d31 !important;
+  font-family: "Segoe UI", Arial, sans-serif !important;
+}
+
+.shared-footer .footer-brand {
+  max-width: 100% !important;
+}
+
+.shared-footer .footer-brand img {
+  width: 180px !important;
+  height: auto !important;
+  display: block !important;
+  margin-bottom: 13px !important;
+}
+
+.shared-footer .footer-brand p {
+  max-width: 230px !important;
+  margin: 0 !important;
+  color: #4f655a !important;
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+}
+
+.shared-footer .footer-column {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  align-items: flex-start !important;
+}
+
+.shared-footer .footer-column h3 {
+  margin: 0 0 7px !important;
+  color: #315c38 !important;
+  font-size: 15.5px !important;
+  line-height: 1.3 !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+}
+
+.shared-footer .footer-column a,
+.shared-footer .footer-column span {
+  margin: 0 !important;
+  color: #0f1d31 !important;
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+}
+
+.shared-footer .footer-column a:hover,
+.shared-footer .footer-column a:focus,
+.shared-footer .footer-column a:active,
+.shared-footer .footer-column a:visited {
+  color: #0f1d31 !important;
+  text-decoration: none !important;
+}
+
+@media (max-width: 900px) {
+  .shared-footer {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    column-gap: 32px !important;
+    row-gap: 24px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-container,
+  .shared-footer {
+    width: min(100% - 24px, var(--hd-page-width)) !important;
+  }
+
+  .shared-footer {
+    grid-template-columns: 1fr !important;
+    padding: 26px 0 28px !important;
+    row-gap: 22px !important;
+  }
+}
+/* HAPPY DROPS CLEAN SHARED LAYOUT END */
+
+/* HAPPY DROPS SHARED FOOTER OVERRIDE START */
+html body .shared-footer {
+  width: min(1120px, calc(100% - 32px)) !important;
+  margin: 44px auto 0 !important;
+  padding: 28px 8px 30px !important;
+  display: grid !important;
+  grid-template-columns: 1.35fr repeat(4, 1fr) !important;
+  column-gap: 42px !important;
+  border: 0 !important;
+  background: #ffffff !important;
+  color: #0f1d31 !important;
+  font-family: "Segoe UI", Arial, sans-serif !important;
+}
+
+html body .shared-footer .footer-brand img {
+  width: 180px !important;
+  height: auto !important;
+  margin: 0 0 13px !important;
+  display: block !important;
+  object-fit: contain !important;
+}
+
+html body .shared-footer .footer-brand p,
+html body .shared-footer .footer-column a,
+html body .shared-footer .footer-column span {
+  margin: 0 !important;
+  font-family: "Segoe UI", Arial, sans-serif !important;
+  font-size: 14.5px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+  color: #0f1d31 !important;
+  text-decoration: none !important;
+}
+
+html body .shared-footer .footer-brand p {
+  max-width: 245px !important;
+  color: #4f655a !important;
+}
+
+html body .shared-footer .footer-column {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  align-items: flex-start !important;
+}
+
+html body .shared-footer .footer-column h3 {
+  margin: 0 0 7px !important;
+  color: #315c38 !important;
+  font-family: "Segoe UI", Arial, sans-serif !important;
+  font-size: 15.5px !important;
+  line-height: 1.3 !important;
+  font-weight: 800 !important;
+}
+
+html body .shared-footer .footer-column a:hover,
+html body .shared-footer .footer-column a:focus,
+html body .shared-footer .footer-column a:active,
+html body .shared-footer .footer-column a:visited {
+  color: #0f1d31 !important;
+  text-decoration: none !important;
+}
+/* HAPPY DROPS SHARED FOOTER OVERRIDE END */
+
