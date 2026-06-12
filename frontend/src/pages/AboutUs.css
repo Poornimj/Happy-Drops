@@ -1986,4 +1986,88 @@
     max-width: 100% !important;
     max-height: none !important;
   }}
+/* FINAL About image + text correction */
 
+/* Keep section containers clean and rounded */
+.about-story,
+.about-mission,
+.about-values-finished-image,
+.about-calm-image-hero,
+.about-two-person-longevity-banner,
+.about-family-wide-banner {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+}
+
+/* Fix story/mission images: no white side borders, rounded corners */
+.about-story img,
+.about-story-home > img,
+.about-mission img {
+  width: 100% !important;
+  height: 560px !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 24px !important;
+  background: transparent !important;
+  display: block !important;
+  box-shadow: 0 24px 58px rgba(49, 92, 56, 0.14) !important;
+}
+
+/* Other about images rounded */
+.about-intro-image,
+.about-values-finished-image img,
+.about-calm-hero-image,
+.about-longevity-banner-image,
+.about-family-banner-image {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+}
+
+/* Make third and fourth section text bigger */
+.about-story h2,
+.about-story-home h2,
+.about-mission h2 {
+  font-size: clamp(42px, 4.2vw, 62px) !important;
+  line-height: 1.12 !important;
+  color: #315c38 !important;
+}
+
+.about-story p,
+.about-story-home p,
+.about-mission p {
+  font-size: 21px !important;
+  line-height: 1.75 !important;
+  color: #4f655a !important;
+}
+
+.about-story .section-kicker,
+.about-story-home .section-kicker,
+.about-mission .section-kicker {
+  font-size: 15px !important;
+  letter-spacing: 0.1em !important;
+  font-weight: 800 !important;
+}
+
+/* Keep mobile clean */
+@media (max-width: 900px) {
+  .about-story img,
+  .about-story-home > img,
+  .about-mission img {
+    height: 360px !important;
+  }
+
+  .about-story h2,
+  .about-story-home h2,
+  .about-mission h2 {
+    font-size: clamp(34px, 9vw, 48px) !important;
+  }
+
+  .about-story p,
+  .about-story-home p,
+  .about-mission p {
+    font-size: 18px !important;
+  }
+}
