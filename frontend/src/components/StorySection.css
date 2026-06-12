@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Handlee&family=Comic+Neue:wght@400;700&display=swap');
 
 .story-section {
-  padding: 50px 40px 70px;
+  padding: 30px 40px 70px;
   text-align: center;
   background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
   position: relative;
@@ -19,6 +19,7 @@
 }
 
 .story-section h4 {
+  font-family: Georgia, serif;
   color: #6b5ca5;
   font-size: 14px;
   font-weight: 600;
@@ -41,6 +42,7 @@
 }
 
 .story-section h2 {
+  font-family: Georgia, serif;
   color: #1f2937;
   font-size: 40px;
   font-weight: 700;
@@ -109,25 +111,38 @@
   z-index: 2;
 }
 
-/* Center Text */
-
 .story-center {
-  top: 3%;
+  position: absolute;
+  z-index: 2;
+
+  top: 20px;
   left: 25%;
   transform: translateX(-50%);
+
+  width: 550px;
   max-width: 550px;
+
   text-align: center;
-  padding-bottom: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .story-center p {
+  margin: 0;
+
   font-size: 18px;
   line-height: 1.8;
+
   color: #4a4a4a;
   font-weight: 500;
   font-family: 'Handlee', cursive;
-}
 
+  text-align: center;
+
+  width: 100%;
+}
 /* Cards */
 
 .story-card {
@@ -174,6 +189,7 @@
 }
 
 .story-card h3 {
+  font-family: Georgia, serif;
   font-size: 13px;
   font-weight: 700;
   color: #374151;

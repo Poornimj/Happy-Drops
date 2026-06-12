@@ -1,6 +1,6 @@
 import "./StorySection.css";
 import "../styles/ScrollReveal.css";
-import storyBg from "../assets/images/welcomebackground.png";
+import storyBg from "../assets/images/welcomebackground.png.png";
 import useScrollReveal from "../hooks/useScrollReveal";
 
 import {

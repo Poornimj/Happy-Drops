@@ -47,6 +47,7 @@
 }
 
 .how-it-works h2 {
+  font-family: Georgia, serif;
   font-size: 48px;
   font-weight: 600;
   color: #31533b;
@@ -232,6 +233,7 @@
 }
 
 .step-text h3 {
+  font-family: Georgia, serif;
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 12px;

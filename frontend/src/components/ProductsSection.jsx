@@ -8,6 +8,7 @@ import essentialOil from "../assets/images/essential-oils.png";
 import nutrition from "../assets/images/nutritions.jpg";
 import sleepSounds from "../assets/images/sleep-sounds.png";
 import wellnessAccessories from "../assets/images/Accessories.png";
+import leafOnly from "../assets/images/leaveonly.png";
 
 function ProductsSection() {
   const [isHovered, setIsHovered] = useState(false);
@@ -39,7 +40,7 @@ function ProductsSection() {
   ];
 
   return (
-    <section 
+    <section
       className="products-section"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -70,6 +71,8 @@ function ProductsSection() {
       <button className="products-btn scroll-reveal" ref={buttonRef} style={{ opacity: buttonVisible ? 1 : 0, transform: buttonVisible ? 'translateY(0)' : 'translateY(40px)' }}>
         View All Products
       </button>
+
+      <img src={leafOnly} alt="Leaf decoration" className="leaf-decoration" />
     </section>
   );
 }

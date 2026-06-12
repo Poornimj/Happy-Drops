@@ -1,6 +1,7 @@
 import "./TestimonialsSection.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useState } from "react";
+import white2Decoration from "../assets/images/white2.png";
 
 function TestimonialsSection() {
   const testimonials = [
@@ -65,6 +66,7 @@ function TestimonialsSection() {
 
   return (
     <section className="testimonials">
+      <img src={white2Decoration} alt="White2 decoration" className="white2-decoration" />
       <h2>Loved by Our Community</h2>
 
       <div className="leaf-divider">

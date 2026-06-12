@@ -6,6 +6,20 @@
   overflow: hidden;
 }
 
+.white2-decoration {
+  position: absolute;
+  top: 90px;
+  left: -195px;
+  width: 350px;
+  height: auto;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 1;
+  transform: rotate(-30deg);
+  transform-origin: top left;
+  filter: blur(0.3px);
+}
+
 .testimonials::before {
   content: '';
   position: absolute;
@@ -17,6 +31,7 @@
 }
 
 .testimonials h2 {
+  font-family: Georgia, serif;
   color: #31533b;
   font-size: 42px;
   font-weight: 600;

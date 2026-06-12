@@ -17,6 +17,7 @@
 }
 
 .products-section h2 {
+  font-family: Georgia, serif;
   font-size: 42px;
   font-weight: 600;
   color: #31533b;
@@ -97,6 +98,7 @@
 }
 
 .product-card h3 {
+  font-family: Georgia, serif;
   margin-top: 16px;
   margin-bottom: 6px;
   font-size: 16px;
@@ -114,7 +116,7 @@
 
 .products-btn {
   margin-top: 35px;
-  background: linear-gradient(135deg, #d4c4e1 0%, #c4b4d1 100%);
+  background: linear-gradient(135deg, #c1add5 0%, #b19ec5 100%);
   color: white;
   border: none;
   border-radius: 999px;
@@ -145,7 +147,31 @@
 }
 
 .products-btn:hover {
-  background: linear-gradient(135deg, #c1add5 0%, #b19ec5 100%);
+  background: linear-gradient(135deg, #b19ec5 0%, #a18eb5 100%);
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 30px rgba(212, 196, 225, 0.6);
+}
+
+.leaf-decoration {
+  position: absolute;
+  bottom: 360px;
+  right: 80px;
+  width: 350px;
+  height: auto;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+  transform: rotate(45deg);
+  transform-origin: bottom right;
+  filter: blur(0.5px);
+  animation: sway 8s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(45deg);
+  }
+  50% {
+    transform: rotate(50deg);
+  }
 }

@@ -1,18 +1,33 @@
 import "./Hero.css";
 import "../styles/ScrollReveal.css";
-import heroVideo from "../assets/images/video.mp4";
 import useScrollReveal from "../hooks/useScrollReveal";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import LavenderParticles from "./LavenderParticles";
 
 function Hero() {
+  const navigate = useNavigate();
   const [taglineRef, taglineVisible] = useScrollReveal();
   const [titleRef, titleVisible] = useScrollReveal();
   const [descriptionRef, descriptionVisible] = useScrollReveal();
   const [buttonsRef, buttonsVisible] = useScrollReveal();
-  const [videoRef, videoVisible] = useScrollReveal();
+  const [particlesActive, setParticlesActive] = useState(true);
+
+  const handleAssessmentClick = () => {
+    // TODO: Implement actual authentication check
+    const isLoggedIn = true; // Replace with actual auth check
+    
+    if (isLoggedIn) {
+      navigate('/wellness-assessment');
+    } else {
+      navigate('/signin');
+    }
+  };
 
   return (
     <section className="hero">
 
+      <LavenderParticles active={particlesActive} />
       <div className="leaf-decoration-left"></div>
       <div className="leaf-decoration-right"></div>
 
@@ -25,7 +40,9 @@ function Hero() {
         <h1 className="hero-title scroll-reveal" ref={titleRef} style={{ opacity: titleVisible ? 1 : 0, transform: titleVisible ? 'translateY(0)' : 'translateY(40px)' }}>
           Personalized Wellness,
           <br />
-          Designed for Longevity
+          Designed for
+          <br />
+          Longevity
         </h1>
 
         <p className="hero-description scroll-reveal" ref={descriptionRef} style={{ opacity: descriptionVisible ? 1 : 0, transform: descriptionVisible ? 'translateY(0)' : 'translateY(40px)' }}>
@@ -36,8 +53,8 @@ function Hero() {
 
         <div className="hero-buttons scroll-reveal" ref={buttonsRef} style={{ opacity: buttonsVisible ? 1 : 0, transform: buttonsVisible ? 'translateY(0)' : 'translateY(40px)' }}>
 
-          <button className="primary-btn">
-            🌿 Get My Recommendation
+          <button className="primary-btn" onClick={handleAssessmentClick}>
+            🌿 Free Health Assessment
           </button>
 
           <button className="secondary-btn">
@@ -49,26 +66,6 @@ function Hero() {
           </button>
 
         </div>
-
-        
-
-      </div>
-
-      <div className="hero-right">
-
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="hero-video scroll-reveal"
-          ref={videoRef}
-          style={{ opacity: videoVisible ? 1 : 0, transform: videoVisible ? 'translateY(0)' : 'translateY(40px)' }}
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
-
-        <div className="video-fade"></div>
 
       </div>
 

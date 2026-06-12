@@ -1,258 +1,455 @@
 @import url('https://fonts.googleapis.com/css2?family=Jura:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&display=swap');
 
 .wellness-section {
-  padding: 50px 40px 70px;
-  text-align: center;
+  padding: 60px 40px 30px;
   background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  text-align: center;
   position: relative;
   overflow: hidden;
 }
 
-.lavender-decoration-left,
-.lavender-decoration-right {
-  position: absolute;
-  width: 180px;
-  height: auto;
-  opacity: 0.65;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.lavender-decoration-left {
-  bottom: -40px;
-  left: -30px;
-  transform: rotate(-10deg);
-}
-
-.lavender-decoration-right {
-  bottom: -40px;
-  right: -30px;
-  transform: scaleX(-1) rotate(-10deg);
-}
-
-@media (max-width: 768px) {
-  .lavender-decoration-left,
-  .lavender-decoration-right {
-    width: 100px;
-    bottom: -30px;
-  }
-}
-
-.wellness-section::before {
+.wellness-section::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212, 196, 225, 0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 196, 225, 0.3),
+    transparent
+  );
 }
 
 .wellness-section h2 {
-  font-size: 42px;
+  font-family: Georgia, serif;
+  font-size: 46px;
   font-weight: 600;
-  color: #31533b;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
   letter-spacing: -0.5px;
-  background: linear-gradient(135deg, #31533b 0%, #5a7a5f 100%);
+
+  background: linear-gradient(
+    135deg,
+    #31533b 0%,
+    #5a7a5f 100%
+  );
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  opacity: 0;
-  animation: fadeInDown 0.6s ease forwards;
 }
 
 .wellness-subtitle {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0 auto 40px;
   font-size: 18px;
-  line-height: 1.7;
+  line-height: 1.8;
   color: #7a7a7a;
-  opacity: 0;
-  animation: fadeInDown 0.6s ease 0.1s forwards;
 }
 
-.divider {
-  margin: 25px 0 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  font-size: 24px;
-  color: #7ca55d;
-  opacity: 0;
-  animation: fadeIn 0.6s ease 0.2s forwards;
-}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.divider span {
-  width: 55px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #bcbcbc, transparent);
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Main Container */
 
 .wellness-container {
-  background: linear-gradient(
-    180deg,
-    #f3edf7 0%,
-    #f0e8f4 100%
-  );
-  border-radius: 30px;
-  padding: 25px 20px 35px;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  opacity: 0;
-  animation: fadeIn 0.8s ease 0.3s forwards;
-}
-
-/* Cards Container */
-
-.wellness-cards-container {
-  display: flex;
-  gap: 40px;
   position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding: 20px 0;
-}
 
-.wellness-cards-wrapper {
-  display: flex;
-  gap: 40px;
-  animation: scrollRTL 40s linear infinite;
-  white-space: nowrap;
-}
+  background: linear-gradient(
+    135deg,
+    rgba(247, 242, 250, 0.95),
+    rgba(239, 233, 244, 0.95)
+  );
 
-@keyframes scrollRTL {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
+  border-radius: 40px;
 
-.wellness-card {
-  width: 200px;
-  height: 170px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 15px;
+  padding: 60px 20px 50px;
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.85);
+
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.12),
-    0 4px 12px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  flex-shrink: 0;
-  opacity: 0.75;
-  transform: scale(0.92);
+    0 25px 70px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  overflow: hidden;
 }
 
-.wellness-card.active {
-  opacity: 1;
-  transform: scale(1.15);
-  box-shadow:
-    0 24px 50px rgba(0, 0, 0, 0.18),
-    0 12px 25px rgba(0, 0, 0, 0.12),
-    0 0 40px rgba(212, 196, 225, 0.25),
-    inset 0 0 0 2px rgba(212, 196, 225, 0.3);
-  z-index: 10;
-  border: 2px solid rgba(212, 196, 225, 0.4);
+.wellness-container::before {
+  content: "";
+
+  position: absolute;
+
+  top: -120px;
+  right: -120px;
+
+  width: 260px;
+  height: 260px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(212, 196, 225, 0.22),
+    transparent
+  );
 }
 
-.wellness-card:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow:
-    0 20px 45px rgba(0, 0, 0, 0.15),
-    0 10px 20px rgba(0, 0, 0, 0.10),
-    0 0 35px rgba(212, 196, 225, 0.2);
+/* Carousel */
+
+.premium-carousel {
+  position: relative;
+
+  height: 420px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  perspective: 1200px;
 }
 
-.wellness-card h3 {
-  font-size: 14px;
+/* Cards */
+
+.premium-card {
+  position: absolute;
+
+  width: 290px;
+  height: 340px;
+
+  overflow: hidden;
+
+  border-radius: 34px;
+
+  background: rgba(255, 255, 255, 0.82);
+
+  border-radius: 34px;
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+
+  padding: 30px;
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  cursor: pointer;
+
+  transition: all .8s cubic-bezier(.22,.61,.36,1);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.08);
+}
+
+.premium-card.has-background::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: rgba(255,255,255,0.10);
+
+  border-radius: 34px;
+
+  z-index: 1;
+}
+
+.card-icon {
+  position: relative;
+  z-index: 2;
+
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 40px;
+
+  color: #caa56b;
+
+  background: rgba(255,255,255,.75);
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,.5);
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.05);
+
+  margin-bottom: 18px;
+}
+
+.card-content {
+  background: rgba(248,245,240,0.92);
+
+  border-radius: 20px;
+
+  padding: 18px;
+
+  border: 1px solid rgba(255,255,255,0.9);
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.06);
+}
+
+.premium-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 26px;
+  color: #C9A86A;
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+
+.card-divider {
+  width: 35px;
+  height: 2px;
+
+  margin: 10px auto 12px;
+
+  background: #d6b57d;
+}
+
+.card-content {
+  background: rgba(255,255,255,0.88);
+  border-radius: 20px;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,0.8);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.premium-card p {
+  color: #374151;
+}
+.premium-card h3 {
+  color: #C9A86A;
   font-weight: 700;
-  color: #1a2d4a;
-  margin-bottom: 8px;
-  line-height: 1.2;
 }
 
-.wellness-card p {
-  font-size: 12px;
-  line-height: 1.4;
-  color: #4b5563;
-  max-width: 170px;
-  word-wrap: break-word;
-  hyphens: auto;
+.pos-0 .card-icon {
+  transform: scale(1.05);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.08),
+    0 0 30px rgba(212,196,225,.28);
 }
 
-/* Card Colors */
+.premium-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #374151;
+  font-weight: 500;
 
-.wellness-card:nth-child(7n+1) {
-  background: linear-gradient(135deg, #f4ece8 0%, #ede4dc 100%);
+  margin: 0;
+
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.wellness-card:nth-child(7n+2) {
-  background: linear-gradient(135deg, #f3edf8 0%, #ece4f2 100%);
+/* Card Color Classes */
+
+.card-1 {
+  background: linear-gradient(180deg, #F8F2EC 0%, #F3ECE4 100%);
 }
 
-.wellness-card:nth-child(7n+3) {
-  background: linear-gradient(135deg, #ece8fa 0%, #e4dff2 100%);
+.card-1.has-background {
+  background-image: url('../assets/images/sleep.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.wellness-card:nth-child(7n+4) {
-  background: linear-gradient(135deg, #f8e7f1 0%, #f1dfe8 100%);
+.card-2 {
+  background: linear-gradient(180deg, #F3EDF8 0%, #ECE4F3 100%);
 }
 
-.wellness-card:nth-child(7n+5) {
-  background: linear-gradient(135deg, #f2eee7 0%, #ebe6dd 100%);
+.card-2.has-background {
+  background-image: url('../assets/images/skin.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.wellness-card:nth-child(7n+6) {
-  background: linear-gradient(135deg, #eef1ea 0%, #e7ebdd 100%);
+.card-3 {
+  background: linear-gradient(180deg, #EEE8F6 0%, #E6DDF1 100%);
 }
 
-.wellness-card:nth-child(7n+7) {
-  background: linear-gradient(135deg, #f5ece8 0%, #ede5dc 100%);
+.card-3.has-background {
+  background-image: url('../assets/images/boost.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-4 {
+  background: linear-gradient(180deg, #FAEEF4 0%, #F3E2EA 100%);
+}
+
+.card-4.has-background {
+  background-image: url('../assets/images/hairgrowth.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-5 {
+  background: linear-gradient(180deg, #F3F4EE 0%, #EAEDE0 100%);
+}
+
+.card-5.has-background {
+  background-image: url('../assets/images/stress.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-6 {
+  background: linear-gradient(180deg, #F7F1E9 0%, #EFE6DB 100%);
+}
+
+.card-6.has-background {
+  background-image: url('../assets/images/painrelief.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-7 {
+  background: linear-gradient(180deg, #EEF4F8 0%, #E3EDF4 100%);
+}
+
+.card-8 {
+  background: linear-gradient(180deg, #FDF0E8 0%, #F8E4D8 100%);
+}
+
+.card-bottom-image {
+  position: absolute;
+
+  bottom: 15px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 100px;
+  height: 100px;
+
+  object-fit: contain;
+
+  opacity: 0.6;
+
+  pointer-events: none;
+}
+
+/* Carousel Positions */
+
+.pos-0 {
+  transform: translateX(0) scale(1);
+
+  z-index: 10;
+  opacity: 1;
+
+  box-shadow:
+    0 30px 70px rgba(0,0,0,.12),
+    0 0 35px rgba(212,196,225,.25);
+}
+
+.pos-1 {
+  transform: translateX(320px) scale(.88);
+
+  opacity: .8;
+  z-index: 5;
+}
+
+.pos--1 {
+  transform: translateX(-320px) scale(.88);
+
+  opacity: .8;
+  z-index: 5;
+}
+
+.pos-2 {
+  transform: translateX(540px) scale(.72);
+
+  opacity: .45;
+  z-index: 2;
+}
+
+.pos--2 {
+  transform: translateX(-540px) scale(.72);
+
+  opacity: .45;
+  z-index: 2;
+}
+
+.pos-3 {
+  opacity: 0;
+  transform: translateX(700px) scale(.5);
+  pointer-events: none;
+}
+
+.pos--3 {
+  opacity: 0;
+  transform: translateX(-700px) scale(.5);
+  pointer-events: none;
 }
 
 /* Button */
 
 .concerns-btn {
-  margin-top: 25px;
+  margin-top: 55px;
+
+  padding: 18px 55px;
+
   border: none;
-  background: linear-gradient(135deg, #d4c4e1 0%, #c4b4d1 100%);
-  color: white;
-  padding: 14px 42px;
   border-radius: 999px;
-  font-size: 14px;
-  font-weight: 600;
+
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(212, 196, 225, 0.3);
+
+  font-family: 'Jura', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+
+  color: white;
+
+  background: linear-gradient(
+    135deg,
+    #c7aed9,
+    #b699ca
+  );
+
+  box-shadow:
+    0 15px 35px rgba(182,153,202,0.35);
+
+  transition: all .4s ease;
+
   position: relative;
   overflow: hidden;
-  opacity: 0;
-  animation: fadeIn 0.6s ease 1.1s forwards;
-  letter-spacing: 0.3px;
-  font-family: 'Jura', sans-serif;
 }
 
 .concerns-btn::before {
@@ -271,38 +468,127 @@
 }
 
 .concerns-btn:hover {
-  background: linear-gradient(135deg, #c8b2dc 0%, #b8a2cc 100%);
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 30px rgba(212, 196, 225, 0.5);
+  background: linear-gradient(
+    135deg,
+    #b69ac8,
+    #a588b9
+  );
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 20px 45px rgba(182,153,202,0.45);
 }
 
-/* Responsive */
+/* Tablet */
 
 @media (max-width: 1200px) {
-  .top-row,
-  .bottom-row {
-    flex-wrap: wrap;
-    gap: 20px;
-    transform: none;
-    margin-top: 20px;
-  }
 
-  .wellness-container {
-    min-height: auto;
+  .pos-2,
+  .pos--2 {
+    opacity: 0;
   }
 }
 
+/* Mobile */
+
 @media (max-width: 768px) {
+
+  .wellness-section {
+    padding: 50px 20px 70px;
+  }
+
   .wellness-section h2 {
     font-size: 34px;
   }
 
   .wellness-subtitle {
     font-size: 16px;
+    margin-bottom: 30px;
   }
 
-  .wellness-card {
-    width: 150px;
-    height: 120px;
+  .premium-carousel {
+    height: 350px;
   }
+
+  .premium-card {
+    width: 220px;
+    height: 290px;
+    padding: 20px;
+  }
+
+  .card-icon {
+  width: 95px;
+  height: 95px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #8f6fa8;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.95),
+      rgba(247,243,250,.85)
+    );
+
+  border: 1px solid rgba(212,196,225,.35);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.06),
+    0 0 20px rgba(212,196,225,.18);
+
+  margin-bottom: 22px;
+
+  transition: all .4s ease;
+}
+
+  .premium-card h3 {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 600;
+
+  color: #2e3f5c;
+
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+  .premium-card p {
+  font-size: 14px;
+  line-height: 1.6;
+
+  color: #6b7280;
+
+  margin: 0;
+}
+
+  .pos-1 {
+    transform: translateX(170px) scale(.8);
+  }
+
+  .pos--1 {
+    transform: translateX(-170px) scale(.8);
+  }
+
+  .pos-2,
+  .pos--2 {
+    display: none;
+  }
+
+  .concerns-btn {
+    padding: 16px 40px;
+    font-size: 15px;
+  }
+}
+.pos-0 .card-icon {
+  transform: scale(1.05);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.08),
+    0 0 30px rgba(212,196,225,.28);
 }
