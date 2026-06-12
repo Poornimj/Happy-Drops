@@ -9,6 +9,7 @@ import ourStoryHomeWellnessImage from "../assets/images/happy-drops-our-story-ho
 import happyDropsLogo from "../assets/images/happy-drops-logo.jpeg";
 
 import Footer from "../components/Footer";
+import "./AboutUs.css";
 function LeafIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -242,6 +243,7 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
 
 
 
