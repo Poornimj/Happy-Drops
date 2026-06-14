@@ -90,6 +90,25 @@
   font-size: 34px;
   line-height: 1.15;
 }
+.featured-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.featured-header h2 {
+  margin: 0;
+}
+
+.see-more-btn {
+  background: #a67ac5;
+  color: white;
+  border-radius: 999px;
+  padding: 10px 28px;
+  font-weight: 700;
+  text-decoration: none;
+}
 
 
 .categories,
@@ -223,6 +242,27 @@
   width: 18px;
   height: 18px;
   stroke-width: 2;
+}
+.see-more-wrap {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.see-more-btn {
+  padding: 10px 26px;
+  border-radius: 999px;
+  background: #a67ac5;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.section-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
 }
 .bundle {
   margin: 40px 0 0;

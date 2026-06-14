@@ -10,15 +10,15 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import DriedLavenderHero from "../assets/images/DriedLavenderHero.jpeg";
 
 
-import SkinCare from "../assets/images/SkinDryness.png";
+import SkinCare from "../assets/images/SkinDrynesses.png";
 import immunityOil from "../assets/images/BoostImmunity.png";
-import painReliefOil from "../assets/images/JointEase.png";
-import sleepOil from "../assets/images/TwilightDrops .png";
-import sleepSupportOil from "../assets/images/Cherishmood.png";
-import stressOil from "../assets/images/HeadacheReleif.png";
-import hairOil from "../assets/images/BoostHairGrowth.png";
+import painReliefOil from "../assets/images/JointEasses.png";
+import sleepOil from "../assets/images/TwilightDropss.png";
+import sleepSupportOil from "../assets/images/Cherishmoods.png";
+import stressOil from "../assets/images/HeadacheReliefs.png";
+import hairOil from "../assets/images/BoostHairGrowths.png";
 import SleepSupOil from "../assets/images/SleepSupOil.png";
-import SkinTightOil from "../assets/images/SkinTightning.png";
+import SkinTightOil from "../assets/images/SkinTightnings.png";
 
 
 const products = [
@@ -77,15 +77,25 @@ function Shop() {
           <Link to="/category/ready-made-oils" className="category">Ready-Made Oils</Link>
           <Link to="/category/doterra-oils" className="category">doTERRA Oils</Link>
           <Link to="/category/tools" className="category">Tools</Link>
-          <Link to="/category/food-supplements" className="category">Food Supplements</Link>
+          <Link to="/category/food-supplements" className="category">Food Related</Link>
         </div>
+        
       </section>
 
 
        {/* featured products */}
 
       <section className="featured-products" id="featured">
-        <h2>Featured Products</h2>
+        <div className="featured-header">
+           <h2>Featured Products</h2>
+
+           <Link to="/more-products" className="see-more-btn">
+           See More
+           </Link>
+
+
+        </div>
+
 
         <div className="product-grid">
           {products.map((product) => (
