@@ -1,7 +1,13 @@
+import { Routes, Route } from "react-router-dom";
 import Knowledge from "./pages/Knowledge";
+import Workshops from "./pages/workshops";
 
-function App() {
-  return <Knowledge />;
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Workshops />} />
+      <Route path="/knowledge" element={<Knowledge />} />
+      <Route path="/workshops" element={<Workshops />} />
+    </Routes>
+  );
 }
-
-export default App;

@@ -1,15 +1,15 @@
 :root {
-  --page-width: min(1120px, calc(100% - 32px));
+  --page-width: calc(100% - 48px);
   --dark-green: #173f27;
   --brand-green: #315c38;
   --purple: #a67ac5;
-  --purple-dark: #8f61b6;
+  --purple-dark: #a67ac5;
   --soft-purple: #eadff2;
   --cream: #fbf8f1;
   --soft-cream: #f4f1e8;
   --text-muted: #4f655a;
   --white: #ffffff;
-  --border: #dcc8ef;
+  --border: #eadff2;
   --shadow: 0 14px 34px rgba(49, 92, 56, 0.08);
 }
 
@@ -20,8 +20,15 @@
 body {
   margin: 0;
   color: var(--dark-green);
-  background: var(--cream);
+  background: #ffffff;
   font-family: "Segoe UI", Arial, sans-serif;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
 }
 
 a {
@@ -37,7 +44,90 @@ textarea {
 
 .knowledge-page {
   min-height: 100vh;
-  background: var(--cream);
+  background: #ffffff;
+}
+
+.workshop-page {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.workshop-main {
+  width: var(--page-width);
+  margin: 0 auto;
+}
+
+.workshop-header {
+  width: 100%;
+  min-height: 335px;
+  margin-top: 28px;
+  border-radius: 18px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--soft-cream);
+  box-shadow: var(--shadow);
+}
+
+.workshop-header-image {
+  position: absolute;
+  top: 0;
+  right: -60px;
+  bottom: 0;
+  left: 0;
+  width: calc(100% + 60px);
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center right;
+}
+
+.workshop-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(251, 248, 241, 0.96) 0%,
+    rgba(251, 248, 241, 0.86) 30%,
+    rgba(251, 248, 241, 0.24) 58%,
+    rgba(251, 248, 241, 0) 100%
+  );
+}
+
+.workshop-header-content {
+  position: relative;
+  z-index: 2;
+  width: min(520px, 54%);
+  padding: 48px 52px;
+}
+
+.workshop-header-content h1 {
+  margin: 0;
+  color: var(--dark-green);
+  font-family: Georgia, serif;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.workshop-header-subtitle {
+  margin: 18px 0 12px;
+  color: var(--purple-dark);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.workshop-header-text {
+  margin: 14px 0 0;
+  color: var(--text-muted);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.45;
 }
 
 .primary-btn,
@@ -143,7 +233,7 @@ main {
 }
 
 .access-banner {
-  margin: 24px auto 16px;
+  margin: 46px auto 36px;
   width: 100%;
   min-height: 72px;
   display: flex;
@@ -153,7 +243,7 @@ main {
   padding: 16px 28px;
   border: 1px solid var(--border);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--cream);
 }
 
 .access-banner div {
@@ -190,7 +280,7 @@ main {
 .wellness-card,
 .wellness-image-card,
 .order-tracker {
-  border: 1px solid #e7ded0;
+  border: 1px solid var(--soft-cream);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.86);
   box-shadow: var(--shadow);
@@ -217,20 +307,29 @@ main {
 
 .ask-card-wide {
   width: 100%;
-  margin: 0 auto 18px;
+  margin: 0;
+}
+
+.ask-section {
+  width: 100%;
+  margin: 0 auto 46px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 24px;
+  align-items: stretch;
 }
 
 .wellness-row {
   width: 100%;
-  margin: 0 auto 24px;
+  margin: 38px auto 46px;
   display: grid;
-  grid-template-columns: 170px minmax(0, 1fr) 170px;
-  gap: 18px;
+  grid-template-columns: 210px minmax(0, 1fr) 210px;
+  gap: 24px;
   align-items: stretch;
 }
 
 .wellness-image-card {
-  min-height: 132px;
+  min-height: 140px;
   padding: 7px;
   cursor: pointer;
   overflow: hidden;
@@ -239,16 +338,74 @@ main {
 .wellness-image-card img {
   width: 100%;
   height: 100%;
-  min-height: 118px;
+  min-height: 126px;
   display: block;
   border-radius: 8px;
   object-fit: cover;
   object-position: left top;
 }
 
+.history-prompt-card {
+  min-height: 220px;
+  padding: 52px 18px 24px;
+  border: 1px solid var(--soft-cream);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 18px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--soft-cream) 100%);
+  box-shadow: var(--shadow);
+}
+
+.history-prompt-card h3 {
+  margin: 0;
+  color: var(--dark-green);
+  font-family: Georgia, serif;
+  font-size: 25px;
+  line-height: 1.08;
+}
+
+.history-prompt-card p {
+  margin: 12px 0 0;
+  color: var(--text-muted);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.history-prompt-btn {
+  width: 170px;
+  min-height: 38px;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px;
+  background: var(--purple);
+  color: var(--white);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(166, 122, 197, 0.18);
+}
+
+.history-prompt-btn svg {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+}
+
 .wellness-card {
-  min-height: 132px;
-  padding: 20px 24px;
+  min-height: 140px;
+  padding: 14px 24px;
   display: grid;
   place-items: center;
   text-align: center;
@@ -343,7 +500,7 @@ main {
 }
 
 .step-icon {
-  background: #c7a3df;
+  background: var(--soft-purple);
   box-shadow: 0 5px 14px rgba(166, 122, 197, 0.22);
 }
 
@@ -415,7 +572,7 @@ main {
   min-height: 72px;
   resize: vertical;
   padding: 16px 18px;
-  border: 1px solid #d9d0c3;
+  border: 1px solid var(--soft-cream);
   border-radius: 8px;
   color: var(--dark-green);
   background: var(--white);
@@ -468,7 +625,7 @@ main {
   gap: 14px;
   align-items: center;
   padding: 14px;
-  border: 1px solid #e6d7ee;
+  border: 1px solid var(--soft-purple);
   border-radius: 10px;
   background: var(--white);
   box-shadow: 0 8px 18px rgba(49, 92, 56, 0.06);
@@ -485,28 +642,28 @@ main {
 }
 
 .status-card .order-avatar.order-avatar-question {
-  background: #f2e8fb;
-  color: #7b3fc6;
+  background: var(--soft-purple);
+  color: var(--purple);
 }
 
 .status-card .order-avatar.order-avatar-user {
-  background: #e8f3ed;
-  color: #1f7a45;
+  background: var(--soft-cream);
+  color: var(--brand-green);
 }
 
 .status-card .order-avatar.order-avatar-leaf {
-  background: #edf7df;
-  color: #4b9a2f;
+  background: var(--soft-cream);
+  color: var(--brand-green);
 }
 
 .status-card .order-avatar.order-avatar-card {
-  background: #e8f0ff;
-  color: #2f67c8;
+  background: var(--soft-purple);
+  color: var(--purple);
 }
 
 .status-card .order-avatar.order-avatar-bottle {
-  background: #fff0df;
-  color: #d1651f;
+  background: var(--cream);
+  color: var(--brand-green);
 }
 
 .status-card .avatar svg,
@@ -571,8 +728,8 @@ main {
 }
 
 .status-pill.processing {
-  color: #b96218;
-  background: #fff0e2;
+  color: var(--brand-green);
+  background: var(--cream);
 }
 
 .status-pill.processing::before {
@@ -661,8 +818,8 @@ main {
 }
 
 .pickup-status.processing {
-  background: #fff0e2;
-  color: #b96218;
+  background: var(--cream);
+  color: var(--brand-green);
 }
 
 .receive-intro {
@@ -778,7 +935,7 @@ main {
 .address-preview {
   min-height: 46px;
   padding: 10px 12px;
-  border: 1px solid #e7ded0;
+  border: 1px solid var(--soft-cream);
   border-radius: 8px;
   background: var(--soft-cream);
   color: var(--text-muted);
@@ -873,7 +1030,7 @@ main {
 
 .form-error {
   margin: -6px 0 14px;
-  color: #b54848;
+  color: var(--purple);
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -1019,7 +1176,7 @@ main {
   margin: 0 auto 24px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid #e7ded0;
+  border: 1px solid var(--soft-cream);
   border-radius: 999px;
   overflow: hidden;
   background: var(--white);
@@ -1040,7 +1197,7 @@ main {
 }
 
 .history-tabs button.active {
-  background: linear-gradient(180deg, #7d58b0, #5f3d91);
+  background: var(--purple);
   color: var(--white);
   box-shadow: inset 0 -3px 0 var(--purple);
 }
@@ -1057,7 +1214,7 @@ main {
 
 .history-card {
   width: 100%;
-  border: 1px solid #e7ded0;
+  border: 1px solid var(--soft-cream);
   border-radius: 10px;
   display: grid;
   grid-template-columns: 1.35fr minmax(0, 3.6fr);
@@ -1082,11 +1239,11 @@ main {
 }
 
 .history-card:nth-child(odd) {
-  background: #fbf8ff;
+  background: var(--soft-purple);
 }
 
 .history-card:nth-child(even) {
-  background: #fbf8f1;
+  background: var(--cream);
 }
 
 .history-question {
@@ -1094,7 +1251,7 @@ main {
   align-content: start;
   gap: 10px;
   padding: 28px;
-  border-right: 1px solid #eee8dc;
+  border-right: 1px solid var(--soft-cream);
 }
 
 .history-icon {
@@ -1159,7 +1316,7 @@ main {
   right: 0;
   top: 50%;
   height: 1px;
-  background: #eee8dc;
+  background: var(--soft-cream);
   pointer-events: none;
 }
 
@@ -1169,7 +1326,7 @@ main {
   align-content: center;
   gap: 5px;
   padding: 22px;
-  border-right: 1px solid #eee8dc;
+  border-right: 1px solid var(--soft-cream);
 }
 
 .history-cell-recipe {
@@ -1289,6 +1446,10 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .ask-section {
+    grid-template-columns: 1fr;
+  }
+
   .wellness-image-card {
     min-height: 210px;
   }
@@ -1321,6 +1482,50 @@ main {
 }
 
 @media (max-width: 720px) {
+  :root {
+    --page-width: calc(100% - 24px);
+  }
+
+  .workshop-header {
+    min-height: 360px;
+    margin-top: 18px;
+    border-radius: 14px;
+    align-items: flex-start;
+  }
+
+  .workshop-header::before {
+    background: linear-gradient(
+      180deg,
+      rgba(251, 248, 241, 0.96) 0%,
+      rgba(251, 248, 241, 0.9) 46%,
+      rgba(251, 248, 241, 0.2) 100%
+    );
+  }
+
+  .workshop-header-image {
+    object-position: 62% center;
+  }
+
+  .workshop-header-content {
+    width: 100%;
+    padding: 30px 24px;
+  }
+
+  .workshop-header-content h1 {
+    font-size: 38px;
+  }
+
+  .workshop-header-subtitle {
+    margin: 12px 0 10px;
+    font-size: 21px;
+  }
+
+  .workshop-header-text {
+    max-width: 420px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
   .knowledge-hero {
     margin-top: 18px;
     border-radius: 14px;
@@ -1371,7 +1576,12 @@ main {
 
   .wellness-row {
     gap: 14px;
-    margin-bottom: 22px;
+    margin: 30px auto 38px;
+  }
+
+  .ask-section {
+    gap: 14px;
+    margin-bottom: 38px;
   }
 
   .how-card,

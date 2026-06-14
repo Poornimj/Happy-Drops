@@ -234,28 +234,6 @@ export default function Knowledge() {
           </div>
         </section>
 
-        <section className="access-banner">
-          <div>
-            <LockIcon />
-            <span>Please register or login to access the Knowledge Hub and ask your questions.</span>
-          </div>
-        </section>
-
-        <section className="ask-card ask-card-wide">
-          <div className="panel-heading">
-            <h3>Ask Your Question</h3>
-            <button className="my-questions-link" type="button" onClick={() => setIsHistoryOpen(true)}>
-              View My History <span aria-hidden="true">-&gt;</span>
-            </button>
-          </div>
-
-          <textarea placeholder="Type your question here" />
-
-          <div className="question-actions">
-            <button className="primary-btn" type="button">Submit</button>
-          </div>
-        </section>
-
         <section className="wellness-row">
           <button className="wellness-image-card" type="button" onClick={() => setIsWellnessOpen(true)}>
             <img src={knowledgeWellnessImage} alt="Foundational wellness preview" />
@@ -275,6 +253,39 @@ export default function Knowledge() {
           <button className="wellness-image-card" type="button" onClick={() => setIsWellnessOpen(true)}>
             <img src={knowledgeWellnessImageTwo} alt="Foundational wellness preview" />
           </button>
+        </section>
+
+        <section className="access-banner">
+          <div>
+            <LockIcon />
+            <span>Please register or login to access the Knowledge Hub and ask your questions.</span>
+          </div>
+        </section>
+
+        <section className="ask-section">
+          <section className="ask-card ask-card-wide">
+            <div className="panel-heading">
+              <h3>Ask Your Question</h3>
+            </div>
+
+            <textarea placeholder="Type your question here" />
+
+            <div className="question-actions">
+              <button className="primary-btn" type="button">Submit</button>
+            </div>
+          </section>
+
+          <section className="history-prompt-card">
+            <div>
+              <h3>Looking for your previous details?</h3>
+              <p>Your wellness journey is saved here.</p>
+            </div>
+
+            <button className="history-prompt-btn" type="button" onClick={() => setIsHistoryOpen(true)}>
+              <LuShoppingBag aria-hidden="true" />
+              <span>Click me</span>
+            </button>
+          </section>
         </section>
 
         <section className="hub-layout">
