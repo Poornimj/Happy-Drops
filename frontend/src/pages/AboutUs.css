@@ -1,0 +1,2316 @@
+﻿/*
+  About Us page styles only.
+  Shared navbar, footer, colors, and common layout should stay in shared.css.
+*/
+.about-page {
+  overflow: hidden;
+}
+
+.about-hero,
+.about-story,
+.about-mission,
+.about-cta,
+.about-intro,
+.about-values,
+.about-process {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.about-hero {
+  min-height: 420px;
+  padding: 46px 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  gap: 28px;
+  align-items: center;
+  background: var(--cream);
+  border-radius: 14px;
+}
+
+.about-hero img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: contain;
+}
+
+.section-kicker {
+  margin: 0 0 12px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-page h1,
+.about-page h2,
+.about-page h3,
+.about-page p {
+  margin-top: 0;
+}
+
+.about-page h1 {
+  margin-bottom: 18px;
+  color: #173f27;
+  font-family: Georgia, serif;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.08;
+}
+
+.about-page h2 {
+  margin-bottom: 16px;
+  color: var(--green);
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.15;
+}
+
+.about-page h3 {
+  color: var(--ink);
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.about-page p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.about-hero-copy > p:not(.section-kicker) {
+  max-width: 560px;
+}
+
+.about-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.about-intro {
+  padding: 56px 20px 28px;
+  text-align: center;
+}
+
+.about-intro p:last-child {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.about-story,
+.about-mission {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 42px;
+  align-items: center;
+}
+
+.about-story img,
+.about-mission img,
+.about-cta img {
+  width: 100%;
+  border-radius: 14px;
+  display: block;
+}
+
+.about-story img {
+  min-height: 420px;
+  object-fit: cover;
+}
+
+.about-story div,
+.about-mission div {
+  padding: 28px;
+}
+
+.about-story p + p {
+  margin-top: 14px;
+}
+
+.about-values {
+  margin-top: 62px;
+  padding: 46px;
+  text-align: center;
+  background: var(--soft-lavender);
+  border-radius: 14px;
+}
+
+.value-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.value-grid article {
+  min-height: 210px;
+  padding: 28px 20px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.value-icon,
+.step-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #dfeada;
+  color: #315c38;
+}
+
+.about-mission {
+  margin-top: 64px;
+  padding: 38px;
+  background: var(--soft-green);
+  border-radius: 14px;
+}
+
+.about-mission img {
+  max-height: 430px;
+  object-fit: contain;
+}
+
+.about-process {
+  padding: 64px 0 32px;
+  text-align: center;
+}
+
+.process-row {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.process-row article {
+  padding: 24px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--white);
+}
+
+.process-row strong {
+  width: 38px;
+  height: 38px;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.about-cta {
+  margin-top: 34px;
+  margin-bottom: 54px;
+  padding: 34px;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 34px;
+  align-items: center;
+  background: var(--soft-lavender);
+  border-radius: 14px;
+}
+
+.about-cta img {
+  max-height: 260px;
+  object-fit: contain;
+  background: var(--cream);
+}
+
+@media (max-width: 900px) {
+
+  .about-hero,
+  .about-story,
+  .about-mission,
+  .about-cta {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero {
+    padding: 30px 22px;
+  }
+
+  .about-story div,
+  .about-mission div {
+    padding: 0;
+  }
+
+  .value-grid,
+  .process-row {
+    grid-template-columns: 1fr 1fr;
+  }}
+
+@media (max-width: 560px) {
+  .value-grid,
+  .process-row {
+    grid-template-columns: 1fr;
+  }
+
+  .about-values,
+  .about-mission,
+  .about-cta {
+    padding: 24px;
+  }
+
+  .about-hero-actions {
+    flex-direction: column;
+  }}
+
+
+/* About Us purple icon correction */
+.about-values {
+  background: #f4edf8;
+}
+
+.value-grid article,
+.process-row article {
+  border-color: #dcc8ef;
+  box-shadow: 0 14px 30px rgba(166, 122, 197, 0.12);
+}
+
+.value-icon,
+.step-icon {
+  background: #eadff2;
+  color: #8f61b6;
+}
+
+.value-icon svg,
+.step-icon svg,
+.value-icon svg *,
+.step-icon svg * {
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.process-row strong {
+  background: #a67ac5;
+  color: #ffffff;
+}
+/* Confirmed Happy Drops About page assets */
+.about-logo-mark {
+  width: min(230px, 70vw);
+  display: block;
+  margin: 0 0 20px;
+  border-radius: 8px;
+  box-shadow: 0 18px 40px rgba(49, 92, 56, 0.12);
+}
+
+.about-brand-logo {
+  width: min(280px, 76vw);
+  display: block;
+  margin: 0 auto 24px;
+  border-radius: 8px;
+  box-shadow: 0 18px 40px rgba(49, 92, 56, 0.12);
+}
+
+.about-hero > img {
+  max-height: 380px;
+  border-radius: 8px;
+}
+
+.about-cta > img {
+  max-height: 320px;
+}
+
+@media (max-width: 900px) {
+  .about-logo-mark {
+    margin-inline: auto;
+  }}
+
+.about-hero > img,
+.about-story > img,
+.about-mission > img,
+.happy-drops-footer-cta > img {
+  object-fit: contain;
+  background: #fbf8f1;
+  border-radius: 8px;
+}
+
+.about-hero > img {
+  max-height: 390px;
+}
+
+.about-story > img,
+.about-mission > img {
+  max-height: 430px;
+}
+
+.about-values-showcase {
+  padding: 42px;
+  background: #f4edf8;
+}
+
+.about-values-showcase .value-grid {
+  margin-top: 0;
+}
+
+.about-values-showcase .value-grid article {
+  min-height: 170px;
+  padding: 20px 16px;
+}
+
+.about-values-showcase .value-icon {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 12px;
+}
+
+.about-values-showcase h3 {
+  font-size: 16px;
+}
+
+.about-values-showcase p {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* About hero whole banner correction */
+.about-hero-whole-banner {
+  position: relative;
+  min-height: 370px;
+  padding: 44px 52px;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 0.9fr);
+  gap: 22px;
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 86% 52%, rgba(166, 122, 197, 0.16), transparent 34%),
+    linear-gradient(90deg, #f6f1e8 0%, #fbf8f1 58%, #f2eadf 100%);
+  border-radius: 14px;
+}
+
+.about-hero-whole-banner::after {
+  content: "";
+  position: absolute;
+  right: -42px;
+  top: -32px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: rgba(223, 234, 218, 0.62);
+  pointer-events: none;
+}
+
+.about-hero-whole-banner .about-hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.about-hero-whole-banner h1 {
+  max-width: 700px;
+  margin-bottom: 18px;
+  font-size: clamp(38px, 5.3vw, 64px);
+  line-height: 1.08;
+}
+
+.about-hero-whole-banner h1 span {
+  color: #a67ac5;
+}
+
+.about-hero-whole-banner .about-hero-copy > p:not(.section-kicker) {
+  max-width: 500px;
+  font-weight: 650;
+}
+
+@media (max-width: 900px) {
+  .about-hero-whole-banner {
+    grid-template-columns: 1fr;
+    padding: 30px 22px;
+  }}
+
+/* About hero wide image only correction */
+.about-hero-wide-image {
+  position: relative;
+  min-height: 430px;
+  padding: 56px 64px;
+  display: block;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(251, 248, 241, 0.98) 0%, rgba(251, 248, 241, 0.92) 45%, rgba(251, 248, 241, 0.38) 70%, rgba(251, 248, 241, 0.08) 100%),
+    radial-gradient(circle at 84% 45%, rgba(166, 122, 197, 0.16), transparent 32%),
+    #fbf8f1;
+  border-radius: 14px;
+}
+
+.about-hero-wide-image .about-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 580px;
+}
+
+.about-hero-wide-image h1,
+.about-hero-wide-image p,
+.about-hero-wide-image .about-hero-actions {
+  position: relative;
+  z-index: 2;
+}
+
+.about-hero-wide-image .about-hero-image-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 24px 44px 24px 38%;
+  pointer-events: none;
+}
+
+.about-hero-wide-image .about-hero-image-scene img {
+  width: min(56vw, 540px);
+  max-height: 370px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 26px 54px rgba(49, 92, 56, 0.14);
+}
+
+@media (max-width: 900px) {
+  .about-hero-wide-image {
+    min-height: auto;
+    padding: 30px 22px 280px;
+  }
+
+  .about-hero-wide-image .about-hero-image-scene {
+    top: auto;
+    height: 280px;
+    padding: 0 18px 24px;
+    justify-content: center;
+  }
+
+  .about-hero-wide-image .about-hero-image-scene img {
+    width: min(88vw, 360px);
+    max-height: 250px;
+  }}
+
+
+
+/* Happy Drops family wide hero banner */
+.about-family-wide-banner {
+  position: relative;
+  min-height: 520px;
+  padding: 58px 64px;
+  display: block;
+  overflow: hidden;
+  background-color: #fbf8f1;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  border-radius: 14px;
+}
+
+.about-family-wide-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(251, 248, 241, 0.96) 0%,
+    rgba(251, 248, 241, 0.9) 29%,
+    rgba(251, 248, 241, 0.42) 52%,
+    rgba(251, 248, 241, 0.08) 78%,
+    rgba(251, 248, 241, 0.02) 100%
+  );
+  pointer-events: none;
+}
+
+.about-family-wide-banner .about-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+
+.about-family-wide-banner h1 {
+  max-width: 560px;
+  margin-bottom: 24px;
+  color: #173f27;
+  font-size: clamp(52px, 7vw, 94px);
+  line-height: 1.04;
+}
+
+.about-family-wide-banner .about-hero-copy > p:not(.section-kicker) {
+  max-width: 590px;
+  color: #4f655a;
+  font-size: 19px;
+  line-height: 1.75;
+}
+
+.about-family-wide-banner .about-hero-actions {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .about-family-wide-banner {
+    min-height: 620px;
+    padding: 32px 22px;
+    background-position: 64% center;
+  }
+
+  .about-family-wide-banner::before {
+    background: linear-gradient(
+      180deg,
+      rgba(251, 248, 241, 0.96) 0%,
+      rgba(251, 248, 241, 0.82) 42%,
+      rgba(251, 248, 241, 0.2) 100%
+    );
+  }
+
+  .about-family-wide-banner h1 {
+    font-size: clamp(42px, 13vw, 66px);
+  }}
+
+/* Visible Happy Drops family hero image */
+.about-family-wide-banner {
+  position: relative;
+  min-height: 520px;
+  padding: 58px 64px;
+  display: block;
+  overflow: hidden;
+  background: #fbf8f1;
+  border-radius: 14px;
+}
+
+.about-family-banner-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center right;
+  border-radius: 14px;
+}
+
+.about-family-banner-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(251, 248, 241, 0.98) 0%,
+    rgba(251, 248, 241, 0.92) 31%,
+    rgba(251, 248, 241, 0.48) 54%,
+    rgba(251, 248, 241, 0.08) 78%,
+    rgba(251, 248, 241, 0.02) 100%
+  );
+}
+
+.about-family-wide-banner .about-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+
+.about-family-wide-banner h1 {
+  max-width: 560px;
+  margin-bottom: 24px;
+  color: #173f27;
+  font-size: clamp(52px, 7vw, 94px);
+  line-height: 1.04;
+}
+
+.about-family-wide-banner .about-hero-copy > p:not(.section-kicker) {
+  max-width: 590px;
+  color: #4f655a;
+  font-size: 19px;
+  line-height: 1.75;
+}
+
+.about-family-wide-banner .about-hero-actions {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .about-family-wide-banner {
+    min-height: 620px;
+    padding: 32px 22px;
+  }
+
+  .about-family-banner-image {
+    object-position: 64% center;
+  }
+
+  .about-family-banner-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(251, 248, 241, 0.98) 0%,
+      rgba(251, 248, 241, 0.86) 43%,
+      rgba(251, 248, 241, 0.18) 100%
+    );
+  }
+
+  .about-family-wide-banner h1 {
+    font-size: clamp(42px, 13vw, 66px);
+  }}
+
+/* Softer family hero shade correction */
+.about-family-banner-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.54) 0%,
+      rgba(251, 248, 241, 0.34) 28%,
+      rgba(251, 248, 241, 0.12) 52%,
+      rgba(251, 248, 241, 0) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(251, 248, 241, 0.04) 0%,
+      rgba(251, 248, 241, 0.02) 58%,
+      rgba(251, 248, 241, 0.08) 100%
+    );
+}
+
+.about-family-wide-banner .about-hero-copy {
+  text-shadow: 0 1px 18px rgba(251, 248, 241, 0.72);
+}
+
+.about-family-wide-banner .about-hero-copy > p:not(.section-kicker) {
+  color: #234c35;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .about-family-banner-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(251, 248, 241, 0.7) 0%,
+      rgba(251, 248, 241, 0.42) 42%,
+      rgba(251, 248, 241, 0.08) 100%
+    );
+  }}
+
+/* Full area no-line family hero fix */
+.about-family-wide-banner {
+  position: relative !important;
+  min-height: 640px !important;
+  padding: 64px 72px !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  background: #fbf8f1 !important;
+  border-radius: 14px !important;
+  isolation: isolate;
+}
+
+.about-family-banner-image {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+}
+
+.about-family-banner-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  background: rgba(251, 248, 241, 0.16) !important;
+  pointer-events: none !important;
+}
+
+.about-family-wide-banner .about-hero-copy {
+  position: relative !important;
+  z-index: 2 !important;
+  max-width: 650px !important;
+  text-shadow:
+    0 2px 18px rgba(251, 248, 241, 0.86),
+    0 0 2px rgba(251, 248, 241, 0.9) !important;
+}
+
+.about-family-wide-banner h1 {
+  max-width: 570px !important;
+  margin-bottom: 28px !important;
+  color: #173f27 !important;
+}
+
+.about-family-wide-banner .about-hero-copy > p:not(.section-kicker) {
+  max-width: 610px !important;
+  color: #173f27 !important;
+  font-weight: 650 !important;
+}
+
+.about-family-wide-banner .about-hero-actions {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .about-family-wide-banner {
+    min-height: 680px !important;
+    padding: 34px 24px !important;
+    align-items: flex-start !important;
+  }
+
+  .about-family-banner-image {
+    object-position: 62% center !important;
+  }
+
+  .about-family-banner-overlay {
+    background: rgba(251, 248, 241, 0.28) !important;
+  }}
+
+/* Less zoom family hero image fix */
+.about-family-wide-banner {
+  background:
+    linear-gradient(90deg, #fbf8f1 0%, #f4f1e8 100%) !important;
+}
+
+.about-family-banner-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  background:
+    linear-gradient(90deg, #fbf8f1 0%, #f4f1e8 100%) !important;
+}
+
+.about-family-banner-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.42) 0%,
+      rgba(251, 248, 241, 0.22) 30%,
+      rgba(251, 248, 241, 0.06) 58%,
+      rgba(251, 248, 241, 0) 100%
+    ) !important;
+}
+
+.about-family-wide-banner .about-hero-copy {
+  text-shadow:
+    0 2px 18px rgba(251, 248, 241, 0.82),
+    0 0 3px rgba(251, 248, 241, 0.95) !important;
+}
+
+@media (max-width: 900px) {
+  .about-family-banner-image {
+    object-fit: cover !important;
+    object-position: 58% center !important;
+  }}
+
+/* Remove blank area family hero fix */
+.about-family-wide-banner {
+  position: relative !important;
+  width: min(1120px, calc(100% - 32px)) !important;
+  aspect-ratio: 16 / 7 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: clamp(34px, 4.8vw, 58px) clamp(34px, 5.2vw, 72px) !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  background: #fbf8f1 !important;
+  border-radius: 14px !important;
+}
+
+.about-family-banner-image {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+}
+
+.about-family-banner-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  background: rgba(251, 248, 241, 0.16) !important;
+  pointer-events: none !important;
+}
+
+.about-family-wide-banner .about-hero-copy {
+  position: relative !important;
+  z-index: 2 !important;
+  max-width: 610px !important;
+  text-shadow:
+    0 2px 18px rgba(251, 248, 241, 0.84),
+    0 0 3px rgba(251, 248, 241, 0.96) !important;
+}
+
+.about-family-wide-banner h1 {
+  max-width: 540px !important;
+  margin-bottom: 22px !important;
+  color: #173f27 !important;
+  font-size: clamp(44px, 6.6vw, 84px) !important;
+  line-height: 1.04 !important;
+}
+
+.about-family-wide-banner .about-hero-copy > p:not(.section-kicker) {
+  max-width: 590px !important;
+  color: #173f27 !important;
+  font-size: clamp(16px, 1.55vw, 19px) !important;
+  font-weight: 650 !important;
+  line-height: 1.65 !important;
+}
+
+.about-family-wide-banner .about-hero-actions {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .about-family-wide-banner {
+    aspect-ratio: auto !important;
+    min-height: 620px !important;
+    padding: 32px 22px !important;
+    align-items: flex-start !important;
+  }
+
+  .about-family-banner-image {
+    object-fit: cover !important;
+    object-position: 62% center !important;
+  }
+
+  .about-family-banner-overlay {
+    background: rgba(251, 248, 241, 0.28) !important;
+  }}
+
+/* Two-person longevity hero banner */
+.about-two-person-longevity-banner {
+  position: relative !important;
+  width: min(1120px, calc(100% - 32px)) !important;
+  aspect-ratio: 16 / 7 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: clamp(34px, 4.8vw, 58px) clamp(34px, 5.2vw, 72px) !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  background: #fbf8f1 !important;
+  border-radius: 14px !important;
+  isolation: isolate;
+}
+
+.about-longevity-banner-image {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+}
+
+.about-longevity-banner-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.46) 0%,
+      rgba(251, 248, 241, 0.24) 31%,
+      rgba(251, 248, 241, 0.08) 58%,
+      rgba(251, 248, 241, 0) 100%
+    ) !important;
+  pointer-events: none !important;
+}
+
+.about-two-person-longevity-banner .about-hero-copy {
+  position: relative !important;
+  z-index: 2 !important;
+  max-width: 650px !important;
+  text-shadow:
+    0 2px 18px rgba(251, 248, 241, 0.86),
+    0 0 3px rgba(251, 248, 241, 0.96) !important;
+}
+
+.about-two-person-longevity-banner h1 {
+  max-width: 680px !important;
+  margin-bottom: 22px !important;
+  color: #173f27 !important;
+  font-size: clamp(40px, 5.8vw, 72px) !important;
+  line-height: 1.08 !important;
+}
+
+.about-two-person-longevity-banner .about-hero-copy > p:not(.section-kicker) {
+  max-width: 600px !important;
+  color: #173f27 !important;
+  font-size: clamp(16px, 1.55vw, 19px) !important;
+  font-weight: 650 !important;
+  line-height: 1.65 !important;
+}
+
+.about-two-person-longevity-banner .about-hero-actions {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .about-two-person-longevity-banner {
+    aspect-ratio: auto !important;
+    min-height: 620px !important;
+    padding: 32px 22px !important;
+    align-items: flex-start !important;
+  }
+
+  .about-longevity-banner-image {
+    object-position: 62% center !important;
+  }
+
+  .about-longevity-banner-overlay {
+    background: rgba(251, 248, 241, 0.28) !important;
+  }}
+
+/* About hero title and face visibility fix */
+.about-two-person-longevity-banner {
+  padding-left: clamp(32px, 4.8vw, 58px) !important;
+  padding-right: clamp(28px, 4vw, 52px) !important;
+}
+
+.about-two-person-longevity-banner .about-hero-copy {
+  max-width: 470px !important;
+}
+
+.about-two-person-longevity-banner h1 {
+  max-width: 430px !important;
+  margin-bottom: 16px !important;
+  color: #173f27 !important;
+  font-size: clamp(44px, 5.8vw, 78px) !important;
+  line-height: 1.04 !important;
+}
+
+.about-two-person-longevity-banner .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
+  max-width: 470px !important;
+  color: #173f27 !important;
+  font-size: clamp(15px, 1.35vw, 18px) !important;
+  font-weight: 650 !important;
+  line-height: 1.62 !important;
+}
+
+.about-longevity-banner-image {
+  object-position: center center !important;
+}
+
+.about-longevity-banner-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.48) 0%,
+      rgba(251, 248, 241, 0.26) 30%,
+      rgba(251, 248, 241, 0.06) 49%,
+      rgba(251, 248, 241, 0) 100%
+    ) !important;
+}
+
+@media (max-width: 900px) {
+  .about-two-person-longevity-banner .about-hero-copy {
+    max-width: 100% !important;
+  }
+
+  .about-two-person-longevity-banner h1 {
+    max-width: 360px !important;
+  }
+
+  .about-longevity-banner-image {
+    object-position: 66% center !important;
+  }}
+
+/* Growing wellness all-labels section */
+.about-intro-split {
+  padding: 68px 0 34px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr) !important;
+  gap: 46px !important;
+  align-items: center !important;
+  text-align: left !important;
+}
+
+.about-intro-copy {
+  max-width: 560px !important;
+}
+
+.about-intro-split h2 {
+  margin-bottom: 18px !important;
+  color: #173f27 !important;
+  font-size: clamp(34px, 4.5vw, 54px) !important;
+  line-height: 1.1 !important;
+}
+
+.about-intro-split p:last-child {
+  max-width: 560px !important;
+  margin: 0 !important;
+  color: #4f655a !important;
+  font-size: 18px !important;
+  line-height: 1.75 !important;
+}
+
+.about-intro-image {
+  width: 100% !important;
+  min-height: 390px !important;
+  max-height: 460px !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+  box-shadow: 0 24px 58px rgba(49, 92, 56, 0.14) !important;
+}
+
+@media (max-width: 900px) {
+  .about-intro-split {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding-top: 46px !important;
+  }
+
+  .about-intro-image {
+    min-height: 300px !important;
+  }}
+
+/* Final corrected About intro and story sections */
+.about-intro-split {
+  padding: 68px 0 34px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr) !important;
+  gap: 46px !important;
+  align-items: center !important;
+  text-align: left !important;
+}
+
+.about-intro-copy {
+  max-width: 560px !important;
+}
+
+.about-intro-split h2 {
+  margin-bottom: 18px !important;
+  color: #173f27 !important;
+  font-size: clamp(34px, 4.5vw, 54px) !important;
+  line-height: 1.1 !important;
+}
+
+.about-intro-split p:last-child {
+  max-width: 560px !important;
+  margin: 0 !important;
+  color: #4f655a !important;
+  font-size: 18px !important;
+  line-height: 1.75 !important;
+}
+
+.about-intro-image,
+.about-story-home > img {
+  width: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+  box-shadow: 0 24px 58px rgba(49, 92, 56, 0.14) !important;
+}
+
+.about-intro-image {
+  min-height: 390px !important;
+  max-height: 460px !important;
+}
+
+.about-story-home > img {
+  min-height: 430px !important;
+  max-height: 520px !important;
+}
+
+.about-story-home {
+  margin-top: 56px !important;
+}
+
+.about-story-home div {
+  padding: 20px 28px !important;
+}
+
+@media (max-width: 900px) {
+  .about-intro-split {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding-top: 46px !important;
+  }
+
+  .about-intro-image {
+    min-height: 300px !important;
+  }
+
+  .about-story-home > img {
+    min-height: 320px !important;
+  }}
+
+/* Growing wellness harvest image section */
+.about-intro-split {
+  padding: 68px 0 34px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr) !important;
+  gap: 46px !important;
+  align-items: center !important;
+  text-align: left !important;
+}
+
+.about-intro-copy {
+  max-width: 560px !important;
+}
+
+.about-intro-split h2 {
+  margin-bottom: 18px !important;
+  color: #173f27 !important;
+  font-size: clamp(34px, 4.5vw, 54px) !important;
+  line-height: 1.1 !important;
+}
+
+.about-intro-split p:last-child {
+  max-width: 560px !important;
+  margin: 0 !important;
+  color: #4f655a !important;
+  font-size: 18px !important;
+  line-height: 1.75 !important;
+}
+
+.about-intro-image {
+  width: 100% !important;
+  min-height: 390px !important;
+  max-height: 460px !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+  box-shadow: 0 24px 58px rgba(49, 92, 56, 0.14) !important;
+}
+
+@media (max-width: 900px) {
+  .about-intro-split {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding-top: 46px !important;
+  }
+
+  .about-intro-image {
+    min-height: 300px !important;
+  }}
+
+/* Three confirmed About images correction */
+.about-calm-image-hero {
+  position: relative !important;
+  width: min(1120px, calc(100% - 32px)) !important;
+  aspect-ratio: 16 / 7 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: clamp(34px, 4.8vw, 58px) clamp(34px, 5.2vw, 72px) !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  background: #fbf8f1 !important;
+  border-radius: 14px !important;
+  isolation: isolate;
+}
+
+.about-calm-hero-image {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+}
+
+.about-calm-hero-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.48) 0%,
+      rgba(251, 248, 241, 0.26) 31%,
+      rgba(251, 248, 241, 0.08) 55%,
+      rgba(251, 248, 241, 0) 100%
+    ) !important;
+  pointer-events: none !important;
+}
+
+.about-calm-image-hero .about-hero-copy {
+  position: relative !important;
+  z-index: 2 !important;
+  max-width: 500px !important;
+  text-shadow:
+    0 2px 18px rgba(251, 248, 241, 0.86),
+    0 0 3px rgba(251, 248, 241, 0.96) !important;
+}
+
+.about-calm-image-hero h1 {
+  max-width: 430px !important;
+  margin-bottom: 16px !important;
+  color: #173f27 !important;
+  font-size: clamp(44px, 5.8vw, 78px) !important;
+  line-height: 1.04 !important;
+}
+
+.about-calm-image-hero .hero-support-line {
+  max-width: 450px !important;
+  margin: 0 0 16px !important;
+  color: #315c38 !important;
+  font-family: Georgia, serif !important;
+  font-size: clamp(22px, 2.4vw, 32px) !important;
+  font-weight: 700 !important;
+  line-height: 1.18 !important;
+}
+
+.about-calm-image-hero .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
+  max-width: 490px !important;
+  color: #173f27 !important;
+  font-size: clamp(15px, 1.35vw, 18px) !important;
+  font-weight: 650 !important;
+  line-height: 1.62 !important;
+}
+
+.about-intro-split {
+  padding: 68px 0 34px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr) !important;
+  gap: 46px !important;
+  align-items: center !important;
+  text-align: left !important;
+}
+
+.about-intro-copy {
+  max-width: 560px !important;
+}
+
+.about-intro-split h2 {
+  margin-bottom: 18px !important;
+  color: #173f27 !important;
+  font-size: clamp(34px, 4.5vw, 54px) !important;
+  line-height: 1.1 !important;
+}
+
+.about-intro-split p:last-child {
+  max-width: 560px !important;
+  margin: 0 !important;
+  color: #4f655a !important;
+  font-size: 18px !important;
+  line-height: 1.75 !important;
+}
+
+.about-intro-image,
+.about-story-home > img {
+  width: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+  box-shadow: 0 24px 58px rgba(49, 92, 56, 0.14) !important;
+}
+
+.about-intro-image {
+  min-height: 390px !important;
+  max-height: 460px !important;
+}
+
+.about-story-home {
+  margin-top: 56px !important;
+}
+
+.about-story-home > img {
+  min-height: 430px !important;
+  max-height: 520px !important;
+}
+
+.about-story-home div {
+  padding: 20px 28px !important;
+}
+
+@media (max-width: 900px) {
+  .about-calm-image-hero {
+    aspect-ratio: auto !important;
+    min-height: 620px !important;
+    padding: 32px 22px !important;
+    align-items: flex-start !important;
+  }
+
+  .about-calm-hero-image {
+    object-position: 66% center !important;
+  }
+
+  .about-calm-hero-overlay {
+    background: rgba(251, 248, 241, 0.28) !important;
+  }
+
+  .about-intro-split {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding-top: 46px !important;
+  }
+
+  .about-intro-image {
+    min-height: 300px !important;
+  }
+
+  .about-story-home > img {
+    min-height: 320px !important;
+  }}
+
+/* Hero banner crop and spacing correction */
+.about-calm-image-hero {
+  aspect-ratio: 16 / 7.35 !important;
+  padding: clamp(46px, 5.6vw, 68px) clamp(34px, 5.2vw, 72px) clamp(30px, 4vw, 50px) !important;
+  align-items: center !important;
+}
+
+.about-calm-hero-image {
+  object-fit: cover !important;
+  object-position: center top !important;
+}
+
+.about-calm-image-hero .about-hero-copy {
+  max-width: 490px !important;
+  margin-top: 0 !important;
+}
+
+.about-calm-image-hero .section-kicker {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+}
+
+.about-calm-image-hero h1 {
+  font-size: clamp(42px, 5.25vw, 70px) !important;
+  margin-bottom: 14px !important;
+}
+
+.about-calm-image-hero .hero-support-line {
+  font-size: clamp(21px, 2.15vw, 29px) !important;
+  margin-bottom: 14px !important;
+}
+
+.about-calm-image-hero .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
+  font-size: clamp(14px, 1.22vw, 16px) !important;
+  line-height: 1.58 !important;
+  max-width: 470px !important;
+}
+
+@media (max-width: 900px) {
+  .about-calm-image-hero {
+    min-height: 620px !important;
+    padding: 36px 22px 28px !important;
+  }
+
+  .about-calm-hero-image {
+    object-position: 62% top !important;
+  }}
+
+/* Clear reference-style hero banner fix */
+.about-calm-image-hero {
+  width: min(1120px, calc(100% - 32px)) !important;
+  aspect-ratio: 16 / 7 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 28px 52px !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  border-radius: 14px !important;
+}
+
+.about-calm-hero-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+.about-calm-hero-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.52) 0%,
+      rgba(251, 248, 241, 0.3) 34%,
+      rgba(251, 248, 241, 0.08) 57%,
+      rgba(251, 248, 241, 0) 100%
+    ) !important;
+}
+
+.about-calm-image-hero .about-hero-copy {
+  max-width: 455px !important;
+  margin: 0 !important;
+}
+
+.about-calm-image-hero .section-kicker {
+  margin: 0 0 8px !important;
+  font-size: 12px !important;
+  letter-spacing: 0.08em !important;
+}
+
+.about-calm-image-hero h1 {
+  max-width: 395px !important;
+  margin: 0 0 12px !important;
+  font-size: clamp(42px, 5vw, 68px) !important;
+  line-height: 1.02 !important;
+}
+
+.about-calm-image-hero .hero-support-line {
+  max-width: 430px !important;
+  margin: 0 0 12px !important;
+  color: #173f27 !important;
+  font-size: clamp(18px, 1.8vw, 25px) !important;
+  line-height: 1.2 !important;
+}
+
+.about-calm-image-hero .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
+  max-width: 440px !important;
+  color: #173f27 !important;
+  font-size: clamp(13px, 1.12vw, 15px) !important;
+  font-weight: 700 !important;
+  line-height: 1.54 !important;
+}
+
+@media (max-width: 900px) {
+  .about-calm-image-hero {
+    aspect-ratio: auto !important;
+    min-height: 600px !important;
+    padding: 30px 22px !important;
+    align-items: flex-start !important;
+  }
+
+  .about-calm-hero-image {
+    object-position: 64% center !important;
+  }
+
+  .about-calm-image-hero h1 {
+    font-size: clamp(38px, 12vw, 60px) !important;
+  }}
+
+/* Show full fruit hero image correction */
+.about-calm-image-hero {
+  width: min(1120px, calc(100% - 32px)) !important;
+  aspect-ratio: 16 / 9 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 36px 52px !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  border-radius: 14px !important;
+  background: #fbf8f1 !important;
+}
+
+.about-calm-hero-image {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+}
+
+.about-calm-hero-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.5) 0%,
+      rgba(251, 248, 241, 0.28) 34%,
+      rgba(251, 248, 241, 0.08) 58%,
+      rgba(251, 248, 241, 0) 100%
+    ) !important;
+}
+
+.about-calm-image-hero .about-hero-copy {
+  max-width: 455px !important;
+}
+
+.about-calm-image-hero h1 {
+  font-size: clamp(42px, 5vw, 68px) !important;
+  line-height: 1.02 !important;
+  margin-bottom: 12px !important;
+}
+
+.about-calm-image-hero .hero-support-line {
+  font-size: clamp(18px, 1.8vw, 25px) !important;
+  margin-bottom: 12px !important;
+}
+
+.about-calm-image-hero .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
+  font-size: clamp(13px, 1.12vw, 15px) !important;
+  line-height: 1.54 !important;
+  max-width: 440px !important;
+}
+
+@media (max-width: 900px) {
+  .about-calm-image-hero {
+    aspect-ratio: auto !important;
+    min-height: 620px !important;
+    padding: 30px 22px !important;
+    align-items: flex-start !important;
+  }
+
+  .about-calm-hero-image {
+    object-position: 62% center !important;
+  }}
+
+/* Values lavender bottle showcase layout */
+.about-values-showcase-v2 {
+  position: relative;
+  margin-top: 62px !important;
+  padding: 46px 54px 58px !important;
+  overflow: hidden;
+  text-align: center;
+  background:
+    linear-gradient(rgba(251, 248, 241, 0.54), rgba(244, 237, 248, 0.76)),
+    radial-gradient(circle at 28% 70%, rgba(166, 122, 197, 0.24), transparent 34%),
+    radial-gradient(circle at 72% 64%, rgba(223, 234, 218, 0.65), transparent 30%),
+    #f4edf8 !important;
+  border-radius: 14px !important;
+}
+
+.about-values-showcase-v2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(127, 98, 155, 0.08), transparent 26%, transparent 74%, rgba(49, 92, 56, 0.08)),
+    repeating-linear-gradient(105deg, rgba(166, 122, 197, 0.08) 0 1px, transparent 1px 72px);
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+.about-values-showcase-v2 > .section-kicker,
+.about-values-showcase-v2 > h2,
+.values-scene-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.values-scene-card .value-icon {
+  width: 42px !important;
+  height: 42px !important;
+  margin: 0 auto 12px !important;
+  background: #eadff2 !important;
+  color: #8f61b6 !important;
+}
+
+.values-scene-card .value-icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+@media (max-width: 900px) {
+  .about-values-showcase-v2 {
+    padding: 34px 22px !important;
+  }}
+
+/* Mission confirmed bottle image correction */
+.about-mission-confirmed {
+  background: #dfeada !important;
+}
+
+.about-mission-confirmed img {
+  width: 100% !important;
+  max-height: 430px !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: #fbf8f1 !important;
+  border-radius: 8px !important;
+}
+
+/* Happy Drops real values cards */
+.about-values-real-cards {
+  position: relative;
+  margin-top: 62px !important;
+  padding: 42px 42px 50px !important;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.95), rgba(251, 248, 241, 0.72) 35%, rgba(234, 223, 242, 0.62) 100%),
+    #fbf8f1 !important;
+  border-radius: 14px !important;
+  text-align: center;
+}
+
+.about-values-real-cards::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 7% 18%, rgba(166, 122, 197, 0.17), transparent 24%),
+    radial-gradient(circle at 92% 12%, rgba(49, 92, 56, 0.12), transparent 24%),
+    linear-gradient(110deg, transparent 0 8%, rgba(166, 122, 197, 0.08) 8.2% 8.35%, transparent 8.6% 100%);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.about-values-real-cards::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 190px;
+  background:
+    radial-gradient(circle at 8% 85%, rgba(49, 92, 56, 0.20), transparent 17%),
+    radial-gradient(circle at 94% 88%, rgba(166, 122, 197, 0.25), transparent 18%);
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .about-values-real-cards {
+    padding: 30px 18px 34px !important;
+  }}
+/* End Happy Drops real values cards */
+
+/* Happy Drops finished values image */
+.about-values-finished-image {
+  width: min(1120px, calc(100% - 32px));
+  margin: 62px auto 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  background: transparent !important;
+  border-radius: 14px !important;
+  box-shadow: 0 22px 58px rgba(49, 92, 56, 0.10);
+}
+
+.about-values-finished-image img {
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+}
+
+@media (max-width: 700px) {
+  .about-values-finished-image {
+    width: min(100% - 24px, 1120px);
+    margin-top: 42px !important;
+  }}
+/* End Happy Drops finished values image */
+
+/* Happy Drops mission image correction */
+.about-mission img {
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .about-mission img {
+    min-height: 320px;
+    aspect-ratio: 1 / 1;
+  }}
+/* End Happy Drops mission image correction */
+
+/* Happy Drops mission force image */
+.about-mission img {
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 14px;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .about-mission img {
+    min-height: 320px;
+    aspect-ratio: 1 / 1;
+  }}
+/* End Happy Drops mission force image */
+
+/* Happy Drops mission seamless image */
+.about-mission {
+  overflow: hidden;
+}
+
+.about-mission img {
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+  display: block;
+  background: #dfeadb;
+}
+
+@media (max-width: 900px) {
+  .about-mission img {
+    min-height: 320px;
+    aspect-ratio: 1 / 1;
+  }}
+/* End Happy Drops mission seamless image */
+
+/* About content full width correction */
+.about-hero,
+.about-intro,
+.about-story,
+.about-values,
+.about-mission,
+.about-process,
+.about-cta,
+.about-values-finished-image {
+  width: min(1440px, calc(100% - 32px)) !important;
+}
+
+@media (max-width: 600px) {
+  .about-hero,
+  .about-intro,
+  .about-story,
+  .about-values,
+  .about-mission,
+  .about-process,
+  .about-cta,
+  .about-values-finished-image {
+    width: min(100% - 24px, 1440px) !important;
+  }}
+/* End about content full width correction */
+/* About mission photo full visibility fix */
+.about-mission img,
+.about-story img {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 14px !important;
+  background: #fbf8f1 !important;
+  display: block !important;
+}
+
+.about-mission,
+.about-story {
+  align-items: center !important;
+}
+/* End about mission photo full visibility fix */
+/* About full page sections final fix */
+.about-page {
+  width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+.about-hero,
+.about-intro,
+.about-story,
+.about-values,
+.about-mission,
+.about-process,
+.about-cta,
+.about-values-finished-image {
+  width: min(1480px, calc(100% - 64px)) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.about-mission img,
+.about-story img {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 14px !important;
+  display: block !important;
+}
+
+@media (max-width: 600px) {
+  .about-hero,
+  .about-intro,
+  .about-story,
+  .about-values,
+  .about-mission,
+  .about-process,
+  .about-cta,
+  .about-values-finished-image {
+    width: min(100% - 24px, 1480px) !important;
+  }}
+/* End about full page sections final fix */
+/* About final image fill and page width fix */
+.about-page {
+  width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+.about-hero,
+.about-intro,
+.about-story,
+.about-values,
+.about-mission,
+.about-process,
+.about-cta,
+.about-values-finished-image {
+  width: min(1480px, calc(100% - 48px)) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.about-story,
+.about-mission {
+  overflow: hidden !important;
+}
+
+.about-story img,
+.about-mission img {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 560px !important;
+  aspect-ratio: auto !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+  display: block !important;
+  background: transparent !important;
+}
+
+.about-story > img,
+.about-mission > img {
+  align-self: stretch !important;
+}
+
+@media (max-width: 900px) {
+  .about-story img,
+  .about-mission img {
+    min-height: 360px !important;
+  }}
+
+@media (max-width: 600px) {
+  .about-hero,
+  .about-intro,
+  .about-story,
+  .about-values,
+  .about-mission,
+  .about-process,
+  .about-cta,
+  .about-values-finished-image {
+    width: min(100% - 24px, 1480px) !important;
+  }}
+/* End about final image fill and page width fix */
+
+/* About show full image final */
+.about-story,
+.about-mission {
+  overflow: visible !important;
+}
+
+.about-story img,
+.about-mission img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  border-radius: 14px !important;
+  display: block !important;
+  background: transparent !important;
+}
+/* End about show full image final */
+/* About final hero text and image sizing */
+.about-hero .section-kicker,
+.about-hero-copy .section-kicker {
+  font-size: 17px !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.08em !important;
+}
+
+.about-hero h2,
+.about-hero .hero-subtitle,
+.about-hero-copy h2 {
+  font-size: clamp(32px, 2.6vw, 44px) !important;
+  line-height: 1.12 !important;
+}
+
+.about-hero p,
+.about-hero-copy p {
+  font-size: 19px !important;
+  line-height: 1.6 !important;
+}
+
+.about-story {
+  grid-template-columns: minmax(420px, 0.86fr) minmax(420px, 1.14fr) !important;
+  align-items: center !important;
+}
+
+.about-story img {
+  width: 100% !important;
+  max-width: 720px !important;
+  height: auto !important;
+  max-height: 560px !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 14px !important;
+  justify-self: center !important;
+}
+
+.about-mission img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 560px !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 14px !important;
+}
+
+@media (max-width: 900px) {
+  .about-story {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-story img,
+  .about-mission img {
+    max-width: 100% !important;
+    max-height: none !important;
+  }}
+/* FINAL About image + text correction */
+
+/* Keep section containers clean and rounded */
+.about-story,
+.about-mission,
+.about-values-finished-image,
+.about-calm-image-hero,
+.about-two-person-longevity-banner,
+.about-family-wide-banner {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+}
+
+/* Fix story/mission images: no white side borders, rounded corners */
+.about-story img,
+.about-story-home > img,
+.about-mission img {
+  width: 100% !important;
+  height: 560px !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 24px !important;
+  background: transparent !important;
+  display: block !important;
+  box-shadow: 0 24px 58px rgba(49, 92, 56, 0.14) !important;
+}
+
+/* Other about images rounded */
+.about-intro-image,
+.about-values-finished-image img,
+.about-calm-hero-image,
+.about-longevity-banner-image,
+.about-family-banner-image {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+}
+
+/* Make third and fourth section text bigger */
+.about-story h2,
+.about-story-home h2,
+.about-mission h2 {
+  font-size: clamp(42px, 4.2vw, 62px) !important;
+  line-height: 1.12 !important;
+  color: #315c38 !important;
+}
+
+.about-story p,
+.about-story-home p,
+.about-mission p {
+  font-size: 21px !important;
+  line-height: 1.75 !important;
+  color: #4f655a !important;
+}
+
+.about-story .section-kicker,
+.about-story-home .section-kicker,
+.about-mission .section-kicker {
+  font-size: 15px !important;
+  letter-spacing: 0.1em !important;
+  font-weight: 800 !important;
+}
+
+/* Keep mobile clean */
+@media (max-width: 900px) {
+  .about-story img,
+  .about-story-home > img,
+  .about-mission img {
+    height: 360px !important;
+  }
+
+  .about-story h2,
+  .about-story-home h2,
+  .about-mission h2 {
+    font-size: clamp(34px, 9vw, 48px) !important;
+  }
+
+  .about-story p,
+  .about-story-home p,
+  .about-mission p {
+    font-size: 18px !important;
+  }
+}
+
+/* HAPPY DROPS ABOUT SPACING ACCESSIBILITY PASS */
+.about-page {
+  padding-top: 10px !important;
+  overflow-x: hidden !important;
+}
+
+.about-hero,
+.about-intro,
+.about-story,
+.about-values,
+.about-mission,
+.about-values-finished-image {
+  width: min(1360px, calc(100% - 48px)) !important;
+}
+
+.about-calm-image-hero {
+  aspect-ratio: 16 / 8.7 !important;
+  min-height: 520px !important;
+  padding: clamp(34px, 5vw, 64px) !important;
+  align-items: center !important;
+}
+
+.about-calm-hero-image {
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+.about-calm-hero-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.62) 0%,
+      rgba(251, 248, 241, 0.42) 32%,
+      rgba(251, 248, 241, 0.12) 58%,
+      rgba(251, 248, 241, 0) 100%
+    ) !important;
+}
+
+.about-calm-image-hero .about-hero-copy {
+  max-width: 500px !important;
+}
+
+.about-calm-image-hero h1 {
+  max-width: 430px !important;
+  font-size: clamp(48px, 5.8vw, 76px) !important;
+  line-height: 1.04 !important;
+}
+
+.about-calm-image-hero .hero-support-line {
+  max-width: 470px !important;
+  font-size: clamp(23px, 2.4vw, 32px) !important;
+  line-height: 1.22 !important;
+}
+
+.about-calm-image-hero .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
+  max-width: 485px !important;
+  font-size: clamp(17px, 1.28vw, 19px) !important;
+  line-height: 1.68 !important;
+}
+
+.about-intro-split {
+  padding: 78px 0 28px !important;
+  gap: clamp(42px, 6vw, 82px) !important;
+}
+
+.about-intro-split h2,
+.about-story h2,
+.about-story-home h2,
+.about-mission h2 {
+  color: #173f27 !important;
+}
+
+.about-intro-split p:last-child,
+.about-story p,
+.about-story-home p,
+.about-mission p {
+  font-size: clamp(19px, 1.45vw, 22px) !important;
+  line-height: 1.75 !important;
+}
+
+.about-intro-image {
+  height: clamp(360px, 34vw, 520px) !important;
+  min-height: 0 !important;
+  object-fit: cover !important;
+}
+
+.about-story {
+  margin-top: 72px !important;
+  grid-template-columns: minmax(360px, 0.9fr) minmax(420px, 1.1fr) !important;
+  gap: clamp(46px, 6vw, 86px) !important;
+}
+
+.about-story-home div,
+.about-mission div {
+  padding: clamp(12px, 2vw, 28px) !important;
+}
+
+.about-story img,
+.about-story-home > img,
+.about-mission img {
+  height: clamp(380px, 34vw, 540px) !important;
+  object-fit: cover !important;
+}
+
+.about-values-finished-image {
+  margin-top: 78px !important;
+  box-shadow: 0 18px 42px rgba(49, 92, 56, 0.08) !important;
+}
+
+.about-values-finished-image img {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.about-mission {
+  margin-top: 78px !important;
+  margin-bottom: 18px !important;
+  padding: clamp(34px, 4vw, 58px) !important;
+  grid-template-columns: minmax(420px, 1fr) minmax(380px, 0.92fr) !important;
+  gap: clamp(40px, 5vw, 76px) !important;
+}
+
+.about-mission .primary-action {
+  min-height: 54px !important;
+  margin-top: 10px !important;
+  padding: 15px 28px !important;
+  font-size: 17px !important;
+}
+
+@media (max-width: 900px) {
+  .about-hero,
+  .about-intro,
+  .about-story,
+  .about-values,
+  .about-mission,
+  .about-values-finished-image {
+    width: min(100% - 32px, 1360px) !important;
+  }
+
+  .about-calm-image-hero {
+    min-height: 660px !important;
+    padding: 32px 24px !important;
+    align-items: flex-start !important;
+  }
+
+  .about-calm-hero-image {
+    object-position: 62% center !important;
+  }
+
+  .about-calm-hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(251, 248, 241, 0.82) 0%,
+      rgba(251, 248, 241, 0.56) 46%,
+      rgba(251, 248, 241, 0.08) 100%
+    ) !important;
+  }
+
+  .about-intro-split,
+  .about-story,
+  .about-mission {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-intro-split {
+    padding-top: 54px !important;
+  }
+
+  .about-story,
+  .about-values-finished-image,
+  .about-mission {
+    margin-top: 56px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .about-hero,
+  .about-intro,
+  .about-story,
+  .about-values,
+  .about-mission,
+  .about-values-finished-image {
+    width: min(100% - 24px, 1360px) !important;
+  }
+
+  .about-calm-image-hero {
+    min-height: 620px !important;
+    border-radius: 18px !important;
+  }
+
+  .about-calm-image-hero h1 {
+    font-size: clamp(40px, 13vw, 56px) !important;
+  }
+
+  .about-story img,
+  .about-story-home > img,
+  .about-mission img,
+  .about-intro-image {
+    height: 320px !important;
+    border-radius: 18px !important;
+  }
+
+  .about-mission {
+    padding: 28px 20px !important;
+  }
+}
+/* END HAPPY DROPS ABOUT SPACING ACCESSIBILITY PASS */
+
+/* HAPPY DROPS ABOUT EDGE ALIGNMENT PASS */
+.about-hero,
+.about-intro,
+.about-story,
+.about-values,
+.about-mission,
+.about-values-finished-image {
+  width: min(1480px, calc(100% - 16px)) !important;
+}
+
+@media (max-width: 560px) {
+  .about-hero,
+  .about-intro,
+  .about-story,
+  .about-values,
+  .about-mission,
+  .about-values-finished-image {
+    width: min(100% - 12px, 1480px) !important;
+  }
+}
+/* END HAPPY DROPS ABOUT EDGE ALIGNMENT PASS */
+
+/* HAPPY DROPS SOFT IMAGE SHADOW PASS */
+.about-intro-image,
+.about-story img,
+.about-story-home > img,
+.about-mission img {
+  box-shadow: 0 14px 32px rgba(49, 92, 56, 0.08) !important;
+}
+
+.about-values-finished-image {
+  box-shadow: 0 12px 28px rgba(49, 92, 56, 0.06) !important;
+}
+/* END HAPPY DROPS SOFT IMAGE SHADOW PASS */

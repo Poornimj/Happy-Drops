@@ -1,0 +1,17 @@
+.lavender-particles-container {
+  position: absolute;
+  top: 110px;
+  left: 25px;
+  width: 500px;
+  height: 800px;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.lavender-particle {
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(180, 140, 200, 0.4);
+  filter: blur(0.5px);
+}

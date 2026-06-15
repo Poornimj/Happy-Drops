@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import knowledgeHeader from "../assets/images/knowledge-header.png";
 import knowledgeReady from "../assets/images/knowledg-ready.png";
 import knowledgeWellnessImage from "../assets/images/knowledge-wellness-image.png";
@@ -33,7 +31,6 @@ import {
   LuTag,
   LuUser,
 } from "react-icons/lu";
-import "../index.css";
 
 const steps = [
   ["question", "Ask Your Question", "Submit your question."],
@@ -301,8 +298,6 @@ export default function Knowledge() {
 
   return (
     <div className="knowledge-page">
-      <Navbar />
-
       <main>
         <section className="knowledge-hero">
           <img src={knowledgeHeader} alt="" aria-hidden="true" />
@@ -710,7 +705,6 @@ export default function Knowledge() {
         </div>
       )}
 
-      <Footer />
     </div>
   );
 }

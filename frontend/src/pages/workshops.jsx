@@ -8,8 +8,6 @@ import {
   LuShieldCheck,
   LuSoup,
 } from "react-icons/lu";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import workshopHeader from "../assets/images/workshop-header.png";
 import workshopEssentialOil from "../assets/images/workshops-essential-oil.png";
 import workshopSummaryImage from "../assets/images/workshop-summary-image.png";
@@ -85,8 +83,6 @@ export default function Workshops() {
 
   return (
     <div className="workshop-page">
-      <Navbar />
-
       <main className="workshop-main">
         <section className="workshop-header">
           <img
@@ -346,7 +342,6 @@ export default function Workshops() {
         </div>
       )}
 
-      <Footer />
     </div>
   );
 }
