@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import "../shared.css";
 import "./Shop.css";
+import "./MoreProducts.css";
+
 import { HiOutlineShoppingCart } from "react-icons/hi";
 
 import Navbar from "../components/Navbar.jsx";
