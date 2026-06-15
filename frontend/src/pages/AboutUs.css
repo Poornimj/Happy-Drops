@@ -2314,3 +2314,47 @@
   box-shadow: 0 12px 28px rgba(49, 92, 56, 0.06) !important;
 }
 /* END HAPPY DROPS SOFT IMAGE SHADOW PASS */
+
+/* HAPPY DROPS ABOUT HERO TEXT SPACING PASS */
+.about-calm-image-hero .about-hero-copy {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+.about-calm-image-hero .section-kicker {
+  margin: 0 0 22px !important;
+}
+
+.about-calm-image-hero h1 {
+  margin: 0 0 30px !important;
+  max-width: 520px !important;
+  line-height: 1.08 !important;
+}
+
+.about-calm-image-hero .hero-support-line {
+  margin: 0 0 28px !important;
+  max-width: 560px !important;
+  line-height: 1.28 !important;
+}
+
+.about-calm-image-hero .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
+  max-width: 620px !important;
+  margin: 0 !important;
+  line-height: 1.8 !important;
+}
+
+@media (max-width: 700px) {
+  .about-calm-image-hero .section-kicker {
+    margin-bottom: 16px !important;
+  }
+
+  .about-calm-image-hero h1 {
+    margin-bottom: 22px !important;
+  }
+
+  .about-calm-image-hero .hero-support-line {
+    margin-bottom: 22px !important;
+  }
+}
+/* END HAPPY DROPS ABOUT HERO TEXT SPACING PASS */
