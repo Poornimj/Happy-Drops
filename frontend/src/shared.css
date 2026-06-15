@@ -1797,3 +1797,47 @@ html body .shared-footer {
 }
 /* END HAPPY DROPS PAGE EDGE ALIGNMENT PASS */
 
+/* HAPPY DROPS SIMPLE ROUTE PAGE STYLES */
+.placeholder-page {
+  padding: 54px 0 24px;
+}
+
+.placeholder-hero {
+  min-height: 420px;
+  padding: clamp(34px, 5vw, 62px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fbf8f1;
+  border-radius: 24px;
+}
+
+.placeholder-hero h1 {
+  max-width: 760px;
+  margin: 0 0 18px;
+  color: #173f27;
+  font-family: Georgia, serif;
+  font-size: clamp(48px, 6vw, 76px);
+  line-height: 1.06;
+}
+
+.placeholder-hero p:not(.section-kicker) {
+  max-width: 760px;
+  margin: 0;
+  color: #4f655a;
+  font-size: clamp(19px, 1.5vw, 23px);
+  line-height: 1.75;
+}
+
+@media (max-width: 620px) {
+  .placeholder-page {
+    padding-top: 34px;
+  }
+
+  .placeholder-hero {
+    min-height: 360px;
+    border-radius: 18px;
+  }
+}
+/* END HAPPY DROPS SIMPLE ROUTE PAGE STYLES */
+

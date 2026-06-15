@@ -6,7 +6,20 @@ import {
 } from "react-icons/hi";
 import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 
-function Navbar() {
+const navLinks = [
+  { href: "/knowledge", label: "Knowledge" },
+  { href: "/workshops", label: "Workshops" },
+  { href: "#", label: "Therapists" },
+  { href: "#", label: "Suppliers" },
+  { href: "#", label: "Shop" },
+  { href: "/about-us", label: "About Us" },
+];
+
+function isActiveLink(currentPath, link) {
+  return currentPath === link.href || link.aliases?.includes(currentPath);
+}
+
+function Navbar({ currentPath = "/" }) {
   return (
     <nav className="navbar" aria-label="Primary navigation">
       <a className="brand" href="/" aria-label="Happy Drops home">
@@ -14,14 +27,15 @@ function Navbar() {
       </a>
 
       <div className="nav-links">
-        <a href="#">Knowledge</a>
-        <a href="#">Workshops</a>
-        <a href="#">Therapists</a>
-        <a href="#">Suppliers</a>
-        <a href="#">Shop</a>
-        <a href="#" aria-current="page">
-          About Us
-        </a>
+        {navLinks.map((link) => (
+          <a
+            key={link.label}
+            href={link.href}
+            aria-current={isActiveLink(currentPath, link) ? "page" : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
       </div>
 
       <div className="nav-actions">
@@ -39,7 +53,7 @@ function Navbar() {
             <HiOutlineSearch />
           </a>
 
-          <a href="#" className="nav-icon" aria-label="Account">
+          <a href="/signup" className="nav-icon" aria-label="Create wellness profile">
             <HiOutlineUser />
           </a>
 
