@@ -1,0 +1,22 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 96" role="img" aria-labelledby="title desc">
+  <title id="title">Happy Drops</title>
+  <desc id="desc">Happy Drops green HD logo with purple droplet accent</desc>
+  <defs>
+    <linearGradient id="drop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b994d3"/>
+      <stop offset="1" stop-color="#8f61b6"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="#315c38" stroke-width="2.8" stroke-linecap="round">
+    <path d="M40 72C20 72 12 61 13 47c1-16 15-28 34-28"/>
+    <path d="M35 72c18 0 34-7 48-22"/>
+  </g>
+  <text x="49" y="58" fill="#315c38" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="600">H</text>
+  <text x="106" y="58" fill="#315c38" font-family="Georgia, 'Times New Roman', serif" font-size="49" font-weight="600">D</text>
+  <path d="M93 64c17-22 40-35 67-38" fill="none" stroke="#315c38" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M145 64c-11 0-19-8-19-18 0-13 15-23 31-26-6 11-1 21-4 31-2 8-6 13-8 13Z" fill="none" stroke="#315c38" stroke-width="3"/>
+  <path d="M160 51c0 11-7 19-15 22 2-12 4-22 15-34 0 0 0 6 0 12Z" fill="#315c38"/>
+  <path d="M174 63c0 10-8 18-18 18s-18-8-18-18c0-12 18-31 18-31s18 19 18 31Z" fill="url(#drop)" opacity="0.95"/>
+  <path d="M151 69c-5-6-3-13 3-19" fill="none" stroke="#fff8f1" stroke-width="3" stroke-linecap="round"/>
+  <text x="10" y="91" fill="#315c38" font-family="Georgia, 'Times New Roman', serif" font-size="27" letter-spacing="9">HAPPY DROPS</text>
+</svg>
