@@ -3,13 +3,12 @@ import Shop from "./pages/Shop.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
 import SimplePage from "./pages/SimplePage.jsx";
-import MoreProducts from "./pages/MoreProducts.jsx";
+
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Shop />} />
-      <Route path="/more-products" element={<MoreProducts />} />
+      <Route path="/" element={<Shop />} /> 
       <Route path="/category/:categoryName" element={<CategoryPage />} />
       <Route path="/product/:id" element={<ProductDetails />} />
 

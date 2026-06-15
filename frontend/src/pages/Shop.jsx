@@ -11,7 +11,7 @@ import DriedLavenderHero from "../assets/images/DriedLavenderHero.jpeg";
 
 
 import SkinCare from "../assets/images/SkinDrynesses.png";
-import immunityOil from "../assets/images/BoostImmunity.png";
+import immunityOil from "../assets/images/VitalGuards.png";
 import painReliefOil from "../assets/images/JointEasses.png";
 import sleepOil from "../assets/images/TwilightDropss.png";
 import sleepSupportOil from "../assets/images/Cherishmoods.png";
@@ -19,7 +19,9 @@ import stressOil from "../assets/images/HeadacheReliefs.png";
 import hairOil from "../assets/images/BoostHairGrowths.png";
 import SleepSupOil from "../assets/images/SleepSupOil.png";
 import SkinTightOil from "../assets/images/SkinTightnings.png";
-
+import SkinMoisture from "../assets/images/SkinMoistures.png";
+import AntiWrincle from "../assets/images/AntiWrincles.png";
+import StressRelief from "../assets/images/StressReliefs.png";
 
 const products = [
   { id: 1, name: "Skin and Beauty", desc: "Radiant skin care", price: "24.90", badge: "Best Seller", reviews: 120 ,image: SkinCare },
@@ -30,7 +32,10 @@ const products = [
   { id: 6, name: "Boost Immunity", desc: "Immune defense support", price: "19.90", reviews: 120, image:immunityOil},
   { id: 7, name: "Stress and Mood", desc: "Calm mood balance", price: "21.90", reviews: 120, image: stressOil },
   { id: 8, name: "Skin Tightening", desc: "Firm and youthful skin", price: "27.90", reviews: 120, image: SkinTightOil },
-
+  { id: 9, name: "Skin and Beauty", desc: "Soft skin glow", price: "22.90", reviews: 120, image: SkinMoisture },
+  { id: 10, name: "Anti Wrinkle Oil", desc: "Smooths skin", price: "25.90", reviews: 98, image: AntiWrincle },
+  { id: 11, name: "Hair Strength Oil", desc: "Strong healthy hair", price: "27.90", reviews: 76, image: hairOil },
+  { id: 12, name: "Mood Harmony", desc: "Calm positivity", price: "24.90", reviews: 120, image: StressRelief },
 
 ];
 
@@ -88,10 +93,6 @@ function Shop() {
       <section className="featured-products" id="featured">
         <div className="featured-header">
            <h2>Featured Products</h2>
-
-           <Link to="/more-products" className="see-more-btn">
-           See More
-           </Link>
 
 
         </div>

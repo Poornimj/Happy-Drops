@@ -17,7 +17,7 @@
   position: relative;
   margin: 0;
   width: 100%;
-  min-height:160px;
+  min-height:250px;
   border-radius: 14px;
   overflow: hidden;
   display: flex;
@@ -52,7 +52,7 @@
 }
 
 .hero-text h1 {
-  margin: 0 0 10px;
+  margin: 0 0 18px;
   font-family: Georgia, serif;
   font-size: 34px;
   line-height: 1.15;
@@ -60,7 +60,7 @@
 }
 
 .hero-text p {
-  margin: 0 0 14px;
+  margin: 0 0 22px;
   font-family: Georgia, serif;
   color: #3b3440;
 }
