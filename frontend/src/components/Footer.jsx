@@ -2,7 +2,7 @@
 
 function Footer() {
   return (
-    <footer className="about-footer shared-footer">
+    <footer className="shared-footer">
       <div className="footer-brand">
         <img src={footerLogo} alt="Happy Drops" />
         <p>
@@ -49,3 +49,4 @@ function Footer() {
 }
 
 export default Footer;
+

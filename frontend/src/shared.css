@@ -1602,109 +1602,242 @@ html body .shared-footer .footer-column a:visited {
   text-decoration: none !important;
 }
 /* HAPPY DROPS SHARED FOOTER OVERRIDE END */
-/* HAPPY DROPS SHARED FOOTER MATCH ABOUT START */
-.shared-footer.about-footer {
-  width: min(1120px, calc(100% - 32px)) !important;
-  margin: 44px auto 0 !important;
-  padding: 28px 8px 30px !important;
+
+/* HAPPY DROPS NAV AND FOOTER SPACING PASS */
+.navbar {
+  width: min(1360px, calc(100% - 48px)) !important;
+  min-height: 92px !important;
   display: grid !important;
-  grid-template-columns: 1.35fr repeat(4, 1fr) !important;
-  column-gap: 42px !important;
-  border-top: 0 !important;
-  background: #ffffff !important;
-  color: #0f1d31 !important;
-  font-family: "Segoe UI", Arial, sans-serif !important;
+  grid-template-columns: 178px minmax(0, 1fr) auto !important;
+  gap: clamp(18px, 2.8vw, 40px) !important;
+  align-items: center !important;
+  margin: 0 auto !important;
 }
 
-.shared-footer.about-footer .footer-brand {
-  max-width: 100% !important;
+.brand {
+  width: 178px !important;
+  flex: 0 0 178px !important;
 }
 
-.shared-footer.about-footer .footer-brand img {
-  width: 180px !important;
-  height: auto !important;
-  display: block !important;
-  margin-bottom: 13px !important;
+.brand img {
+  width: 100% !important;
+  height: 72px !important;
   object-fit: contain !important;
+  object-position: left center !important;
 }
 
-.shared-footer.about-footer .footer-brand p {
-  max-width: 230px !important;
-  margin: 0 !important;
-  color: #4f655a !important;
-  font-size: 13.5px !important;
-  line-height: 1.55 !important;
-  font-weight: 400 !important;
-  text-decoration: none !important;
-}
-
-.shared-footer.about-footer .footer-column {
+.nav-links {
+  min-width: 0 !important;
   display: flex !important;
-  flex-direction: column !important;
-  gap: 8px !important;
-  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: clamp(18px, 3.2vw, 58px) !important;
+  white-space: nowrap !important;
 }
 
-.shared-footer.about-footer .footer-column h3 {
-  margin: 0 0 7px !important;
-  color: #315c38 !important;
-  font-family: "Segoe UI", Arial, sans-serif !important;
+.nav-links a {
+  padding: 12px 2px !important;
+  color: #0f1d31 !important;
   font-size: 15.5px !important;
   line-height: 1.3 !important;
-  font-weight: 800 !important;
-  text-decoration: none !important;
 }
 
-.shared-footer.about-footer .footer-column a,
-.shared-footer.about-footer .footer-column span {
-  margin: 0 !important;
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: #315c38 !important;
+}
+
+.nav-actions {
+  justify-self: end !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 18px !important;
+}
+
+.language-switcher {
+  gap: 8px !important;
   color: #0f1d31 !important;
-  font-family: "Segoe UI", Arial, sans-serif !important;
-  font-size: 13.5px !important;
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+}
+
+.language-switcher svg {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+.language-switcher span {
+  height: 18px !important;
+}
+
+.nav-icons {
+  gap: 10px !important;
+}
+
+.nav-icon {
+  width: 44px !important;
+  height: 44px !important;
+}
+
+.nav-icon svg {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+html body .shared-footer {
+  width: min(1360px, calc(100% - 48px)) !important;
+  margin: 70px auto 0 !important;
+  padding: 42px 0 48px !important;
+  grid-template-columns: minmax(230px, 1.25fr) repeat(4, minmax(128px, 1fr)) !important;
+  column-gap: clamp(34px, 5vw, 84px) !important;
+  row-gap: 30px !important;
+  border-top: 1px solid #e5eadf !important;
+}
+
+html body .shared-footer .footer-brand img {
+  width: 190px !important;
+  margin-bottom: 18px !important;
+}
+
+html body .shared-footer .footer-brand p {
+  max-width: 285px !important;
+  font-size: 14.5px !important;
   line-height: 1.55 !important;
-  font-weight: 400 !important;
-  text-decoration: none !important;
 }
 
-.shared-footer.about-footer .footer-column a:hover,
-.shared-footer.about-footer .footer-column a:focus,
-.shared-footer.about-footer .footer-column a:active,
-.shared-footer.about-footer .footer-column a:visited {
-  color: #0f1d31 !important;
-  text-decoration: none !important;
+html body .shared-footer .footer-column {
+  gap: 10px !important;
 }
 
-.shared-footer.about-footer *,
-.shared-footer.about-footer *::before,
-.shared-footer.about-footer *::after {
-  text-decoration: none !important;
+html body .shared-footer .footer-column h3 {
+  margin-bottom: 8px !important;
+  font-size: 15.5px !important;
+  line-height: 1.3 !important;
 }
 
-@media (max-width: 900px) {
-  .shared-footer.about-footer {
+html body .shared-footer .footer-column a,
+html body .shared-footer .footer-column span {
+  font-size: 14.5px !important;
+  line-height: 1.55 !important;
+}
+
+@media (max-width: 1100px) {
+  .navbar {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    min-height: auto !important;
+    padding: 12px 0 16px !important;
+  }
+
+  .brand {
+    width: 170px !important;
+    flex-basis: 170px !important;
+  }
+
+  .brand img {
+    height: 66px !important;
+  }
+
+  .nav-links {
+    order: 3 !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+    gap: 18px 28px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .nav-actions {
+    margin-left: auto !important;
+  }
+
+  html body .shared-footer {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    column-gap: 32px !important;
-    row-gap: 24px !important;
   }
 }
 
-@media (max-width: 560px) {
-  .shared-footer.about-footer {
-    width: min(100% - 24px, 1120px) !important;
+@media (max-width: 620px) {
+  .navbar,
+  html body .shared-footer {
+    width: min(100% - 24px, 1360px) !important;
+  }
+
+  .navbar {
+    gap: 12px !important;
+  }
+
+  .nav-actions {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  .language-switcher {
+    flex-wrap: wrap !important;
+    row-gap: 6px !important;
+  }
+
+  html body .shared-footer {
+    margin-top: 54px !important;
+    padding: 34px 0 38px !important;
     grid-template-columns: 1fr !important;
-    padding: 26px 0 28px !important;
-    row-gap: 22px !important;
-  }
-
-  .shared-footer.about-footer .footer-brand p,
-  .shared-footer.about-footer .footer-column a,
-  .shared-footer.about-footer .footer-column span {
-    font-size: 13.5px !important;
-  }
-
-  .shared-footer.about-footer .footer-column h3 {
-    font-size: 15.5px !important;
+    row-gap: 26px !important;
   }
 }
-/* HAPPY DROPS SHARED FOOTER MATCH ABOUT END */
+/* END HAPPY DROPS NAV AND FOOTER SPACING PASS */
+
+/* HAPPY DROPS PAGE EDGE ALIGNMENT PASS */
+.navbar,
+html body .shared-footer {
+  width: min(1480px, calc(100% - 16px)) !important;
+}
+
+@media (max-width: 620px) {
+  .navbar,
+  html body .shared-footer {
+    width: min(100% - 12px, 1480px) !important;
+  }
+}
+/* END HAPPY DROPS PAGE EDGE ALIGNMENT PASS */
+
+/* HAPPY DROPS SIMPLE ROUTE PAGE STYLES */
+.placeholder-page {
+  padding: 54px 0 24px;
+}
+
+.placeholder-hero {
+  min-height: 420px;
+  padding: clamp(34px, 5vw, 62px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fbf8f1;
+  border-radius: 24px;
+}
+
+.placeholder-hero h1 {
+  max-width: 760px;
+  margin: 0 0 18px;
+  color: #173f27;
+  font-family: Georgia, serif;
+  font-size: clamp(48px, 6vw, 76px);
+  line-height: 1.06;
+}
+
+.placeholder-hero p:not(.section-kicker) {
+  max-width: 760px;
+  margin: 0;
+  color: #4f655a;
+  font-size: clamp(19px, 1.5vw, 23px);
+  line-height: 1.75;
+}
+
+@media (max-width: 620px) {
+  .placeholder-page {
+    padding-top: 34px;
+  }
+
+  .placeholder-hero {
+    min-height: 360px;
+    border-radius: 18px;
+  }
+}
+/* END HAPPY DROPS SIMPLE ROUTE PAGE STYLES */
 
