@@ -3,10 +3,23 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import knowledgeHeader from "../assets/images/knowledge-header.png";
 import knowledgeReady from "../assets/images/knowledg-ready.png";
-import knowledgeWellnessList from "../assets/images/knowledge-wellness-list.png";
 import knowledgeWellnessImage from "../assets/images/knowledge-wellness-image.png";
 import knowledgeWellnessImageTwo from "../assets/images/knowledge-wellness-image-two.png";
+import knowledgeWellnessImageThree from "../assets/images/knowledge-wellness-image-three.png";
 import knowledgeRecipe from "../assets/images/knowledge-recipe.png";
+import knowledgeUplevel from "../assets/images/knowledge-uplevel.png";
+import knowledgeRest from "../assets/images/knowledge-rest.png";
+import knowledgeCellularHealth from "../assets/images/knowledge-cellular-health.png";
+import knowledgeNutrition from "../assets/images/knowledge-nutrition.png";
+import knowledgeSeasonalSupport from "../assets/images/knowledge-seasonal-support.png";
+import knowledgeImmuneHealth from "../assets/images/knowledge-immune-health.png";
+import knowledgeDigestiveSupport from "../assets/images/knowledge-diagestive-support.png";
+import knowledgeMetabolicHealth from "../assets/images/knowledge-metabolic-health.png";
+import knowledgeCleanEnergy from "../assets/images/knowledge-clean-enery.png";
+import knowledgeMovement from "../assets/images/knowledge-movement.png";
+import knowledgeManagingStress from "../assets/images/knowledge-managing-stress.png";
+import knowledgeSkinCare from "../assets/images/knowledge-skin-care.png";
+import knowledgeHairCare from "../assets/images/knowledge-hair-care.png";
 import {
   LuCircleCheck,
   LuCircleHelp,
@@ -29,6 +42,74 @@ const steps = [
   ["card", "Payment", "Complete your payment securely."],
   ["bottle", "Oil Creation", "We create your custom essential oil blend with care."],
   ["bag", "Ready for Pickup", "Your essential oil is ready. You can pick it up at Nature Power Happiness Academy."],
+];
+
+const wellnessTopics = [
+  {
+    title: "Uplevel",
+    text: "Elevate your wellness, energy, and digestion with foundational wellness.",
+    image: knowledgeUplevel,
+  },
+  {
+    title: "Rest",
+    text: "Achieve deep, restful sleep to allow your body to heal and regenerate.",
+    image: knowledgeRest,
+  },
+  {
+    title: "Cellular Health",
+    text: "Protect your body from the inside out, starting at the cellular level.",
+    image: knowledgeCellularHealth,
+  },
+  {
+    title: "Nutrition",
+    text: "Lay a vital, nutrient-dense foundation to keep you and your family feeling your best.",
+    image: knowledgeNutrition,
+  },
+  {
+    title: "Seasonal Support",
+    text: "Find ways to support your body in managing seasonal threats.",
+    image: knowledgeSeasonalSupport,
+  },
+  {
+    title: "Immune Health",
+    text: "Naturally support immune function for optimal health and vitality.",
+    image: knowledgeImmuneHealth,
+  },
+  {
+    title: "Digestive Support",
+    text: "Build a healthy gut to ensure nutrient absorption, support immunity, and maintain energy.",
+    image: knowledgeDigestiveSupport,
+  },
+  {
+    title: "Metabolic Health",
+    text: "Support a healthy metabolism for steady energy, hormonal balance, weight management, and mood.",
+    image: knowledgeMetabolicHealth,
+  },
+  {
+    title: "Clean Energy",
+    text: "Naturally increase your energy with a healthy lifestyle to feel vibrant and productive all day.",
+    image: knowledgeCleanEnergy,
+  },
+  {
+    title: "Movement",
+    text: "Focus on effective solutions for flexibility and ease of movement.",
+    image: knowledgeMovement,
+  },
+  {
+    title: "Managing Stress",
+    text: "Manage stress effectively to significantly improve your overall health and well-being.",
+    image: knowledgeManagingStress,
+  },
+  {
+    title: "Skin Care",
+    text: "Achieve a clear, glowing complexion by protecting and nourishing your skin barrier from the inside out.",
+    image: knowledgeSkinCare,
+  },
+  {
+    title: "Hair Care",
+    text: "Support strong, vibrant hair growth by maintaining optimal scalp health and nourishment.",
+    image: knowledgeHairCare,
+  },
 ];
 
 const customerQuestion = "What essential oil can help with stress and better sleep?";
@@ -207,6 +288,7 @@ function CalendarIcon() {
 export default function Knowledge() {
   const [isRecipeOpen, setIsRecipeOpen] = useState(false);
   const [isWellnessOpen, setIsWellnessOpen] = useState(false);
+  const [activeWellnessTopic, setActiveWellnessTopic] = useState(null);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [activeHistoryId, setActiveHistoryId] = useState(questionHistory[0].id);
   const [isPickupConfirmed, setIsPickupConfirmed] = useState(false);
@@ -425,16 +507,56 @@ export default function Knowledge() {
       {isWellnessOpen && (
         <div className="modal-backdrop" role="presentation">
           <div className="wellness-modal" role="dialog" aria-modal="true" aria-labelledby="wellness-title">
-            <button className="modal-close" type="button" aria-label="Close wellness list" onClick={() => setIsWellnessOpen(false)}>
-              x
+            <button
+              className="modal-close"
+              type="button"
+              aria-label="Close wellness list"
+              onClick={() => {
+                setIsWellnessOpen(false);
+                setActiveWellnessTopic(null);
+              }}
+            >
+              ×
             </button>
 
-            <img
-              id="wellness-title"
-              className="wellness-list-image"
-              src={knowledgeWellnessList}
-              alt="Foundational wellness list"
-            />
+            <div
+              className="wellness-list-header"
+              style={{ backgroundImage: `url(${knowledgeWellnessImageThree})` }}
+            >
+              <div>
+                <h3 id="wellness-title">The foundational wellness list</h3>
+                <p>Elevate your wellness, energy, and digestion with foundational wellness.</p>
+              </div>
+            </div>
+
+            <div className="wellness-topic-list">
+              {wellnessTopics.map((topic, index) => {
+                const isActive = activeWellnessTopic === topic.title;
+
+                return (
+                  <article className={`wellness-topic ${isActive ? "open" : ""}`} key={topic.title}>
+                    <button
+                      className="wellness-topic-toggle"
+                      type="button"
+                      aria-expanded={isActive}
+                      onClick={() => setActiveWellnessTopic(isActive ? null : topic.title)}
+                    >
+                      <span className="wellness-topic-number">{String(index + 1).padStart(2, "0")}</span>
+                      <span className="wellness-topic-copy">
+                        <strong>{topic.title}</strong>
+                        <span>{topic.text}</span>
+                      </span>
+                    </button>
+
+                    {isActive && (
+                      <div className="wellness-topic-panel">
+                        <img src={topic.image} alt={`${topic.title} information`} />
+                      </div>
+                    )}
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       )}
