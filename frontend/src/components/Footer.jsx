@@ -13,27 +13,27 @@ function Footer() {
 
       <div className="footer-column">
         <h3>Quick Links</h3>
-        <a href="#">Home</a>
-        <a href="#">Shop</a>
-        <a href="#">Workshops</a>
-        <a href="#">About Us</a>
-        <a href="#">Therapists</a>
-        <a href="#">Suppliers</a>
+        <a href="/">Home</a>
+        <a href="/shop">Shop</a>
+        <a href="/workshops">Workshops</a>
+        <a href="/about-us">About Us</a>
+        <a href="/therapists">Therapists</a>
+        <a href="/suppliers">Suppliers</a>
       </div>
 
       <div className="footer-column">
         <h3>Customer Care</h3>
-        <a href="#">Shipping &amp; Delivery</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms &amp; Conditions</a>
+        <a href="/shipping-delivery">Shipping &amp; Delivery</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-conditions">Terms &amp; Conditions</a>
       </div>
 
       <div className="footer-column">
         <h3>My Account</h3>
-        <a href="#">Login / Register</a>
-        <a href="#">My Profile</a>
-        <a href="#">Wishlist</a>
-        <a href="#">Track Order</a>
+        <a href="/signup">Login / Register</a>
+        <a href="/signup">My Profile</a>
+        <a href="/wishlist">Wishlist</a>
+        <a href="/track-order">Track Order</a>
       </div>
 
       <div className="footer-column">
@@ -49,4 +49,3 @@ function Footer() {
 }
 
 export default Footer;
-
