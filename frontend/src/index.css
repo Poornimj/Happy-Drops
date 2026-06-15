@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --page-width: calc(100% - 48px);
   --dark-green: #173f27;
   --brand-green: #315c38;
@@ -301,7 +301,7 @@ textarea {
   cursor: pointer;
 }
 
-main {
+.knowledge-page > main {
   width: var(--page-width);
   margin: 0 auto;
 }
