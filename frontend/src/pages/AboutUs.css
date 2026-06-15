@@ -2071,3 +2071,246 @@
     font-size: 18px !important;
   }
 }
+
+/* HAPPY DROPS ABOUT SPACING ACCESSIBILITY PASS */
+.about-page {
+  padding-top: 10px !important;
+  overflow-x: hidden !important;
+}
+
+.about-hero,
+.about-intro,
+.about-story,
+.about-values,
+.about-mission,
+.about-values-finished-image {
+  width: min(1360px, calc(100% - 48px)) !important;
+}
+
+.about-calm-image-hero {
+  aspect-ratio: 16 / 8.7 !important;
+  min-height: 520px !important;
+  padding: clamp(34px, 5vw, 64px) !important;
+  align-items: center !important;
+}
+
+.about-calm-hero-image {
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+.about-calm-hero-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 248, 241, 0.62) 0%,
+      rgba(251, 248, 241, 0.42) 32%,
+      rgba(251, 248, 241, 0.12) 58%,
+      rgba(251, 248, 241, 0) 100%
+    ) !important;
+}
+
+.about-calm-image-hero .about-hero-copy {
+  max-width: 500px !important;
+}
+
+.about-calm-image-hero h1 {
+  max-width: 430px !important;
+  font-size: clamp(48px, 5.8vw, 76px) !important;
+  line-height: 1.04 !important;
+}
+
+.about-calm-image-hero .hero-support-line {
+  max-width: 470px !important;
+  font-size: clamp(23px, 2.4vw, 32px) !important;
+  line-height: 1.22 !important;
+}
+
+.about-calm-image-hero .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
+  max-width: 485px !important;
+  font-size: clamp(17px, 1.28vw, 19px) !important;
+  line-height: 1.68 !important;
+}
+
+.about-intro-split {
+  padding: 78px 0 28px !important;
+  gap: clamp(42px, 6vw, 82px) !important;
+}
+
+.about-intro-split h2,
+.about-story h2,
+.about-story-home h2,
+.about-mission h2 {
+  color: #173f27 !important;
+}
+
+.about-intro-split p:last-child,
+.about-story p,
+.about-story-home p,
+.about-mission p {
+  font-size: clamp(19px, 1.45vw, 22px) !important;
+  line-height: 1.75 !important;
+}
+
+.about-intro-image {
+  height: clamp(360px, 34vw, 520px) !important;
+  min-height: 0 !important;
+  object-fit: cover !important;
+}
+
+.about-story {
+  margin-top: 72px !important;
+  grid-template-columns: minmax(360px, 0.9fr) minmax(420px, 1.1fr) !important;
+  gap: clamp(46px, 6vw, 86px) !important;
+}
+
+.about-story-home div,
+.about-mission div {
+  padding: clamp(12px, 2vw, 28px) !important;
+}
+
+.about-story img,
+.about-story-home > img,
+.about-mission img {
+  height: clamp(380px, 34vw, 540px) !important;
+  object-fit: cover !important;
+}
+
+.about-values-finished-image {
+  margin-top: 78px !important;
+  box-shadow: 0 18px 42px rgba(49, 92, 56, 0.08) !important;
+}
+
+.about-values-finished-image img {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.about-mission {
+  margin-top: 78px !important;
+  margin-bottom: 18px !important;
+  padding: clamp(34px, 4vw, 58px) !important;
+  grid-template-columns: minmax(420px, 1fr) minmax(380px, 0.92fr) !important;
+  gap: clamp(40px, 5vw, 76px) !important;
+}
+
+.about-mission .primary-action {
+  min-height: 54px !important;
+  margin-top: 10px !important;
+  padding: 15px 28px !important;
+  font-size: 17px !important;
+}
+
+@media (max-width: 900px) {
+  .about-hero,
+  .about-intro,
+  .about-story,
+  .about-values,
+  .about-mission,
+  .about-values-finished-image {
+    width: min(100% - 32px, 1360px) !important;
+  }
+
+  .about-calm-image-hero {
+    min-height: 660px !important;
+    padding: 32px 24px !important;
+    align-items: flex-start !important;
+  }
+
+  .about-calm-hero-image {
+    object-position: 62% center !important;
+  }
+
+  .about-calm-hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(251, 248, 241, 0.82) 0%,
+      rgba(251, 248, 241, 0.56) 46%,
+      rgba(251, 248, 241, 0.08) 100%
+    ) !important;
+  }
+
+  .about-intro-split,
+  .about-story,
+  .about-mission {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-intro-split {
+    padding-top: 54px !important;
+  }
+
+  .about-story,
+  .about-values-finished-image,
+  .about-mission {
+    margin-top: 56px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .about-hero,
+  .about-intro,
+  .about-story,
+  .about-values,
+  .about-mission,
+  .about-values-finished-image {
+    width: min(100% - 24px, 1360px) !important;
+  }
+
+  .about-calm-image-hero {
+    min-height: 620px !important;
+    border-radius: 18px !important;
+  }
+
+  .about-calm-image-hero h1 {
+    font-size: clamp(40px, 13vw, 56px) !important;
+  }
+
+  .about-story img,
+  .about-story-home > img,
+  .about-mission img,
+  .about-intro-image {
+    height: 320px !important;
+    border-radius: 18px !important;
+  }
+
+  .about-mission {
+    padding: 28px 20px !important;
+  }
+}
+/* END HAPPY DROPS ABOUT SPACING ACCESSIBILITY PASS */
+
+/* HAPPY DROPS ABOUT EDGE ALIGNMENT PASS */
+.about-hero,
+.about-intro,
+.about-story,
+.about-values,
+.about-mission,
+.about-values-finished-image {
+  width: min(1480px, calc(100% - 16px)) !important;
+}
+
+@media (max-width: 560px) {
+  .about-hero,
+  .about-intro,
+  .about-story,
+  .about-values,
+  .about-mission,
+  .about-values-finished-image {
+    width: min(100% - 12px, 1480px) !important;
+  }
+}
+/* END HAPPY DROPS ABOUT EDGE ALIGNMENT PASS */
+
+/* HAPPY DROPS SOFT IMAGE SHADOW PASS */
+.about-intro-image,
+.about-story img,
+.about-story-home > img,
+.about-mission img {
+  box-shadow: 0 14px 32px rgba(49, 92, 56, 0.08) !important;
+}
+
+.about-values-finished-image {
+  box-shadow: 0 12px 28px rgba(49, 92, 56, 0.06) !important;
+}
+/* END HAPPY DROPS SOFT IMAGE SHADOW PASS */

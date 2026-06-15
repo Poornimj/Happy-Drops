@@ -8,7 +8,7 @@ import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 
 function Navbar() {
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-label="Primary navigation">
       <a className="brand" href="/" aria-label="Happy Drops home">
         <img src={happyDropsLogo} alt="Happy Drops" />
       </a>
@@ -19,16 +19,18 @@ function Navbar() {
         <a href="#">Therapists</a>
         <a href="#">Suppliers</a>
         <a href="#">Shop</a>
-        <a href="#">About Us</a>
+        <a href="#" aria-current="page">
+          About Us
+        </a>
       </div>
 
       <div className="nav-actions">
         <div className="language-switcher" aria-label="Language selector">
           <HiOutlineGlobeAlt />
           <a href="#">EN</a>
-          <span></span>
+          <span aria-hidden="true"></span>
           <a href="#">FI</a>
-          <span></span>
+          <span aria-hidden="true"></span>
           <a href="#">中文</a>
         </div>
 
