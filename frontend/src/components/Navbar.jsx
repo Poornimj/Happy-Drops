@@ -9,8 +9,8 @@ import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 function Navbar() {
   return (
     <nav className="navbar">
-      <a className="brand" href="#" aria-label="Happy Drops home">
-        <img src={happyDropsLogo} alt="Happy Drops" className="logo" />
+      <a className="brand" href="/" aria-label="Happy Drops home">
+        <img src={happyDropsLogo} alt="Happy Drops" />
       </a>
 
       <div className="nav-links">
@@ -36,9 +36,11 @@ function Navbar() {
           <a href="#" className="nav-icon" aria-label="Search">
             <HiOutlineSearch />
           </a>
+
           <a href="#" className="nav-icon" aria-label="Account">
             <HiOutlineUser />
           </a>
+
           <a href="#" className="nav-icon" aria-label="Shopping cart">
             <HiOutlineShoppingCart />
           </a>

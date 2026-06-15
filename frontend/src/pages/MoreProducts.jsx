@@ -10,6 +10,7 @@ import SkinMoisture from "../assets/images/SkinMoistures.png";
 import AntiWrincle from "../assets/images/AntiWrincles.png";
 import hairOil from "../assets/images/BoostHairGrowths.png";
 import StressRelief from "../assets/images/StressReliefs.png";
+import moreHero from "../assets/images/FamilyApplying.png";
 
 const moreProducts = [
   { id: 8, name: "Skin and Beauty", desc: "Soft skin glow", price: "22.90", reviews: 120, image: SkinMoisture },
@@ -27,15 +28,35 @@ function MoreProducts() {
   return (
     <>
       <Navbar />
-
       <main className="page-shell shop-page">
-        <section className="featured-products">
+        <section
+          className="hero more-products-hero"
           
-            <h2>More Products</h2>
-            <Link to="/" className="see-more-btn">Back to Shop</Link>
-          
+>
+          <div className="hero-text">
+            <h1>Explore More Natural Wellness Picks</h1>
+            <p>
+              Discover extra oils and blends for skin, hair,
+              <br />
+              mood, and everyday care.
+           </p>
 
-          <div className="product-grid">
+           <a href="#more-products" className="best-btn">
+               Browse Products
+           </a>
+         </div>
+         <img className="more-hero-img" src={moreHero} alt="Natural wellness products" />
+       </section>
+
+       <section className="featured-products" id="more-products">
+         <div className="featured-header">
+           <h2>More Products</h2>
+            <Link to="/" className="see-more-btn">
+            Back to Shop
+            </Link>
+             </div>
+             <div className="product-grid">
+  
             {moreProducts.map((product) => (
               <Link to={`/product/${product.id}`} className="product-card" key={product.id}>
                 <img src={product.image} alt={product.name} />

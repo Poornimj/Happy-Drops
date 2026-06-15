@@ -44,9 +44,9 @@ function Shop() {
 
   return (
      <>
-     <div className="shop-nav-adjust">
+     
       <Navbar />
-    </div>
+  
 
     <main className="page-shell shop-page">
       {/* hero */}
