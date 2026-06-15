@@ -1,7 +1,14 @@
-import { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import WellnessAssessment from "./components/WellnessAssessment";
 import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
 import AboutUs from "./pages/AboutUs";
@@ -63,42 +70,34 @@ function SimpleRoutePage({ kicker, title, text }) {
   );
 }
 
-const routes = {
-  "/": Welcome,
-  "/about-us": AboutUs,
-  "/signup": Signup,
-  "/knowledge": Knowledge,
-  "/workshops": Workshops,
-};
-
-function getCurrentPath() {
-  return window.location.pathname.toLowerCase();
-}
-
-function App() {
-  const [currentPath, setCurrentPath] = useState(getCurrentPath);
-  const Page = routes[currentPath] ?? null;
-  const simplePage = simplePages[currentPath];
-
-  useEffect(() => {
-    const updatePath = () => setCurrentPath(getCurrentPath());
-
-    window.addEventListener("popstate", updatePath);
-    return () => window.removeEventListener("popstate", updatePath);
-  }, []);
+function AppShell() {
+  const location = useLocation();
 
   return (
     <>
-      <Navbar currentPath={currentPath} />
-      {Page ? (
-        <Page />
-      ) : simplePage ? (
-        <SimpleRoutePage {...simplePage} />
-      ) : (
-        <Welcome />
-      )}
+      <Navbar currentPath={location.pathname.toLowerCase()} />
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/wellness-assessment" element={<WellnessAssessment />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/knowledge" element={<Knowledge />} />
+        <Route path="/workshops" element={<Workshops />} />
+        {Object.entries(simplePages).map(([path, page]) => (
+          <Route key={path} path={path} element={<SimpleRoutePage {...page} />} />
+        ))}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
       <Footer />
     </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppShell />
+    </Router>
   );
 }
 

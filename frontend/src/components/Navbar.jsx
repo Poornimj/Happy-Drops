@@ -9,9 +9,9 @@ import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 const navLinks = [
   { href: "/knowledge", label: "Knowledge" },
   { href: "/workshops", label: "Workshops" },
-  { href: "#", label: "Therapists" },
-  { href: "#", label: "Suppliers" },
-  { href: "#", label: "Shop" },
+  { href: "/therapists", label: "Therapists" },
+  { href: "/suppliers", label: "Suppliers" },
+  { href: "/shop", label: "Shop" },
   { href: "/about-us", label: "About Us" },
 ];
 
@@ -57,7 +57,7 @@ function Navbar({ currentPath = "/" }) {
             <HiOutlineUser />
           </a>
 
-          <a href="#" className="nav-icon" aria-label="Shopping cart">
+          <a href="/shop" className="nav-icon" aria-label="Shopping cart">
             <HiOutlineShoppingCart />
           </a>
         </div>

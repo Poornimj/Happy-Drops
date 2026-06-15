@@ -1,4 +1,7 @@
 ﻿:root {
+  --text: #4a4a5a;
+  --text-h: #1a1a2e;
+  --bg: #ffffff;
   --page-width: calc(100% - 48px);
   --dark-green: #173f27;
   --brand-green: #315c38;
@@ -11,6 +14,13 @@
   --white: #ffffff;
   --border: #eadff2;
   --shadow: 0 14px 34px rgba(49, 92, 56, 0.08);
+  --accent: #6e8b57;
+  --accent-bg: rgba(110, 139, 87, 0.1);
+  --accent-border: rgba(110, 139, 87, 0.3);
+  --social-bg: rgba(248, 247, 242, 0.8);
+  --sans: "Inter", "Segoe UI", Arial, sans-serif;
+  --heading: "Cinzel", Georgia, serif;
+  --mono: ui-monospace, Consolas, monospace;
 }
 
 * {
@@ -22,6 +32,7 @@ body {
   color: var(--dark-green);
   background: #ffffff;
   font-family: "Segoe UI", Arial, sans-serif;
+  scroll-behavior: smooth;
 }
 
 html,
@@ -274,8 +285,8 @@ textarea {
   z-index: 3;
 }
 
-.primary-btn,
-.mini-btn {
+.knowledge-page .primary-btn,
+.knowledge-page .mini-btn {
   border: 0;
   border-radius: 999px;
   background: var(--purple);
@@ -284,13 +295,13 @@ textarea {
   cursor: pointer;
 }
 
-.primary-btn {
+.knowledge-page .primary-btn {
   min-height: 42px;
   padding: 0 28px;
   box-shadow: 0 8px 18px rgba(166, 122, 197, 0.18);
 }
 
-.secondary-btn {
+.knowledge-page .secondary-btn {
   min-height: 42px;
   padding: 0 24px;
   border: 1px solid var(--border);
@@ -630,8 +641,8 @@ textarea {
   align-items: start;
 }
 
-.step-icon,
-.avatar {
+.knowledge-page .step-icon,
+.knowledge-page .avatar {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -643,15 +654,15 @@ textarea {
   z-index: 1;
 }
 
-.step-icon {
+.knowledge-page .step-icon {
   background: var(--soft-purple);
   box-shadow: 0 5px 14px rgba(166, 122, 197, 0.22);
 }
 
-.step-icon svg,
-.avatar svg,
-.status-pill svg,
-.pickup-time-box svg {
+.knowledge-page .step-icon svg,
+.knowledge-page .avatar svg,
+.knowledge-page .status-pill svg,
+.knowledge-page .pickup-time-box svg {
   width: 24px;
   height: 24px;
   fill: none;
@@ -736,7 +747,7 @@ textarea {
   margin: 12px 0 0;
 }
 
-.question-actions .primary-btn {
+.knowledge-page .question-actions .primary-btn {
   width: 170px;
   min-height: 38px;
 }
@@ -776,8 +787,8 @@ textarea {
   cursor: default;
 }
 
-.status-card .avatar,
-.order-avatar {
+.knowledge-page .status-card .avatar,
+.knowledge-page .order-avatar {
   width: 46px;
   height: 46px;
   background: var(--soft-purple);
@@ -785,33 +796,33 @@ textarea {
   box-shadow: none;
 }
 
-.status-card .order-avatar.order-avatar-question {
+.knowledge-page .status-card .order-avatar.order-avatar-question {
   background: var(--soft-purple);
   color: var(--purple);
 }
 
-.status-card .order-avatar.order-avatar-user {
+.knowledge-page .status-card .order-avatar.order-avatar-user {
   background: var(--soft-cream);
   color: var(--brand-green);
 }
 
-.status-card .order-avatar.order-avatar-leaf {
+.knowledge-page .status-card .order-avatar.order-avatar-leaf {
   background: var(--soft-cream);
   color: var(--brand-green);
 }
 
-.status-card .order-avatar.order-avatar-card {
+.knowledge-page .status-card .order-avatar.order-avatar-card {
   background: var(--soft-purple);
   color: var(--purple);
 }
 
-.status-card .order-avatar.order-avatar-bottle {
+.knowledge-page .status-card .order-avatar.order-avatar-bottle {
   background: var(--cream);
   color: var(--brand-green);
 }
 
-.status-card .avatar svg,
-.order-avatar svg {
+.knowledge-page .status-card .avatar svg,
+.knowledge-page .order-avatar svg {
   width: 24px;
   height: 24px;
   stroke-width: 2;
@@ -884,7 +895,7 @@ textarea {
   border: 2px dotted currentColor;
 }
 
-.mini-btn {
+.knowledge-page .mini-btn {
   min-height: 32px;
   margin-top: 10px;
   padding: 0 18px;
@@ -1093,8 +1104,8 @@ textarea {
   gap: 10px;
 }
 
-.secondary-btn,
-.confirm-btn {
+.knowledge-page .secondary-btn,
+.knowledge-page .confirm-btn {
   min-height: 34px;
   border-radius: 999px;
   padding: 0 16px;
@@ -1103,19 +1114,19 @@ textarea {
   font-weight: 800;
 }
 
-.secondary-btn {
+.knowledge-page .secondary-btn {
   border: 1px solid var(--border);
   background: var(--white);
   color: var(--purple-dark);
 }
 
-.confirm-btn {
+.knowledge-page .confirm-btn {
   border: 1px solid transparent;
   background: var(--purple);
   color: var(--white);
 }
 
-.confirm-btn.confirmed {
+.knowledge-page .confirm-btn.confirmed {
   background: var(--brand-green);
   color: var(--white);
 }
@@ -1186,8 +1197,8 @@ textarea {
   gap: 12px;
 }
 
-.pickup-modal-actions .secondary-btn,
-.pickup-modal-actions .confirm-btn {
+.knowledge-page .pickup-modal-actions .secondary-btn,
+.knowledge-page .pickup-modal-actions .confirm-btn {
   min-height: 44px;
 }
 
@@ -1898,7 +1909,7 @@ textarea {
     align-items: stretch;
   }
 
-  .question-actions .primary-btn {
+  .knowledge-page .question-actions .primary-btn {
     width: 100%;
   }
 
