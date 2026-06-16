@@ -1,6 +1,4 @@
 ﻿import aboutMission from "../assets/images/mission.png";
-import valuesFourRealImage from "../assets/images/happy-drops-values-four-real.png";
-import happyDropsValuesLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 import footerLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 import confirmedBottle from "../assets/images/mission.png";
 import heroCalmImage from "../assets/images/happy-drops-hero-calm.jpeg";
@@ -106,6 +104,75 @@ const values = [
   },
 ];
 
+const fourRealValues = [
+  {
+    key: "health",
+    eyebrow: "The First Real",
+    title: "Real",
+    emphasis: "Health",
+    text: "Plant ancient knowledge combined from East and West. Proven by hundreds of thousands of cases — a visible result of wisdom and trust.",
+    textLines: [
+      "Plant ancient knowledge",
+      "combined from East and West.",
+      "Proven by hundreds of",
+      "thousands of cases — a visible",
+      "result of wisdom and trust.",
+    ],
+  },
+  {
+    key: "wealth",
+    eyebrow: "The Second Real",
+    title: "Real",
+    emphasis: "Wealth",
+    text: "Investing in longevity with quality of life, where your body and mind have the best energy to live fulfilled moments.",
+    textLines: [
+      "Investing in longevity with",
+      "quality of life, where your body",
+      "and mind have the best energy",
+      "to live fulfilled moments.",
+    ],
+    wealthMeans: [
+      "Physical wealth",
+      "Financial wealth",
+      "Emotional wealth",
+      "Social wealth",
+      "Intellectual wealth",
+      "Spiritual wealth",
+    ],
+  },
+  {
+    key: "happiness",
+    eyebrow: "The Third Real",
+    title: "Real",
+    emphasis: "Happiness",
+    text: "With a trusted community, we learn together how to manage our mind, body, heart and time, to reach 'Happier me, Happier us.' With the knowledge of nature's power, we spread Finnish lifestyle wisdom for happiness.",
+    textLines: [
+      "With a trusted community, we",
+      "learn together how to manage",
+      "our mind, body, heart and time,",
+      "to reach 'Happier me, Happier",
+      "us.' With the knowledge of",
+      "nature's power, we spread",
+      "Finnish lifestyle wisdom for",
+      "happiness.",
+    ],
+  },
+  {
+    key: "sustainability",
+    eyebrow: "The Fourth Real",
+    title: "Real",
+    emphasis: "Sustainability",
+    text: "Caring for the plants, the people and the land behind every drop — so the source and the wisdom regenerate, never run out.",
+    textLines: [
+      "Caring for the plants, the people",
+      "and the land behind every drop",
+      "— so the source and the",
+      "wisdom regenerate, never run",
+      "out.",
+    ],
+  },
+];
+
 const steps = [
   { icon: <UserIcon />, text: "Create your wellness profile" },
   { icon: <FormIcon />, text: "Share your concerns and goals" },
@@ -177,8 +244,46 @@ function AboutUs() {
         </div>
       </section>
 
-                              <section className="about-values about-values-finished-image" id="values" aria-label="Our Values">
-        <img src={valuesFourRealImage} alt="Happy Drops Four Real values" />
+                              <section className="about-values about-values-interactive" id="values" aria-label="Happy Drops Four Real values">
+        <div className="about-values-branches" aria-hidden="true"></div>
+        <div className="about-values-header">
+          <h2>Four Real, One Purpose.</h2>
+          <p>Rooted in wisdom. Powered by nature. Driven by you.</p>
+        </div>
+
+        <div className="about-values-card-grid">
+          {fourRealValues.map((value, index) => (
+            <article
+              className={`about-real-card about-real-${value.key}`}
+              key={value.key}
+              style={{ "--value-delay": `${index * 0.12}s` }}
+            >
+              <span className="about-real-drop" aria-hidden="true"></span>
+              <p className="about-real-eyebrow">{value.eyebrow}</p>
+              <h3>
+                {value.title} <em>{value.emphasis}</em>
+              </h3>
+              <span className="about-real-divider" aria-hidden="true"></span>
+              <div className="about-real-body">
+                <p>
+                  {(value.textLines || [value.text]).map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </p>
+                {value.wealthMeans && (
+                  <div className="about-wealth-means">
+                    <strong>Wealth means:</strong>
+                    <ul>
+                      {value.wealthMeans.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
             <section className="about-mission about-mission-confirmed" id="mission">
