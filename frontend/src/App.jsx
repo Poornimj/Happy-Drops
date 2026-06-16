@@ -18,6 +18,7 @@ function App() {
       <Route path="/suppliers" element={<SimplePage title="Suppliers" />} />
       <Route path="/about" element={<SimplePage title="About Us" />} />
       <Route path="/login" element={<SimplePage title="Login / Sign Up" />} />
+      <Route path="/product/:id" element={<ProductDetails />} />
     </Routes>
   );
 }

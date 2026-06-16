@@ -105,7 +105,7 @@ function Shop() {
         </div>
         
       </section>
-
+ 
 
        {/* featured products */}
 
