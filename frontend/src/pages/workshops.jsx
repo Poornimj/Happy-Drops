@@ -336,7 +336,6 @@ export default function Workshops() {
               ×
             </button>
 
-            <h3 id="workshop-sheet-title">{openWorkshopSheet.title}</h3>
             <img src={openWorkshopSheet.sheet} alt={`${openWorkshopSheet.title} information sheet`} />
           </div>
         </div>

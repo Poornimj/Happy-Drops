@@ -3,13 +3,13 @@ import "../styles/ScrollReveal.css";
 import useScrollReveal from "../hooks/useScrollReveal";
 import { useState, useEffect, useRef } from "react";
 import {
-  Moon,
-  Sparkles,
-  ShieldPlus,
-  Leaf,
-  HeartHandshake,
-  HeartPulse,
-} from "lucide-react";
+  LuHeartHandshake,
+  LuHeartPulse,
+  LuLeaf,
+  LuMoon,
+  LuShieldPlus,
+  LuSparkles,
+} from "react-icons/lu";
 import sleep from "../assets/images/sleep.png";
 import skin from "../assets/images/skin.png";
 import boost from "../assets/images/boost.png";
@@ -28,7 +28,7 @@ function WellnessSection() {
 
   const allCards = [
   {
-    icon: <Moon size={40} strokeWidth={1.8} />,
+    icon: <LuMoon size={40} strokeWidth={1.8} />,
     title: "Sleep & Relaxation",
     description: "Better sleep, calm mind",
     color: "card-1",
@@ -36,7 +36,7 @@ function WellnessSection() {
     hasBackgroundImage: true,
   },
   {
-    icon: <Sparkles size={40} strokeWidth={1.8} />,
+    icon: <LuSparkles size={40} strokeWidth={1.8} />,
     title: "Skin & Beauty",
     description: "Healthy, glowing skin",
     color: "card-2",
@@ -44,7 +44,7 @@ function WellnessSection() {
     hasBackgroundImage: true,
   },
   {
-    icon: <ShieldPlus size={40} strokeWidth={1.8} />,
+    icon: <LuShieldPlus size={40} strokeWidth={1.8} />,
     title: "Boost Immunity",
     description: "Stronger immunity, better health",
     color: "card-3",
@@ -52,7 +52,7 @@ function WellnessSection() {
     hasBackgroundImage: true,
   },
   {
-    icon: <Leaf size={40} strokeWidth={1.8} />,
+    icon: <LuLeaf size={40} strokeWidth={1.8} />,
     title: "Hair Growth",
     description: "Healthy hair growth & scalp care",
     color: "card-4",
@@ -60,7 +60,7 @@ function WellnessSection() {
     hasBackgroundImage: true,
   },
   {
-    icon: <HeartHandshake size={40} strokeWidth={1.8} />,
+    icon: <LuHeartHandshake size={40} strokeWidth={1.8} />,
     title: "Stress & Mood",
     description: "Balance mood, reduce stress",
     color: "card-5",
@@ -68,7 +68,7 @@ function WellnessSection() {
     hasBackgroundImage: true,
   },
   {
-    icon: <HeartPulse size={40} strokeWidth={1.8} />,
+    icon: <LuHeartPulse size={40} strokeWidth={1.8} />,
     title: "Pain Relief",
     description: "Natural relief from pain",
     color: "card-6",

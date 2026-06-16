@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import knowledgeHeader from "../assets/images/knowledge-header.png";
 import knowledgeReady from "../assets/images/knowledg-ready.png";
 import knowledgeWellnessImage from "../assets/images/knowledge-wellness-image.png";
@@ -21,13 +22,18 @@ import knowledgeHairCare from "../assets/images/knowledge-hair-care.png";
 import {
   LuCircleCheck,
   LuCircleHelp,
+  LuClipboardCheck,
+  LuClipboardList,
   LuClock,
   LuCreditCard,
+  LuHeart,
   LuMessageCircle,
   LuLeaf,
   LuMapPin,
+  LuPackageCheck,
   LuPillBottle,
   LuShoppingBag,
+  LuSparkles,
   LuTag,
   LuUser,
 } from "react-icons/lu";
@@ -46,6 +52,7 @@ const wellnessTopics = [
     title: "Uplevel",
     text: "Elevate your wellness, energy, and digestion with foundational wellness.",
     image: knowledgeUplevel,
+    signupPath: "/signup",
   },
   {
     title: "Rest",
@@ -224,53 +231,17 @@ function LockIcon() {
 
 function StepIcon({ name }) {
   const icons = {
-    question: <path d="M9.5 9a3 3 0 1 1 4.9 2.3c-.9.7-1.4 1.2-1.4 2.7M12 17h.01" />,
-    user: (
-      <>
-        <circle cx="12" cy="8" r="3" />
-        <path d="M5.5 19a6.5 6.5 0 0 1 13 0" />
-      </>
-    ),
-    leaf: (
-      <>
-        <path d="M12 20V9" />
-        <path d="M12 16c-4.5-1-7-4-7-9 4.5.2 7.5 2.7 7 9Z" />
-        <path d="M12 16c4.5-1 7-4 7-9-4.5.2-7.5 2.7-7 9Z" />
-      </>
-    ),
-    card: (
-      <>
-        <rect x="4" y="7" width="16" height="11" rx="2" />
-        <path d="M4 11h16M7 15h4" />
-      </>
-    ),
-    bottle: (
-      <>
-        <path d="M10 3h4v4h-4z" />
-        <path d="M9 7h6l1 3v10H8V10z" />
-        <path d="M11 13h2" />
-      </>
-    ),
-    bag: (
-      <>
-        <path d="M6 9h12l-1 12H7L6 9Z" />
-        <path d="M9 9a3 3 0 0 1 6 0" />
-        <path d="M10 15l2 2 4-5" />
-      </>
-    ),
-    check: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="m8.5 12.2 2.2 2.2 4.8-5" />
-      </>
-    ),
+    question: LuHeart,
+    user: LuSparkles,
+    leaf: LuClipboardList,
+    card: LuCreditCard,
+    bottle: LuPillBottle,
+    bag: LuPackageCheck,
+    check: LuClipboardCheck,
   };
+  const Icon = icons[name] || LuHeart;
 
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      {icons[name]}
-    </svg>
-  );
+  return <Icon aria-hidden="true" />;
 }
 
 function CalendarIcon() {
@@ -545,7 +516,16 @@ export default function Knowledge() {
 
                     {isActive && (
                       <div className="wellness-topic-panel">
-                        <img src={topic.image} alt={`${topic.title} information`} />
+                        <div className="wellness-topic-poster">
+                          <img src={topic.image} alt={`${topic.title} information`} />
+                          {topic.signupPath && (
+                            <Link
+                              className="wellness-poster-join-link"
+                              to={topic.signupPath}
+                              aria-label={`Join us from ${topic.title}`}
+                            />
+                          )}
+                        </div>
                       </div>
                     )}
                   </article>
