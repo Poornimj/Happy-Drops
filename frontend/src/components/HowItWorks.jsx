@@ -1,6 +1,5 @@
 import "./HowItWorks.css";
 import "../styles/ScrollReveal.css";
-import greenleaf from "../assets/images/greenleaf.png";
 import useScrollReveal from "../hooks/useScrollReveal";
 
 import {
@@ -28,7 +27,7 @@ function HowItWorks() {
     },
     {
       icon: <HiOutlineLightBulb />,
-      title: "Get AI Recommendation",
+      title: "Personalized Wellness Recommendations",
       description:
         "Receive personalized oil recipes and wellness plan",
     },
@@ -42,9 +41,6 @@ function HowItWorks() {
 
   return (
     <section className="how-it-works">
-      <img src={greenleaf} alt="Green leaf decoration" className="greenleaf-decoration-left" />
-      <img src={greenleaf} alt="Green leaf decoration" className="greenleaf-decoration-right" />
-      
       <h2 className="scroll-reveal" ref={titleRef} style={{ opacity: titleVisible ? 1 : 0, transform: titleVisible ? 'translateY(0)' : 'translateY(40px)' }}>How It Works</h2>
 
       <div className="timeline scroll-reveal" ref={timelineRef} style={{ opacity: timelineVisible ? 1 : 0, transform: timelineVisible ? 'translateY(0)' : 'translateY(40px)' }}>

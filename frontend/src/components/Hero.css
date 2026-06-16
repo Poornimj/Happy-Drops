@@ -4,9 +4,10 @@
   display: flex;
   align-items: center;
   gap: 50px;
-  padding: 40px 60px;
+  padding: 55px 50px;
   margin: 0px;
-  border-radius: 10px;
+  min-height: 500px;
+  border-radius: 12px;
   background: #F4E4D5;
   background-position: right -50px center;
   background-repeat: no-repeat;
@@ -128,6 +129,7 @@
   font-weight: 600;
   letter-spacing: 2px;
   margin-bottom: 20px;
+  height: 5px;
   text-transform: uppercase;
   animation: slideDown 0.8s ease-out 0.2s both;
 }
@@ -145,12 +147,12 @@
 
 .hero-title {
   font-family: Georgia, serif;
-  font-size: 36px;
-  line-height: 1.05;
+  font-size: 60px;
+  line-height: 1.10;
   color: #29492f;
   font-weight: 700;
   letter-spacing: -2px;
-  margin-top: 20px;
+  margin-top: 100px;
   margin-bottom: 25px;
   background: linear-gradient(135deg, #29492f 0%, #4a7a5f 100%);
   -webkit-background-clip: text;
@@ -162,7 +164,8 @@
 .hero-description {
   max-width: 560px;
   color: #555;
-  line-height: 1.9;
+  line-height: 2.1;
+  margin-top: 60px;
   font-size: 18px;
   animation: slideDown 0.8s ease-out 0.6s both;
 }
@@ -276,5 +279,4 @@
     font-size: 16px;
   }
 }
-
 

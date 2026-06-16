@@ -1,6 +1,5 @@
 import "./ProductsSection.css";
 import "../styles/ScrollReveal.css";
-import FallingParticles from "./FallingParticles";
 import { useState } from "react";
 import useScrollReveal from "../hooks/useScrollReveal";
 
@@ -11,7 +10,6 @@ import wellnessAccessories from "../assets/images/Accessories.png";
 import leafOnly from "../assets/images/leaveonly.png";
 
 function ProductsSection() {
-  const [isHovered, setIsHovered] = useState(false);
   const [titleRef, titleVisible] = useScrollReveal();
   const [dividerRef, dividerVisible] = useScrollReveal();
   const [gridRef, gridVisible] = useScrollReveal();
@@ -40,12 +38,7 @@ function ProductsSection() {
   ];
 
   return (
-    <section
-      className="products-section"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <FallingParticles active={isHovered} />
+    <section className="products-section">
       <h2 className="scroll-reveal" ref={titleRef} style={{ opacity: titleVisible ? 1 : 0, transform: titleVisible ? 'translateY(0)' : 'translateY(40px)' }}>Explore Our Products</h2>
 
       <div className="leaf-divider scroll-reveal" ref={dividerRef} style={{ opacity: dividerVisible ? 1 : 0, transform: dividerVisible ? 'translateY(0)' : 'translateY(40px)' }}>
