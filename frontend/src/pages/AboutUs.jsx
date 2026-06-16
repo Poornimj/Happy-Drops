@@ -223,10 +223,12 @@ function AboutUs() {
       </section>
 
                   <section className="about-story about-story-home">
-        <img
-          src={ourStoryHomeWellnessImage}
-          alt="Natural home wellness routine with herbs and guidance"
-        />
+        <div className="about-story-image-wrap about-candle-glow">
+          <img
+            src={ourStoryHomeWellnessImage}
+            alt="Natural home wellness routine with herbs and guidance"
+          />
+        </div>
         <div>
           <p className="section-kicker">Our Story</p>
           <h2>Natural care made easier for every home</h2>

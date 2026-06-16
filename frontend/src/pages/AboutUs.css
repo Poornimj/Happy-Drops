@@ -2484,21 +2484,27 @@
 }
 
 .about-real-drop {
-  width: 24px;
-  height: 30px;
+  position: relative;
+  width: 20px;
+  height: 20px;
   margin-bottom: 18px;
   display: block;
   background: var(--real-accent);
-  border-radius: 58% 42% 58% 42%;
-  transform: rotate(45deg);
-  box-shadow: 0 10px 18px rgba(49, 92, 56, 0.18);
+  border-radius: 50% 50% 50% 0;
+  clip-path: none;
+  transform: rotate(135deg);
+  box-shadow: 0 9px 15px rgba(49, 92, 56, 0.18), inset -3px -5px 8px rgba(0, 0, 0, 0.12);
   animation: aboutDropBreathe 2.8s ease-in-out infinite;
   animation-delay: var(--value-delay, 0s);
   transition: transform 0.25s ease, filter 0.25s ease;
 }
 
+.about-real-drop::after {
+  content: none;
+}
+
 .about-real-card:hover .about-real-drop {
-  transform: rotate(45deg) scale(1.12);
+  transform: rotate(135deg) scale(1.08);
   filter: saturate(1.12);
 }
 
@@ -2664,11 +2670,11 @@
 @keyframes aboutDropBreathe {
   0%,
   100% {
-    transform: rotate(45deg) translateY(0);
+    transform: rotate(135deg) translateY(0);
   }
 
   50% {
-    transform: rotate(45deg) translateY(-3px);
+    transform: rotate(135deg) translateY(3px);
   }
 }
 
@@ -2721,3 +2727,105 @@
   }
 }
 /* END HAPPY DROPS EDITABLE FOUR REAL VALUES */
+
+/* HAPPY DROPS CANDLE EMOTION */
+.about-story-image-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  overflow: hidden;
+  border-radius: 14px;
+  isolation: isolate;
+}
+
+.about-story-image-wrap > img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  display: block;
+  object-fit: cover;
+  border-radius: inherit;
+  transition: filter 0.45s ease, transform 0.45s ease;
+}
+
+.about-candle-glow::before {
+  content: "";
+  position: absolute;
+  left: 81%;
+  top: 45%;
+  width: clamp(92px, 9vw, 135px);
+  height: clamp(110px, 11vw, 160px);
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, rgba(255, 248, 203, 0.72) 0%, rgba(255, 197, 89, 0.42) 30%, rgba(255, 153, 40, 0.18) 54%, rgba(255, 153, 40, 0) 76%);
+  mix-blend-mode: screen;
+  filter: blur(10px);
+  opacity: 0.86;
+  transform: translate(-50%, -50%) scale(0.95);
+  animation: aboutCandleGlow 2.8s ease-in-out infinite;
+}
+
+.about-candle-glow::after {
+  content: none;
+}
+
+.about-candle-glow:hover > img {
+  filter: saturate(1.03) brightness(1.02) sepia(0.03);
+}
+
+.about-candle-glow:hover::before {
+  animation-duration: 1.05s;
+}
+
+@keyframes aboutCandleGlow {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: translate(-50%, -50%) scale(0.94);
+  }
+
+  50% {
+    opacity: 0.98;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+@keyframes aboutFlameFlicker {
+  0% {
+    opacity: 0.78;
+    transform: translate(-50%, -50%) scale(0.94, 1) rotate(-3deg);
+  }
+
+  25% {
+    opacity: 1;
+    transform: translate(-48%, -51%) scale(1.04, 1.08) rotate(2deg);
+  }
+
+  55% {
+    opacity: 0.84;
+    transform: translate(-51%, -50%) scale(0.98, 1.03) rotate(-1deg);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translate(-49%, -52%) scale(1.06, 1.1) rotate(3deg);
+  }
+
+  100% {
+    opacity: 0.82;
+    transform: translate(-50%, -50%) scale(0.96, 1) rotate(-2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-candle-glow::before,
+  .about-candle-glow::after {
+    animation: none !important;
+  }
+
+  .about-candle-glow:hover > img {
+    transform: none;
+  }
+}
+/* END HAPPY DROPS CANDLE EMOTION */
