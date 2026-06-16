@@ -11,7 +11,6 @@ import leafOnly from "../assets/images/leaveonly.png";
 
 function ProductsSection() {
   const [titleRef, titleVisible] = useScrollReveal();
-  const [dividerRef, dividerVisible] = useScrollReveal();
   const [gridRef, gridVisible] = useScrollReveal();
   const [buttonRef, buttonVisible] = useScrollReveal();
   const products = [
@@ -40,10 +39,6 @@ function ProductsSection() {
   return (
     <section className="products-section">
       <h2 className="scroll-reveal" ref={titleRef} style={{ opacity: titleVisible ? 1 : 0, transform: titleVisible ? 'translateY(0)' : 'translateY(40px)' }}>Explore Our Products</h2>
-
-      <div className="leaf-divider scroll-reveal" ref={dividerRef} style={{ opacity: dividerVisible ? 1 : 0, transform: dividerVisible ? 'translateY(0)' : 'translateY(40px)' }}>
-  ──── 🌿 ────
-      </div>
 
       <div className="products-grid scroll-reveal" ref={gridRef} style={{ opacity: gridVisible ? 1 : 0, transform: gridVisible ? 'translateY(0)' : 'translateY(40px)' }}>
         {products.map((product, index) => (

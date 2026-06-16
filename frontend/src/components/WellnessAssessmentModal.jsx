@@ -9,9 +9,10 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
   const [validationError, setValidationError] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  // Load saved progress from localStorage
+  // Load saved progress from localStorage (hostname-agnostic key)
   useEffect(() => {
-    const savedProgress = localStorage.getItem('wellnessAssessmentProgress');
+    const storageKey = 'wellnessAssessmentProgress';
+    const savedProgress = localStorage.getItem(storageKey);
     if (savedProgress) {
       try {
         const parsed = JSON.parse(savedProgress);
@@ -20,11 +21,12 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
         setIsComplete(parsed.isComplete || false);
       } catch (e) {
         console.error('Error loading saved progress:', e);
+        localStorage.removeItem(storageKey);
       }
     }
-  }, []);
+  }, [isOpen]);
 
-  // Save progress to localStorage whenever it changes
+  // Save progress to localStorage whenever it changes (hostname-agnostic key)
   useEffect(() => {
     const progress = {
       currentStep,
