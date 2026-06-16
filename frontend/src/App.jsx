@@ -8,9 +8,9 @@ import {
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import WellnessAssessment from "./components/WellnessAssessment";
-import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
+import WellnessAssessmentModal from "./components/WellnessAssessmentModal";
+import Signup from "./pages/Signup";
 import AboutUs from "./pages/AboutUs";
 import Knowledge from "./pages/Knowledge";
 import Workshops from "./pages/workshops";
@@ -78,7 +78,7 @@ function AppShell() {
       <Navbar currentPath={location.pathname.toLowerCase()} />
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/wellness-assessment" element={<WellnessAssessment />} />
+        <Route path="/wellness-assessment" element={<WellnessAssessmentModal />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/knowledge" element={<Knowledge />} />
