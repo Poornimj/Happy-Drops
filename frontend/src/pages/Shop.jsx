@@ -99,11 +99,21 @@ function Shop() {
       <section className="categories">
         <h2>Browse Categories</h2>
         <div className="category-list">
-          <Link to="/category/all-products" className="category active">All Products</Link>
-          <Link to="/category/ready-made-oils" className="category">Ready-Made Oils</Link>
-          <Link to="/category/doterra-oils" className="category">doTERRA Oils</Link>
-          <Link to="/category/tools" className="category">Tools</Link>
-          <Link to="/category/food-supplements" className="category">Food Related</Link>
+          <button type="button" className="category active">
+            Ready-Made Oils
+          </button>
+
+          <Link to="/category/doterra-oils" className="category">
+            doTERRA Oils
+          </Link>
+
+          <Link to="/category/tools" className="category">
+            Tools
+          </Link>
+
+           <Link to="/category/food-supplements" className="category">
+             Food Related
+           </Link>
         </div>
         
       </section>
