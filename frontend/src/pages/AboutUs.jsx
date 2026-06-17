@@ -5,6 +5,7 @@ import heroCalmImage from "../assets/images/happy-drops-hero-calm.jpeg";
 import growingHarvestImage from "../assets/images/happy-drops-growing-harvest.jpeg";
 import ourStoryHomeWellnessImage from "../assets/images/happy-drops-our-story-home-wellness.png";
 import happyDropsLogo from "../assets/images/happy-drops-logo.jpeg";
+import { useState } from "react";
 
 import Footer from "../components/Footer";
 import "./AboutUs.css";
@@ -180,7 +181,82 @@ const steps = [
   { icon: <BagIcon />, text: "Shop products or book workshops" },
 ];
 
+const storyJourney = [
+  {
+    time: "17+ years ago",
+    title: "A first introduction",
+    text: "A friend from the United States introduced Suvi to essential oils while she was building her kindergarten business in Beijing.",
+    detail:
+      "Work, family, and daily responsibilities left little room to study them deeply, but the first seed had been planted.",
+  },
+  {
+    time: "A few years later",
+    title: "Curiosity awakened",
+    text: "A close friend in Shanghai later shared her wellness journey, and Suvi began to see essential oils differently.",
+    detail:
+      "Because the story came from someone she trusted, it felt less like a trend and more like a gentle invitation back to natural care.",
+  },
+  {
+    time: "The first ritual",
+    title: "A calmer evening",
+    text: "She began with a diffuser before bedtime. A few calming drops became a peaceful evening ritual.",
+    detail:
+      "From there, she explored oils for daily wellness, skin care, and seasonal support through simple habits that fit real life.",
+  },
+  {
+    time: "A turning point",
+    title: "Visible change",
+    text: "Months of consistent rituals and a more holistic lifestyle brought positive changes in well-being and skin health.",
+    detail:
+      "A routine health examination in Finland brought encouraging news, inspiring Suvi to study the science, history, and traditional uses of essential oils.",
+  },
+  {
+    time: "Deeper study",
+    title: "Whole-life wellness",
+    text: "She studied essential oils, Traditional Chinese Medicine, nutrition, prevention, movement, and emotional balance.",
+    detail:
+      "She came to believe true well-being grows from many supports working together: food, movement, sleep, mindset, relationships, and nature.",
+  },
+  {
+    time: "Today",
+    title: "Happy Drops begins",
+    text: "Happy Drops now shares practical knowledge, natural tools, and daily rituals for healthier, happier living.",
+    detail:
+      "Through her own family, Suvi saw how daily natural wellness could support comfort, relaxation, recovery, and quality of life over time.",
+  },
+];
+
+const philosophyPillars = [
+  {
+    title: "Nature",
+    text: "Supporting well-being through high-quality essential oils and natural living.",
+  },
+  {
+    title: "Nutrition",
+    text: "Using food as a foundation for vitality and long-term health.",
+  },
+  {
+    title: "Movement",
+    text: "Encouraging daily physical activity and body awareness.",
+  },
+  {
+    title: "Prevention",
+    text: "Focusing on healthy habits that support lifelong well-being.",
+  },
+  {
+    title: "Mindset",
+    text: "Cultivating gratitude, happiness, resilience, and inner peace.",
+  },
+  {
+    title: "Community",
+    text: "Learning, growing, and thriving together.",
+  },
+];
+
 function AboutUs() {
+  const [activeJourneyIndex, setActiveJourneyIndex] = useState(0);
+  const activeJourney = storyJourney[activeJourneyIndex];
+
   return (
     <main className="about-page">
                                                 <section className="about-hero about-calm-image-hero">
@@ -191,13 +267,12 @@ function AboutUs() {
         />
         <div className="about-calm-hero-overlay"></div>
         <div className="about-hero-copy">
-          <p className="section-kicker">Empowering wellness naturally</p>
           <h1>About Happy Drops</h1>
           <p className="hero-support-line">
             Personalized Wellness, Designed for Longevity
           </p>
           <p>
-            Happy Drops brings together nature-powered products, family wellness
+            We brings together nature-powered products, family wellness
             support, and personalized recommendations to help people feel
             healthier and more confident in their daily care.
           </p>
@@ -206,7 +281,6 @@ function AboutUs() {
 
                               <section className="about-intro about-intro-split">
         <div className="about-intro-copy">
-          <p className="section-kicker">Rooted in nature</p>
           <h2>Growing Wellness Together</h2>
           <p>
             We believe wellness should feel simple, personal, and trustworthy.
@@ -229,25 +303,75 @@ function AboutUs() {
             alt="Natural home wellness routine with herbs and guidance"
           />
         </div>
-        <div>
+        <div className="about-story-copy">
           <p className="section-kicker">Our Story</p>
-          <h2>Natural care made easier for every home</h2>
-          <p>
-            Happy Drops was created for people who want natural wellness without
-            confusion. By combining holistic knowledge, expert-reviewed support,
-            and easy digital tools, we help families choose products and
-            workshops that fit real life.
+          <h2>Happy Drops</h2>
+          <p className="about-story-lead">
+            Nature's Wisdom for a Happier, Healthier Life
           </p>
           <p>
-            Every experience is designed to feel calm, connected, and useful, from
-            creating a wellness profile to receiving recommendations and booking
-            a workshop.
+            Happy Drops was born from a personal journey of discovery, healing,
+            and trust in the power of nature.
+          </p>
+          <p>
+            Suvi's path began with curiosity, became an evening ritual, and
+            grew into a whole-life approach to wellness: nature, nutrition,
+            movement, prevention, mindset, and community.
           </p>
         </div>
       </section>
 
+      <section className="about-journey" aria-labelledby="happy-drops-journey-title">
+        <div className="about-section-heading">
+          <h2 id="happy-drops-journey-title">One discovery became a daily way of living</h2>
+          <p>
+            The story of Happy Drops is not about a quick fix. It is about small
+            habits, studied wisdom, and the steady care that grows from daily
+            practice.
+          </p>
+        </div>
+
+        <div className="about-journey-path" role="tablist" aria-label="Happy Drops story timeline">
+          {storyJourney.map((item, index) => (
+            <button
+              type="button"
+              className={`about-journey-step ${activeJourneyIndex === index ? "active" : ""}`}
+              key={item.title}
+              onClick={() => setActiveJourneyIndex(index)}
+              role="tab"
+              aria-selected={activeJourneyIndex === index}
+              aria-controls="happy-drops-journey-detail"
+              style={{ "--journey-delay": `${index * 0.08}s` }}
+            >
+              <span>{item.time}</span>
+              <h3>{item.title}</h3>
+            </button>
+          ))}
+        </div>
+
+        <article className="about-journey-detail" id="happy-drops-journey-detail">
+          <span>{activeJourney.time}</span>
+          <h3>{activeJourney.title}</h3>
+          <p>{activeJourney.text}</p>
+          <div>
+            <strong>Read this chapter</strong>
+            <p>{activeJourney.detail}</p>
+          </div>
+        </article>
+      </section>
+
                               <section className="about-values about-values-interactive" id="values" aria-label="Happy Drops Four Real values">
         <div className="about-values-branches" aria-hidden="true"></div>
+        <div className="about-values-logo-shine" aria-hidden="true"></div>
+        <div className="about-values-leaf-fall" aria-hidden="true">
+          <span className="falling-leaf leaf-one"></span>
+          <span className="falling-leaf leaf-two"></span>
+          <span className="falling-leaf leaf-three"></span>
+          <span className="falling-leaf leaf-four"></span>
+          <span className="falling-leaf leaf-five"></span>
+          <span className="falling-leaf leaf-six"></span>
+          <span className="falling-leaf leaf-seven"></span>
+        </div>
         <div className="about-values-header">
           <h2>Four Real, One Purpose.</h2>
           <p>Rooted in wisdom. Powered by nature. Driven by you.</p>
@@ -265,7 +389,6 @@ function AboutUs() {
               <h3>
                 {value.title} <em>{value.emphasis}</em>
               </h3>
-              <span className="about-real-divider" aria-hidden="true"></span>
               <div className="about-real-body">
                 <p>
                   {(value.textLines || [value.text]).map((line) => (
@@ -288,15 +411,66 @@ function AboutUs() {
         </div>
       </section>
 
+      <section className="about-philosophy" aria-labelledby="happy-drops-philosophy-title">
+        <div className="about-section-heading">
+          <p className="section-kicker">Our Philosophy</p>
+          <h2 id="happy-drops-philosophy-title">Wellness is created through balance</h2>
+          <p>
+            True well-being is not created by one product alone. It grows through
+            daily care for the body, mind, relationships, and the natural world.
+          </p>
+        </div>
+
+        <div className="about-philosophy-grid">
+          {philosophyPillars.map((pillar, index) => (
+            <article
+              className="about-philosophy-card"
+              key={pillar.title}
+              style={{ "--pillar-delay": `${index * 0.06}s` }}
+            >
+              <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <h3>{pillar.title}</h3>
+              <p>{pillar.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-promise" aria-label="Happy Drops vision and promise">
+        <div className="about-promise-fall" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <p className="section-kicker">Our Vision</p>
+          <h2>Reconnect with nature, one daily ritual at a time</h2>
+          <p>
+            To help people embrace holistic wellness and create daily rituals
+            that support a healthier, happier, and more fulfilling life.
+          </p>
+        </div>
+        <div className="about-promise-note">
+          <p className="section-kicker">Our Promise</p>
+          <p>
+            We do not believe in quick fixes. We believe in small daily actions,
+            guided by nature's wisdom, that create lasting positive change over
+            time.
+          </p>
+          <strong>One drop. One habit. One healthier day at a time.</strong>
+        </div>
+      </section>
+
             <section className="about-mission about-mission-confirmed" id="mission">
         <div>
           <p className="section-kicker">Our Mission</p>
-          <h2>Personal wellness, guided by nature and care</h2>
+          <h2>Practical knowledge for natural daily care</h2>
           <p>
-            Our mission is to make natural wellness more personal, accessible,
-            and easy to follow. We help customers create wellness profiles,
-            understand their needs, and discover products, workshops, and
-            guidance that support their goals.
+            Our mission is to empower people with preventive knowledge that
+            fits their needs, combined with holistic lifestyle practices that
+            support their physical, emotional, and mental well-being goals.
           </p>
           <a href="#" className="primary-action">Create Your Wellness Profile</a>
         </div>
