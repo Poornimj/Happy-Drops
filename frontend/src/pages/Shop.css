@@ -48,11 +48,11 @@
   position: relative;
   z-index: 2;
   padding-left: 34px;
-  max-width: 440px;
+  max-width: 740px;
 }
 
 .hero-text h1 {
-  margin: 0 0 18px;
+  margin: 0 0 24px;
   font-family: Georgia, serif;
   font-size: 34px;
   line-height: 1.15;
@@ -577,4 +577,17 @@
 .back-link {
   background: #173f27!important;
   color: white !important;
+}
+.hero .hero-text {
+  max-width: 760px !important;
+  width: 760px !important;
+}
+
+.hero .hero-text h1 {
+  font-size: 40px !important;
+  line-height: 1.12 !important;
+  max-width: 760px !important;
+}
+.hero .hero-text h1 {
+  margin-bottom: 26px !important;
 }

@@ -28,9 +28,9 @@ import StressRelief from "../assets/images/StressReliefs.png";
 
 import SkinCareHover from "../assets/images/SkinCaresHover.png";
 import immunityOilHover from "../assets/images/ImmunityOilHover.png";
-import painReliefOilHover from "../assets/images/JointEassesHover.png";
+import painReliefOilHover from "../assets/images/JointEasesHover.png";
 import sleepOilHover from "../assets/images/TwilightDropssHover.png";
-import sleepSupportOilHover from "../assets/images/CherishmoodsHover.png";
+import sleepSupportOilHover from "../assets/images/CherishmoodHover.png";
 import stressOilHover from "../assets/images/HeadacheReliefsHover.png";
 import hairOilHover from "../assets/images/BoostHairGrowthsHover.png";
 import SleepSupOilHover from "../assets/images/SleepSupOilHover.jpg";
@@ -38,7 +38,7 @@ import SkinTightOilHover from "../assets/images/SkinTightningsHover.png";
 import SkinMoistureHover from "../assets/images/SkinMoisturesHover.png";
 import AntiWrincleHover from "../assets/images/AntiWrinclesHover.png";
 import StressReliefHover from "../assets/images/StressReliefsHover.png";
-import healthyhairHover from "../assets/images/healthyhairHover.png";
+import healthyhairHover from "../assets/images/healthyhairsHover.png";
 
 
 const products = [
@@ -79,11 +79,13 @@ function Shop() {
         style={{ backgroundImage: `url(${DriedLavenderHero})` }}
       >
         <div className="hero-text">
-          <h1>Discover Natural Products for Wellness and Longevity</h1>
-          <p>
-            Essential oils, wellness tools,
+          <h1>
+            Discover Natural Products
             <br />
-            nutrition support and relaxation products.
+            for Wellness and Longevity
+          </h1>
+          <p>
+            Essential oils, wellness tools,nutrition support and relaxation products.
           </p>
 
           <a href="#featured" className="best-btn">
