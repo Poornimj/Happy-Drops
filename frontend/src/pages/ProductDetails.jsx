@@ -4,127 +4,220 @@ import "./Shop.css";
 
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
+import { HiOutlineShoppingCart } from "react-icons/hi";
 
-import SkinCare from "../assets/images/SkinDrynesses.png";
-import sleepOil from "../assets/images/TwilightDropss.png";
-import hairOil from "../assets/images/BoostHairGrowths.png";
-import sleepSupportOil from "../assets/images/Cherishmoods.png";
-import painReliefOil from "../assets/images/JointEasses.png";
-import immunityOil from "../assets/images/BoostImmunity.png";
-import stressOil from "../assets/images/HeadacheReliefs.png";
-import SkinTightOil from "../assets/images/SkinTightnings.png";
-import SkinMoisture from "../assets/images/SkinMoistures.png";
-import AntiWrincle from "../assets/images/AntiWrincles.png";
-import StressRelief from "../assets/images/StressReliefs.png";
+import DewOil from "../assets/images/SkinMoistures.png";
+import TimelessOil from "../assets/images/AntiWrincles.png";
+import RadianceOil from "../assets/images/SkinTightnings.png";
+import ReleaseOil from "../assets/images/StressReliefs.png";
+import FlowOil from "../assets/images/WaistEasses.png";
+import StrideOil from "../assets/images/JointEasses.png";
+import PeaceOil from "../assets/images/SleepSupportOil.png";
+import BloomOil from "../assets/images/BoostHairGrowths.png";
+import ClarityOil from "../assets/images/TwilightDropss.png";
+import NourishOil from "../assets/images/SkinDrynesses.png";
+import CalmOil from "../assets/images/HeadacheReliefs.png";
+import FlexibilityOil from "../assets/images/JointMoves.png";
+import BalanceOil from "../assets/images/VitalGuards.png";
+import HarmonyOil from "../assets/images/Cherishmoods.png";
+import PassionOil from "../assets/images/VitalGuards.png";
+import GraceOil from "../assets/images/Cherishmoods.png";
+import JoyOil from "../assets/images/Cherishmoods.png";
+import PresenceOil from "../assets/images/TwilightDropss.png";
+import VitalityOil from "../assets/images/VitalGuards.png";
 
 const products = [
   {
     id: 1,
-    name: "Skin and Beauty",
-    description:
-      "A gentle daily care oil created for soft, radiant-looking skin. It can be used as part of a simple self-care routine to support a nourished skin feel and a calm wellness moment.",
-    amount: "15 ml",
+    name: "Dew",
+    function: "Skin Moisture",
+    desc: "Fresh, soft, glowing, hydrated skin",
     price: "24.90",
-    image: SkinCare,
+    badge: "Best Seller",
+    reviews: 120,
+    amount: "15 ml",
+    image: DewOil,
   },
   {
     id: 2,
-    name: "Sleep and Relaxation",
-    description:
-      "A calming wellness blend designed for quiet evening routines. Its soothing aroma helps create a peaceful atmosphere before bedtime and supports a more relaxed self-care experience.",
-    amount: "15 ml",
+    name: "Timeless",
+    function: "Anti-Wrinkle",
+    desc: "Beauty that stays graceful with age",
     price: "29.90",
-    image: sleepOil,
+    badge: "Popular",
+    reviews: 98,
+    amount: "15 ml",
+    image: TimelessOil,
   },
   {
     id: 3,
-    name: "Hair Care",
-    description:
-      "A nourishing oil made for hair and scalp care. It helps support a healthy-looking shine and can be used during gentle massage or regular hair care routines.",
-    amount: "15 ml",
+    name: "Radiance",
+    function: "Skin Tightening",
+    desc: "Firm, young-looking, glowing skin",
     price: "26.90",
-    image: hairOil,
+    reviews: 76,
+    amount: "15 ml",
+    image: RadianceOil,
   },
   {
     id: 4,
-    name: "Sleep Support Blend",
-    description:
-      "A soft aromatic blend made for bedtime rituals and relaxation. It helps create a comfortable, restful environment and is ideal for winding down after a busy day.",
+    name: "Release",
+    function: "Neck & Shoulder Comfort",
+    desc: "Let go of tension, stiffness, and stress",
+    price: "27.90",
+    reviews: 120,
     amount: "15 ml",
-    price: "23.00",
-    image: sleepSupportOil,
+    image: ReleaseOil,
   },
   {
     id: 5,
-    name: "Pain and relief",
-    description:
-      "A comforting body-care oil designed for massage and relaxation. It can be used after long days to support a soothing self-care routine and a sense of ease.",
-    amount: "15 ml",
+    name: "Flow",
+    function: "Waist Comfort",
+    desc: "Easy movement and body comfort",
     price: "22.00",
-    image: painReliefOil,
+    reviews: 120,
+    amount: "15 ml",
+    image: FlowOil,
   },
   {
     id: 6,
-    name: "Boost Immunity",
-    description:
-      "A refreshing wellness oil blend made for everyday self-care. Its clean, uplifting aroma is suitable for daily routines when you want a fresh and balanced atmosphere.",
-    amount: "15 ml",
+    name: "Stride",
+    function: "Joint & Knee Support",
+    desc: "Walk and move with confidence",
     price: "19.90",
-    image: immunityOil,
+    reviews: 120,
+    amount: "15 ml",
+    image: StrideOil,
   },
   {
     id: 7,
-    name: "Stress and Mood",
-    description:
-      "A calming aroma blend created for peaceful moments and emotional balance. It is ideal for quiet breaks, breathing routines, or creating a gentle wellness space.",
-    amount: "15 ml",
+    name: "Peace",
+    function: "Sleep Like a Baby",
+    desc: "Deep sleep, rest, and calm feeling",
     price: "21.90",
-    image: stressOil,
+    reviews: 120,
+    amount: "15 ml",
+    image: PeaceOil,
   },
   {
     id: 8,
-    name: "Skin Tightening",
-    description:
-      "A skin care oil made for firm, smooth-looking skin. It works well in a regular beauty routine and supports a soft, hydrated skin feel.",
-    amount: "15 ml",
+    name: "Bloom",
+    function: "Hair Growth",
+    desc: "Hair growth, health, and vitality",
     price: "27.90",
-    image: SkinTightOil,
+    reviews: 120,
+    amount: "15 ml",
+    image: BloomOil,
   },
   {
     id: 9,
-    name: "Skin and Beauty",
-    description:
-      "A moisturizing oil created for a soft skin glow and gentle daily nourishment. It is suitable for simple beauty care and relaxing self-care moments.",
-    amount: "15 ml",
+    name: "Clarity",
+    function: "Concentration",
+    desc: "Clear mind, focus, and sharp thinking",
     price: "22.90",
-    image: SkinMoisture,
+    reviews: 120,
+    amount: "15 ml",
+    image: ClarityOil,
   },
   {
     id: 10,
-    name: "Anti Wrinkle Oil",
-    description:
-      "A natural beauty oil made for mature-looking skin care. It helps support a smoother, refreshed appearance when used as part of a consistent skincare routine.",
-    amount: "15 ml",
+    name: "Nourish",
+    function: "Dry Skin Relief",
+    desc: "Deep care for dry skin",
     price: "25.90",
-    image: AntiWrincle,
+    reviews: 98,
+    amount: "15 ml",
+    image: NourishOil,
   },
   {
     id: 11,
-    name: "Hair Strength Oil",
-    description:
-      "A strengthening hair oil created to support healthy-looking hair and shine. It can be used for scalp massage, dry ends, or regular nourishing hair care.",
-    amount: "15 ml",
+    name: "Calm",
+    function: "Headache Comfort",
+    desc: "Relaxation, balance, and comfort",
     price: "27.90",
-    image: hairOil,
+    reviews: 76,
+    amount: "15 ml",
+    image: CalmOil,
   },
   {
     id: 12,
-    name: "Mood Harmony",
-    description:
-      "A gentle mood-support aroma blend made for calm and positive daily moments. It helps create a peaceful environment for rest, reflection, or quiet self-care.",
-    amount: "15 ml",
+    name: "Flexibility",
+    function: "Joint Comfort",
+    desc: "Better movement and joint comfort",
     price: "24.90",
-    image: StressRelief,
+    reviews: 120,
+    amount: "15 ml",
+    image: FlexibilityOil,
+  },
+  {
+    id: 13,
+    name: "Balance",
+    function: "Weight Management",
+    desc: "Support for a healthy lifestyle",
+    price: "24.90",
+    reviews: 120,
+    amount: "15 ml",
+    image: BalanceOil,
+  },
+  {
+    id: 14,
+    name: "Harmony",
+    function: "Digestive Wellness",
+    desc: "Stomach comfort and inner balance",
+    price: "21.90",
+    reviews: 120,
+    amount: "15 ml",
+    image: HarmonyOil,
+  },
+  {
+    id: 15,
+    name: "Passion",
+    function: "Men’s Vitality",
+    desc: "Confidence, energy, and connection",
+    price: "25.50",
+    reviews: 120,
+    amount: "15 ml",
+    image: PassionOil,
+  },
+  {
+    id: 16,
+    name: "Grace",
+    function: "Women’s Wellness",
+    desc: "Feminine balance and self-care",
+    price: "24.00",
+    reviews: 120,
+    amount: "15 ml",
+    image: GraceOil,
+  },
+  {
+    id: 17,
+    name: "Joy",
+    function: "Mood Enhancement",
+    desc: "Happiness, positivity, good mood",
+    price: "26.90",
+    reviews: 120,
+    amount: "15 ml",
+    image: JoyOil,
+  },
+  {
+    id: 18,
+    name: "Presence",
+    function: "Meditation & Spirituality",
+    desc: "Mindfulness, inner peace, spiritual focus",
+    price: "24.90",
+    reviews: 120,
+    amount: "15 ml",
+    image: PresenceOil,
+  },
+  {
+    id: 19,
+    name: "Vitality",
+    function: "Energy Boost",
+    desc: "Natural energy and motivation",
+    price: "24.90",
+    reviews: 120,
+    amount: "15 ml",
+    image: VitalityOil,
   },
 ];
 
@@ -133,6 +226,10 @@ function ProductDetails() {
 
   const product = products.find((item) => item.id === Number(id));
 
+  const addToCart = () => {
+    alert(`${product.name} added to cart`);
+  };
+
   if (!product) {
     return (
       <>
@@ -140,6 +237,7 @@ function ProductDetails() {
 
         <main className="page-shell detail-page">
           <h2>Product not found</h2>
+
           <Link to="/" className="back-link">
             Back to Shop
           </Link>
@@ -161,6 +259,16 @@ function ProductDetails() {
 
         <section className="detail-box">
           <div className="detail-image-box">
+            {product.badge && (
+              <span
+                className={`product-badge ${
+                  product.badge === "Popular" ? "purple" : "dark"
+                }`}
+              >
+                {product.badge}
+              </span>
+            )}
+
             <img src={product.image} alt={product.name} />
           </div>
 
@@ -169,7 +277,14 @@ function ProductDetails() {
 
             <h1>{product.name}</h1>
 
-            <p className="detail-description">{product.description}</p>
+            <small className="product-function">{product.function}</small>
+
+            <p className="detail-description">{product.desc}</p>
+
+            <div className="rating">
+              <span>★★★★★</span>
+              <small>({product.reviews})</small>
+            </div>
 
             <p className="detail-amount">
               <strong>Amount:</strong> {product.amount}
@@ -180,19 +295,22 @@ function ProductDetails() {
             <label className="quantity-label">
               Quantity
               <select defaultValue="1">
-                 {Array.from({ length: 20 }, (_, index) => {
-                   const value = index + 1;
+                {Array.from({ length: 20 }, (_, index) => {
+                  const value = index + 1;
 
-                   return (
-                     <option key={value} value={value}>
-                         {value} {value === 1 ? "bottle" : "bottles"}
-                      </option>
+                  return (
+                    <option key={value} value={value}>
+                      {value} {value === 1 ? "bottle" : "bottles"}
+                    </option>
                   );
-             })}
-             </select>
+                })}
+              </select>
             </label>
 
-            <button className="detail-cart">Add to Cart</button>
+            <button className="detail-cart" onClick={addToCart}>
+              <HiOutlineShoppingCart />
+              Add to Cart
+            </button>
           </div>
         </section>
       </main>

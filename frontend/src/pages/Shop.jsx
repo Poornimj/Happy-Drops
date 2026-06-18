@@ -9,52 +9,73 @@ import Footer from "../components/Footer.jsx"
 import { HiOutlineShoppingCart } from "react-icons/hi";
 
 import DriedLavenderHero from "../assets/images/DriedLavenderHero.jpeg";
-
-
-import SkinCare from "../assets/images/SkinDrynesses.png";
-import immunityOil from "../assets/images/VitalGuards.png";
-import painReliefOil from "../assets/images/JointEasses.png";
-import sleepOil from "../assets/images/TwilightDropss.png";
-import sleepSupportOil from "../assets/images/Cherishmoods.png";
-import stressOil from "../assets/images/HeadacheReliefs.png";
-import hairOil from "../assets/images/BoostHairGrowths.png";
 import SleepSupOil from "../assets/images/SleepSupOil.png";
-import SkinTightOil from "../assets/images/SkinTightnings.png";
-import SkinMoisture from "../assets/images/SkinMoistures.png";
-import AntiWrincle from "../assets/images/AntiWrincles.png";
-import StressRelief from "../assets/images/StressReliefs.png";
+ 
 
-// import Hover images
+import DewOil from "../assets/images/SkinMoistures.png";              
+import TimelessOil from "../assets/images/AntiWrincles.png";         
+import RadianceOil from "../assets/images/SkinTightnings.png";       
+import ReleaseOil from "../assets/images/StressReliefs.png";         
+import FlowOil from "../assets/images/WaistEasses.png";              
+import StrideOil from "../assets/images/JointEasses.png";            
+import PeaceOil from "../assets/images/SleepSupportOil.png";             
+import BloomOil from "../assets/images/BoostHairGrowths.png";        
+import ClarityOil from "../assets/images/TwilightDropss.png";        
+import NourishOil from "../assets/images/SkinDrynesses.png";         
+import CalmOil from "../assets/images/HeadacheReliefs.png";          
+import FlexibilityOil from "../assets/images/JointMoves.png";       
+import BalanceOil from "../assets/images/VitalGuards.png";           
+import HarmonyOil from "../assets/images/Cherishmoods.png";          
+import PassionOil from "../assets/images/MensEnergy.png";           
+import GraceOil from "../assets/images/FeminieBalance.png";            
+import JoyOil from "../assets/images/Joymoods.png";              
+import PresenceOil from "../assets/images/SpiritualFocus.png";       
+import VitalityOil from "../assets/images/EnergyGain.png";          
 
-import SkinCareHover from "../assets/images/SkinCaresHover.png";
-import immunityOilHover from "../assets/images/ImmunityOilHover.png";
-import painReliefOilHover from "../assets/images/JointEasesHover.png";
-import sleepOilHover from "../assets/images/TwilightDropssHover.png";
-import sleepSupportOilHover from "../assets/images/CherishmoodHover.png";
-import stressOilHover from "../assets/images/HeadacheReliefsHover.png";
-import hairOilHover from "../assets/images/BoostHairGrowthsHover.png";
-import SleepSupOilHover from "../assets/images/SleepSupOilHover.jpg";
-import SkinTightOilHover from "../assets/images/SkinTightningsHover.png";
-import SkinMoistureHover from "../assets/images/SkinMoisturesHover.png";
-import AntiWrincleHover from "../assets/images/AntiWrinclesHover.png";
-import StressReliefHover from "../assets/images/StressReliefsHover.png";
-import healthyhairHover from "../assets/images/healthyhairsHover.png";
+
+// Hover images 
+
+import DewOilHover from "../assets/images/SkinMoisturesHover.png"; 
+import TimelessOilHover from "../assets/images/AntiWrinclesHover.png";
+import RadianceOilHover from "../assets/images/SkinTightningsHover.png";
+import ReleaseOilHover from "../assets/images/StressReliefsHover.png";
+import FlowOilHover from "../assets/images/JointEasesHover.png";
+import StrideOilHover from "../assets/images/JointEasesHover.png";
+import PeaceOilHover from "../assets/images/SleepSupOilHover.jpg";
+import BloomOilHover from "../assets/images/BoostHairGrowthsHover.png";
+import ClarityOilHover from "../assets/images/TwilightDropssHover.png";
+import NourishOilHover from "../assets/images/SkinCaresHover.png";
+import CalmOilHover from "../assets/images/HeadacheReliefsHover.png";
+import FlexibilityOilHover from "../assets/images/JointEasesHover.png";
+import BalanceOilHover from "../assets/images/ImmunityOilHover.png";
+import HarmonyOilHover from "../assets/images/CherishmoodHover.png";
+import PassionOilHover from "../assets/images/ImmunityOilHover.png";
+import GraceOilHover from "../assets/images/CherishmoodHover.png";
+import JoyOilHover from "../assets/images/CherishmoodHover.png";
+import PresenceOilHover from "../assets/images/TwilightDropssHover.png";
+import VitalityOilHover from "../assets/images/ImmunityOilHover.png";
 
 
 const products = [
-  { id: 1, name: "Skin and Beauty", desc: "Radiant skin care", price: "24.90", badge: "Best Seller", reviews: 120 ,image: SkinCare ,hoverImage: SkinCareHover },
-  { id: 2, name: "Sleep and Relaxation", desc: "Calm mind and reduce stress", price: "29.90", badge: "Popular", reviews: 98, image: sleepOil , hoverImage: sleepOilHover },
-  { id: 3, name: "Hair Care", desc: "Nourishing hair care", price: "26.90", reviews: 76, image: hairOil , hoverImage: hairOilHover },
-  { id: 4, name: "Sleep Support", desc: "Deep restful sleep", price: "27.90", reviews: 120, image: sleepSupportOil , hoverImage: sleepSupportOilHover },
-  { id: 5, name: "Pain and relief", desc: "Soothing body relief", price: "22.00", reviews: 120, image: painReliefOil , hoverImage: painReliefOilHover },
-  { id: 6, name: "Boost Immunity", desc: "Immune defense support", price: "19.90", reviews: 120, image:immunityOil , hoverImage: immunityOilHover },
-  { id: 7, name: "Stress and Mood", desc: "Calm mood balance", price: "21.90", reviews: 120, image: stressOil , hoverImage: stressOilHover },
-  { id: 8, name: "Skin Tightening", desc: "Firm and youthful skin", price: "27.90", reviews: 120, image: SkinTightOil , hoverImage: SkinTightOilHover },
-  { id: 9, name: "Skin and Beauty", desc: "Soft skin glow", price: "22.90", reviews: 120, image: SkinMoisture , hoverImage: SkinMoistureHover },
-  { id: 10, name: "Anti Wrinkle Oil", desc: "Smooths skin", price: "25.90", reviews: 98, image: AntiWrincle , hoverImage: AntiWrincleHover },
-  { id: 11, name: "Hair Strength Oil", desc: "Strong healthy hair", price: "27.90", reviews: 76, image: hairOil , hoverImage: healthyhairHover },
-  { id: 12, name: "Mood Harmony", desc: "Calm positivity", price: "24.90", reviews: 120, image: StressRelief , hoverImage: StressReliefHover },
-
+  { id: 1, name: "Dew", function: "Skin Moisture", desc: "Fresh, soft, glowing, hydrated skin", price: "24.90", badge: "Best Seller", reviews: 120, image: DewOil, hoverImage: DewOilHover },
+  { id: 2, name: "Timeless", function: "Anti-Wrinkle", desc: "Beauty that stays graceful with age", price: "29.90", badge: "Popular", reviews: 98, image: TimelessOil, hoverImage: TimelessOilHover },
+  { id: 3, name: "Radiance", function: "Skin Tightening", desc: "Firm, young-looking, glowing skin", price: "26.90", reviews: 76, image: RadianceOil, hoverImage: RadianceOilHover },
+  { id: 4, name: "Release", function: "Neck & Shoulder Comfort", desc: "Let go of tension, stiffness, and stress", price: "27.90", reviews: 120, image: ReleaseOil, hoverImage: ReleaseOilHover },
+  { id: 5, name: "Flow", function: "Waist Comfort", desc: "Easy movement and body comfort", price: "22.00", reviews: 120, image: FlowOil, hoverImage: FlowOilHover },
+  { id: 6, name: "Stride", function: "Joint & Knee Support", desc: "Walk and move with confidence", price: "19.90", reviews: 120, image: StrideOil, hoverImage: StrideOilHover },
+  { id: 7, name: "Peace", function: "Sleep Like a Baby", desc: "Deep sleep, rest, and calm feeling", price: "21.90", reviews: 120, image: PeaceOil, hoverImage: PeaceOilHover },
+  { id: 8, name: "Bloom", function: "Hair Growth", desc: "Hair growth, health, and vitality", price: "27.90", reviews: 120, image: BloomOil, hoverImage: BloomOilHover },
+  { id: 9, name: "Clarity", function: "Concentration", desc: "Clear mind, focus, and sharp thinking", price: "22.90", reviews: 120, image: ClarityOil, hoverImage: ClarityOilHover },
+  { id: 10, name: "Nourish", function: "Dry Skin Relief", desc: "Deep care for dry skin", price: "25.90", reviews: 98, image: NourishOil, hoverImage: NourishOilHover },
+  { id: 11, name: "Calm", function: "Headache Comfort", desc: "Relaxation, balance, and comfort", price: "27.90", reviews: 76, image: CalmOil, hoverImage: CalmOilHover },
+  { id: 12, name: "Flexibility", function: "Joint Comfort", desc: "Better movement and joint comfort", price: "24.90", reviews: 120, image: FlexibilityOil, hoverImage: FlexibilityOilHover },
+  { id: 13, name: "Balance", function: "Weight Management", desc: "Support for a healthy lifestyle", price: "24.90", reviews: 120, image: BalanceOil, hoverImage: BalanceOilHover },
+  { id: 14, name: "Harmony", function: "Digestive Wellness", desc: "Stomach comfort and inner balance", price: "21.90", reviews: 120, image: HarmonyOil, hoverImage: HarmonyOilHover },
+  { id: 15, name: "Passion", function: "Men’s Vitality", desc: "Confidence, energy, and connection", price: "25.50", reviews: 120, image: PassionOil, hoverImage: PassionOilHover },
+  { id: 16, name: "Grace", function: "Women’s Wellness", desc: "Feminine balance and self-care", price: "24.00", reviews: 120, image: GraceOil, hoverImage: GraceOilHover },
+  { id: 17, name: "Joy", function: "Mood Enhancement", desc: "Happiness, positivity, good mood", price: "26.90", reviews: 120, image: JoyOil, hoverImage: JoyOilHover },
+  { id: 18, name: "Presence", function: "Meditation & Spirituality", desc: "Mindfulness, inner peace, spiritual focus", price: "24.90", reviews: 120, image: PresenceOil, hoverImage: PresenceOilHover },
+  { id: 19, name: "Vitality", function: "Energy Boost", desc: "Natural energy and motivation", price: "24.90", reviews: 120, image: VitalityOil, hoverImage: VitalityOilHover },
 ];
 
 function Shop() {
@@ -151,6 +172,10 @@ function Shop() {
 
               <div className="product-info">
                 <h3>{product.name}</h3>
+                
+                <small className="product-function">
+                  {product.function}
+                </small>
                 <p>{product.desc}</p>
                 <div className="rating">
                   <span>★★★★★</span>
