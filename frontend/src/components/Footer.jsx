@@ -30,8 +30,8 @@ function Footer() {
 
       <div className="footer-column">
         <h3>My Account</h3>
-        <a href="/signup">Login / Register</a>
-        <a href="/signup">My Profile</a>
+        <a href="/login">Login / Register</a>
+        <a href="/login">My Profile</a>
         <a href="/wishlist">Wishlist</a>
         <a href="/track-order">Track Order</a>
       </div>

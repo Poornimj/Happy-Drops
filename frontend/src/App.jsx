@@ -9,6 +9,7 @@ import {
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WellnessAssessment from "./components/WellnessAssessment";
+import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
 import AboutUs from "./pages/AboutUs";
@@ -80,6 +81,7 @@ function AppShell() {
         <Route path="/" element={<Welcome />} />
         <Route path="/wellness-assessment" element={<WellnessAssessment />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/knowledge" element={<Knowledge />} />
         <Route path="/workshops" element={<Workshops />} />
