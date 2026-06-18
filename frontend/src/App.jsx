@@ -16,6 +16,7 @@ import AboutUs from "./pages/AboutUs";
 import Knowledge from "./pages/Knowledge";
 import Workshops from "./pages/workshops";
 import Supplier from "./pages/Supplier";
+import Checkout from "./pages/Checkout";
 
 const simplePages = {
   "/shop": {
@@ -83,6 +84,7 @@ function AppShell() {
         <Route path="/workshops" element={<Workshops />} />
         <Route path="/supplier" element={<Supplier />} />
         <Route path="/suppliers" element={<Supplier />} />
+        <Route path="/checkout" element={<Checkout />} />
         {Object.entries(simplePages).map(([path, page]) => (
           <Route key={path} path={path} element={<SimpleRoutePage {...page} />} />
         ))}

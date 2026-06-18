@@ -108,10 +108,29 @@
 }
 
 .product-card p {
-  margin-bottom: 16px;
+  margin-bottom: 9px;
   font-size: 13px;
   color: #8b8b8b;
   line-height: 1.4;
+}
+
+.product-price {
+  display: block;
+  color: #315c38;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.product-buy-action {
+  margin: 12px 16px 17px;
+  min-height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #edf3e9;
+  color: #315c38;
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .products-btn {
