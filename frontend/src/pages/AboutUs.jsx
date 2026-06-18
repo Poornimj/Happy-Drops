@@ -6,6 +6,7 @@ import growingHarvestImage from "../assets/images/happy-drops-growing-harvest.jp
 import ourStoryHomeWellnessImage from "../assets/images/happy-drops-our-story-home-wellness.png";
 import happyDropsLogo from "../assets/images/happy-drops-logo.jpeg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import "./AboutUs.css";
@@ -472,7 +473,9 @@ function AboutUs() {
             fits their needs, combined with holistic lifestyle practices that
             support their physical, emotional, and mental well-being goals.
           </p>
-          <a href="#" className="primary-action">Create Your Wellness Profile</a>
+          <Link to="/signup" className="primary-action">
+            Create Your Wellness Profile
+          </Link>
         </div>
         <img src={confirmedBottle} alt="Happy Drops Anti Wrinkle bottle" />
       </section>
