@@ -15,6 +15,7 @@ import Welcome from "./pages/Welcome";
 import AboutUs from "./pages/AboutUs";
 import Knowledge from "./pages/Knowledge";
 import Workshops from "./pages/workshops";
+import Supplier from "./pages/Supplier";
 
 const simplePages = {
   "/shop": {
@@ -26,11 +27,6 @@ const simplePages = {
     kicker: "Expert Guidance",
     title: "Therapists",
     text: "Connect with wellness professionals who support natural, practical care.",
-  },
-  "/suppliers": {
-    kicker: "Trusted Partners",
-    title: "Suppliers",
-    text: "Learn about the partners who help us bring nature-powered wellness to more families.",
   },
   "/shipping-delivery": {
     kicker: "Customer Care",
@@ -85,6 +81,8 @@ function AppShell() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/knowledge" element={<Knowledge />} />
         <Route path="/workshops" element={<Workshops />} />
+        <Route path="/supplier" element={<Supplier />} />
+        <Route path="/suppliers" element={<Supplier />} />
         {Object.entries(simplePages).map(([path, page]) => (
           <Route key={path} path={path} element={<SimpleRoutePage {...page} />} />
         ))}
