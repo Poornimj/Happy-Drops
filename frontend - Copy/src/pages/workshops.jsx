@@ -8,6 +8,8 @@ import {
   LuShieldCheck,
   LuSoup,
 } from "react-icons/lu";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import workshopHeader from "../assets/images/workshop-header.png";
 import workshopEssentialOil from "../assets/images/workshops-essential-oil.png";
 import workshopSummaryImage from "../assets/images/workshop-summary-image.png";
@@ -29,13 +31,13 @@ const workshops = [
   },
   {
     title: "Special Event Workshop",
-    text: "A memorable and fun experience for birthdays, bachelor parties, anniversaries and special occasions.",
+    text: "A personalized wellness experience for birthdays, celebrations, family gatherings, and special occasions.",
     icon: LuCalendarHeart,
     color: "rose",
   },
   {
     title: "Business Wellness Workshop",
-    text: "Wellness activities designed for business meetings, team building days, and workplace wellbeing.",
+    text: "Wellness activities designed for business meetings, team days, and workplace wellbeing.",
     icon: LuBriefcaseBusiness,
     color: "gold",
   },
@@ -83,6 +85,8 @@ export default function Workshops() {
 
   return (
     <div className="workshop-page">
+      <Navbar />
+
       <main className="workshop-main">
         <section className="workshop-header">
           <img
@@ -256,34 +260,20 @@ export default function Workshops() {
                       Select Time
                     </option>
                     <option>9:00 AM - 11:00 AM</option>
-                    <option>11:00 AM - 1:00 PM</option>
-                    <option>1:00 PM - 3:00 PM</option>
+                    <option>12:00 PM - 2:00 PM</option>
                     <option>3:00 PM - 5:00 PM</option>
-                    <option>5:00 PM - 7:00 PM</option>
-                    <option>7:00 PM - 9:00 PM</option>
+                    <option>6:00 PM - 8:00 PM</option>
                   </select>
                 </label>
 
                 <label>
                   <span>Location</span>
-                  <select defaultValue="">
-                    <option value="" disabled>
-                      Select Location
-                    </option>
-                    <option>Rautatiekatu 16A, Kamppi</option>
-                    <option>Pilvijärventie 50 C, Kirkkonummi</option>
-                    <option>
-                      Villa Stenberg, Suoniementaival 164, 08350 Lohja
-                    </option>
-                    <option>
-                      XR Center, Hämeentie 135 A, 00560 Helsinki
-                    </option>
-                  </select>
+                  <input type="text" placeholder="Enter workshop location" />
                 </label>
 
                 <label>
                   <span>Notes (Optional)</span>
-                  <textarea placeholder="Special requests, food and drinks, event details, accessibility needs..." />
+                  <textarea placeholder="Special requests, event details, accessibility needs..." />
                 </label>
               </div>
 
@@ -293,7 +283,7 @@ export default function Workshops() {
               </p>
 
               <button className="workshop-pay-btn" type="button">
-                Request for Workshops
+                Pay
               </button>
             </form>
 
@@ -350,11 +340,13 @@ export default function Workshops() {
               ×
             </button>
 
+            <h3 id="workshop-sheet-title">{openWorkshopSheet.title}</h3>
             <img src={openWorkshopSheet.sheet} alt={`${openWorkshopSheet.title} information sheet`} />
           </div>
         </div>
       )}
 
+      <Footer />
     </div>
   );
 }
