@@ -2,6 +2,7 @@ import "./CTASection.css";
 import ctaImage from "../assets/images/CTAbanner.jpg";
 import { useState } from "react";
 import WellnessAssessmentModal from "./WellnessAssessmentModal";
+import { HeartPulse, CalendarDays } from "lucide-react";
 
 function CTASection() {
   const [showAssessment, setShowAssessment] = useState(false);
@@ -32,11 +33,13 @@ function CTASection() {
 
         <div className="cta-buttons">
           <button className="recommend-btn" onClick={handleAssessmentClick}>
-            🌿 Free Health Assessment
+            <span className="icon-wrapper"><HeartPulse size={16} /></span>
+            Free Health Assessment
           </button>
 
           <button className="workshop-btn">
-            👜 Book a Workshop
+            <span className="icon-wrapper"><CalendarDays size={16} /></span>
+            Book a Workshop
           </button>
         </div>
       </section>

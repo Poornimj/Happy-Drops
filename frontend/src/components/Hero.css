@@ -18,22 +18,25 @@
 
 .hero::after {
   content: '';
+
   position: absolute;
-  top: -410px;
-  right: -0.6px;
-  width: 60%;
-  height: 200%;
- 
+  top: 0;
+  right: 0;
+
+  width: 52%;
+  height: 100%;
 
   background-image: url('../assets/images/welcome-header.png');
   background-repeat: no-repeat;
   background-position: center right;
-  background-size: auto 50%;
-  opacity: 0.75;
-  transform: translateY(100px); /* Moves image down */
+  background-size: cover;
+
+  opacity: 1;
+
   z-index: 0;
   pointer-events: none;
 }
+
 .welcome-header-decoration-right {
   position: absolute;
   top: 35px;
@@ -82,17 +85,26 @@
 
 .hero::before {
   content: '';
+
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle at 20% 80%,
-    rgba(212, 196, 225, 0.15) 0%,
-    transparent 50%
+  top: 0;
+  right: 0;
+
+  width: 62%;
+  height: 100%;
+
+  z-index: 1;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to right,
+    #F4E4D5 0%,
+    rgba(244,228,213,0.98) 10%,
+    rgba(244,228,213,0.90) 22%,
+    rgba(244,228,213,0.65) 38%,
+    rgba(244,228,213,0.25) 58%,
+    rgba(244,228,213,0) 78%
   );
-  animation: float 8s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -245,6 +257,9 @@
   letter-spacing: 0.3px;
   min-width: 200px;
   font-family: 'Jura', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .primary-btn::before {
@@ -283,6 +298,9 @@
   letter-spacing: 0.3px;
   min-width: 200px;
   font-family: 'Jura', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .secondary-btn:hover {

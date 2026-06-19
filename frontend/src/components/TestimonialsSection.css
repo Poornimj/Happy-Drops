@@ -3,7 +3,8 @@
   background: linear-gradient(180deg, #f5eff9 0%, #f0e8f5 100%);
   text-align: center;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 0;
 }
 
 .white2-decoration {
@@ -106,6 +107,9 @@
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
 }
 
 .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
@@ -408,6 +412,7 @@
   align-items: center;
   gap: 12px;
   margin-top: 18px;
+  position: relative;
 }
 
 .user-info img {
@@ -418,32 +423,232 @@
   transition: border-color 0.3s ease;
 }
 
-.testimonial-card:hover .user-info img {
-  border-color: rgba(212, 196, 225, 0.5);
+/* ==================================
+   REVIEWER HOVER CARD
+================================== */
+
+.profile-card {
+  position: absolute;
+  width: 320px;
+
+  
+  background: linear-gradient(
+    135deg,
+  rgba(232, 219, 236, 0.95)10%,
+  rgba(155, 124, 172, 0.747)100%
+  /*rgba(169, 198, 166, 0.9)100%*/
+  );
+  
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255,255,255,0.4);
+
+  border-radius: 24px;
+  padding: 18px;
+
+  z-index: 9999;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08),
+    0 0 25px rgba(212,196,225,0.45),
+    0 0 60px rgba(212,196,225,0.20);
+
+  animation: profileCardIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: top left;
+  will-change: opacity, transform;
+
 }
 
-.user-info span {
+.profile-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  border-radius: 24px;
+
+  border: 1px solid rgba(255,255,255,0.35);
+
+  pointer-events: none;
+}
+.profile-card::after {
+  content: "✦";
+  position: absolute;
+
+  top: 14px;
+  right: 20px;
+
+  font-size: 14px;
+  color: rgba(230, 211, 163, 0.95);
+
+  text-shadow:
+     -18px 8px 0 rgba(230, 211, 163, 0.85),
+    -8px 20px 0 rgba(230, 211, 163, 0.75);
+
+  pointer-events: none;
+}
+
+.profile-card::after {
+  animation: sparkleGlow 4s ease-in-out infinite;
+}
+
+@keyframes sparkleGlow {
+  0%,100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.card-likes {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #7A9B63;
+
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.card-likes svg {
+  font-size: 18px;
+}
+
+
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.card-profile-image {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.7);
+  flex-shrink: 0;
+}
+
+.card-info {
+  display: flex;
+  gap: 2px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card-name {
+  color: #31533b;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.card-rating-text {
+  color: #31533b;
   font-weight: 600;
-  color: #1f2937;
+}
+
+.card-stars {
+  font-size: 16px;
+}
+
+.card-rating-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #31533b;
+}
+
+.card-body {
+  margin-bottom: 18px;
+}
+
+.card-review {
+  margin: 0;
+  padding: 18px;
+
+  background: rgba(255, 255, 255, 0.897);
+
+  border-left: 4px solid #7A9B63;
+
+  border-radius: 14px;
+
+  font-style: italic;
+
+  font-family: Georgia, serif;
+
+  color: #4d6a54;
+
+  line-height: 1.7;
+
+  text-align: left;
+
   font-size: 15px;
 }
 
-.user-info {
-  cursor: pointer;
-  transition: all 0.3s ease;
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.card-likes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 10px;
+
+  color: #80966f;
+
+  font-size: 12px;
+  font-weight: 500;
 }
 
-.user-info:hover {
+.card-likes svg {
+  font-size: 12px;
+}
+
+.card-cta {
+  flex: none;
+
+  height: 32px;
+
+  width: 220px;
+
+  border: none;
+
+  background: rgba(255, 255, 255, 0.546);
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  color: #31533b;
+
+  font-weight: 500;
+
+  font-size: 14px;
+
+  padding: 0 16px;
+
+  margin-left: 5px;
+
+  transition: all 0.25s ease;
+}
+
+.card-cta:hover {
   transform: translateY(-2px);
-}
 
-.profile-name {
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 
-.profile-name:hover {
-  color: #6e8b57;
+  background: #ffffff;
 }
 
 /* ===========================

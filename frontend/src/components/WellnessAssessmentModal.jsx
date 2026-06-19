@@ -1,13 +1,31 @@
 import "./WellnessAssessmentModal.css";
 import { useState, useEffect } from "react";
-import newlogo from "../assets/images/newlogo.jpeg";
+import newlogo from "../assets/images/drop.png";
+import { 
+  Apple, 
+  Leaf, 
+  Activity, 
+  Zap, 
+  Moon, 
+  Brain, 
+  Sprout, 
+  Heart, 
+  Sparkles, 
+  Target, 
+  Users, 
+  Recycle, 
+  Handshake, 
+  FlaskConical,
+  X,
+  Check,
+  ChevronRight
+} from "lucide-react";
 
 function WellnessAssessmentModal({ isOpen, onClose }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [isComplete, setIsComplete] = useState(false);
   const [validationError, setValidationError] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false);
 
   // Load saved progress from localStorage (hostname-agnostic key)
   useEffect(() => {
@@ -168,7 +186,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
       {
         id: 1,
         name: "Nutrition",
-        icon: "🥗",
+        icon: <Apple size={20} color="var(--gold)" />,
         questions: [
           "I eat a healthy, nutrient-rich diet that's high in whole foods and low in ultra-processed foods.",
           "I'm mindful of my portions. I eat when I'm hungry and stop when I'm full. I avoid snacking between meals.",
@@ -179,7 +197,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
       {
         id: 2,
         name: "Digestion",
-        icon: "🌿",
+        icon: <Leaf size={20} color="var(--gold)" />,
         questions: [
           "I'm free from digestive discomfort.",
           "I don't struggle with food sensitivities.",
@@ -190,7 +208,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
       {
         id: 3,
         name: "Movement",
-        icon: "🏃",
+        icon: <Activity size={20} color="var(--gold)" />,
         questions: [
           "I'm physically active, getting at least two hours of moderately intense activity or an hour of vigorous activity per week.",
           "I do at least two days of muscle strengthening per week.",
@@ -201,7 +219,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
       {
         id: 4,
         name: "Metabolism",
-        icon: "⚡",
+        icon: <Zap size={20} color="var(--gold)" />,
         questions: [
           "I have good energy during the day.",
           "I use smart supplementation to complement targeted metabolic health effects.",
@@ -212,7 +230,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
       {
         id: 5,
         name: "Rest",
-        icon: "😴",
+        icon: <Moon size={20} color="var(--gold)" />,
         questions: [
           "I'm getting enough sleep to feel rested and alert the next day.",
           "I have good sleep hygiene practices.",
@@ -223,7 +241,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
       {
         id: 6,
         name: "Manage Stress",
-        icon: "🧘",
+        icon: <Brain size={20} color="var(--gold)" />,
         questions: [
           "I know my main sources of stress and I have adequate resources to manage them.",
           "I have self-care strategies and use them.",
@@ -234,7 +252,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
       {
         id: 7,
         name: "Reduce Toxic Burden",
-        icon: "🌱",
+        icon: <Sprout size={20} color="var(--gold)" />,
         questions: [
           "I'm familiar with environmental toxins and ways to avoid them.",
           "I use non-toxic eco-friendly products at home.",
@@ -245,7 +263,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
       {
         id: 8,
         name: "Informed Self-Care",
-        icon: "💚",
+        icon: <Heart size={20} color="var(--gold)" />,
         questions: [
           "I educate myself on proactive wellness habits.",
           "I continuously support my immune function.",
@@ -264,17 +282,13 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
   ];
 
   const benefits = [
-    { icon: "✨", title: "Personalized Recommendations" },
-    { icon: "🎯", title: "Expert Guidance" },
-    { icon: "🌿", title: "Natural Solutions" },
-    { icon: "👨‍👩‍👧‍👦", title: "Family Wellness Support" },
   ];
 
   const statusBadges = [
-    { icon: "🌱", text: "100% Pure & Tested" },
-    { icon: "♻️", text: "Sustainable Sourcing" },
-    { icon: "🤝", text: "Ethically Made" },
-    { icon: "🔬", text: "Nature + Science" },
+    { icon: <Sprout size={16} color="var(--gold)" />, text: "100% Pure & Tested" },
+    { icon: <Recycle size={16} color="var(--gold)" />, text: "Sustainable Sourcing" },
+    { icon: <Handshake size={16} color="var(--gold)" />, text: "Ethically Made" },
+    { icon: <FlaskConical size={16} color="var(--gold)" />, text: "Nature + Science" },
   ];
 
   const handlePrevious = () => {
@@ -297,24 +311,15 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
       setValidationError(true);
       return;
     }
-    
+
     setValidationError(false);
-    
+
     if (currentStep < assessmentData.categories.length) {
       setCurrentStep(currentStep + 1);
     } else {
-      // Show confirmation dialog on final step
-      setShowConfirmation(true);
+      // Directly complete assessment on final step
+      setIsComplete(true);
     }
-  };
-
-  const handleConfirmComplete = () => {
-    setShowConfirmation(false);
-    setIsComplete(true);
-  };
-
-  const handleCancelComplete = () => {
-    setShowConfirmation(false);
   };
 
   const handleSidebarNavigation = (categoryId) => {
@@ -348,7 +353,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
           <div className="header-left">
 
             <div className="header-icon-container">
-              <span className="header-icon">🌿</span>
+              <span className="header-icon"><Leaf size={28} color="var(--gold)" /></span>
             </div>
 
             <div className="header-text">
@@ -367,7 +372,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
             className="close-button"
             onClick={onClose}
           >
-            <span className="close-icon">✕</span>
+            <span className="close-icon"><X size={20} color="var(--gold)" /></span>
           </button>
 
         </div>
@@ -379,7 +384,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
           <div className="completion-page">
 
             <div className="completion-icon">
-              ✨
+              <Sparkles size={32} color="var(--gold)" />
             </div>
 
             <h2>
@@ -417,7 +422,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
                     key={category.id}
                     className="completion-card"
                   >
-                    <span>{category.icon}</span>
+                    <div className="category-icon-wrapper">{category.icon}</div>
 
                     <h4>{category.name}</h4>
 
@@ -454,7 +459,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
                 <div className="insights-list">
                   {generateInsights().map((insight, index) => (
                     <div key={index} className="insight-card">
-                      <span className="insight-icon">{insight.icon}</span>
+                      <div className="insight-icon-wrapper">{insight.icon}</div>
                       <div className="insight-content">
                         <h4>{insight.category}</h4>
                         <p>{insight.recommendation}</p>
@@ -515,9 +520,9 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
                             canNavigate && handleSidebarNavigation(category.id)
                           }
                         >
-                          <span className="sidebar-icon">
+                          <div className="sidebar-icon-wrapper">
                             {category.icon}
-                          </span>
+                          </div>
 
                           <span className="sidebar-text">
                             {category.name}
@@ -525,7 +530,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
 
                           {isCompleted && (
                             <span className="checkmark">
-                              ✓
+                              <Check size={16} color="var(--gold)" />
                             </span>
                           )}
 
@@ -560,9 +565,9 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
 
                 <div className="question-header">
 
-                  <span className="question-icon">
+                  <div className="question-icon-wrapper">
                     {currentCategory.icon}
-                  </span>
+                  </div>
 
                   <h2 className="question-title">
                     {currentCategory.name}
@@ -609,29 +614,27 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
                                     ? "selected"
                                     : ""
                                 }`}
-                                onClick={() =>
-                                  setSelectedAnswers({
-                                    ...selectedAnswers,
-                                    [`${currentStep}-${index}`]:
-                                      option.value,
-                                  })
-                                }
+                                onClick={() => {
+                                  const currentAnswer = selectedAnswers[`${currentStep}-${index}`];
+                                  if (currentAnswer === option.value) {
+                                    setSelectedAnswers({
+                                      ...selectedAnswers,
+                                      [`${currentStep}-${index}`]: undefined,
+                                    });
+                                  } else {
+                                    setSelectedAnswers({
+                                      ...selectedAnswers,
+                                      [`${currentStep}-${index}`]:
+                                        option.value,
+                                    });
+                                  }
+                                }}
                               >
-                                <span className="answer-value">
-                                  {option.value}
-                                </span>
 
                                 <span className="answer-label">
                                   {option.label}
                                 </span>
 
-                                {selectedAnswers[
-                                  `${currentStep}-${index}`
-                                ] === option.value && (
-                                  <span className="answer-check">
-                                    ✓
-                                  </span>
-                                )}
                               </button>
                             )
                           )}
@@ -661,7 +664,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
                   Why This Matters
                 </h3>
 
-                <p className="info-description">
+                <p className="info-description custom-font">
                   Your responses help us understand
                   your current lifestyle and identify
                   opportunities to improve wellbeing,
@@ -676,9 +679,9 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
                       key={index}
                       className="benefit-item"
                     >
-                      <span className="benefit-icon">
+                      <div className="benefit-icon-wrapper">
                         {benefit.icon}
-                      </span>
+                      </div>
 
                       <span className="benefit-text">
                         {benefit.title}
@@ -733,37 +736,10 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
                 {currentStep !==
                   assessmentData.categories.length && (
                   <span className="arrow-icon">
-                    →
+                    <ChevronRight size={16} color="var(--gold)" />
                   </span>
                 )}
               </button>
-
-              {/* Confirmation Dialog */}
-              {showConfirmation && (
-                <div className="confirmation-dialog">
-                  <div className="confirmation-content">
-                    <h3>Complete Assessment?</h3>
-                    <p>
-                      Are you sure you want to complete your wellness assessment? 
-                      Once completed, you'll be able to view your personalized wellness recommendations.
-                    </p>
-                    <div className="confirmation-buttons">
-                      <button 
-                        className="confirm-cancel"
-                        onClick={handleCancelComplete}
-                      >
-                        Go Back
-                      </button>
-                      <button 
-                        className="confirm-submit"
-                        onClick={handleConfirmComplete}
-                      >
-                        Complete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
 
             </div>
 
@@ -776,9 +752,9 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
                   key={index}
                   className="status-badge"
                 >
-                  <span className="badge-icon">
+                  <div className="badge-icon-wrapper">
                     {badge.icon}
-                  </span>
+                  </div>
 
                   <span className="badge-text">
                     {badge.text}

@@ -1,6 +1,6 @@
 import "./TestimonialsSection.css";
-import { FaChevronLeft, FaChevronRight, FaTimes, FaMapMarkerAlt, FaCalendarAlt, FaHeart } from "react-icons/fa";
-import { useState } from "react";
+import { FaChevronLeft, FaChevronRight, FaHeart } from "react-icons/fa";
+import { useState, useRef, useEffect } from "react";
 import white2Decoration from "../assets/images/white2.png";
 
 function TestimonialsSection() {
@@ -66,8 +66,30 @@ function TestimonialsSection() {
   const [direction, setDirection] = useState("next");
   const [isAnimating, setIsAnimating] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState(null);
-  const [showPopup, setShowPopup] = useState(false);
+  const [showCard, setShowCard] = useState(false);
+  const [hoveredReviewKey, setHoveredReviewKey] = useState(null);
+  const [cardPosition, setCardPosition] = useState({ top: 0, left: 0 });
+  const hoverTimerRef = useRef(null);
+  const sectionRef = useRef(null);
   const testimonialsPerPage = 3;
+
+  const clearHoverTimer = () => {
+    if (hoverTimerRef.current) {
+      clearTimeout(hoverTimerRef.current);
+      hoverTimerRef.current = null;
+    }
+  };
+
+  const closeProfileCard = () => {
+    setShowCard(false);
+    setSelectedProfile(null);
+    setHoveredReviewKey(null);
+  };
+
+  const scheduleCloseProfileCard = () => {
+    clearHoverTimer();
+    hoverTimerRef.current = window.setTimeout(closeProfileCard, 120);
+  };
 
   const handlePrev = () => {
     if (isAnimating) return;
@@ -89,21 +111,71 @@ function TestimonialsSection() {
     });
   };
 
-  const handleProfileClick = (testimonial, event) => {
-    event.stopPropagation();
+  const handleProfileEnter = (testimonial, reviewKey, event) => {
+    clearHoverTimer();
     setSelectedProfile(testimonial);
-    setShowPopup(true);
+    setHoveredReviewKey(reviewKey);
+
+    const triggerRect = event.currentTarget.getBoundingClientRect();
+    const sectionRect = sectionRef.current?.getBoundingClientRect();
+    const cardWidth = 320;
+    const cardHeight = 280;
+    const spacing = 12;
+
+    if (sectionRect) {
+      const availableBelow = sectionRect.bottom - triggerRect.bottom;
+      const availableAbove = triggerRect.top - sectionRect.top;
+      const placement = availableBelow >= cardHeight + spacing
+        ? "below"
+        : availableAbove >= cardHeight + spacing
+          ? "above"
+          : availableBelow >= availableAbove
+            ? "below"
+            : "above";
+
+      const triggerLeft = triggerRect.left - sectionRect.left;
+      const triggerRight = triggerRect.right - sectionRect.left;
+      const spaceRight = sectionRect.width - triggerLeft;
+      const spaceLeft = triggerRight;
+      const alignRight = spaceRight < cardWidth && spaceLeft >= cardWidth;
+
+      const top = placement === "below"
+        ? Math.min(sectionRect.height - cardHeight - spacing, triggerRect.bottom - sectionRect.top + spacing)
+        : Math.max(spacing, triggerRect.top - sectionRect.top - cardHeight - spacing);
+
+      const left = alignRight
+        ? Math.max(0, Math.min(sectionRect.width - cardWidth, triggerRight - cardWidth))
+        : Math.max(0, Math.min(sectionRect.width - cardWidth, triggerLeft));
+
+      setCardPosition({ top, left });
+    }
+
+    setShowCard(true);
   };
 
-  const closePopup = () => {
-    setShowPopup(false);
-    setSelectedProfile(null);
+  const handleProfileLeave = () => {
+    scheduleCloseProfileCard();
   };
+
+  const handleCardEnter = () => {
+    clearHoverTimer();
+    setShowCard(true);
+  };
+
+  const handleCardLeave = () => {
+    scheduleCloseProfileCard();
+  };
+
+  useEffect(() => {
+    return () => {
+      clearHoverTimer();
+    };
+  }, []);
 
   const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + testimonialsPerPage);
 
   return (
-    <section className="testimonials">
+    <section className="testimonials" ref={sectionRef}>
       <img src={white2Decoration} alt="White2 decoration" className="white2-decoration" />
       <h2>Loved by Our Community</h2>
 
@@ -113,23 +185,29 @@ function TestimonialsSection() {
         </button>
 
         <div className="testimonial-grid">
-          {visibleTestimonials.map((item, index) => (
-            <div
-              className={`testimonial-card ${direction === 'next' ? 'slide-fade-left' : 'slide-fade-right'}`}
-              key={`${currentIndex}-${index}`}
-              onAnimationEnd={() => setIsAnimating(false)}
-            >
-              <div className="stars">★★★★★</div>
+          {visibleTestimonials.map((item, index) => {
+            const reviewKey = `${currentIndex}-${index}`;
+            return (
+              <div
+                className={`testimonial-card ${direction === 'next' ? 'slide-fade-left' : 'slide-fade-right'}`}
+                key={reviewKey}
+                onAnimationEnd={() => setIsAnimating(false)}
+              >
+                <div className="stars">★★★★★</div>
 
-              <p>{item.review}</p>
+                <p>{item.review}</p>
 
-              <div className="user-info" onClick={(e) => handleProfileClick(item, e)}>
-                <img src={item.image} alt={item.name} />
-
-                <span className="profile-name">{item.name}</span>
+                <div
+                  className="user-info"
+                  onMouseEnter={(e) => handleProfileEnter(item, reviewKey, e)}
+                  onMouseLeave={handleProfileLeave}
+                >
+                  <img src={item.image} alt={item.name} />
+                  <span className="profile-name">{item.name}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <button className="nav-btn" onClick={handleNext}>
@@ -137,59 +215,35 @@ function TestimonialsSection() {
         </button>
       </div>
 
-      {showPopup && selectedProfile && (
-        <div className="profile-popup-overlay" onClick={closePopup}>
-          <div className="profile-popup" onClick={(e) => e.stopPropagation()}>
-            <div className="botanical-decoration top-left"></div>
-            <div className="botanical-decoration top-right"></div>
-            <div className="botanical-decoration bottom-left"></div>
-            <div className="botanical-decoration bottom-right"></div>
-            <button className="popup-close-btn" onClick={closePopup}>
-              <FaTimes />
-            </button>
-            <div className="popup-header">
-              <img src={selectedProfile.image} alt={selectedProfile.name} className="popup-profile-image" />
-              <h3 className="popup-name">{selectedProfile.name}</h3>
-              <div className="popup-rating">
-                <div className="rating-stars">⭐⭐⭐⭐⭐</div>
-                <span className="rating-text">4.9 Community Rating</span>
+      {showCard && selectedProfile && (
+        <div
+          className="profile-card"
+          style={{
+            top: cardPosition.top,
+            left: cardPosition.left
+          }}
+          onMouseEnter={handleCardEnter}
+          onMouseLeave={handleCardLeave}
+        >
+          <div className="card-header">
+            <img src={selectedProfile.image} alt={selectedProfile.name} className="card-profile-image" />
+            <div className="card-info">
+              <h3 className="card-name">{selectedProfile.name}</h3>
+              <div className="card-rating">
+                <span className="card-stars">⭐</span>
+                <span className="card-rating-text">4.9</span>
               </div>
             </div>
-            <div className="popup-body">
-              <div className="popup-quote">
-                "{selectedProfile.review}"
-              </div>
-              <div className="popup-details">
-                {selectedProfile.location && (
-                  <div className="popup-detail-item">
-                    <FaMapMarkerAlt className="detail-icon" />
-                    <span>{selectedProfile.location}</span>
-                  </div>
-                )}
-                {selectedProfile.memberSince && (
-                  <div className="popup-detail-item">
-                    <FaCalendarAlt className="detail-icon" />
-                    <span>Member since {selectedProfile.memberSince}</span>
-                  </div>
-                )}
-                {selectedProfile.workshopsAttended && (
-                  <div className="popup-detail-item">
-                    <FaHeart className="detail-icon" />
-                    <span>{selectedProfile.workshopsAttended} workshops attended</span>
-                  </div>
-                )}
-              </div>
-              {selectedProfile.wellnessInterests && selectedProfile.wellnessInterests.length > 0 && (
-                <div className="popup-interests">
-                  <h4>Wellness Interests</h4>
-                  <div className="interests-tags">
-                    {selectedProfile.wellnessInterests.map((interest, idx) => (
-                      <span key={idx} className="interest-tag">{interest}</span>
-                    ))}
-                  </div>
-                </div>
-              )}
+          </div>
+          <div className="card-body">
+            <p className="card-review">"{selectedProfile.review}"</p>
+          </div>
+          <div className="card-footer">
+            <div className="card-likes">
+              <FaHeart />
+              <span>24</span>
             </div>
+            <button className="card-cta">View Profile</button>
           </div>
         </div>
       )}

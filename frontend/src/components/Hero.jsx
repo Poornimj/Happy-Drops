@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import WellnessAssessmentModal from "./WellnessAssessmentModal";
 import LavenderParticles from "./LavenderParticles";
+import { HeartPulse, CalendarDays, ShoppingBag } from "lucide-react";
 
 function Hero() {
   const [particlesActive] = useState(true);
@@ -46,15 +47,18 @@ function Hero() {
               className="primary-btn"
               onClick={handleAssessmentClick}
             >
-              🌿 Free Health Assessment
+              <HeartPulse size={18} />
+              Free Health Assessment
             </button>
 
             <button className="secondary-btn">
-              👜 Book a Workshop
+              <CalendarDays size={18} />
+              Book a Workshop
             </button>
 
             <button className="secondary-btn">
-              🛍️ Explore Products
+              <ShoppingBag size={18} />
+              Explore Products
             </button>
 
           </div>
