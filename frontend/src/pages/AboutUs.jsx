@@ -200,9 +200,9 @@ const storyJourney = [
   {
     time: "The first ritual",
     title: "A calmer evening",
-    text: "She began with a diffuser before bedtime. A few calming drops became a peaceful evening ritual.",
+    text: "She began with a diffuser in the evening, It make her sleep better and less emotion up and down.",
     detail:
-      "From there, she explored oils for daily wellness, skin care, and seasonal support through simple habits that fit real life.",
+      "From there, she started her journey to learn about essential oil and changed all her DIOR face cream into essential oil and rose water. The miracle showed up after three months, the pigment is gone and less wrinkle.",
   },
   {
     time: "A turning point",
@@ -229,28 +229,28 @@ const storyJourney = [
 
 const philosophyPillars = [
   {
-    title: "Nature",
+    title: "Understand the power of nature",
     text: "Supporting well-being through high-quality essential oils and natural living.",
   },
   {
     title: "Nutrition",
-    text: "Using food as a foundation for vitality and long-term health.",
+    text: "Encouraging eating whole foods with simple and tasty anti-inflammatory cooking recipes to support vitality and long-term health.",
   },
   {
     title: "Movement",
-    text: "Encouraging daily physical activity and body awareness.",
+    text: "Encouraging daily physical movements, even when you are cooking or driving in a car, or practising mushroom-picking Taiji.",
   },
   {
     title: "Prevention",
-    text: "Focusing on healthy habits that support lifelong well-being.",
+    text: "Focus on holistic preventive knowledge from around the world and shape healthy habits that support lifelong well-being.",
   },
   {
     title: "Mindset",
-    text: "Cultivating gratitude, happiness, resilience, and inner peace.",
+    text: "Cultivating gratitude, resilience, and inner peace for a happier life mindset.",
   },
   {
     title: "Community",
-    text: "Learning, growing, and thriving together.",
+    text: "Learning, growing and thriving in a trusted environment together.",
   },
 ];
 
