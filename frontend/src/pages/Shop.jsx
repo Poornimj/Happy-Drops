@@ -43,17 +43,17 @@ import FlowOilHover from "../assets/images/WaistEassesHover.png";
 import StrideOilHover from "../assets/images/JointEasesHover.png";
 import PeaceOilHover from "../assets/images/SleepSupportOilHover.png";
 import BloomOilHover from "../assets/images/BoostHairGrowthsHover.png";
-import ClarityOilHover from "../assets/images/TwilightDropssHover.png";
+import ClarityOilHover from "../assets/images/ConcentrationOilHover.png";
 import NourishOilHover from "../assets/images/SkinCaresHover.png";
 import CalmOilHover from "../assets/images/HeadacheReliefsHover.png";
 import FlexibilityOilHover from "../assets/images/JointEasesHover.png";
-import BalanceOilHover from "../assets/images/ImmunityOilHover.png";
-import HarmonyOilHover from "../assets/images/CherishmoodHover.png";
-import PassionOilHover from "../assets/images/ImmunityOilHover.png";
-import GraceOilHover from "../assets/images/CherishmoodHover.png";
-import JoyOilHover from "../assets/images/CherishmoodHover.png";
-import PresenceOilHover from "../assets/images/TwilightDropssHover.png";
-import VitalityOilHover from "../assets/images/ImmunityOilHover.png";
+import BalanceOilHover from "../assets/images/HealthylifeHover.png";
+import HarmonyOilHover from "../assets/images/SleepSupportOilHover.png";
+import PassionOilHover from "../assets/images/VitalityOilHover.png";
+import GraceOilHover from "../assets/images/FeminineHover.png";
+import JoyOilHover from "../assets/images/JoyMoodHover.png";
+import PresenceOilHover from "../assets/images/MeditationHover.png";
+import VitalityOilHover from "../assets/images/EnergyBoostHover.png";
 
 
 const products = [
@@ -132,7 +132,7 @@ function Shop() {
             Tools
           </Link>
 
-           <Link to="/category/food-supplements" className="category">
+           <Link to="/food-related" className="category">
              Food Related
            </Link>
         </div>
