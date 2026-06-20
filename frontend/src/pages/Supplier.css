@@ -67,6 +67,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+  filter: brightness(1.24) saturate(0.82);
 }
 
 .supplier-hero-shade {
@@ -74,10 +75,10 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(251, 247, 239, 0.98) 0%,
-    rgba(251, 247, 239, 0.92) 34%,
-    rgba(251, 247, 239, 0.4) 57%,
-    rgba(251, 247, 239, 0) 76%
+    rgba(251, 248, 241, 0.92) 0%,
+    rgba(251, 248, 241, 0.86) 35%,
+    rgba(251, 248, 241, 0.48) 58%,
+    rgba(251, 248, 241, 0.08) 80%
   );
 }
 
@@ -443,6 +444,13 @@
   padding: 0 13px;
 }
 
+.supplier-form input[type="file"] {
+  height: auto;
+  min-height: 48px;
+  padding: 11px 13px;
+  cursor: pointer;
+}
+
 .supplier-form textarea {
   min-height: 130px;
   padding: 13px;
@@ -458,6 +466,29 @@
 
 .supplier-full-field {
   grid-column: 1 / -1;
+}
+
+.supplier-space-fields {
+  margin: 2px 0 0;
+  padding: 22px;
+  border: 1px solid #d9e1d7;
+  border-radius: 12px;
+  background: #f7faf5;
+}
+
+.supplier-space-fields legend {
+  padding: 0 8px;
+  color: var(--supplier-green);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.supplier-space-fields > p {
+  margin: 0 0 20px;
+  color: #657168;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .supplier-consent {
@@ -547,9 +578,9 @@
   .supplier-hero-shade {
     background: linear-gradient(
       0deg,
-      rgba(251, 247, 239, 0.98) 0%,
-      rgba(251, 247, 239, 0.88) 48%,
-      rgba(251, 247, 239, 0.1) 82%
+      rgba(251, 248, 241, 0.97) 0%,
+      rgba(251, 248, 241, 0.88) 48%,
+      rgba(251, 248, 241, 0.12) 82%
     );
   }
 

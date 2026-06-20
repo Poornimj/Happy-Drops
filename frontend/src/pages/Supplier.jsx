@@ -12,7 +12,7 @@ import {
   HiOutlineTruck,
 } from "react-icons/hi";
 
-import supplierHero from "../assets/images/supplier-hero-happy-drops.png";
+import supplierHero from "../assets/images/supplier-hero-premium-v2.png";
 
 import "./Supplier.css";
 
@@ -36,24 +36,24 @@ const partnershipBenefits = [
 
 const sourcingCategories = [
   {
-    icon: <HiOutlineColorSwatch />,
-    title: "Natural ingredients",
-    text: "Essential oils, herbs, botanicals, extracts, and responsibly grown raw materials.",
+    icon: <HiOutlineGlobeAlt />,
+    title: "Space partner",
+    text: "Welcoming venues and community spaces for workshops, events, and wellness experiences.",
   },
   {
     icon: <HiOutlineCube />,
-    title: "Packaging",
-    text: "Amber glass, closures, labels, recyclable cartons, and low-impact packaging solutions.",
+    title: "Tools seller",
+    text: "Reliable tools, equipment, packaging, and practical supplies for wellness services.",
   },
   {
     icon: <HiOutlineBeaker />,
-    title: "Product development",
-    text: "Formulation, testing, small-batch manufacturing, and specialist wellness production.",
+    title: "Nutrition supplier",
+    text: "Thoughtful food, supplement, and nutrition products that support everyday wellbeing.",
   },
   {
-    icon: <HiOutlineTruck />,
-    title: "Services & logistics",
-    text: "Reliable fulfillment, traceable sourcing, warehousing, and responsible supply services.",
+    icon: <HiOutlineColorSwatch />,
+    title: "Essential oil supplier",
+    text: "Traceable essential oils, botanicals, blends, and responsibly sourced natural ingredients.",
   },
 ];
 
@@ -91,6 +91,7 @@ const processSteps = [
 
 function Supplier() {
   const [submitted, setSubmitted] = useState(false);
+  const [supplierType, setSupplierType] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -251,17 +252,101 @@ function Supplier() {
               <input name="website" type="url" placeholder="https://" />
             </label>
             <label>
-              Supplier category <strong>*</strong>
-              <select name="category" required defaultValue="">
-                <option value="" disabled>Select a category</option>
-                <option>Natural ingredients</option>
-                <option>Packaging</option>
-                <option>Product development</option>
-                <option>Manufacturing</option>
-                <option>Logistics or services</option>
-                <option>Other</option>
+              Supplier type <strong>*</strong>
+              <select
+                name="supplierType"
+                required
+                value={supplierType}
+                onChange={(event) => {
+                  setSupplierType(event.target.value);
+                  setSubmitted(false);
+                }}
+              >
+                <option value="" disabled>Select a supplier type</option>
+                <option value="space-partner">Space partner</option>
+                <option value="tools-seller">Tools seller</option>
+                <option value="nutrition-supplier">Nutrition supplier</option>
+                <option value="essential-oil-supplier">Essential oil supplier</option>
               </select>
             </label>
+            {supplierType === "space-partner" && (
+              <fieldset className="supplier-space-fields supplier-full-field">
+                <legend>Space partner details</legend>
+                <p>
+                  Tell us about the place, its audience, pricing, and when it is
+                  available.
+                </p>
+                <div className="supplier-form-grid">
+                  <label>
+                    Picture of the space <strong>*</strong>
+                    <input
+                      name="spacePicture"
+                      type="file"
+                      accept="image/png,image/jpeg,image/webp"
+                      required
+                    />
+                  </label>
+                  <label>
+                    Location of the space <strong>*</strong>
+                    <input
+                      name="spaceLocation"
+                      required
+                      placeholder="Address, city, and country"
+                    />
+                  </label>
+                  <label>
+                    Average customers per day <strong>*</strong>
+                    <input
+                      name="dailyCustomers"
+                      type="number"
+                      min="0"
+                      required
+                      placeholder="For example, 40"
+                    />
+                  </label>
+                  <label>
+                    Average nearby customer spend
+                    <input
+                      name="nearbyCustomerSpend"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      placeholder="Amount in your local currency"
+                    />
+                  </label>
+                  <label>
+                    Price per hour <strong>*</strong>
+                    <input
+                      name="hourlyPrice"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      required
+                      placeholder="Amount in your local currency"
+                    />
+                  </label>
+                  <label>
+                    Partnership style <strong>*</strong>
+                    <select name="partnershipStyle" required defaultValue="">
+                      <option value="" disabled>Select a partnership style</option>
+                      <option>Hourly rental</option>
+                      <option>Revenue share</option>
+                      <option>Event collaboration</option>
+                      <option>Long-term partnership</option>
+                      <option>Open to discussion</option>
+                    </select>
+                  </label>
+                  <label className="supplier-full-field">
+                    Available times <strong>*</strong>
+                    <textarea
+                      name="availableTimes"
+                      required
+                      placeholder="For example: Monday–Friday after 5 PM, and weekends from 9 AM to 6 PM."
+                    ></textarea>
+                  </label>
+                </div>
+              </fieldset>
+            )}
             <label className="supplier-full-field">
               What would you like to supply? <strong>*</strong>
               <textarea
