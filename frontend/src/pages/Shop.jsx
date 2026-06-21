@@ -124,9 +124,14 @@ function Shop() {
             Ready-Made Oils
           </button>
 
-          <Link to="/category/doterra-oils" className="category">
+          <a
+            href="https://www.doterra.com/US/en/shop"
+            className="category"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             doTERRA Oils
-          </Link>
+          </a>
 
           <Link to="/category/tools" className="category">
             Tools

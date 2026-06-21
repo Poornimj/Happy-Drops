@@ -295,7 +295,7 @@ function ProductDetails() {
             <label className="quantity-label">
               Quantity
               <select defaultValue="1">
-                {Array.from({ length: 20 }, (_, index) => {
+                {Array.from({ length: 10 }, (_, index) => {
                   const value = index + 1;
 
                   return (

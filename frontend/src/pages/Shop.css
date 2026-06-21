@@ -585,6 +585,8 @@
   margin-bottom: 26px !important;
 }
 
+
+/* Food related pages */
 .food-page {
   padding: 40px 0;
 }
@@ -734,4 +736,33 @@
   display: block;
   object-fit: cover;
   border-radius: 0 14px 14px 0;
+}
+.quantity-label select,
+.quantity-label select option {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 18px !important;
+  font-weight: 600;
+  color: #173f27;
+}
+
+.quantity-label select {
+  padding: 12px 18px;
+  min-width: 220px;
+}
+.quantity-label select,
+.quantity-label select option {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 18px !important;
+  font-weight: 600;
+  color: #173f27;
+}
+
+.quantity-label select {
+  padding: 12px 18px;
+  min-width: 220px;
+}
+.food-product-info select,
+.food-product-info select option {
+  font-size: 18px !important;
+  font-weight: 600;
 }
