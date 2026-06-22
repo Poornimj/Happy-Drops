@@ -2330,6 +2330,7 @@
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
+  max-width: 650px !important;
 }
 
 .about-calm-image-hero .section-kicker {
@@ -2348,10 +2349,22 @@
   line-height: 1.28 !important;
 }
 
+.about-calm-image-hero .hero-support-line span {
+  white-space: nowrap;
+}
+
 .about-calm-image-hero .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
   max-width: 620px !important;
-  margin: 0 !important;
+  margin: 0 0 18px !important;
   line-height: 1.8 !important;
+}
+
+.about-calm-image-hero .hero-support-line + p {
+  margin-top: 46px !important;
+}
+
+.about-calm-image-hero .about-hero-copy > p:last-child {
+  margin-bottom: 0 !important;
 }
 
 @media (max-width: 700px) {
@@ -3881,3 +3894,146 @@
   }
 }
 /* END HAPPY DROPS ABOUT SECTION BREATHING ROOM */
+
+/* HAPPY DROPS PHILOSOPHY AND COMBINED MISSION */
+.about-calm-image-hero + .about-philosophy {
+  margin-top: 0 !important;
+}
+
+.about-philosophy-intro {
+  margin: clamp(30px, 4vw, 52px) 0 clamp(38px, 5vw, 64px);
+}
+
+.about-philosophy-intro p {
+  color: #304236 !important;
+  font-size: clamp(18px, 1.3vw, 21px) !important;
+  line-height: 1.72 !important;
+}
+
+.about-philosophy-mission {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(420px, 1.1fr);
+  column-gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(34px, 5vw, 64px);
+  overflow: hidden;
+  border: 1px solid rgba(26, 86, 63, 0.12);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(255, 255, 255, 0.92), transparent 34%),
+    linear-gradient(125deg, #eef4e9 0%, #f7f3e9 58%, #eee1cd 100%);
+  box-shadow: 0 18px 42px rgba(49, 92, 56, 0.08);
+}
+
+.about-philosophy-mission::after {
+  content: "";
+  position: absolute;
+  top: 14%;
+  bottom: 14%;
+  left: 46%;
+  width: 1px;
+  background: linear-gradient(
+    transparent,
+    rgba(26, 86, 63, 0.2),
+    transparent
+  );
+}
+
+.about-philosophy-mission .section-kicker {
+  grid-column: 1;
+  margin-bottom: 14px !important;
+}
+
+.about-philosophy-mission h3 {
+  grid-column: 1;
+  margin: 0 !important;
+  color: #173f27 !important;
+  font-family: Georgia, serif;
+  font-size: clamp(34px, 3.5vw, 52px) !important;
+  line-height: 1.12 !important;
+}
+
+.about-philosophy-mission > p:last-child {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin: 0 !important;
+  padding-left: clamp(8px, 2vw, 28px);
+  font-size: clamp(19px, 1.4vw, 22px) !important;
+  line-height: 1.75 !important;
+}
+
+@media (max-width: 800px) {
+  .about-philosophy-mission {
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+  }
+
+  .about-philosophy-mission::after {
+    display: none;
+  }
+
+  .about-philosophy-mission .section-kicker,
+  .about-philosophy-mission h3,
+  .about-philosophy-mission > p:last-child {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .about-philosophy-mission > p:last-child {
+    padding: 22px 0 0;
+    border-top: 1px solid rgba(26, 86, 63, 0.14);
+  }
+}
+
+.about-mission-combined {
+  display: block !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.about-mission-combined .about-promise {
+  width: 100%;
+}
+
+.about-mission-closing {
+  position: relative !important;
+  grid-column: 1 / -1;
+  min-height: clamp(360px, 42vw, 580px);
+  margin-top: 0;
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 22px;
+  box-shadow: 0 16px 36px rgba(35, 76, 53, 0.12);
+}
+
+.about-mission-closing img {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  border-radius: 22px !important;
+}
+
+.about-mission-bridge {
+  position: relative !important;
+  z-index: 2;
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin: clamp(8px, 1.5vw, 18px) 0 clamp(14px, 2vw, 24px);
+  padding: 0 !important;
+}
+
+.about-mission-bridge .primary-action {
+  min-height: 52px !important;
+  margin: 0 !important;
+  padding: 0 34px !important;
+  font-size: 17px !important;
+  box-shadow: 0 10px 24px rgba(74, 48, 91, 0.18);
+}
+/* END HAPPY DROPS PHILOSOPHY AND COMBINED MISSION */
