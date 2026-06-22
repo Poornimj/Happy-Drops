@@ -1,9 +1,6 @@
 import { Link, useParams } from "react-router-dom";
-import "../shared.css";
 import "./Shop.css";
 
-import Navbar from "../components/Navbar.jsx";
-import Footer from "../components/Footer.jsx";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 
 import DewOil from "../assets/images/SkinMoistures.png";
@@ -232,28 +229,18 @@ function ProductDetails() {
 
   if (!product) {
     return (
-      <>
-        <Navbar />
-
-        <main className="page-shell detail-page">
-          <h2>Product not found</h2>
-
-          <Link to="/" className="back-link">
-            Back to Shop
-          </Link>
-        </main>
-
-        <Footer />
-      </>
+      <main className="page-shell detail-page">
+        <h2>Product not found</h2>
+        <Link to="/shop" className="back-link">
+          Back to Shop
+        </Link>
+      </main>
     );
   }
 
   return (
-    <>
-      <Navbar />
-
-      <main className="page-shell detail-page">
-        <Link to="/" className="back-link">
+    <main className="page-shell detail-page">
+        <Link to="/shop" className="back-link">
           Back to Shop
         </Link>
 
@@ -313,10 +300,7 @@ function ProductDetails() {
             </button>
           </div>
         </section>
-      </main>
-
-      <Footer />
-    </>
+    </main>
   );
 }
 

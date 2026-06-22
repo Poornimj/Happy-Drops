@@ -1,14 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "../shared.css"
 import "./Shop.css";
 
-
-import Navbar from "../components/Navbar.jsx"
-import Footer from "../components/Footer.jsx"
 import { HiOutlineShoppingCart } from "react-icons/hi";
 
-import DriedLavenderHero from "../assets/images/DriedLavenderHero.jpeg";
+import DriedLavenderHero from "../assets/images/DriedLavenderHero.jpeg?shopHero=1";
 import SleepSupOil from "../assets/images/SleepSupOil.png";
  
 
@@ -88,17 +84,16 @@ function Shop() {
   };
 
   return (
-     <>
-     
-      <Navbar />
-  
-
     <main className="page-shell shop-page">
       {/* hero */}
       <section
         className="hero"
-        style={{ backgroundImage: `url(${DriedLavenderHero})` }}
       >
+        <img
+          className="hero-image"
+          src={DriedLavenderHero}
+          alt="Dried lavender hero background"
+        />
         <div className="hero-text">
           <h1>
             Discover Natural Products
@@ -133,11 +128,11 @@ function Shop() {
             doTERRA Oils
           </a>
 
-          <Link to="/category/tools" className="category">
+          <Link to="/shop/category/tools" className="category">
             Tools
           </Link>
 
-           <Link to="/food-related" className="category">
+           <Link to="/shop/food-related" className="category">
              Food Related
            </Link>
         </div>
@@ -157,7 +152,7 @@ function Shop() {
 
         <div className="product-grid">
           {products.map((product) => (
-            <Link to={`/product/${product.id}`} className="product-card" key={product.id}>
+            <Link to={`/shop/product/${product.id}`} className="product-card" key={product.id}>
               {product.badge && (
                 <span className={`product-badge ${product.badge === "Popular" ? "purple" : "dark"}`}>
                   {product.badge}
@@ -218,7 +213,7 @@ function Shop() {
     <h3>€ 79.90</h3>
     <p>€ 104.80</p>
     <span>Save 24%</span>
-    <Link to="/product/bundle" className="bundle-btn">View Bundle</Link>
+    <a href="#featured" className="bundle-btn">View Bundle</a>
   </div>
 </section>
 
@@ -264,9 +259,6 @@ function Shop() {
   </div>
 </section>
     </main>
-
-    <Footer />
-  </>
 );
 }
 

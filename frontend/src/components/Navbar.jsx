@@ -1,3 +1,4 @@
+import { Link, NavLink } from "react-router-dom";
 import {
   HiOutlineGlobeAlt,
   HiOutlineSearch,
@@ -6,29 +7,40 @@ import {
 } from "react-icons/hi";
 import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 
+const navLinks = [
+  { href: "/knowledge", label: "Knowledge" },
+  { href: "/workshops", label: "Workshops" },
+  { href: "/therapists", label: "Therapists" },
+  { href: "/suppliers", label: "Suppliers" },
+  { href: "/shop", label: "Shop" },
+  { href: "/about-us", label: "About Us" },
+];
+
 function Navbar() {
   return (
-    <nav className="navbar">
-      <a className="brand" href="/" aria-label="Happy Drops home">
+    <nav className="navbar" aria-label="Primary navigation">
+      <Link className="brand" to="/" aria-label="Happy Drops home">
         <img src={happyDropsLogo} alt="Happy Drops" />
-      </a>
+      </Link>
 
       <div className="nav-links">
-        <a href="#">Knowledge</a>
-        <a href="#">Workshops</a>
-        <a href="#">Therapists</a>
-        <a href="#">Suppliers</a>
-        <a href="#">Shop</a>
-        <a href="#">About Us</a>
+        {navLinks.map((link) => (
+          <NavLink
+            key={link.label}
+            to={link.href}
+          >
+            {link.label}
+          </NavLink>
+        ))}
       </div>
 
       <div className="nav-actions">
         <div className="language-switcher" aria-label="Language selector">
           <HiOutlineGlobeAlt />
           <a href="#">EN</a>
-          <span></span>
+          <span aria-hidden="true"></span>
           <a href="#">FI</a>
-          <span></span>
+          <span aria-hidden="true"></span>
           <a href="#">中文</a>
         </div>
 
@@ -37,13 +49,13 @@ function Navbar() {
             <HiOutlineSearch />
           </a>
 
-          <a href="#" className="nav-icon" aria-label="Account">
+          <a href="/login" className="nav-icon" aria-label="Log in or create an account">
             <HiOutlineUser />
           </a>
 
-          <a href="#" className="nav-icon" aria-label="Shopping cart">
+          <Link to="/shop" className="nav-icon" aria-label="Shopping cart">
             <HiOutlineShoppingCart />
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

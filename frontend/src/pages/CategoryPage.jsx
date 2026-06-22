@@ -6,11 +6,11 @@ function CategoryPage() {
   const title = categoryName.replaceAll("-", " ");
 
   return (
-    <div className="simple-page">
-      <Link to="/" className="back-link">Back to Shop</Link>
+    <main className="page-shell shop-simple-page">
+      <Link to="/shop" className="back-link">Back to Shop</Link>
       <h1>{title}</h1>
       <p>Products for this category will show here.</p>
-    </div>
+    </main>
   );
 }
 

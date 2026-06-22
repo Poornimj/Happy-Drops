@@ -1,8 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar.jsx";
-import Footer from "../components/Footer.jsx";
-import "../shared.css";
 import "./Shop.css";
 
 import foodHero from "../assets/images/FoodHero.png";
@@ -68,10 +65,7 @@ function FoodRelated() {
   };
 
   return (
-    <>
-      <Navbar />
-
-      <main className="page-shell food-page">
+    <main className="page-shell food-page">
          <section className="food-hero">
            <div className="food-hero-content">
               <h1>Food Related Products</h1>
@@ -81,7 +75,7 @@ function FoodRelated() {
                 products designed to complement a balanced everyday lifestyle.
               </p>
 
-            <Link to="/" className="back-link">
+            <Link to="/shop" className="back-link">
              Back to Shop
             </Link>
          </div>
@@ -149,10 +143,7 @@ function FoodRelated() {
             );
           })}
         </div>
-      </main>
-
-      <Footer />
-    </>
+    </main>
   );
 }
 
