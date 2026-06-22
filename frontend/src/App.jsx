@@ -8,10 +8,10 @@ import {
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import WellnessAssessment from "./components/WellnessAssessment";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
+import WellnessAssessmentModal from "./components/WellnessAssessmentModal";
 import AboutUs from "./pages/AboutUs";
 import Knowledge from "./pages/Knowledge";
 import Workshops from "./pages/workshops";
@@ -76,7 +76,7 @@ function AppShell() {
       <Navbar currentPath={location.pathname.toLowerCase()} />
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/wellness-assessment" element={<WellnessAssessment />} />
+        <Route path="/wellness-assessment" element={<WellnessAssessmentModal />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
