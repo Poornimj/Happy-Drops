@@ -1,3 +1,4 @@
+import { Link, NavLink } from "react-router-dom";
 import {
   HiOutlineGlobeAlt,
   HiOutlineSearch,
@@ -15,26 +16,21 @@ const navLinks = [
   { href: "/about-us", label: "About Us" },
 ];
 
-function isActiveLink(currentPath, link) {
-  return currentPath === link.href || link.aliases?.includes(currentPath);
-}
-
-function Navbar({ currentPath = "/" }) {
+function Navbar() {
   return (
     <nav className="navbar" aria-label="Primary navigation">
-      <a className="brand" href="/" aria-label="Happy Drops home">
+      <Link className="brand" to="/" aria-label="Happy Drops home">
         <img src={happyDropsLogo} alt="Happy Drops" />
-      </a>
+      </Link>
 
       <div className="nav-links">
         {navLinks.map((link) => (
-          <a
+          <NavLink
             key={link.label}
-            href={link.href}
-            aria-current={isActiveLink(currentPath, link) ? "page" : undefined}
+            to={link.href}
           >
             {link.label}
-          </a>
+          </NavLink>
         ))}
       </div>
 
@@ -57,9 +53,9 @@ function Navbar({ currentPath = "/" }) {
             <HiOutlineUser />
           </a>
 
-          <a href="/shop" className="nav-icon" aria-label="Shopping cart">
+          <Link to="/shop" className="nav-icon" aria-label="Shopping cart">
             <HiOutlineShoppingCart />
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   LuBriefcaseBusiness,
   LuCalendarDays,
@@ -9,6 +8,8 @@ import {
   LuShieldCheck,
   LuSoup,
 } from "react-icons/lu";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import workshopHeader from "../assets/images/workshop-header.png";
 import workshopEssentialOil from "../assets/images/workshops-essential-oil.png";
 import workshopSummaryImage from "../assets/images/workshop-summary-image.png";
@@ -21,40 +22,24 @@ const workshops = [
     icon: LuLeaf,
     color: "green",
     sheet: workshopEssentialOil,
-    price: 48,
-    date: "25 August 2026",
-    time: "14:00",
-    location: "Happy Drops Studio, Helsinki",
   },
   {
     title: "Dumpling DIY + Nutrition Workshop",
     text: "Enjoy a hands-on dumpling-making experience while learning simple nutrition tips for better wellbeing.",
     icon: LuSoup,
     color: "purple",
-    price: 55,
-    date: "30 August 2026",
-    time: "12:00",
-    location: "Happy Drops Studio, Helsinki",
   },
   {
     title: "Special Event Workshop",
-    text: "A memorable and fun experience for birthdays, bachelor parties, anniversaries and special occasions.",
+    text: "A personalized wellness experience for birthdays, celebrations, family gatherings, and special occasions.",
     icon: LuCalendarHeart,
     color: "rose",
-    price: 65,
-    date: "By arrangement",
-    time: "Flexible",
-    location: "Your chosen venue",
   },
   {
     title: "Business Wellness Workshop",
-    text: "Wellness activities designed for business meetings, team building days, and workplace wellbeing.",
+    text: "Wellness activities designed for business meetings, team days, and workplace wellbeing.",
     icon: LuBriefcaseBusiness,
     color: "gold",
-    price: 48,
-    date: "By arrangement",
-    time: "Flexible",
-    location: "Company venue or Happy Drops Studio",
   },
 ];
 
@@ -87,13 +72,11 @@ function getCalendarDays(monthDate) {
 }
 
 export default function Workshops() {
-  const navigate = useNavigate();
   const [activeWorkshop, setActiveWorkshop] = useState(workshops[0]);
   const [openWorkshopSheet, setOpenWorkshopSheet] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [calendarMonth, setCalendarMonth] = useState(() => new Date());
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const [isRequestSubmitted, setIsRequestSubmitted] = useState(false);
   const calendarDays = getCalendarDays(calendarMonth);
   const calendarMonthLabel = new Intl.DateTimeFormat("en-US", {
     month: "long",
@@ -102,6 +85,8 @@ export default function Workshops() {
 
   return (
     <div className="workshop-page">
+      <Navbar />
+
       <main className="workshop-main">
         <section className="workshop-header">
           <img
@@ -123,35 +108,6 @@ export default function Workshops() {
               Experience nature-powered wellness with personalized workshops for
               groups, families, and organizations.
             </p>
-          </div>
-          <div className="workshop-booking-action">
-            <div>
-              <span>Selected workshop</span>
-              <strong>{activeWorkshop.title}</strong>
-              <small>From €{activeWorkshop.price.toFixed(2)} per participant</small>
-            </div>
-            <button
-              type="button"
-              onClick={() =>
-                navigate("/checkout?type=workshop", {
-                  state: {
-                    checkout: {
-                      type: "workshop",
-                      title: activeWorkshop.title,
-                      description: activeWorkshop.text,
-                      participants: 1,
-                      unitPrice: activeWorkshop.price,
-                      date: activeWorkshop.date,
-                      time: activeWorkshop.time,
-                      location: activeWorkshop.location,
-                      tax: 0,
-                    },
-                  },
-                })
-              }
-            >
-              Book this workshop
-            </button>
           </div>
         </section>
 
@@ -192,13 +148,7 @@ export default function Workshops() {
           </div>
 
           <div className="workshop-booking-area">
-            <form
-              className="workshop-booking-form"
-              onSubmit={(event) => {
-                event.preventDefault();
-                setIsRequestSubmitted(true);
-              }}
-            >
+            <form className="workshop-booking-form">
               <h3>
                 <LuCalendarDays aria-hidden="true" />
                 Book Your Workshop
@@ -310,34 +260,20 @@ export default function Workshops() {
                       Select Time
                     </option>
                     <option>9:00 AM - 11:00 AM</option>
-                    <option>11:00 AM - 1:00 PM</option>
-                    <option>1:00 PM - 3:00 PM</option>
+                    <option>12:00 PM - 2:00 PM</option>
                     <option>3:00 PM - 5:00 PM</option>
-                    <option>5:00 PM - 7:00 PM</option>
-                    <option>7:00 PM - 9:00 PM</option>
+                    <option>6:00 PM - 8:00 PM</option>
                   </select>
                 </label>
 
                 <label>
                   <span>Location</span>
-                  <select defaultValue="">
-                    <option value="" disabled>
-                      Select Location
-                    </option>
-                    <option>Rautatiekatu 16A, Kamppi</option>
-                    <option>Pilvijärventie 50 C, Kirkkonummi</option>
-                    <option>
-                      Villa Stenberg, Suoniementaival 164, 08350 Lohja
-                    </option>
-                    <option>
-                      XR Center, Hämeentie 135 A, 00560 Helsinki
-                    </option>
-                  </select>
+                  <input type="text" placeholder="Enter workshop location" />
                 </label>
 
                 <label>
                   <span>Notes (Optional)</span>
-                  <textarea placeholder="Special requests, food and drinks, event details, accessibility needs..." />
+                  <textarea placeholder="Special requests, event details, accessibility needs..." />
                 </label>
               </div>
 
@@ -346,15 +282,9 @@ export default function Workshops() {
                 Your booking is secure and your information is protected with us.
               </p>
 
-              <button className="workshop-pay-btn" type="submit">
-                Request for Workshops
+              <button className="workshop-pay-btn" type="button">
+                Pay
               </button>
-
-              {isRequestSubmitted && (
-                <p className="workshop-request-success" role="status" aria-live="polite">
-                  Thank you for your request! We will contact you soon.
-                </p>
-              )}
             </form>
 
             <aside className="workshop-booking-summary" aria-label="Booking summary">
@@ -410,11 +340,13 @@ export default function Workshops() {
               ×
             </button>
 
+            <h3 id="workshop-sheet-title">{openWorkshopSheet.title}</h3>
             <img src={openWorkshopSheet.sheet} alt={`${openWorkshopSheet.title} information sheet`} />
           </div>
         </div>
       )}
 
+      <Footer />
     </div>
   );
 }
