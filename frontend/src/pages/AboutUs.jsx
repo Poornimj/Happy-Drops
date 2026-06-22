@@ -185,17 +185,17 @@ const steps = [
 const storyJourney = [
   {
     time: "17+ years ago",
-    title: "A first introduction",
-    text: "A friend from the United States introduced Suvi to essential oils while she was building her kindergarten business in Beijing.",
+    title: "First Encounter",
+    text: "Friend from Chicago brought the Dottera VP from USA to Beijing. We had short lecture and tested how to cinammon oil taste with fresh apple. It was super good.",
     detail:
-      "Work, family, and daily responsibilities left little room to study them deeply, but the first seed had been planted.",
+      "I bought the first started set of essential oil.",
   },
   {
     time: "A few years later",
     title: "Curiosity awakened",
-    text: "A close friend in Shanghai later shared her wellness journey, and Suvi began to see essential oils differently.",
+    text: "A close friend in Shanghai lost her right eyesight, after she explain how essential oil helped her to sense the light after three months which is much more effective than western medicine.",
     detail:
-      "Because the story came from someone she trusted, it felt less like a trend and more like a gentle invitation back to natural care.",
+      "It opened suvi's curiosity on essential oil. It was a gentle invitation back to natural care.",
   },
   {
     time: "The first ritual",
@@ -206,10 +206,10 @@ const storyJourney = [
   },
   {
     time: "A turning point",
-    title: "Visible change",
-    text: "Months of consistent rituals and a more holistic lifestyle brought positive changes in well-being and skin health.",
+    title: "Surprise shock",
+    text: "A routine health check in Finland brought encouraging news: The cysts at both ovary are gone. The shock is that I was not targeting at all for the treatment of cysts.",
     detail:
-      "A routine health examination in Finland brought encouraging news, inspiring Suvi to study the science, history, and traditional uses of essential oils.",
+      "The shock brought me to lead me to learn as theraphist and start to practice the different combination for different wellbeing related issues.",
   },
   {
     time: "Deeper study",
@@ -229,8 +229,8 @@ const storyJourney = [
 
 const philosophyPillars = [
   {
-    title: "Understand the power of nature",
-    text: "Supporting well-being through high-quality essential oils and natural living.",
+    title: "Nature",
+    text: "Understand the power of nature and relation to our body, with personal advisor we discover natural living stye together.",
   },
   {
     title: "Nutrition",
@@ -355,7 +355,6 @@ function AboutUs() {
           <h3>{activeJourney.title}</h3>
           <p>{activeJourney.text}</p>
           <div>
-            <strong>Read this chapter</strong>
             <p>{activeJourney.detail}</p>
           </div>
         </article>
