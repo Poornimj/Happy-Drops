@@ -7,7 +7,6 @@ import LavenderParticles from "./LavenderParticles";
 
 function Hero() {
   const navigate = useNavigate();
-  const [taglineRef, taglineVisible] = useScrollReveal();
   const [titleRef, titleVisible] = useScrollReveal();
   const [descriptionRef, descriptionVisible] = useScrollReveal();
   const [buttonsRef, buttonsVisible] = useScrollReveal();
@@ -32,10 +31,6 @@ function Hero() {
       <div className="leaf-decoration-right"></div>
 
       <div className="hero-left">
-
-        <p className="hero-tagline scroll-reveal" ref={taglineRef} style={{ opacity: taglineVisible ? 1 : 0, transform: taglineVisible ? 'translateY(0)' : 'translateY(40px)' }}>
-          EMPOWERING WELLNESS NATURALLY
-        </p>
 
         <h1 className="hero-title scroll-reveal" ref={titleRef} style={{ opacity: titleVisible ? 1 : 0, transform: titleVisible ? 'translateY(0)' : 'translateY(40px)' }}>
           Personalized Wellness,

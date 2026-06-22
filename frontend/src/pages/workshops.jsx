@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   LuBriefcaseBusiness,
   LuCalendarHeart,
@@ -15,28 +16,45 @@ const workshops = [
     icon: LuLeaf,
     color: "green",
     sheet: workshopEssentialOil,
+    price: 48,
+    date: "25 August 2026",
+    time: "14:00",
+    location: "Happy Drops Studio, Helsinki",
   },
   {
     title: "Dumpling DIY + Nutrition Workshop",
     text: "Enjoy a hands-on dumpling-making experience while learning simple nutrition tips for better wellbeing.",
     icon: LuSoup,
     color: "purple",
+    price: 55,
+    date: "30 August 2026",
+    time: "12:00",
+    location: "Happy Drops Studio, Helsinki",
   },
   {
     title: "Special Event Workshop",
     text: "A personalized wellness experience for birthdays, celebrations, family gatherings, and special occasions.",
     icon: LuCalendarHeart,
     color: "rose",
+    price: 65,
+    date: "By arrangement",
+    time: "Flexible",
+    location: "Your chosen venue",
   },
   {
     title: "Business Wellness Workshop",
     text: "Wellness activities designed for business meetings, team days, and workplace wellbeing.",
     icon: LuBriefcaseBusiness,
     color: "gold",
+    price: 48,
+    date: "By arrangement",
+    time: "Flexible",
+    location: "Company venue or Happy Drops Studio",
   },
 ];
 
 export default function Workshops() {
+  const navigate = useNavigate();
   const [activeWorkshop, setActiveWorkshop] = useState(workshops[0]);
   const [openWorkshopSheet, setOpenWorkshopSheet] = useState(null);
 
@@ -63,6 +81,35 @@ export default function Workshops() {
               Experience nature-powered wellness with personalized workshops for
               groups, families, and organizations.
             </p>
+          </div>
+          <div className="workshop-booking-action">
+            <div>
+              <span>Selected workshop</span>
+              <strong>{activeWorkshop.title}</strong>
+              <small>From €{activeWorkshop.price.toFixed(2)} per participant</small>
+            </div>
+            <button
+              type="button"
+              onClick={() =>
+                navigate("/checkout?type=workshop", {
+                  state: {
+                    checkout: {
+                      type: "workshop",
+                      title: activeWorkshop.title,
+                      description: activeWorkshop.text,
+                      participants: 1,
+                      unitPrice: activeWorkshop.price,
+                      date: activeWorkshop.date,
+                      time: activeWorkshop.time,
+                      location: activeWorkshop.location,
+                      tax: 0,
+                    },
+                  },
+                })
+              }
+            >
+              Book this workshop
+            </button>
           </div>
         </section>
 
