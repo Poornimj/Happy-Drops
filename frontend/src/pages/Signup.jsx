@@ -9,6 +9,7 @@
 
 import profileHeroBanner from "../assets/images/wellness-profile-hero-banner.png";
 import profileSideProduct from "../assets/images/wellness-profile-side-product.png";
+import { Link } from "react-router-dom";
 
 import "./Signup.css";
 const benefits = [
@@ -120,6 +121,9 @@ function Signup() {
             <button className="profile-submit" type="button">
               Continue to Wellness Assessment
             </button>
+            <p className="profile-login-link">
+              Already have an account? <Link to="/login">Log in</Link>
+            </p>
           </form>
 
           <aside className="profile-benefits">

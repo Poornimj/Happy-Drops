@@ -2195,10 +2195,20 @@
 }
 
 .about-mission .primary-action {
-  min-height: 54px !important;
+  min-height: 36px !important;
   margin-top: 10px !important;
-  padding: 15px 28px !important;
-  font-size: 17px !important;
+  padding: 0 22px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  background: #b67ad2 !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
 }
 
 @media (max-width: 900px) {
@@ -2314,3 +2324,1716 @@
   box-shadow: 0 12px 28px rgba(49, 92, 56, 0.06) !important;
 }
 /* END HAPPY DROPS SOFT IMAGE SHADOW PASS */
+
+/* HAPPY DROPS ABOUT HERO TEXT SPACING PASS */
+.about-calm-image-hero .about-hero-copy {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  max-width: 650px !important;
+}
+
+.about-calm-image-hero .section-kicker {
+  margin: 0 0 22px !important;
+}
+
+.about-calm-image-hero h1 {
+  margin: 0 0 30px !important;
+  max-width: 520px !important;
+  line-height: 1.08 !important;
+}
+
+.about-calm-image-hero .hero-support-line {
+  margin: 0 0 28px !important;
+  max-width: 560px !important;
+  line-height: 1.28 !important;
+}
+
+.about-calm-image-hero .hero-support-line span {
+  white-space: nowrap;
+}
+
+.about-calm-image-hero .about-hero-copy > p:not(.section-kicker):not(.hero-support-line) {
+  max-width: 620px !important;
+  margin: 0 0 18px !important;
+  line-height: 1.8 !important;
+}
+
+.about-calm-image-hero .hero-support-line + p {
+  margin-top: 46px !important;
+}
+
+.about-calm-image-hero .about-hero-copy > p:last-child {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 700px) {
+  .about-calm-image-hero .section-kicker {
+    margin-bottom: 16px !important;
+  }
+
+  .about-calm-image-hero h1 {
+    margin-bottom: 22px !important;
+  }
+
+  .about-calm-image-hero .hero-support-line {
+    margin-bottom: 22px !important;
+  }
+}
+/* END HAPPY DROPS ABOUT HERO TEXT SPACING PASS */
+
+/* HAPPY DROPS EDITABLE FOUR REAL VALUES */
+.about-values-interactive {
+  position: relative !important;
+  margin-top: 78px !important;
+  min-height: clamp(760px, 66vw, 1040px) !important;
+  padding: 0 clamp(24px, 3.5vw, 54px) clamp(36px, 4.5vw, 58px) !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  text-align: center !important;
+  background:
+    linear-gradient(rgba(255, 252, 246, 0.02), rgba(255, 252, 246, 0.02)),
+    url("../assets/images/happy-drops-values-background.png") center top / 100% 100% no-repeat,
+    #fbf4e8 !important;
+  border-radius: 24px !important;
+  box-shadow: 0 12px 28px rgba(49, 92, 56, 0.06) !important;
+}
+
+.about-values-interactive::before {
+  content: none;
+}
+
+.about-values-interactive::after {
+  content: none;
+}
+
+.about-values-branches {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: none;
+  opacity: 1;
+}
+
+.about-values-branches::before,
+.about-values-branches::after {
+  content: none;
+}
+
+.about-values-branches::before {
+  width: 280px;
+  height: 120px;
+  left: -76px;
+  top: 62px;
+  border-radius: 58% 42% 63% 37%;
+  transform: rotate(-26deg);
+}
+
+.about-values-branches::after {
+  width: 340px;
+  height: 130px;
+  right: -92px;
+  top: 34px;
+  border-radius: 42% 58% 35% 65%;
+  transform: rotate(20deg);
+}
+
+.about-values-header,
+.about-values-card-grid {
+  position: relative;
+  z-index: 2;
+}
+
+.about-values-logo-shine {
+  position: absolute;
+  top: clamp(54px, 5.6vw, 92px);
+  left: 50%;
+  z-index: 2;
+  width: min(520px, 44vw);
+  height: clamp(210px, 18vw, 285px);
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 46%;
+  mix-blend-mode: screen;
+  opacity: 0.62;
+  transform: translateX(-50%);
+}
+
+.about-values-logo-shine::before {
+  content: "";
+  position: absolute;
+  top: -28%;
+  left: -46%;
+  width: 26%;
+  height: 158%;
+  background:
+    linear-gradient(
+      102deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(20, 105, 74, 0.16) 28%,
+      rgba(255, 255, 255, 0.56) 48%,
+      rgba(143, 112, 196, 0.22) 58%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  filter: blur(2.4px);
+  transform: rotate(12deg);
+  animation: aboutLogoColorShine 6.8s ease-in-out infinite;
+}
+
+.about-values-logo-shine::after {
+  content: "";
+  position: absolute;
+  right: 22%;
+  bottom: 16%;
+  width: 86px;
+  height: 86px;
+  background: radial-gradient(circle, rgba(154, 122, 207, 0.18), rgba(154, 122, 207, 0) 68%);
+  filter: blur(1px);
+  opacity: 0.54;
+  animation: aboutLogoDropGlow 4.8s ease-in-out infinite;
+}
+
+.about-values-leaf-fall {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.falling-leaf {
+  position: absolute;
+  top: var(--leaf-top);
+  left: var(--leaf-left);
+  width: var(--leaf-width, 16px);
+  height: calc(var(--leaf-width, 16px) * 1.62);
+  border-radius: 72% 28% 70% 30%;
+  background:
+    linear-gradient(120deg, transparent 48%, rgba(255, 255, 255, 0.34) 49%, transparent 53%),
+    radial-gradient(ellipse at 28% 26%, rgba(255, 255, 255, 0.5) 0 14%, transparent 15%),
+    linear-gradient(145deg, #708534 0%, #334b22 54%, #152c16 100%);
+  box-shadow: 0 8px 14px rgba(32, 53, 23, 0.12);
+  opacity: 0;
+  transform: translate3d(0, -10px, 0) rotate(var(--leaf-rotate, -32deg)) scale(0.88);
+  animation: aboutBranchLeafFall var(--leaf-duration, 8s) ease-in infinite;
+  animation-delay: var(--leaf-delay, 0s);
+}
+
+.falling-leaf::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 3px;
+  width: 1px;
+  height: calc(100% - 6px);
+  background: rgba(240, 231, 186, 0.42);
+  transform: translateX(-50%) rotate(10deg);
+}
+
+.leaf-one {
+  --leaf-left: 7%;
+  --leaf-top: 72px;
+  --leaf-width: 17px;
+  --leaf-delay: 0.4s;
+  --leaf-duration: 8.8s;
+  --leaf-rotate: -40deg;
+  --leaf-mid-x: 34px;
+  --leaf-end-x: 12px;
+}
+
+.leaf-two {
+  --leaf-left: 15%;
+  --leaf-top: 128px;
+  --leaf-width: 13px;
+  --leaf-delay: 2.1s;
+  --leaf-duration: 9.6s;
+  --leaf-rotate: 24deg;
+  --leaf-mid-x: 26px;
+  --leaf-end-x: 46px;
+}
+
+.leaf-three {
+  --leaf-left: 23%;
+  --leaf-top: 86px;
+  --leaf-width: 15px;
+  --leaf-delay: 3.5s;
+  --leaf-duration: 8.2s;
+  --leaf-rotate: -26deg;
+  --leaf-mid-x: 42px;
+  --leaf-end-x: 22px;
+}
+
+.leaf-four {
+  --leaf-left: 76%;
+  --leaf-top: 82px;
+  --leaf-width: 16px;
+  --leaf-delay: 4.8s;
+  --leaf-duration: 10s;
+  --leaf-rotate: 34deg;
+  --leaf-mid-x: -30px;
+  --leaf-end-x: -58px;
+}
+
+.leaf-five {
+  --leaf-left: 86%;
+  --leaf-top: 142px;
+  --leaf-width: 12px;
+  --leaf-delay: 6.2s;
+  --leaf-duration: 9.2s;
+  --leaf-rotate: -18deg;
+  --leaf-mid-x: -24px;
+  --leaf-end-x: -38px;
+}
+
+.leaf-six {
+  --leaf-left: 94%;
+  --leaf-top: 96px;
+  --leaf-width: 15px;
+  --leaf-delay: 1.2s;
+  --leaf-duration: 8.6s;
+  --leaf-rotate: 28deg;
+  --leaf-mid-x: -36px;
+  --leaf-end-x: -72px;
+}
+
+.leaf-seven {
+  --leaf-left: 3%;
+  --leaf-top: 150px;
+  --leaf-width: 12px;
+  --leaf-delay: 5s;
+  --leaf-duration: 10.4s;
+  --leaf-rotate: -18deg;
+  --leaf-mid-x: 28px;
+  --leaf-end-x: 54px;
+}
+
+@keyframes aboutBranchLeafFall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0) rotate(var(--leaf-rotate, -32deg)) scale(0.82);
+  }
+
+  14% {
+    opacity: 0.72;
+  }
+
+  48% {
+    transform: translate3d(var(--leaf-mid-x, 24px), 120px, 0) rotate(calc(var(--leaf-rotate, -32deg) + 58deg)) scale(1);
+  }
+
+  82% {
+    opacity: 0.46;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--leaf-end-x, -18px), 260px, 0) rotate(calc(var(--leaf-rotate, -32deg) + 126deg)) scale(0.88);
+  }
+}
+
+@keyframes aboutLogoColorShine {
+  0%,
+  32% {
+    left: -46%;
+    opacity: 0;
+  }
+
+  46% {
+    opacity: 0.72;
+  }
+
+  66% {
+    left: 116%;
+    opacity: 0;
+  }
+
+  100% {
+    left: 116%;
+    opacity: 0;
+  }
+}
+
+@keyframes aboutLogoDropGlow {
+  0%,
+  100% {
+    opacity: 0.34;
+    transform: scale(0.94);
+  }
+
+  50% {
+    opacity: 0.62;
+    transform: scale(1.04);
+  }
+}
+
+.about-values-header {
+  max-width: 780px;
+  padding-top: clamp(255px, 28vw, 380px);
+  margin: 0 auto clamp(34px, 3.4vw, 52px);
+}
+
+.about-values-header img {
+  display: none;
+}
+
+.about-values-header h2 {
+  margin: 0 0 6px !important;
+  color: #173f27 !important;
+  font-family: Georgia, serif !important;
+  font-size: clamp(32px, 3.2vw, 48px) !important;
+  line-height: 1.12 !important;
+}
+
+.about-values-header p {
+  margin: 0 !important;
+  color: #152338 !important;
+  font-size: clamp(17px, 1.35vw, 21px) !important;
+  line-height: 1.45 !important;
+}
+
+.about-values-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 28px);
+  align-items: stretch;
+  margin-top: 0;
+}
+
+.about-real-card {
+  --real-accent: #2f8b6e;
+  min-height: 462px;
+  height: 100%;
+  padding: clamp(18px, 1.8vw, 24px) clamp(14px, 1.4vw, 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  background: rgba(255, 252, 246, 0.42);
+  border: 1px solid rgba(64, 87, 58, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(49, 92, 56, 0.05);
+  opacity: 0;
+  transform: translateY(24px);
+  animation: aboutValueFadeUp 0.72s ease forwards;
+  animation-delay: var(--value-delay, 0s);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.about-real-card:hover,
+.about-real-card:focus-within {
+  transform: translateY(-6px);
+  border-color: rgba(64, 87, 58, 0.28);
+  box-shadow: 0 16px 34px rgba(49, 92, 56, 0.1);
+}
+
+.about-real-drop {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 18px;
+  display: block;
+  background: var(--real-accent);
+  border-radius: 50% 50% 50% 0;
+  clip-path: none;
+  transform: rotate(135deg);
+  box-shadow: 0 9px 15px rgba(49, 92, 56, 0.18), inset -3px -5px 8px rgba(0, 0, 0, 0.12);
+  animation: aboutDropBreathe 2.8s ease-in-out infinite;
+  animation-delay: var(--value-delay, 0s);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.about-real-drop::after {
+  content: none;
+}
+
+.about-real-card:hover .about-real-drop {
+  transform: rotate(135deg) scale(1.08);
+  filter: saturate(1.12);
+}
+
+.about-real-eyebrow {
+  min-height: 20px;
+  margin: 0 0 12px !important;
+  color: var(--real-accent) !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  line-height: 1.35 !important;
+  text-transform: uppercase;
+}
+
+.about-real-card h3 {
+  min-height: 48px;
+  margin: 0 0 14px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.22em;
+  flex-wrap: nowrap;
+  color: #202033 !important;
+  font-family: Georgia, serif !important;
+  font-size: clamp(26px, 2vw, 34px) !important;
+  line-height: 1.12 !important;
+}
+
+.about-real-card h3 em {
+  color: var(--real-accent);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.about-real-body {
+  width: 100%;
+  min-height: 252px;
+  padding: 22px clamp(16px, 1.45vw, 22px);
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  border: 3px double rgba(26, 86, 63, 0.62);
+  border-radius: 14px;
+  background: rgba(255, 252, 246, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.about-real-card:hover .about-real-body,
+.about-real-card:focus-within .about-real-body {
+  transform: translateY(-2px);
+  background: rgba(255, 252, 246, 0.46);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+}
+
+.about-real-body p {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto !important;
+  color: #152338 !important;
+  font-size: 16px !important;
+  line-height: 1.66 !important;
+  text-align: left;
+}
+
+.about-real-body p span {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.about-real-sustainability .about-real-body p {
+  font-size: 16px !important;
+  line-height: 1.66 !important;
+}
+
+.about-real-sustainability .about-real-body p strong,
+.about-real-sustainability .about-real-body p:last-child {
+  color: #152338 !important;
+}
+
+.about-wealth-means {
+  margin-top: 16px;
+  color: #152338;
+}
+
+.about-wealth-means strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--real-accent);
+  font-family: Georgia, serif;
+  font-size: 16px;
+}
+
+.about-wealth-means ul {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 124px);
+  justify-content: center;
+  align-items: center;
+  gap: 8px 18px;
+  list-style: none;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.about-wealth-means li {
+  width: 124px;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.about-real-health {
+  --real-accent: #2f8b6e;
+}
+
+.about-real-wealth {
+  --real-accent: #b98518;
+}
+
+.about-real-happiness {
+  --real-accent: #7b58b2;
+}
+
+.about-real-sustainability {
+  --real-accent: #0f6f55;
+}
+
+@keyframes aboutValueFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aboutDropBreathe {
+  0%,
+  100% {
+    transform: rotate(135deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(135deg) translateY(3px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .about-values-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .about-values-interactive {
+    margin-top: 56px !important;
+    border-radius: 18px !important;
+  }
+
+  .about-values-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-real-card {
+    min-height: 0;
+  }
+
+  .about-real-card h3 {
+    flex-wrap: wrap;
+  }
+
+  .about-real-body {
+    min-height: 0;
+  }
+
+  .about-wealth-means ul {
+    grid-template-columns: 1fr;
+  }
+
+  .about-wealth-means li {
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-values-logo-shine::before,
+  .about-values-logo-shine::after,
+  .falling-leaf {
+    animation: none !important;
+  }
+
+  .falling-leaf {
+    opacity: 0.24;
+  }
+
+  .about-real-card,
+  .about-real-drop {
+    animation: none !important;
+  }
+
+  .about-real-card {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* END HAPPY DROPS EDITABLE FOUR REAL VALUES */
+
+/* HAPPY DROPS RICH STORY EXPERIENCE */
+.about-journey,
+.about-philosophy,
+.about-promise {
+  width: min(1480px, calc(100% - 16px)) !important;
+  margin: 78px auto 0 !important;
+}
+
+.about-story-home {
+  position: relative;
+  align-items: center !important;
+}
+
+.about-story-home::before {
+  content: "";
+  position: absolute;
+  inset: -28px 42% -28px -28px;
+  z-index: -1;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(171, 144, 103, 0.15), transparent 34%),
+    linear-gradient(135deg, rgba(251, 244, 232, 0.72), rgba(255, 255, 255, 0));
+}
+
+.about-story-home .about-story-image-wrap {
+  padding: 0 !important;
+}
+
+.about-story-copy {
+  max-width: 720px;
+  padding: clamp(24px, 3vw, 44px) !important;
+  border-left: 0;
+}
+
+.about-story-copy .section-kicker,
+.about-section-heading .section-kicker {
+  font-size: clamp(18px, 1.35vw, 22px) !important;
+  letter-spacing: 0.14em !important;
+  line-height: 1.35 !important;
+}
+
+.about-story-copy h2 {
+  margin-bottom: 10px !important;
+  font-size: clamp(42px, 4.8vw, 72px) !important;
+}
+
+.about-story-lead {
+  margin-bottom: 24px !important;
+  color: #173f27 !important;
+  font-family: Georgia, serif !important;
+  font-size: clamp(26px, 2.6vw, 38px) !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+}
+
+.about-story-copy p:not(.section-kicker):not(.about-story-lead) {
+  max-width: 660px;
+  color: #26372d !important;
+  font-size: clamp(19px, 1.35vw, 22px) !important;
+  line-height: 1.78 !important;
+}
+
+.about-section-heading {
+  max-width: 900px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.about-section-heading h2 {
+  margin-bottom: 18px !important;
+  color: #173f27 !important;
+  font-size: clamp(36px, 4vw, 58px) !important;
+  line-height: 1.14 !important;
+}
+
+.about-section-heading > p:not(.section-kicker) {
+  max-width: 780px;
+  margin: 0 auto !important;
+  color: #304236 !important;
+  font-size: clamp(19px, 1.45vw, 23px) !important;
+  line-height: 1.75 !important;
+}
+
+.about-journey {
+  padding: clamp(48px, 6vw, 92px) clamp(24px, 4vw, 72px);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(251, 244, 232, 0.82)),
+    radial-gradient(circle at 12% 12%, rgba(49, 92, 56, 0.09), transparent 32%),
+    radial-gradient(circle at 92% 88%, rgba(123, 88, 178, 0.09), transparent 30%),
+    #fbf4e8;
+  box-shadow: 0 18px 42px rgba(49, 92, 56, 0.06);
+}
+
+.about-journey-path {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(22px, 3vw, 36px);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.about-journey-path::before {
+  content: "";
+  position: absolute;
+  left: 36px;
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, rgba(26, 86, 63, 0.26), transparent);
+}
+
+.about-journey-step {
+  position: relative;
+  min-height: 0;
+  margin-left: 68px;
+  padding: clamp(26px, 3.2vw, 44px);
+  border: 1px solid rgba(26, 86, 63, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 14px 34px rgba(49, 92, 56, 0.055);
+  animation: aboutValueFadeUp 0.72s ease forwards;
+  animation-delay: var(--journey-delay, 0s);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.about-journey-step::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  left: -42px;
+  top: 36px;
+  border-radius: 50%;
+  background: #1a563f;
+  box-shadow: 0 0 0 10px rgba(26, 86, 63, 0.12);
+}
+
+.about-journey-step span {
+  display: block;
+  margin: 0 0 14px;
+  color: #8b6a2d;
+  font-size: clamp(16px, 1.05vw, 18px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.about-journey-step h3 {
+  margin-bottom: 12px !important;
+  color: #173f27 !important;
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 3vw, 46px) !important;
+  line-height: 1.2 !important;
+}
+
+.about-journey-step p {
+  max-width: 880px;
+  color: #304236 !important;
+  font-size: clamp(20px, 1.45vw, 24px) !important;
+  line-height: 1.72 !important;
+}
+
+.about-philosophy {
+  padding: clamp(34px, 4vw, 58px) 0 0;
+}
+
+.about-philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.about-philosophy-card {
+  min-height: 250px;
+  padding: 30px 28px;
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(251, 244, 232, 0.74)),
+    radial-gradient(circle at 90% 15%, rgba(123, 88, 178, 0.12), transparent 30%);
+  border: 1px solid rgba(26, 86, 63, 0.13);
+  box-shadow: 0 14px 32px rgba(49, 92, 56, 0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: aboutValueFadeUp 0.68s ease forwards;
+  animation-delay: var(--pillar-delay, 0s);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.about-philosophy-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(49, 92, 56, 0.11);
+}
+
+.about-philosophy-card span {
+  display: inline-grid;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 22px;
+  place-items: center;
+  border-radius: 50%;
+  color: #173f27;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  background: rgba(227, 211, 184, 0.52);
+}
+
+.about-philosophy-card h3 {
+  margin-bottom: 12px !important;
+  color: #173f27 !important;
+  font-family: Georgia, serif;
+  font-size: clamp(27px, 2.2vw, 36px) !important;
+  line-height: 1.18 !important;
+}
+
+.about-philosophy-card p {
+  color: #304236 !important;
+  font-size: clamp(18px, 1.25vw, 21px) !important;
+  line-height: 1.68 !important;
+}
+
+.about-promise {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  gap: clamp(28px, 4vw, 58px);
+  align-items: stretch;
+  padding: clamp(34px, 4vw, 58px);
+  overflow: hidden;
+  border-radius: 24px;
+  background:
+    linear-gradient(105deg, rgba(255, 252, 246, 0.92) 0%, rgba(250, 241, 226, 0.82) 48%, rgba(236, 222, 200, 0.86) 100%),
+    radial-gradient(circle at 8% 12%, rgba(118, 138, 95, 0.18), transparent 24%),
+    radial-gradient(circle at 88% 18%, rgba(107, 129, 84, 0.2), transparent 25%),
+    radial-gradient(circle at 78% 88%, rgba(145, 117, 72, 0.12), transparent 30%),
+    #f7eddd;
+  border: 1px solid rgba(116, 91, 54, 0.16);
+  box-shadow: 0 18px 44px rgba(101, 80, 50, 0.11);
+}
+
+.about-promise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 252, 246, 0.84), rgba(255, 252, 246, 0.2)),
+    radial-gradient(ellipse at 16% 18%, rgba(91, 104, 73, 0.15), transparent 30%),
+    radial-gradient(ellipse at 86% 8%, rgba(91, 104, 73, 0.18), transparent 28%);
+  filter: blur(0.2px);
+}
+
+.about-promise > * {
+  position: relative;
+  z-index: 1;
+}
+
+.about-promise-fall {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.about-promise-fall span {
+  position: absolute;
+  top: -46px;
+  width: 14px;
+  height: 20px;
+  border-radius: 50% 50% 50% 0;
+  background:
+    radial-gradient(circle at 38% 32%, rgba(255, 255, 255, 0.72) 0 14%, transparent 16%),
+    linear-gradient(145deg, rgba(111, 171, 165, 0.55), rgba(44, 125, 111, 0.32));
+  box-shadow: 0 10px 22px rgba(44, 125, 111, 0.12);
+  transform: rotate(-45deg);
+  animation: aboutLeafFall 9s linear infinite;
+}
+
+.about-promise-fall span:nth-child(1) {
+  left: 45%;
+  animation-delay: 0s;
+  animation-duration: 8.8s;
+}
+
+.about-promise-fall span:nth-child(2) {
+  left: 58%;
+  width: 12px;
+  height: 18px;
+  background:
+    radial-gradient(circle at 38% 32%, rgba(255, 255, 255, 0.74) 0 14%, transparent 16%),
+    linear-gradient(145deg, rgba(176, 145, 70, 0.48), rgba(132, 100, 36, 0.28));
+  animation-delay: 1.5s;
+  animation-duration: 9.6s;
+}
+
+.about-promise-fall span:nth-child(3) {
+  left: 70%;
+  background:
+    radial-gradient(circle at 38% 32%, rgba(255, 255, 255, 0.74) 0 14%, transparent 16%),
+    linear-gradient(145deg, rgba(151, 121, 205, 0.5), rgba(106, 80, 164, 0.28));
+  animation-delay: 3s;
+  animation-duration: 10.2s;
+}
+
+.about-promise-fall span:nth-child(4) {
+  left: 82%;
+  width: 13px;
+  height: 19px;
+  animation-delay: 4.6s;
+  animation-duration: 9.2s;
+}
+
+.about-promise-fall span:nth-child(5) {
+  left: 36%;
+  width: 11px;
+  height: 17px;
+  background:
+    radial-gradient(circle at 38% 32%, rgba(255, 255, 255, 0.74) 0 14%, transparent 16%),
+    linear-gradient(145deg, rgba(111, 171, 165, 0.46), rgba(44, 125, 111, 0.26));
+  animation-delay: 6s;
+  animation-duration: 10.8s;
+}
+
+.about-promise h2,
+.about-promise p,
+.about-promise .section-kicker {
+  color: #173f27 !important;
+}
+
+.about-promise h2 {
+  max-width: 760px;
+  font-size: clamp(36px, 4.2vw, 62px) !important;
+}
+
+.about-promise p:not(.section-kicker) {
+  max-width: 720px;
+  color: #304236 !important;
+  font-size: clamp(20px, 1.55vw, 24px) !important;
+  line-height: 1.72 !important;
+}
+
+.about-promise-note {
+  padding: clamp(26px, 3vw, 42px);
+  border-radius: 20px;
+  background: rgba(255, 252, 246, 0.72);
+  border: 1px solid rgba(116, 91, 54, 0.15);
+  box-shadow: 0 14px 32px rgba(101, 80, 50, 0.08);
+}
+
+.about-promise-note strong {
+  display: block;
+  margin-top: 24px;
+  color: #173f27;
+  font-family: Georgia, serif;
+  font-size: clamp(28px, 3vw, 46px);
+  line-height: 1.18;
+}
+
+@keyframes aboutLeafFall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -18px, 0) rotate(-45deg) scale(0.86);
+  }
+
+  12% {
+    opacity: 0.68;
+  }
+
+  48% {
+    transform: translate3d(8px, 270px, 0) rotate(-45deg) scale(1);
+  }
+
+  78% {
+    opacity: 0.42;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-6px, 620px, 0) rotate(-45deg) scale(0.92);
+  }
+}
+
+@media (max-width: 980px) {
+  .about-journey-path,
+  .about-philosophy-grid,
+  .about-promise {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-journey-path::before {
+    left: 18px;
+  }
+
+  .about-story-copy {
+    border-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-journey,
+  .about-philosophy,
+  .about-promise {
+    width: min(100% - 12px, 1480px) !important;
+    margin-top: 56px !important;
+  }
+
+  .about-journey,
+  .about-promise {
+    padding: 28px 18px;
+    border-radius: 18px;
+  }
+
+  .about-section-heading {
+    text-align: left;
+  }
+
+  .about-section-heading > p:not(.section-kicker) {
+    margin-left: 0 !important;
+  }
+
+  .about-journey-step,
+  .about-philosophy-card {
+    min-height: 0;
+    padding: 26px 22px;
+  }
+
+  .about-journey-step {
+    margin-left: 42px;
+  }
+
+  .about-journey-step::before {
+    left: -32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-journey-step,
+  .about-philosophy-card {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  .about-philosophy-card:hover {
+    transform: none;
+  }
+
+  .about-promise-fall span {
+    animation: none !important;
+    opacity: 0.18;
+  }
+}
+/* END HAPPY DROPS RICH STORY EXPERIENCE */
+
+/* HAPPY DROPS CANDLE EMOTION */
+.about-story-image-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  overflow: hidden;
+  border-radius: 14px;
+  isolation: isolate;
+}
+
+.about-story-image-wrap > img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  display: block;
+  object-fit: cover;
+  border-radius: inherit;
+  transition: filter 0.45s ease, transform 0.45s ease;
+}
+
+.about-candle-glow::before {
+  content: "";
+  position: absolute;
+  left: 81%;
+  top: 45%;
+  width: clamp(92px, 9vw, 135px);
+  height: clamp(110px, 11vw, 160px);
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, rgba(255, 248, 203, 0.72) 0%, rgba(255, 197, 89, 0.42) 30%, rgba(255, 153, 40, 0.18) 54%, rgba(255, 153, 40, 0) 76%);
+  mix-blend-mode: screen;
+  filter: blur(10px);
+  opacity: 0.86;
+  transform: translate(-50%, -50%) scale(0.95);
+  animation: aboutCandleGlow 2.8s ease-in-out infinite;
+}
+
+.about-candle-glow::after {
+  content: none;
+}
+
+.about-candle-glow:hover > img {
+  filter: saturate(1.03) brightness(1.02) sepia(0.03);
+}
+
+.about-candle-glow:hover::before {
+  animation-duration: 1.05s;
+}
+
+@keyframes aboutCandleGlow {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: translate(-50%, -50%) scale(0.94);
+  }
+
+  50% {
+    opacity: 0.98;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+@keyframes aboutFlameFlicker {
+  0% {
+    opacity: 0.78;
+    transform: translate(-50%, -50%) scale(0.94, 1) rotate(-3deg);
+  }
+
+  25% {
+    opacity: 1;
+    transform: translate(-48%, -51%) scale(1.04, 1.08) rotate(2deg);
+  }
+
+  55% {
+    opacity: 0.84;
+    transform: translate(-51%, -50%) scale(0.98, 1.03) rotate(-1deg);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translate(-49%, -52%) scale(1.06, 1.1) rotate(3deg);
+  }
+
+  100% {
+    opacity: 0.82;
+    transform: translate(-50%, -50%) scale(0.96, 1) rotate(-2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-candle-glow::before,
+  .about-candle-glow::after {
+    animation: none !important;
+  }
+
+  .about-candle-glow:hover > img {
+    transform: none;
+  }
+}
+/* END HAPPY DROPS CANDLE EMOTION */
+
+/* HAPPY DROPS JOURNEY TIMELINE */
+.about-journey {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  animation: aboutJourneyRevealSoft 0.9s ease both !important;
+}
+
+.about-journey::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 44%,
+      rgba(180, 122, 210, 0.12) 52%,
+      rgba(255, 255, 255, 0) 64%
+    );
+  opacity: 0.62;
+  transform: translateX(-105%);
+  animation: aboutJourneyLightSweep 8.4s ease-in-out infinite;
+}
+
+.about-journey > * {
+  position: relative;
+  z-index: 1;
+}
+
+.about-journey-path {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto clamp(28px, 4vw, 48px);
+  padding-top: 42px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(120px, 1fr));
+  gap: clamp(10px, 1.4vw, 18px);
+}
+
+.about-journey-path::before {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 54px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(26, 86, 63, 0.28), rgba(182, 122, 210, 0.22), rgba(26, 86, 63, 0.28), transparent);
+  transform-origin: left center;
+  animation: aboutJourneyLineGlow 4.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.about-journey-step {
+  position: relative;
+  appearance: none;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 48px 10px 0 !important;
+  text-align: center;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: aboutJourneyStepIn 0.72s ease forwards !important;
+  animation-delay: var(--journey-delay, 0s) !important;
+}
+
+.about-journey-step::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0 !important;
+  z-index: 2;
+  width: clamp(18px, 1.8vw, 26px);
+  height: clamp(18px, 1.8vw, 26px);
+  border-radius: 50%;
+  border: 2px solid rgba(26, 86, 63, 0.34);
+  background:
+    radial-gradient(circle at 38% 34%, rgba(255, 255, 255, 0.9) 0 18%, transparent 20%),
+    linear-gradient(145deg, #fdf9f0, #dfeada);
+  box-shadow: 0 0 0 10px rgba(49, 92, 56, 0.06);
+  transform: translateX(-50%);
+  animation: aboutJourneyDotPulse 3.2s ease-in-out infinite;
+  animation-delay: var(--journey-delay, 0s);
+}
+
+.about-journey-step.active::before {
+  width: clamp(34px, 3.2vw, 52px);
+  height: clamp(34px, 3.2vw, 52px);
+  top: -13px !important;
+  border-color: rgba(182, 122, 210, 0.5);
+  background:
+    radial-gradient(circle at 38% 34%, rgba(255, 255, 255, 0.96) 0 18%, transparent 20%),
+    linear-gradient(145deg, #ffffff, #eadff2 44%, #dfeada);
+  box-shadow: 0 0 0 14px rgba(182, 122, 210, 0.08), 0 14px 30px rgba(49, 92, 56, 0.1);
+}
+
+.about-journey-step::after {
+  content: "";
+  position: absolute;
+  top: 34px;
+  left: 50%;
+  width: 28px;
+  height: 40px;
+  transform: translateX(-50%);
+  opacity: 0.4;
+  background:
+    radial-gradient(ellipse at 50% 10%, rgba(26, 86, 63, 0.3) 0 1px, transparent 2px),
+    radial-gradient(ellipse at 44% 36%, rgba(26, 86, 63, 0.22) 0 1px, transparent 2px),
+    radial-gradient(ellipse at 58% 62%, rgba(26, 86, 63, 0.18) 0 1px, transparent 2px);
+}
+
+.about-journey-step:hover,
+.about-journey-step:focus-within {
+  transform: translateY(-4px) !important;
+  transition: transform 0.25s ease;
+}
+
+.about-journey-step span {
+  display: block;
+  margin: 0 0 10px;
+  color: #8b6a2d;
+  font-size: clamp(13px, 0.95vw, 16px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.about-journey-step h3 {
+  margin: 0 auto !important;
+  max-width: 180px;
+  color: #173f27 !important;
+  font-family: Georgia, serif !important;
+  font-size: clamp(20px, 1.55vw, 28px) !important;
+  line-height: 1.14 !important;
+}
+
+.about-journey-detail {
+  max-width: 880px;
+  min-height: 300px;
+  margin: 0 auto !important;
+  padding: clamp(28px, 4vw, 46px) !important;
+  border: 1px solid rgba(26, 86, 63, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 14px 34px rgba(49, 92, 56, 0.065);
+  text-align: left;
+  animation: aboutJourneyDetailIn 0.38s ease both;
+}
+
+.about-journey-detail > span {
+  display: block;
+  margin: 0 0 14px;
+  color: #8b6a2d;
+  font-size: clamp(16px, 1.05vw, 18px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.about-journey-detail h3 {
+  margin: 0 0 14px !important;
+  color: #173f27 !important;
+  font-family: Georgia, serif !important;
+  font-size: clamp(34px, 4vw, 58px) !important;
+  line-height: 1.1 !important;
+}
+
+.about-journey-detail p {
+  max-width: 800px;
+  margin: 0 !important;
+  color: #304236 !important;
+  font-size: clamp(20px, 1.45vw, 24px) !important;
+  line-height: 1.72 !important;
+}
+
+.about-journey-detail div {
+  max-width: 800px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(26, 86, 63, 0.14);
+}
+
+.about-journey-detail strong {
+  display: block;
+  margin-bottom: 12px;
+  color: #173f27;
+  font-size: clamp(18px, 1.3vw, 21px);
+  font-weight: 800;
+}
+
+.about-journey-detail div p {
+  color: #405345 !important;
+  font-size: clamp(19px, 1.35vw, 22px) !important;
+}
+
+@keyframes aboutJourneyRevealSoft {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aboutJourneyLightSweep {
+  0%,
+  38% {
+    transform: translateX(-105%);
+  }
+
+  62% {
+    transform: translateX(105%);
+  }
+
+  100% {
+    transform: translateX(105%);
+  }
+}
+
+@keyframes aboutJourneyLineGlow {
+  0%,
+  100% {
+    opacity: 0.58;
+    filter: saturate(1);
+  }
+
+  50% {
+    opacity: 0.95;
+    filter: saturate(1.2);
+  }
+}
+
+@keyframes aboutJourneyStepIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aboutJourneyDetailIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aboutJourneyDotPulse {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1);
+    box-shadow: 0 0 0 10px rgba(26, 86, 63, 0.12);
+  }
+
+  50% {
+    transform: translateX(-50%) scale(1.08);
+    box-shadow: 0 0 0 15px rgba(26, 86, 63, 0.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-journey,
+  .about-journey::after,
+  .about-journey-path::before,
+  .about-journey-step,
+  .about-journey-step::before,
+  .about-journey-detail {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .about-journey-step {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .about-journey-path {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 620px;
+    padding-top: 38px;
+  }
+
+  .about-journey-path::before {
+    left: 10%;
+    right: 10%;
+    top: 50px;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(26, 86, 63, 0.28), rgba(182, 122, 210, 0.22), transparent);
+  }
+
+  .about-journey-step {
+    padding: 46px 8px 0 !important;
+    margin-left: 0 !important;
+    text-align: center;
+  }
+
+  .about-journey-step::before,
+  .about-journey-step:nth-child(2)::before,
+  .about-journey-step:nth-child(3)::before {
+    left: 50%;
+    top: 0 !important;
+  }
+
+  .about-journey-detail {
+    min-height: 0;
+  }
+}
+/* END HAPPY DROPS JOURNEY TIMELINE */
+
+/* HAPPY DROPS ABOUT SECTION BREATHING ROOM */
+.about-calm-image-hero,
+.about-intro-split,
+.about-story-home,
+.about-journey,
+.about-values-interactive,
+.about-philosophy,
+.about-promise,
+.about-mission {
+  scroll-margin-top: 96px;
+}
+
+.about-intro-split {
+  min-height: min(760px, calc(100vh - 120px)) !important;
+  padding-top: clamp(110px, 12vw, 170px) !important;
+  padding-bottom: clamp(110px, 12vw, 170px) !important;
+  align-items: center !important;
+}
+
+.about-story-home,
+.about-journey,
+.about-values-interactive,
+.about-philosophy,
+.about-promise,
+.about-mission {
+  margin-top: clamp(120px, 13vw, 190px) !important;
+}
+
+.about-calm-image-hero {
+  margin-bottom: clamp(96px, 10vw, 150px) !important;
+}
+
+@media (max-width: 900px) {
+  .about-intro-split {
+    min-height: auto !important;
+    padding-top: 86px !important;
+    padding-bottom: 86px !important;
+  }
+
+  .about-story-home,
+  .about-journey,
+  .about-values-interactive,
+  .about-philosophy,
+  .about-promise,
+  .about-mission {
+    margin-top: 96px !important;
+  }
+}
+/* END HAPPY DROPS ABOUT SECTION BREATHING ROOM */
+
+/* HAPPY DROPS PHILOSOPHY AND COMBINED MISSION */
+.about-calm-image-hero + .about-philosophy {
+  margin-top: 0 !important;
+}
+
+.about-philosophy-intro {
+  margin: clamp(30px, 4vw, 52px) 0 clamp(38px, 5vw, 64px);
+}
+
+.about-philosophy-intro p {
+  color: #304236 !important;
+  font-size: clamp(18px, 1.3vw, 21px) !important;
+  line-height: 1.72 !important;
+}
+
+.about-philosophy-mission {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(420px, 1.1fr);
+  column-gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(34px, 5vw, 64px);
+  overflow: hidden;
+  border: 1px solid rgba(26, 86, 63, 0.12);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(255, 255, 255, 0.92), transparent 34%),
+    linear-gradient(125deg, #eef4e9 0%, #f7f3e9 58%, #eee1cd 100%);
+  box-shadow: 0 18px 42px rgba(49, 92, 56, 0.08);
+}
+
+.about-philosophy-mission::after {
+  content: "";
+  position: absolute;
+  top: 14%;
+  bottom: 14%;
+  left: 46%;
+  width: 1px;
+  background: linear-gradient(
+    transparent,
+    rgba(26, 86, 63, 0.2),
+    transparent
+  );
+}
+
+.about-philosophy-mission .section-kicker {
+  grid-column: 1;
+  margin-bottom: 14px !important;
+}
+
+.about-philosophy-mission h3 {
+  grid-column: 1;
+  margin: 0 !important;
+  color: #173f27 !important;
+  font-family: Georgia, serif;
+  font-size: clamp(34px, 3.5vw, 52px) !important;
+  line-height: 1.12 !important;
+}
+
+.about-philosophy-mission > p:last-child {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin: 0 !important;
+  padding-left: clamp(8px, 2vw, 28px);
+  font-size: clamp(19px, 1.4vw, 22px) !important;
+  line-height: 1.75 !important;
+}
+
+@media (max-width: 800px) {
+  .about-philosophy-mission {
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+  }
+
+  .about-philosophy-mission::after {
+    display: none;
+  }
+
+  .about-philosophy-mission .section-kicker,
+  .about-philosophy-mission h3,
+  .about-philosophy-mission > p:last-child {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .about-philosophy-mission > p:last-child {
+    padding: 22px 0 0;
+    border-top: 1px solid rgba(26, 86, 63, 0.14);
+  }
+}
+
+.about-mission-combined {
+  display: block !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.about-mission-combined .about-promise {
+  width: 100%;
+}
+
+.about-mission-closing {
+  position: relative !important;
+  grid-column: 1 / -1;
+  min-height: clamp(360px, 42vw, 580px);
+  margin-top: 0;
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 22px;
+  box-shadow: 0 16px 36px rgba(35, 76, 53, 0.12);
+}
+
+.about-mission-closing img {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  border-radius: 22px !important;
+}
+
+.about-mission-bridge {
+  position: relative !important;
+  z-index: 2;
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin: clamp(8px, 1.5vw, 18px) 0 clamp(14px, 2vw, 24px);
+  padding: 0 !important;
+}
+
+.about-mission-bridge .primary-action {
+  min-height: 52px !important;
+  margin: 0 !important;
+  padding: 0 34px !important;
+  font-size: 17px !important;
+  box-shadow: 0 10px 24px rgba(74, 48, 91, 0.18);
+}
+/* END HAPPY DROPS PHILOSOPHY AND COMBINED MISSION */

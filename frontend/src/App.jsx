@@ -8,12 +8,15 @@ import {
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import WellnessAssessment from "./components/WellnessAssessment";
+import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
+import WellnessAssessmentModal from "./components/WellnessAssessmentModal";
 import AboutUs from "./pages/AboutUs";
 import Knowledge from "./pages/Knowledge";
 import Workshops from "./pages/workshops";
+import Supplier from "./pages/Supplier";
+import Checkout from "./pages/Checkout";
 
 const simplePages = {
   "/shop": {
@@ -25,11 +28,6 @@ const simplePages = {
     kicker: "Expert Guidance",
     title: "Therapists",
     text: "Connect with wellness professionals who support natural, practical care.",
-  },
-  "/suppliers": {
-    kicker: "Trusted Partners",
-    title: "Suppliers",
-    text: "Learn about the partners who help us bring nature-powered wellness to more families.",
   },
   "/shipping-delivery": {
     kicker: "Customer Care",
@@ -78,11 +76,15 @@ function AppShell() {
       <Navbar currentPath={location.pathname.toLowerCase()} />
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/wellness-assessment" element={<WellnessAssessment />} />
+        <Route path="/wellness-assessment" element={<WellnessAssessmentModal />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/knowledge" element={<Knowledge />} />
         <Route path="/workshops" element={<Workshops />} />
+        <Route path="/supplier" element={<Supplier />} />
+        <Route path="/suppliers" element={<Supplier />} />
+        <Route path="/checkout" element={<Checkout />} />
         {Object.entries(simplePages).map(([path, page]) => (
           <Route key={path} path={path} element={<SimpleRoutePage {...page} />} />
         ))}

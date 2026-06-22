@@ -1039,6 +1039,10 @@ textarea {
 .wellness-view-btn {
   width: 120px;
   margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .steps-list {

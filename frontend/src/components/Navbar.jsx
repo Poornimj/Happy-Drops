@@ -49,9 +49,9 @@ function Navbar() {
             <HiOutlineSearch />
           </a>
 
-          <Link to="/signup" className="nav-icon" aria-label="Create wellness profile">
+          <a href="/login" className="nav-icon" aria-label="Log in or create an account">
             <HiOutlineUser />
-          </Link>
+          </a>
 
           <Link to="/shop" className="nav-icon" aria-label="Shopping cart">
             <HiOutlineShoppingCart />
