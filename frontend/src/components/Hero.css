@@ -4,9 +4,10 @@
   display: flex;
   align-items: center;
   gap: 50px;
-  padding: 40px 60px;
+  padding: 55px 50px;
   margin: 0px;
-  border-radius: 10px;
+  min-height: 500px;
+  border-radius: 12px;
   background: #F4E4D5;
   background-position: right -50px center;
   background-repeat: no-repeat;
@@ -17,22 +18,25 @@
 
 .hero::after {
   content: '';
+
   position: absolute;
-  top: -410px;
-  right: -0.6px;
-  width: 60%;
-  height: 200%;
- 
+  top: 0;
+  right: 0;
+
+  width: 52%;
+  height: 100%;
 
   background-image: url('../assets/images/welcome-header.png');
   background-repeat: no-repeat;
   background-position: center right;
-  background-size: auto 50%;
-  opacity: 0.75;
-  transform: translateY(100px); /* Moves image down */
+  background-size: cover;
+
+  opacity: 1;
+
   z-index: 0;
   pointer-events: none;
 }
+
 .welcome-header-decoration-right {
   position: absolute;
   top: 35px;
@@ -45,6 +49,7 @@
   transform: rotate(-5deg);
   transform-origin: top right;
   filter: blur(0.5px);
+  animation: swayDecoration 8s ease-in-out infinite;
 }
 
 .leaf-decoration-left,
@@ -61,12 +66,14 @@
   top: -20px;
   left: -30px;
   transform: rotate(-15deg);
+  animation: swayLeft 6s ease-in-out infinite;
 }
 
 .leaf-decoration-right {
   bottom: -20px;
   right: -30px;
   transform: rotate(15deg);
+  animation: swayRight 7s ease-in-out infinite;
 }
 
 @media (max-width: 768px) {
@@ -78,17 +85,26 @@
 
 .hero::before {
   content: '';
+
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle at 20% 80%,
-    rgba(212, 196, 225, 0.15) 0%,
-    transparent 50%
+  top: 0;
+  right: 0;
+
+  width: 62%;
+  height: 100%;
+
+  z-index: 1;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to right,
+    #F4E4D5 0%,
+    rgba(244,228,213,0.98) 10%,
+    rgba(244,228,213,0.90) 22%,
+    rgba(244,228,213,0.65) 38%,
+    rgba(244,228,213,0.25) 58%,
+    rgba(244,228,213,0) 78%
   );
-  animation: float 8s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -97,6 +113,51 @@
   }
   50% {
     transform: translate(20px, -20px) rotate(5deg);
+  }
+}
+
+@keyframes swayLeft {
+  0%, 100% {
+    transform: rotate(-15deg) translateY(0);
+  }
+  25% {
+    transform: rotate(-12deg) translateY(-3px);
+  }
+  50% {
+    transform: rotate(-18deg) translateY(0);
+  }
+  75% {
+    transform: rotate(-12deg) translateY(3px);
+  }
+}
+
+@keyframes swayRight {
+  0%, 100% {
+    transform: rotate(15deg) translateY(0);
+  }
+  25% {
+    transform: rotate(18deg) translateY(-3px);
+  }
+  50% {
+    transform: rotate(12deg) translateY(0);
+  }
+  75% {
+    transform: rotate(18deg) translateY(3px);
+  }
+}
+
+@keyframes swayDecoration {
+  0%, 100% {
+    transform: rotate(-5deg) translateY(0);
+  }
+  25% {
+    transform: rotate(-2deg) translateY(-2px);
+  }
+  50% {
+    transform: rotate(-8deg) translateY(0);
+  }
+  75% {
+    transform: rotate(-2deg) translateY(2px);
   }
 }
 
@@ -128,6 +189,7 @@
   font-weight: 600;
   letter-spacing: 2px;
   margin-bottom: 20px;
+  height: 5px;
   text-transform: uppercase;
   animation: slideDown 0.8s ease-out 0.2s both;
 }
@@ -145,12 +207,12 @@
 
 .hero-title {
   font-family: Georgia, serif;
-  font-size: 36px;
-  line-height: 1.05;
+  font-size: 60px;
+  line-height: 1.10;
   color: #29492f;
   font-weight: 700;
   letter-spacing: -2px;
-  margin-top: 20px;
+  margin-top: 100px;
   margin-bottom: 25px;
   background: linear-gradient(135deg, #29492f 0%, #4a7a5f 100%);
   -webkit-background-clip: text;
@@ -162,7 +224,8 @@
 .hero-description {
   max-width: 560px;
   color: #555;
-  line-height: 1.9;
+  line-height: 2.1;
+  margin-top: 60px;
   font-size: 18px;
   animation: slideDown 0.8s ease-out 0.6s both;
 }
@@ -194,6 +257,9 @@
   letter-spacing: 0.3px;
   min-width: 200px;
   font-family: 'Jura', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .primary-btn::before {
@@ -232,6 +298,9 @@
   letter-spacing: 0.3px;
   min-width: 200px;
   font-family: 'Jura', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .secondary-btn:hover {
@@ -276,5 +345,4 @@
     font-size: 16px;
   }
 }
-
 

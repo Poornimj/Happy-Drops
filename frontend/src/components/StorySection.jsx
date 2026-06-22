@@ -11,14 +11,11 @@ import {
 } from "react-icons/fa";
 
 function StorySection() {
-  const [subtitleRef, subtitleVisible] = useScrollReveal();
   const [titleRef, titleVisible] = useScrollReveal();
   const [centerRef, centerVisible] = useScrollReveal();
   const [cardsRef, cardsVisible] = useScrollReveal();
   return (
     <section className="story-section">
-      <h4 className="scroll-reveal" ref={subtitleRef} style={{ opacity: subtitleVisible ? 1 : 0, transform: subtitleVisible ? 'translateY(0)' : 'translateY(40px)' }}>🌿 OUR STORY</h4>
-
       <h2 className="scroll-reveal" ref={titleRef} style={{ opacity: titleVisible ? 1 : 0, transform: titleVisible ? 'translateY(0)' : 'translateY(40px)' }}>
         Rooted in <span className="nature">Nature</span>,
         <br />

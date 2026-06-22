@@ -6,36 +6,6 @@
   overflow: hidden;
 }
 
-.greenleaf-decoration-left,
-.greenleaf-decoration-right {
-  position: absolute;
-  width: 200px;
-  height: auto;
-  opacity: 0.7;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.greenleaf-decoration-left {
-  top: -30px;
-  left: -20px;
-  transform: rotate(15deg);
-}
-
-.greenleaf-decoration-right {
-  top: -30px;
-  right: -20px;
-  transform: scaleX(-1) rotate(15deg);
-}
-
-@media (max-width: 768px) {
-  .greenleaf-decoration-left,
-  .greenleaf-decoration-right {
-    width: 120px;
-    top: -20px;
-  }
-}
-
 .how-it-works::before {
   content: '';
   position: absolute;
@@ -224,6 +194,12 @@
   padding: 15px;
   border-radius: 16px;
   transition: all 0.3s ease;
+
+  min-height: 180px; /* all cards same height */
+  display: flex;
+  background-color: #e8dff0, #c4b4d1;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .step:hover .step-text {
