@@ -17,13 +17,12 @@ import Knowledge from "./pages/Knowledge";
 import Workshops from "./pages/workshops";
 import Supplier from "./pages/Supplier";
 import Checkout from "./pages/Checkout";
+import Shop from "./pages/Shop";
+import ProductDetails from "./pages/ProductDetails";
+import CategoryPage from "./pages/CategoryPage";
+import FoodRelated from "./pages/FoodRelated";
 
 const simplePages = {
-  "/shop": {
-    kicker: "Natural Wellness Shop",
-    title: "Shop",
-    text: "Browse Happy Drops products, wellness essentials, and natural care items.",
-  },
   "/therapists": {
     kicker: "Expert Guidance",
     title: "Therapists",
@@ -85,6 +84,10 @@ function AppShell() {
         <Route path="/supplier" element={<Supplier />} />
         <Route path="/suppliers" element={<Supplier />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/shop/product/:id" element={<ProductDetails />} />
+        <Route path="/shop/category/:categoryName" element={<CategoryPage />} />
+        <Route path="/shop/food-related" element={<FoodRelated />} />
         {Object.entries(simplePages).map(([path, page]) => (
           <Route key={path} path={path} element={<SimpleRoutePage {...page} />} />
         ))}

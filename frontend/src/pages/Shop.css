@@ -1,0 +1,785 @@
+.shop-page {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+ 
+  background: #ffffff;
+  color: #173f27;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+.shop-page h1,
+.shop-page h2,
+.shop-page h3 {
+  font-family: Georgia, serif;
+}
+
+
+.shop-page .hero {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  min-height: 215px;
+  padding: 18px 0;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  background-color: #fbf8f1;
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+
+
+}
+
+.shop-page .hero::after {
+  content: none;
+  background: none;
+  background-image: none;
+}
+
+.shop-page .hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  display: block;
+}
+
+  
+.shop-page .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.75) 45%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+
+.shop-page .hero-text {
+  position: relative;
+  z-index: 2;
+  padding-left: 34px;
+  max-width: 740px;
+}
+
+.shop-page .hero-text h1 {
+  margin: 0 0 24px;
+  font-family: Georgia, serif;
+  font-size: 34px;
+  line-height: 1.15;
+  color: #182238;
+}
+
+.shop-page .hero-text p {
+  margin: 0 0 22px;
+  font-family: Georgia, serif;
+  color: #3b3440;
+}
+
+.best-btn {
+  display: inline-block;
+  border-radius: 22px;
+  padding: 10px 22px;
+  background: #a67ac5;
+  color: white;
+  text-decoration: none;
+  font-family: Georgia, serif;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.shop-page .hero-text {
+  position: relative;
+  z-index: 2;
+  padding-left: 45px;
+  max-width: 440px;
+}
+
+.shop-page .hero-text h1 {
+  margin: 0 0 8px;
+  font-family: Georgia, serif;
+  font-size: 34px;
+  line-height: 1.15;
+}
+.featured-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.featured-header h2 {
+  margin: 0;
+}
+
+
+
+
+.shop-page .categories,
+.shop-page .featured-products {
+  padding: 28px 34px;
+}
+
+.shop-page .category-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.shop-page .category {
+  min-width: 145px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background:  #eadff2;
+  color: #173f27;
+  text-align: center;
+  text-decoration: none;
+  font-family: Georgia, serif;
+  font-weight: 700;
+}
+
+.shop-page .category.active {
+  background: #173f27;
+  color: white;
+}
+
+.shop-page .product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 44px 26px;
+}
+
+.shop-page .product-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #eadff2;
+  border-radius: 10px;
+  background: white;
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+.shop-page .product-card img {
+  width: 100% !important;
+  height: 190px !important;
+  display: block;
+  object-fit: contain !important;
+  object-position: center !important;
+  background: #fbf8f1;
+}
+
+:is(.shop-page, .detail-page) .product-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #173f27;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+:is(.shop-page, .detail-page) .product-badge.purple {
+  background: #a67ac5;
+}
+
+:is(.shop-page, .detail-page) .product-badge.dark {
+  background: #173f27;
+}
+
+
+.shop-page .product-info {
+  padding: 12px 14px 10px;
+}
+
+.shop-page .product-info h3 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  color: #12192b;
+}
+
+.shop-page .product-info p {
+  margin: 4px 0 8px;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  color: #4f655a;
+}
+:is(.shop-page, .detail-page) .product-function {
+  display: block;
+  margin: 4px 0 8px;
+  color: #12192b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+:is(.shop-page, .detail-page) .rating span {
+  color: #ddb742;
+  font-size: 14px;
+}
+
+:is(.shop-page, .detail-page) .rating small {
+  font-size: 11px;
+}
+
+.shop-page .product-info h4 {
+  margin: 0 0 8px;
+  color:  #a67ac5;
+  font-size: 18px;
+}
+
+.cart-btn {
+  width: 86%;
+  height: 34px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 999px;
+  background: #c3cbb9;
+  color: #173f27;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cart-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+.see-more-wrap {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.section-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.bundle {
+  margin: 40px 0 0;
+  padding: 28px 40px;
+  border-radius: 14px 14px 0 0;
+  background: #f6f1f8;
+  color: #173f27;
+  display: grid;
+  grid-template-columns: 330px 1fr 180px;
+  align-items: center;
+  gap: 34px;
+  min-height: 300px;
+}
+
+.bundle-visual {
+  height: 165px;
+  display: flex;
+  align-items: center;
+}
+
+.bundle-visual img {
+  width: 100%;
+  height: 165px;
+  object-fit: contain;
+  object-position: left center;
+  border-radius: 14px;
+  background: #f6f1f8;
+}
+
+.bundle-content h2 {
+  margin: 0 0 6px;
+  color: #182238;
+}
+
+.bundle-content p {
+  margin: 0 0 12px;
+}
+
+.bundle-items {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: 10px 28px;
+}
+
+.bundle-items span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.bundle-items b {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #a67ac5;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.bundle-price h3 {
+  color: #a67ac5;
+  margin: 0;
+  font-size: 24px;
+}
+
+.bundle-price p {
+  margin: 2px 0 8px;
+  text-decoration: line-through;
+  color: #777;
+}
+
+.bundle-price span {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: #a67ac5;
+  color: white;
+  font-weight: 700;
+}
+
+.bundle-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: #182238;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+
+
+.detail-page,
+.shop-simple-page {
+  padding: 40px;
+}
+
+:is(.detail-page, .food-page, .shop-simple-page) .back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #7f63a6;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.detail-box {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.detail-box img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.stars {
+  color: #ddb742;
+}
+
+.detail-cart {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 20px;
+  background: #bec8b2;
+  font-weight: 700;
+  cursor: pointer;
+}
+.benefits-strip {
+  margin: 0 0 40px;
+  padding: 16px 24px;
+  border-radius: 0 0 14px 14px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(23, 63, 39, 0.12);
+}
+
+.shop-page .benefit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shop-page .benefit > span {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #eadff2;
+  color: #173f27;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.shop-page .benefit h4 {
+  margin: 0;
+  font-size: 13px;
+  color: #173f27;
+}
+
+.shop-page .benefit p {
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: #4f655a;
+}
+
+
+
+
+@media (max-width: 900px) {
+  .shop-page .bundle,
+  .shop-page .footer,
+  .detail-box {
+    grid-template-columns: 1fr;
+  }
+}
+
+.more-products-hero {
+  min-height: 320px;
+  background: #fbf8f1;
+  display: grid;
+  grid-template-columns: 1fr 45%;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.more-products-hero .hero-text {
+  padding: 58px 42px;
+  max-width: 520px;
+}
+
+.more-hero-img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  border-radius: 0 14px 14px 0;
+  background: #fbf8f1;
+}
+
+.detail-page {
+  padding: 40px 0;
+}
+
+:is(.detail-page, .food-page, .shop-simple-page) .back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: #3f8d5e;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.detail-box {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 48px;
+  padding: 36px;
+  border-radius: 14px;
+  background: #f7f1fa;
+}
+
+.detail-image-box img {
+  width: 100%;
+  height: 420px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: white;
+}
+
+.product-id {
+  margin: 0 0 10px;
+  color:#173f27;
+  font-weight: 700;
+}
+
+.detail-info h1 {
+  margin: 0 0 14px;
+  font-family: Georgia, serif;
+  color: #173f27;
+}
+
+.detail-description {
+  color: #4f655a;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.detail-amount {
+  margin-top: 18px;
+  color: #173f27;
+}
+
+.detail-info h2 {
+  color: #173f27;
+  font-size: 28px;
+}
+
+.quantity-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 180px;
+  font-weight: 700;
+  margin: 20px 0;
+}
+
+.quantity-label select {
+  padding: 12px 16px;
+  border: 1px solid #dcc8ef;
+  border-radius: 999px;
+  background: white;
+  font-size: 16px;
+  font-weight: 600;
+  color: #173f27;
+}
+
+.detail-cart {
+  padding: 12px 32px;
+  border: none;
+  border-radius: 999px;
+  background: #c3cbb9;
+  color: #173f27;
+  font-weight: 700;
+  cursor: pointer;
+}
+.detail-box {
+  background: #f7f1fa !important;
+}
+
+.product-id,
+.detail-info h2 {
+  color: #173f27 !important;
+}
+
+:is(.detail-page, .food-page, .shop-simple-page) .back-link {
+  background: #173f27!important;
+  color: white !important;
+}
+.shop-page .hero .hero-text {
+  max-width: 760px !important;
+  width: 760px !important;
+}
+
+.shop-page .hero .hero-text h1 {
+  font-size: 40px !important;
+  line-height: 1.12 !important;
+  max-width: 760px !important;
+}
+.shop-page .hero .hero-text h1 {
+  margin-bottom: 26px !important;
+}
+
+
+/* Food related pages */
+.food-page {
+  padding: 40px 0;
+}
+
+.food-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.food-page-header h1 {
+  margin: 0 0 8px;
+  color: #173f27;
+  font-family: Georgia, serif;
+}
+
+.food-product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 20px 30px;
+  border-radius: 14px;
+  background: #f7f1fa;
+}
+
+.food-product {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 42px;
+  align-items: center;
+  padding: 34px 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.food-product + .food-product {
+  border-top: 1px solid #dcc8ef;
+}
+
+.food-product-image img {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: white;
+}
+
+.food-product-info h2 {
+  margin: 0 0 12px;
+  color: #173f27;
+  font-family: Georgia, serif;
+}
+
+.food-product-info p {
+  color: #4f655a;
+  line-height: 1.6;
+}
+
+.food-product-info h3 {
+  color: #a67ac5;
+  font-size: 26px;
+}
+
+.food-product-info label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 150px;
+  margin: 18px 0;
+  font-weight: 700;
+}
+
+.food-product-info select {
+  padding: 11px 14px;
+  border: 2px solid #dcc8ef;
+  border-radius: 999px;
+  background: white;
+  font-size: 16px;
+}
+
+@media (max-width: 750px) {
+  .food-page-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .food-product {
+    grid-template-columns: 1fr;
+  }
+}
+.food-hero {
+  display: grid;
+  grid-template-columns: 1fr 42%;
+  min-height: 280px;
+  margin-bottom: 40px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fbf8f1;;
+}
+
+.food-hero-content {
+  padding: 44px;
+  align-self: center;
+}
+
+.food-hero-content h1 {
+  margin: 0 0 18px;
+  color: #173f27;
+  font-family: Georgia, serif;
+}
+
+.food-hero-content p {
+  max-width: 580px;
+  margin: 0 0 24px;
+  color: #4f655a;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.food-hero-image-wrap {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+}
+
+.food-hero-image-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #fbf8f1 0%,
+    rgba(251, 248, 241, 0.75) 8%,
+    rgba(251, 248, 241, 0.25) 18%,
+    transparent 32%
+  );
+}
+
+.food-hero-image {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  display: block;
+  object-fit: cover;
+  border-radius: 0 14px 14px 0;
+}
+.quantity-label select,
+.quantity-label select option {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 18px !important;
+  font-weight: 600;
+  color: #173f27;
+}
+
+.quantity-label select {
+  padding: 12px 18px;
+  min-width: 220px;
+}
+.quantity-label select,
+.quantity-label select option {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 18px !important;
+  font-weight: 600;
+  color: #173f27;
+}
+
+.quantity-label select {
+  padding: 12px 18px;
+  min-width: 220px;
+}
+.food-product-info select,
+.food-product-info select option {
+  font-size: 18px !important;
+  font-weight: 600;
+}
