@@ -1,6 +1,7 @@
 import "./ProductsSection.css";
 import "../styles/ScrollReveal.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import useScrollReveal from "../hooks/useScrollReveal";
 
 import essentialOil from "../assets/images/essential-oils.png";
@@ -18,21 +19,25 @@ function ProductsSection() {
       image: essentialOil,
       title: "Essential Oils",
       description: "Personalized blends",
+      price: 49,
     },
     {
       image: nutrition,
       title: "Nutritions",
       description: "Whole-body support",
+      price: 39,
     },
     {
       image: sleepSounds,
       title: "Sleep Sounds",
       description: "Therapeutic audio",
+      price: 18,
     },
     {
       image: wellnessAccessories,
       title: "Wellness Tools & Accessories",
       description: "Massage tools, sleep aids & care products",
+      price: 32,
     },
   ];
 
@@ -42,7 +47,23 @@ function ProductsSection() {
 
       <div className="products-grid scroll-reveal" ref={gridRef} style={{ opacity: gridVisible ? 1 : 0, transform: gridVisible ? 'translateY(0)' : 'translateY(40px)' }}>
         {products.map((product, index) => (
-          <a href={`/products/${product.title.toLowerCase().replace(/\s+/g, '-')}`} className="product-card" key={index}>
+          <Link
+            to="/checkout?type=product"
+            state={{
+              checkout: {
+                type: "product",
+                title: product.title,
+                description: product.description,
+                quantity: 1,
+                unitPrice: product.price,
+                shipping: 6.9,
+                tax: 0,
+                image: product.image,
+              },
+            }}
+            className="product-card"
+            key={index}
+          >
             <img
               src={product.image}
               alt={product.title}
@@ -52,7 +73,9 @@ function ProductsSection() {
             <h3>{product.title}</h3>
 
             <p>{product.description}</p>
-          </a>
+            <span className="product-price">From €{product.price.toFixed(2)}</span>
+            <span className="product-buy-action">Buy now</span>
+          </Link>
         ))}
       </div>
 

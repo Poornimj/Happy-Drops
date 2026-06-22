@@ -53,7 +53,7 @@ function Navbar({ currentPath = "/" }) {
             <HiOutlineSearch />
           </a>
 
-          <a href="/signup" className="nav-icon" aria-label="Create wellness profile">
+          <a href="/login" className="nav-icon" aria-label="Log in or create an account">
             <HiOutlineUser />
           </a>
 

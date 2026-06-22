@@ -532,3 +532,14 @@
   margin: 24px auto 0 !important;
  }
 }
+
+.profile-login-link {
+  margin: 22px 0 0;
+  color: #526157;
+  text-align: center;
+}
+
+.profile-login-link a {
+  color: #795895;
+  font-weight: 800;
+}
