@@ -42,7 +42,7 @@ const sourcingCategories = [
   },
   {
     icon: <HiOutlineCube />,
-    title: "Tools seller",
+    title: "Accessories Partner",
     text: "Reliable tools, equipment, packaging, and practical supplies for wellness services.",
   },
   {
@@ -244,8 +244,13 @@ function Supplier() {
               <input name="email" type="email" required placeholder="name@company.com" />
             </label>
             <label>
-              Country <strong>*</strong>
-              <input name="country" required placeholder="Country of operation" />
+              Business address <strong>*</strong>
+              <input
+                name="address"
+                required
+                autoComplete="street-address"
+                placeholder="Street address, city, and postal code"
+              />
             </label>
             <label>
               Website
@@ -264,7 +269,7 @@ function Supplier() {
               >
                 <option value="" disabled>Select a supplier type</option>
                 <option value="space-partner">Space partner</option>
-                <option value="tools-seller">Tools seller</option>
+                <option value="accessories-partner">Accessories Partner</option>
                 <option value="nutrition-supplier">Nutrition supplier</option>
                 <option value="essential-oil-supplier">Essential oil supplier</option>
               </select>
@@ -291,7 +296,7 @@ function Supplier() {
                     <input
                       name="spaceLocation"
                       required
-                      placeholder="Address, city, and country"
+                      placeholder="Street address, city, and postal code"
                     />
                   </label>
                   <label>
@@ -305,9 +310,9 @@ function Supplier() {
                     />
                   </label>
                   <label>
-                    Average nearby customer spend
+                    Average customer spend
                     <input
-                      name="nearbyCustomerSpend"
+                      name="averageCustomerSpend"
                       type="number"
                       min="0"
                       step="0.01"
@@ -346,6 +351,18 @@ function Supplier() {
                   </label>
                 </div>
               </fieldset>
+            )}
+            {(supplierType === "nutrition-supplier" ||
+              supplierType === "essential-oil-supplier") && (
+              <label className="supplier-full-field">
+                Quality certificate <strong>*</strong>
+                <input
+                  name="qualityCertificate"
+                  type="file"
+                  accept=".pdf,.doc,.docx,image/png,image/jpeg,image/webp"
+                  required
+                />
+              </label>
             )}
             <label className="supplier-full-field">
               What would you like to supply? <strong>*</strong>
