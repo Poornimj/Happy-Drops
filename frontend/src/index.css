@@ -585,6 +585,16 @@ textarea {
   background: #9568b8;
 }
 
+.workshop-request-success {
+  margin: 14px 0 0;
+  color: var(--brand-green);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: right;
+}
+
 .workshop-booking-summary {
   position: relative;
   min-height: 640px;

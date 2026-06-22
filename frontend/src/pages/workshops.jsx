@@ -75,6 +75,7 @@ export default function Workshops() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [calendarMonth, setCalendarMonth] = useState(() => new Date());
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [isRequestSubmitted, setIsRequestSubmitted] = useState(false);
   const calendarDays = getCalendarDays(calendarMonth);
   const calendarMonthLabel = new Intl.DateTimeFormat("en-US", {
     month: "long",
@@ -144,7 +145,13 @@ export default function Workshops() {
           </div>
 
           <div className="workshop-booking-area">
-            <form className="workshop-booking-form">
+            <form
+              className="workshop-booking-form"
+              onSubmit={(event) => {
+                event.preventDefault();
+                setIsRequestSubmitted(true);
+              }}
+            >
               <h3>
                 <LuCalendarDays aria-hidden="true" />
                 Book Your Workshop
@@ -292,9 +299,15 @@ export default function Workshops() {
                 Your booking is secure and your information is protected with us.
               </p>
 
-              <button className="workshop-pay-btn" type="button">
+              <button className="workshop-pay-btn" type="submit">
                 Request for Workshops
               </button>
+
+              {isRequestSubmitted && (
+                <p className="workshop-request-success" role="status" aria-live="polite">
+                  Thank you for your request! We will contact you soon.
+                </p>
+              )}
             </form>
 
             <aside className="workshop-booking-summary" aria-label="Booking summary">
