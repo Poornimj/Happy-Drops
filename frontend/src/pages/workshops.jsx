@@ -6,11 +6,16 @@ import {
   LuCalendarHeart,
   LuLeaf,
   LuLock,
+  LuPalette,
   LuShieldCheck,
   LuSoup,
 } from "react-icons/lu";
 import workshopHeader from "../assets/images/workshop-header.png";
 import workshopEssentialOil from "../assets/images/workshops-essential-oil.png";
+import workshopOilCard from "../assets/images/workshop-oil3.png";
+import workshopDumplingCard from "../assets/images/workshop-dumpling2.png";
+import workshopSpecialEventCard from "../assets/images/workshop- specialevent2.png";
+import workshopOfficeCard from "../assets/images/workshop-office.png";
 import workshopSummaryImage from "../assets/images/workshop-summary-image.png";
 import "../index.css";
 
@@ -28,7 +33,7 @@ const workshops = [
   },
   {
     title: "Dumpling DIY + Nutrition Workshop",
-    text: "Enjoy a hands-on dumpling-making experience while learning simple nutrition tips for better wellbeing.",
+    text: "Enjoy a hands-on dumpling-making experience while learning simple nutrition tips",
     icon: LuSoup,
     color: "purple",
     price: 55,
@@ -59,6 +64,31 @@ const workshops = [
 ];
 
 const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+const planWorkshopCards = [
+  {
+    title: "Essential Oil Workshop",
+    image: workshopOilCard,
+  },
+  {
+    title: "Dumpling DIY + Nutrition Workshop",
+    image: workshopDumplingCard,
+  },
+  {
+    title: "Special Event Workshop",
+    image: workshopSpecialEventCard,
+  },
+  {
+    title: "Business Wellness Workshop",
+    image: workshopOfficeCard,
+  },
+];
+
+const workshopLocations = [
+  "Rautatiekatu 16A, Kamppi",
+  "Pilvijärventie 50 C, Kirkkonummi",
+  "Villa Stenberg, Suoniementaival 164, 08350 Lohja",
+  "XR Center, Hämeentie 135 A, 00560 Helsinki",
+];
 
 function formatDate(date) {
   return new Intl.DateTimeFormat("en-GB", {
@@ -90,11 +120,21 @@ export default function Workshops() {
   const navigate = useNavigate();
   const [activeWorkshop, setActiveWorkshop] = useState(workshops[0]);
   const [openWorkshopSheet, setOpenWorkshopSheet] = useState(null);
+  const [openWorkshopRequest, setOpenWorkshopRequest] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [calendarMonth, setCalendarMonth] = useState(() => new Date());
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [isRequestSubmitted, setIsRequestSubmitted] = useState(false);
+  const [isPlanRequestSubmitted, setIsPlanRequestSubmitted] = useState(false);
+  const [selectedTime, setSelectedTime] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [adminLocation, setAdminLocation] = useState("");
+  const [pricePerPerson, setPricePerPerson] = useState("");
+  const [workshopThemes, setWorkshopThemes] = useState({});
   const calendarDays = getCalendarDays(calendarMonth);
+  const summaryMatchesLocation =
+    adminLocation && selectedLocation === adminLocation;
+  const totalPrice = Number(pricePerPerson || 0);
   const calendarMonthLabel = new Intl.DateTimeFormat("en-US", {
     month: "long",
     year: "numeric",
@@ -120,8 +160,8 @@ export default function Workshops() {
               Workshop
             </h1>
             <p className="workshop-header-text">
-              Experience nature-powered wellness with personalized workshops for
-              groups, families, and organizations.
+              Explore practical and enjoyable workshops that bring natural wellness
+              and meaningful experiences to individuals, groups, and teams.
             </p>
           </div>
           <div className="workshop-booking-action">
@@ -156,35 +196,61 @@ export default function Workshops() {
         </section>
 
         <section className="workshop-choices" aria-labelledby="workshop-choices-title">
-          <h2 id="workshop-choices-title">Choose Your Workshop</h2>
+          <h2 id="workshop-choices-title">Discover Our Wellness Workshops</h2>
 
           <div className="workshop-card-grid">
-            {workshops.map((workshop) => {
+            {workshops.map((workshop, index) => {
               const Icon = workshop.icon;
               const isActive = activeWorkshop.title === workshop.title;
+              const themeInputId = `workshop-theme-${index}`;
 
               return (
-                <button
+                <article
                   className={`workshop-choice-card ${workshop.color} ${isActive ? "active" : ""}`}
-                  type="button"
                   key={workshop.title}
-                  onClick={() => {
-                    setActiveWorkshop(workshop);
-
-                    if (workshop.sheet) {
-                      setOpenWorkshopSheet(workshop);
-                    }
-                  }}
                 >
-                  <span className="workshop-choice-icon">
-                    <Icon aria-hidden="true" />
-                  </span>
-                  <strong>{workshop.title}</strong>
-                  <span>{workshop.text}</span>
-                </button>
+                  <button
+                    className="workshop-card-select"
+                    type="button"
+                    onClick={() => {
+                      setActiveWorkshop(workshop);
+
+                      if (workshop.sheet) {
+                        setOpenWorkshopSheet(workshop);
+                      }
+                    }}
+                  >
+                    <span className="workshop-choice-icon">
+                      <Icon aria-hidden="true" />
+                    </span>
+                    <strong>{workshop.title}</strong>
+                    <span>{workshop.text}</span>
+                  </button>
+
+                  <div className="workshop-theme-field">
+                    <span className="workshop-theme-icon">
+                      <LuPalette aria-hidden="true" />
+                    </span>
+                    <label htmlFor={themeInputId}>Theme</label>
+                    <input
+                      id={themeInputId}
+                      name={`theme-${index}`}
+                      type="text"
+                      value={workshopThemes[workshop.title] || ""}
+                      onChange={(event) =>
+                        setWorkshopThemes((themes) => ({
+                          ...themes,
+                          [workshop.title]: event.target.value,
+                        }))
+                      }
+                    />
+                  </div>
+                </article>
               );
             })}
           </div>
+
+          <h2 className="workshop-enrollment-title">Workshop Enrollment</h2>
 
           <div className="workshop-booking-note" role="note">
             <LuLock aria-hidden="true" />
@@ -207,9 +273,9 @@ export default function Workshops() {
               <div className="workshop-form-grid">
                 <fieldset className="workshop-radio-group">
                   <legend>Workshop</legend>
-                  <div>
-                    {workshops.map((workshop) => (
-                      <label key={workshop.title}>
+                  <div className="workshop-radio-card-grid">
+                    {workshops.map((workshop, index) => (
+                      <label className="workshop-radio-card" key={workshop.title}>
                         <input
                           type="radio"
                           name="workshop"
@@ -217,7 +283,10 @@ export default function Workshops() {
                           checked={activeWorkshop.title === workshop.title}
                           onChange={() => setActiveWorkshop(workshop)}
                         />
-                        {workshop.title}
+                        <span className="workshop-radio-number" aria-hidden="true">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <strong>{workshop.title}</strong>
                       </label>
                     ))}
                   </div>
@@ -305,37 +374,59 @@ export default function Workshops() {
 
                 <label>
                   <span>Time</span>
-                  <select defaultValue="">
+                  <select
+                    value={selectedTime}
+                    onChange={(event) => setSelectedTime(event.target.value)}
+                  >
                     <option value="" disabled>
                       Select Time
                     </option>
                     <option>9:00 AM - 11:00 AM</option>
-                    <option>11:00 AM - 1:00 PM</option>
+                    <option>10:00 AM - 12:00 Noon</option>
                     <option>1:00 PM - 3:00 PM</option>
                     <option>3:00 PM - 5:00 PM</option>
-                    <option>5:00 PM - 7:00 PM</option>
-                    <option>7:00 PM - 9:00 PM</option>
                   </select>
                 </label>
 
                 <label>
                   <span>Location</span>
-                  <select defaultValue="">
+                  <select
+                    value={selectedLocation}
+                    onChange={(event) => {
+                      const location = event.target.value;
+                      setSelectedLocation(location);
+
+                      if (!adminLocation) {
+                        setAdminLocation(location);
+                      }
+                    }}
+                  >
                     <option value="" disabled>
                       Select Location
                     </option>
-                    <option>Rautatiekatu 16A, Kamppi</option>
-                    <option>Pilvijärventie 50 C, Kirkkonummi</option>
-                    <option>
-                      Villa Stenberg, Suoniementaival 164, 08350 Lohja
-                    </option>
-                    <option>
-                      XR Center, Hämeentie 135 A, 00560 Helsinki
-                    </option>
+                    {workshopLocations.map((location) => (
+                      <option key={location}>{location}</option>
+                    ))}
                   </select>
                 </label>
 
                 <label>
+                  <span>Price per Person</span>
+                  <select
+                    value={pricePerPerson}
+                    onChange={(event) => setPricePerPerson(event.target.value)}
+                  >
+                    <option value="" disabled>
+                      Select Price
+                    </option>
+                    <option value="40">€40</option>
+                    <option value="60">€60</option>
+                    <option value="80">€80</option>
+                    <option value="100">€100</option>
+                  </select>
+                </label>
+
+                <label className="workshop-notes-field">
                   <span>Notes (Optional)</span>
                   <textarea placeholder="Special requests, food and drinks, event details, accessibility needs..." />
                 </label>
@@ -347,7 +438,7 @@ export default function Workshops() {
               </p>
 
               <button className="workshop-pay-btn" type="submit">
-                Request for Workshops
+                Request Workshop
               </button>
 
               {isRequestSubmitted && (
@@ -360,30 +451,64 @@ export default function Workshops() {
             <aside className="workshop-booking-summary" aria-label="Booking summary">
               <h3>Booking Summary</h3>
 
+              <fieldset className="workshop-admin-location">
+                <legend>Select Location</legend>
+                <div>
+                  {workshopLocations.map((location) => (
+                    <label key={location}>
+                      <input
+                        type="radio"
+                        name="admin-location"
+                        value={location}
+                        checked={adminLocation === location}
+                        onChange={(event) => setAdminLocation(event.target.value)}
+                      />
+                      <span>{location}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
               <dl>
                 <div>
-                  <dt>Workshop</dt>
-                  <dd></dd>
+                  <dt>Customer Name</dt>
+                  <dd>—</dd>
+                </div>
+                <div>
+                  <dt>Workshop Name</dt>
+                  <dd>{summaryMatchesLocation ? activeWorkshop.title : "—"}</dd>
+                </div>
+                <div>
+                  <dt>Theme</dt>
+                  <dd>
+                    {summaryMatchesLocation
+                      ? workshopThemes[activeWorkshop.title] || "—"
+                      : "—"}
+                  </dd>
                 </div>
                 <div>
                   <dt>Date</dt>
-                  <dd></dd>
+                  <dd>
+                    {summaryMatchesLocation && selectedDate
+                      ? formatDate(selectedDate)
+                      : "—"}
+                  </dd>
                 </div>
                 <div>
                   <dt>Time</dt>
-                  <dd></dd>
+                  <dd>{summaryMatchesLocation ? selectedTime || "—" : "—"}</dd>
                 </div>
                 <div>
-                  <dt>Location</dt>
-                  <dd></dd>
-                </div>
-                <div>
-                  <dt>Notes</dt>
-                  <dd></dd>
+                  <dt>Number of Participants</dt>
+                  <dd>—</dd>
                 </div>
                 <div className="summary-total">
-                  <dt>Total</dt>
-                  <dd></dd>
+                  <dt>Total Price</dt>
+                  <dd>
+                    {summaryMatchesLocation && totalPrice
+                      ? `€${totalPrice.toFixed(2)}`
+                      : "—"}
+                  </dd>
                 </div>
               </dl>
 
@@ -394,6 +519,28 @@ export default function Workshops() {
                 aria-hidden="true"
               />
             </aside>
+          </div>
+        </section>
+
+        <section className="workshop-plan-section">
+          <h2>Plan Your Workshop</h2>
+          <div className="workshop-plan-card-grid">
+            {planWorkshopCards.map((card) => (
+              <button
+                className="workshop-plan-card"
+                type="button"
+                key={card.title}
+                onClick={() => {
+                  setOpenWorkshopRequest(card);
+                  setIsPlanRequestSubmitted(false);
+                }}
+              >
+                <img src={card.image} alt="" aria-hidden="true" />
+                <div className="workshop-plan-card-label">
+                  <strong>{card.title}</strong>
+                </div>
+              </button>
+            ))}
           </div>
         </section>
       </main>
@@ -412,6 +559,136 @@ export default function Workshops() {
 
             <img src={openWorkshopSheet.sheet} alt={`${openWorkshopSheet.title} information sheet`} />
           </div>
+        </div>
+      )}
+
+      {openWorkshopRequest && (
+        <div className="modal-backdrop" role="presentation">
+          <form
+            className="workshop-request-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="workshop-request-title"
+            onSubmit={(event) => {
+              event.preventDefault();
+              setIsPlanRequestSubmitted(true);
+            }}
+          >
+            <button
+              className="modal-close workshop-request-close"
+              type="button"
+              aria-label="Close workshop request form"
+              onClick={() => setOpenWorkshopRequest(null)}
+            >
+              &times;
+            </button>
+
+            <h3 id="workshop-request-title">Request a Workshop</h3>
+            <p className="workshop-request-intro">
+              Please fill in the details below. After submitting your request, we will review it and contact you by email.
+            </p>
+
+            <h4>Customer Details</h4>
+            <div className="workshop-request-grid workshop-request-customer-grid">
+              <label>
+                <span>Full Name</span>
+                <input type="text" placeholder="Enter your full name" />
+              </label>
+
+              <label>
+                <span>Phone Number</span>
+                <input type="tel" placeholder="Enter your phone number" />
+              </label>
+
+              <label className="workshop-request-email-field">
+                <span>Email Address</span>
+                <input type="email" placeholder="Enter your email address" />
+              </label>
+            </div>
+
+            <h4 className="workshop-request-section-title">Workshop Details</h4>
+            <div className="workshop-request-grid workshop-request-details-grid">
+              <fieldset className="workshop-request-name-list">
+                <legend>Name of Workshop</legend>
+                <div>
+                  {planWorkshopCards.map((card) => (
+                    <label key={card.title}>
+                      <input
+                        type="radio"
+                        name="request-workshop-name"
+                        value={card.title}
+                        defaultChecked={openWorkshopRequest.title === card.title}
+                      />
+                      <span>{card.title}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <label>
+                <span>Preferred Date</span>
+                <input type="date" aria-label="Select date" />
+              </label>
+
+              <label className="workshop-request-location-field">
+                <span>Preferred Location</span>
+                <select defaultValue="">
+                  <option value="" disabled>
+                    Select location
+                  </option>
+                  {workshopLocations.map((location) => (
+                    <option key={location}>{location}</option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="workshop-request-time-field">
+                <span>Preferred Time</span>
+                <select defaultValue="">
+                  <option value="" disabled>
+                    Select time
+                  </option>
+                  <option>9:00 AM - 11:00 AM</option>
+                  <option>10:00 AM - 12:00 Noon</option>
+                  <option>1:00 PM - 3:00 PM</option>
+                  <option>3:00 PM - 5:00 PM</option>
+                </select>
+              </label>
+
+              <label className="workshop-request-participants-field">
+                <span>Number of Participants</span>
+                <input
+                  className="workshop-participant-input"
+                  type="number"
+                  min="1"
+                  placeholder="Enter number of participants"
+                />
+              </label>
+            </div>
+
+            <h4 className="workshop-request-event-title">Event Details</h4>
+            <div className="workshop-request-grid workshop-request-event-grid">
+              <label>
+                <span>Purpose of the Workshop</span>
+                <textarea placeholder="Example: birthday, team building, family gathering, wellness session, business event" />
+              </label>
+
+              <label className="workshop-request-special-field">
+                <span>Special Requests</span>
+                <textarea placeholder="Example: food and drinks, accessibility needs, language preference, private event requests" />
+              </label>
+            </div>
+
+            <button className="workshop-request-submit" type="submit">
+              Submit Request
+            </button>
+
+            {isPlanRequestSubmitted && (
+              <p className="workshop-request-success" role="status" aria-live="polite">
+                Thank you! Your workshop request has been submitted successfully. We will contact you soon by email.
+              </p>
+            )}
+          </form>
         </div>
       )}
 

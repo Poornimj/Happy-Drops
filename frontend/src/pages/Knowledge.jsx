@@ -276,8 +276,10 @@ export default function Knowledge() {
             <h1>Knowledge Hub</h1>
             <p className="knowledge-hero-subtitle">Ask. Learn. Create with Nature.</p>
             <p>
-              Ask questions about essential oils and nutrition, connect with our
-              aromatherapists, and get personalized recommendations and recipes.
+              Grow your wellness knowledge with us — join our community to explore
+              essential oils and nutrition. Ask questions, connect with our
+              aromatherapists, and get personalized recommendations, wellness tips,
+              and healthy recipes.
             </p>
           </div>
         </section>
