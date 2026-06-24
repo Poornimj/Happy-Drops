@@ -40,12 +40,7 @@ function StorySection() {
           <div className="icon-circle green">
             <FaLeaf />
           </div>
-
-          <h3>Natural Ingredients</h3>
-
-          <p>
-            Beyond essential oils, we provide nutrition guidance and practical wellness solutions to help you understand what to eat and how to support your health naturally.
-          </p>
+          <h3>Natural Daily Care</h3>
         </div>
 
         {/* Left Bottom */}
@@ -53,12 +48,7 @@ function StorySection() {
           <div className="icon-circle green">
             <FaRecycle />
           </div>
-
-          <h3>Sustainability</h3>
-
-          <p>
-            Committed to responsible sourcing, eco-friendly practices, and creating a healthier future for people and the planet.
-          </p>
+          <h3>Practical Workshops</h3>
         </div>
 
         {/* Right Top */}
@@ -66,12 +56,7 @@ function StorySection() {
           <div className="icon-circle purple">
             <FaHeart />
           </div>
-
-          <h3>Family Wellness</h3>
-
-          <p>
-            Thoughtfully designed wellness solutions that support every family member, from children to grandparents.
-          </p>
+          <h3>Family <span className="break-line">Well-being</span></h3>
         </div>
 
         {/* Right Bottom */}
@@ -79,12 +64,7 @@ function StorySection() {
           <div className="icon-circle purple">
             <FaUsers />
           </div>
-
-          <h3>Community</h3>
-
-          <p>
-            Building a supportive wellness community where people can learn, share experiences, and grow together.
-          </p>
+          <h3>Trusted Community</h3>
         </div>
       </div>
     </section>
