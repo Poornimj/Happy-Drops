@@ -919,8 +919,15 @@ textarea {
 }
 
 .workshop-plan-section {
-  margin: 140px 0 110px;
+  margin: 0 0 110px;
+  padding-top: 0 !important;
   text-align: center;
+  transform: none !important;
+}
+
+.workshop-visible-gap {
+  height: 110px;
+  margin-bottom: 48px;
 }
 
 .workshop-plan-section h2 {
@@ -2915,7 +2922,7 @@ textarea {
   }
 
   .workshop-booking-area {
-    margin-top: 84px;
+    margin: 84px 0 0;
     gap: 20px;
   }
 
@@ -2930,7 +2937,14 @@ textarea {
   }
 
   .workshop-plan-section {
-    margin: 100px 0 80px;
+    margin: 0 0 80px;
+    padding-top: 0 !important;
+    transform: none !important;
+  }
+
+  .workshop-visible-gap {
+    height: 86px;
+    margin-bottom: 38px;
   }
 
   .workshop-plan-section h2 {

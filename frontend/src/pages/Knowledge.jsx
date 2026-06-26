@@ -58,11 +58,13 @@ const wellnessTopics = [
     title: "Rest",
     text: "Achieve deep, restful sleep to allow your body to heal and regenerate.",
     image: knowledgeRest,
+    signupPath: "/signup",
   },
   {
     title: "Cellular Health",
     text: "Protect your body from the inside out, starting at the cellular level.",
     image: knowledgeCellularHealth,
+    signupPath: "/signup",
   },
   {
     title: "Nutrition",

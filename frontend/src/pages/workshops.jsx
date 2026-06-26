@@ -520,10 +520,12 @@ export default function Workshops() {
               />
             </aside>
           </div>
+
         </section>
 
         <section className="workshop-plan-section">
-          <h2>Plan Your Workshop</h2>
+          <div className="workshop-visible-gap" aria-hidden="true" />
+          <h2 className="workshop-plan-title">Plan Your Workshop</h2>
           <div className="workshop-plan-card-grid">
             {planWorkshopCards.map((card) => (
               <button
