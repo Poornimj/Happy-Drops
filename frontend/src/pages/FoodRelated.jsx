@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Shop.css";
 
-import foodHero from "../assets/images/FoodHero.png";
+import foodHero from "../assets/images/FoodR_FoodHero.png";
 
-import magicSauce from "../assets/images/magicSauce.png";
-import biotinSupplement from "../assets/images/BiotinSupplement.png";
-import oliveOil from "../assets/images/OliveOil.png";
-import hempSeedOil from "../assets/images/HempSeedOil.png";
+import magicSauce from "../assets/images/FoodR_magicSauce.png";
+import biotinSupplement from "../assets/images/FoodR_BiotinSupplement.png";
+import oliveOil from "../assets/images/FoodR_OliveOil.png";
+import hempSeedOil from "../assets/images/FoodR_HempSeedOil.png";
 
 const foodProducts = [
   {
@@ -111,7 +111,7 @@ function FoodRelated() {
 
                   <h3>€ {product.price}</h3>
 
-                  <label>
+                  <label className="food-quantity">
                     Quantity
                     <select
                       value={quantity}
