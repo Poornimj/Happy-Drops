@@ -70,6 +70,7 @@ const wellnessTopics = [
     title: "Nutrition",
     text: "Lay a vital, nutrient-dense foundation to keep you and your family feeling your best.",
     image: knowledgeNutrition,
+    signupPath: "/signup",
   },
   {
     title: "Seasonal Support",
