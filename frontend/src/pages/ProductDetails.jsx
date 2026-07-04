@@ -22,6 +22,8 @@ import GraceOil from "../assets/images/Shop_FeminieBalance.png";
 import JoyOil from "../assets/images/Shop_Joymoods.png";
 import PresenceOil from "../assets/images/Shop_SpiritualFocus.png";
 import VitalityOil from "../assets/images/Shop_EnergyGain.png";
+import SummerOil from "../assets/images/Shop_MosquitoSpray.png";
+import WinterOil from "../assets/images/Shop_SaunaRelaxation.png";
 
 const products = [
   {
@@ -215,6 +217,29 @@ const products = [
     reviews: 120,
     amount: "15 ml",
     image: VitalityOil,
+  },
+
+    {
+    id: 20,
+    name: "Mosquito Spray",
+    function: "Summer Protection",
+    desc: "Mosquito Spray is made for summer outdoor comfort. It helps you enjoy fresh air, garden time, and evening relaxation with a clean and refreshing protective feeling.",
+    price: "18.90",
+    badge: "Summer",
+    reviews: 120,
+    amount: "15 ml",
+    image: SummerOil,
+  },
+  {
+    id: 21,
+    name: "Sauna Relaxation",
+    function: "Winter Relaxation",
+    desc: "Sauna Relaxation is created for warm winter self-care moments. It supports deep calm, cozy relaxation, and a peaceful sauna-inspired wellness routine.",
+    price: "22.90",
+    badge: "Winter",
+    reviews: 120,
+    amount: "15 ml",
+    image: WinterOil,
   },
 ];
 

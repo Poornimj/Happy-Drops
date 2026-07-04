@@ -32,7 +32,7 @@ import VitalityOil from "../assets/images/Shop_EnergyGain.png";
 
 
 import SummerOil from "../assets/images/Shop_MosquitoSpray.png";
-import WinterOil from "../assets/images/Shop_Sauna Relaxation.png";
+import WinterOil from "../assets/images/Shop_SaunaRelaxation.png";
 
 
 
