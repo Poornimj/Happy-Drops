@@ -26,7 +26,15 @@ import PassionOil from "../assets/images/Shop_MensEnergy.png";
 import GraceOil from "../assets/images/Shop_FeminieBalance.png";            
 import JoyOil from "../assets/images/Shop_Joymoods.png";              
 import PresenceOil from "../assets/images/Shop_SpiritualFocus.png";       
-import VitalityOil from "../assets/images/Shop_EnergyGain.png";          
+import VitalityOil from "../assets/images/Shop_EnergyGain.png"; 
+         
+// Season product images
+
+
+import SummerOil from "../assets/images/Shop_MosquitoSpray.png";
+import WinterOil from "../assets/images/Shop_Sauna Relaxation.png";
+
+
 
 
 // Hover images 
@@ -51,9 +59,15 @@ import JoyOilHover from "../assets/images/Shop_JoyMoodHover.png";
 import PresenceOilHover from "../assets/images/Shop_MeditationHover.png";
 import VitalityOilHover from "../assets/images/Shop_EnergyBoostHover.png";
 
+// Season hover images
+
+
+import SummerOilHover from "../assets/images/Shop_SummerOilHover.png";
+
+import WinterOilHover from "../assets/images/Shop_WinterOilHover.png";
 
 const products = [
-  { id: 1, name: "Dew", function: "Skin Moisture", desc: "Fresh, soft, glowing, hydrated skin", price: "24.90", badge: "Best Seller", reviews: 120, image: DewOil, hoverImage: DewOilHover },
+  { id: 1, name: "Dew", function: "Skin Moisture", desc: "Fresh, soft, glowing,silky smooth, hydrated skin", price: "24.90", badge: "Best Seller", reviews: 120, image: DewOil, hoverImage: DewOilHover },
   { id: 2, name: "Timeless", function: "Anti-Wrinkle", desc: "Beauty that stays graceful with no limits of age", price: "19.90", badge: "Popular", reviews: 98, image: TimelessOil, hoverImage: TimelessOilHover },
   { id: 3, name: "Radiance", function: "Skin Tightening", desc: "Firm, young-looking, glowing radiant skin", price: "16.90", reviews: 76, image: RadianceOil, hoverImage: RadianceOilHover },
   { id: 4, name: "Release", function: "Neck & Shoulder Comfort", desc: "Let go of tension, stiffness, and stress", price: "17.90", reviews: 120, image: ReleaseOil, hoverImage: ReleaseOilHover },
@@ -72,6 +86,19 @@ const products = [
   { id: 17, name: "Joy", function: "Mood Enhancement", desc: "Happiness, positivity, good mood in every moment", price: "16.90", reviews: 120, image: JoyOil, hoverImage: JoyOilHover },
   { id: 18, name: "Presence", function: "Meditation & Spirituality", desc: "Mindfulness, inner peace, spiritual focus", price: "24.90", reviews: 120, image: PresenceOil, hoverImage: PresenceOilHover },
   { id: 19, name: "Vitality", function: "Energy Boost", desc: "Natural energy and motivation boost for a vibrant life", price: "23.50", reviews: 120, image: VitalityOil, hoverImage: VitalityOilHover },
+];
+
+const seasonProducts = [
+
+  { ...products.find((product) => product.id === 1), badge: "Spring" },
+  { ...products.find((product) => product.id === 10), badge: "Spring" },
+
+  { id: 20, name: "Mosquito Spray", function: "Summer Protection", desc: "Fresh outdoor comfort and mosquito protection", price: "18.90", badge: "Summer", reviews: 120, image: SummerOil, hoverImage: SummerOilHover },
+
+  { ...products.find((product) => product.id === 17), badge: "Autumn" },
+
+  { id: 21, name: "Sauna Relaxation", function: "Winter Relaxation", desc: "Warm sauna comfort, deep calm, and relaxation", price: "22.90", badge: "Winter", reviews: 120, image: WinterOil, hoverImage: WinterOilHover },
+
 ];
 
 function Shop() {
@@ -118,6 +145,10 @@ function Shop() {
           <button type="button" className="category active">
             Ready-Made Oils
           </button>
+
+          <a href="#seasons" className="category">
+              Seasonal Oils
+          </a>
 
           <a
             href="https://www.doterra.com/US/en/shop"
@@ -192,13 +223,64 @@ function Shop() {
         </div>
       </section>
 
-      <section className="bundle">
-  <div className="bundle-visual">
-    <img src={SleepSupOil} alt="Sleep and relaxation bundle" />
+      <section className="featured-products" id="seasons">
+  <div className="featured-header">
+    <h2>Seasonal Oils</h2>
   </div>
 
-  <div className="bundle-content">
-    <h2>Sleep & Relaxation Bundle</h2>
+  <div className="product-grid">
+    {seasonProducts.map((product) => (
+      <Link to={`/shop/product/${product.id}`} className="product-card" key={product.id}>
+        {product.badge && (
+          <span className={`product-badge ${product.badge === "Popular" ? "purple" : "dark"}`}>
+            {product.badge}
+          </span>
+        )}
+
+        <img
+          src={
+            hoveredProductId === product.id && product.hoverImage
+              ? product.hoverImage
+              : product.image
+          }
+          alt={product.name}
+          onMouseEnter={() => setHoveredProductId(product.id)}
+          onMouseLeave={() => setHoveredProductId(null)}
+        />
+
+        <div className="product-info">
+          <h3>{product.name}</h3>
+
+          <small className="product-function">
+            {product.function}
+          </small>
+
+          <p>{product.desc}</p>
+
+          <div className="rating">
+            <span>★★★★★</span>
+            <small>({product.reviews})</small>
+          </div>
+
+          <h4>€ {product.price}</h4>
+
+          <button className="cart-btn" onClick={(event) => addToCart(event, product)}>
+            <HiOutlineShoppingCart />
+            Add to Cart
+          </button>
+        </div>
+      </Link>
+    ))}
+  </div>
+</section>
+
+      <section className="bundle">
+    <div className="bundle-visual">
+      <img src={SleepSupOil} alt="Sleep and relaxation bundle" />
+    </div>
+
+    <div className="bundle-content">
+      <h2>Sleep & Relaxation Bundle</h2>
     <p>Everything you need for deeper sleep and total relaxation</p>
 
     <div className="bundle-items">
