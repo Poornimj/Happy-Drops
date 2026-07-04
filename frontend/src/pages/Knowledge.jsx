@@ -12,7 +12,7 @@ import knowledgeCellularHealth from "../assets/images/knowledge-cellular-health.
 import knowledgeNutrition from "../assets/images/knowledge-nutrition.png";
 import knowledgeSeasonalSupport from "../assets/images/knowledge-seasonal-support.png";
 import knowledgeImmuneHealth from "../assets/images/knowledge-immune-health.png";
-import knowledgeDigestiveSupport from "../assets/images/knowledge-diagestive-support.png";
+import knowledgeDigestiveSupport from "../assets/images/knowledge-digestive-support.png";
 import knowledgeMetabolicHealth from "../assets/images/knowledge-metabolic-health.png";
 import knowledgeCleanEnergy from "../assets/images/knowledge-clean-enery.png";
 import knowledgeMovement from "../assets/images/knowledge-movement.png";
@@ -76,21 +76,25 @@ const wellnessTopics = [
     title: "Seasonal Support",
     text: "Find ways to support your body in managing seasonal threats.",
     image: knowledgeSeasonalSupport,
+    signupPath: "/signup",
   },
   {
     title: "Immune Health",
     text: "Naturally support immune function for optimal health and vitality.",
     image: knowledgeImmuneHealth,
+    signupPath: "/signup",
   },
   {
     title: "Digestive Support",
     text: "Build a healthy gut to ensure nutrient absorption, support immunity, and maintain energy.",
     image: knowledgeDigestiveSupport,
+    signupPath: "/signup",
   },
   {
     title: "Metabolic Health",
     text: "Support a healthy metabolism for steady energy, hormonal balance, weight management, and mood.",
     image: knowledgeMetabolicHealth,
+    signupPath: "/signup",
   },
   {
     title: "Clean Energy",
@@ -106,6 +110,7 @@ const wellnessTopics = [
     title: "Managing Stress",
     text: "Manage stress effectively to significantly improve your overall health and well-being.",
     image: knowledgeManagingStress,
+    signupPath: "/signup",
   },
   {
     title: "Skin Care",
