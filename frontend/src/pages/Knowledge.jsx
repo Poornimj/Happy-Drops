@@ -12,7 +12,7 @@ import knowledgeCellularHealth from "../assets/images/knowledge-cellular-health.
 import knowledgeNutrition from "../assets/images/knowledge-nutrition.png";
 import knowledgeSeasonalSupport from "../assets/images/knowledge-seasonal-support.png";
 import knowledgeImmuneHealth from "../assets/images/knowledge-immune-health.png";
-import knowledgeDigestiveSupport from "../assets/images/knowledge-diagestive-support.png";
+import knowledgeDigestiveSupport from "../assets/images/knowledge-digestive-support.png";
 import knowledgeMetabolicHealth from "../assets/images/knowledge-metabolic-health.png";
 import knowledgeCleanEnergy from "../assets/images/knowledge-clean-enery.png";
 import knowledgeMovement from "../assets/images/knowledge-movement.png";
@@ -58,36 +58,43 @@ const wellnessTopics = [
     title: "Rest",
     text: "Achieve deep, restful sleep to allow your body to heal and regenerate.",
     image: knowledgeRest,
+    signupPath: "/signup",
   },
   {
     title: "Cellular Health",
     text: "Protect your body from the inside out, starting at the cellular level.",
     image: knowledgeCellularHealth,
+    signupPath: "/signup",
   },
   {
     title: "Nutrition",
     text: "Lay a vital, nutrient-dense foundation to keep you and your family feeling your best.",
     image: knowledgeNutrition,
+    signupPath: "/signup",
   },
   {
     title: "Seasonal Support",
     text: "Find ways to support your body in managing seasonal threats.",
     image: knowledgeSeasonalSupport,
+    signupPath: "/signup",
   },
   {
     title: "Immune Health",
     text: "Naturally support immune function for optimal health and vitality.",
     image: knowledgeImmuneHealth,
+    signupPath: "/signup",
   },
   {
     title: "Digestive Support",
     text: "Build a healthy gut to ensure nutrient absorption, support immunity, and maintain energy.",
     image: knowledgeDigestiveSupport,
+    signupPath: "/signup",
   },
   {
     title: "Metabolic Health",
     text: "Support a healthy metabolism for steady energy, hormonal balance, weight management, and mood.",
     image: knowledgeMetabolicHealth,
+    signupPath: "/signup",
   },
   {
     title: "Clean Energy",
@@ -103,6 +110,7 @@ const wellnessTopics = [
     title: "Managing Stress",
     text: "Manage stress effectively to significantly improve your overall health and well-being.",
     image: knowledgeManagingStress,
+    signupPath: "/signup",
   },
   {
     title: "Skin Care",
@@ -276,8 +284,10 @@ export default function Knowledge() {
             <h1>Knowledge Hub</h1>
             <p className="knowledge-hero-subtitle">Ask. Learn. Create with Nature.</p>
             <p>
-              Ask questions about essential oils and nutrition, connect with our
-              aromatherapists, and get personalized recommendations and recipes.
+              Grow your wellness knowledge with us — join our community to explore
+              essential oils and nutrition. Ask questions, connect with our
+              aromatherapists, and get personalized recommendations, wellness tips,
+              and healthy recipes.
             </p>
           </div>
         </section>

@@ -70,7 +70,7 @@ textarea {
 
 .workshop-header {
   width: 100%;
-  min-height: 360px;
+  min-height: 520px;
   margin-top: 28px;
   border-radius: 18px;
   position: relative;
@@ -92,6 +92,7 @@ textarea {
   display: block;
   object-fit: cover;
   object-position: 73% center;
+  transform: scale(1.3);
 }
 
 .workshop-header::before {
@@ -119,9 +120,9 @@ textarea {
   margin: 0;
   color: var(--dark-green);
   font-family: Georgia, serif;
-  font-size: 52px;
+  font-size: 64px;
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.22;
 }
 
 .workshop-header-subtitle {
@@ -134,7 +135,7 @@ textarea {
 }
 
 .workshop-header-text {
-  margin: 14px 0 0;
+  margin: 34px 0 0;
   color: var(--text-muted);
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 18px;
@@ -142,15 +143,16 @@ textarea {
 }
 
 .workshop-choices {
-  margin: 104px 0 34px;
+  margin: 150px 0 34px;
 }
 
 .workshop-choices h2 {
-  margin: 0 0 64px;
+  margin: 0 0 100px;
   color: var(--dark-green);
   font-family: Georgia, serif;
-  font-size: 30px;
+  font-size: 44px;
   line-height: 1.15;
+  text-align: center;
 }
 
 .workshop-card-grid {
@@ -162,18 +164,17 @@ textarea {
 }
 
 .workshop-choice-card {
-  min-height: 230px;
+  min-height: 310px;
   border: 1px solid transparent;
   border-radius: 10px;
   display: grid;
-  align-content: start;
-  gap: 10px;
+  grid-template-rows: 1fr auto;
+  gap: 38px;
   padding: 20px 18px;
   color: var(--text-muted);
   background: var(--cream);
   box-shadow: 0 8px 18px rgba(49, 92, 56, 0.06);
   text-align: left;
-  cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
@@ -184,18 +185,129 @@ textarea {
   box-shadow: 0 18px 34px rgba(49, 92, 56, 0.15);
 }
 
-.workshop-choice-card strong {
+.workshop-card-select {
+  border: 0;
+  padding: 0;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  color: inherit;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.workshop-card-select strong {
   color: var(--dark-green);
   font-family: Georgia, serif;
   font-size: 20px;
   line-height: 1.16;
 }
 
-.workshop-choice-card > span:not(.workshop-choice-icon) {
+.workshop-card-select > span:not(.workshop-choice-icon) {
   color: var(--text-muted);
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 18px;
   line-height: 1.45;
+}
+
+.workshop-theme-field {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: start;
+  gap: 9px;
+}
+
+.workshop-theme-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.workshop-theme-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2;
+}
+
+.workshop-theme-field label {
+  color: var(--dark-green);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.workshop-theme-field input {
+  width: 100%;
+  min-width: 0;
+  height: 38px;
+  border: 2px solid currentColor;
+  border-radius: 7px;
+  padding: 7px 9px;
+  color: var(--dark-green);
+  background: transparent;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.workshop-choice-card.green .workshop-theme-icon {
+  color: #315c38;
+  background: #d7eadc;
+}
+
+.workshop-choice-card.purple .workshop-theme-icon {
+  color: #8c5db0;
+  background: #d9c4e8;
+}
+
+.workshop-choice-card.rose .workshop-theme-icon {
+  color: #b45a78;
+  background: #f0cdd9;
+}
+
+.workshop-choice-card.gold .workshop-theme-icon {
+  color: #a06d1c;
+  background: #efdcaa;
+}
+
+.workshop-theme-field input:focus {
+  border-color: currentColor;
+  outline: 3px solid rgba(34, 75, 51, 0.18);
+  outline-offset: 1px;
+}
+
+.workshop-choice-card.green .workshop-theme-field input {
+  border-color: #315c38;
+}
+
+.workshop-choice-card.purple .workshop-theme-field input {
+  border-color: #8c5db0;
+}
+
+.workshop-choice-card.rose .workshop-theme-field input {
+  border-color: #b45a78;
+}
+
+.workshop-choice-card.gold .workshop-theme-field input {
+  border-color: #a06d1c;
+}
+
+.workshop-choice-card.green .workshop-theme-field input:focus {
+  outline-color: rgba(49, 92, 56, 0.24);
+}
+
+.workshop-choice-card.purple .workshop-theme-field input:focus {
+  outline-color: rgba(140, 93, 176, 0.24);
+}
+
+.workshop-choice-card.rose .workshop-theme-field input:focus {
+  outline-color: rgba(180, 90, 120, 0.24);
+}
+
+.workshop-choice-card.gold .workshop-theme-field input:focus {
+  outline-color: rgba(160, 109, 28, 0.24);
 }
 
 .workshop-choice-icon {
@@ -288,6 +400,7 @@ textarea {
   grid-template-columns: minmax(0, 1.8fr) minmax(280px, 0.82fr);
   gap: 28px;
   align-items: stretch;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .workshop-booking-form,
@@ -302,8 +415,21 @@ textarea {
   background: #fffafd;
 }
 
+.workshop-choices .workshop-enrollment-title {
+  margin: 190px 0 0;
+  color: var(--dark-green);
+  font-family: Georgia, serif;
+  font-size: 44px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.workshop-enrollment-title + .workshop-booking-note {
+  margin-top: 90px;
+}
+
 .workshop-booking-summary {
-  background: #fbf5ff;
+  background: var(--soft-purple);
 }
 
 .workshop-booking-form h3,
@@ -319,7 +445,7 @@ textarea {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 50px;
 }
 
 .workshop-booking-form h3 svg {
@@ -331,7 +457,7 @@ textarea {
 .workshop-form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px 24px;
+  gap: 40px 24px;
 }
 
 .workshop-form-grid label {
@@ -345,7 +471,7 @@ textarea {
 
 .workshop-radio-group {
   min-width: 0;
-  margin: 0;
+  margin: 0 0 48px;
   border: 0;
   display: grid;
   gap: 22px;
@@ -359,7 +485,7 @@ textarea {
   margin: 0 0 2px;
   color: var(--dark-green);
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 800;
 }
 
@@ -367,30 +493,126 @@ textarea {
   margin-bottom: 18px;
 }
 
-.workshop-radio-group div {
+.workshop-radio-group .workshop-radio-card-grid {
   display: grid;
-  gap: 11px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 92px;
+  column-gap: 16px;
+  row-gap: 30px;
 }
 
-.workshop-radio-group label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--text-muted);
+.workshop-radio-group .workshop-radio-card {
+  position: relative;
+  width: 100%;
+  height: 92px;
+  min-height: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: start;
+  justify-items: start;
+  gap: 8px;
+  padding: 10px 28% 10px 14px;
+  color: var(--dark-green);
+  background: #f8e8ee;
+  box-shadow: 0 8px 20px rgba(49, 92, 56, 0.05);
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.workshop-radio-group .workshop-radio-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-repeat: no-repeat;
+  left: 75%;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.7;
+  filter: saturate(1.2) contrast(1.04);
+  pointer-events: none;
+}
+
+.workshop-radio-group .workshop-radio-card:nth-child(1)::before {
+  background-image: url("./assets/images/essential-oil-workshop-card.png");
+}
+
+.workshop-radio-group .workshop-radio-card:nth-child(2)::before {
+  background-image: url("./assets/images/dumpling-workshop-card.png");
+}
+
+.workshop-radio-group .workshop-radio-card:nth-child(3)::before {
+  background-image: url("./assets/images/special-event-workshop-card.png");
+  background-position: 82% center;
+}
+
+.workshop-radio-group .workshop-radio-card:nth-child(4)::before {
+  background-image: url("./assets/images/happy-drops-our-story-home-wellness.png");
+}
+
+.workshop-radio-group .workshop-radio-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.workshop-radio-group .workshop-radio-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--brand-green);
+}
+
+.workshop-radio-group .workshop-radio-card:has(input:checked) {
+  border: 2px solid var(--purple);
+  box-shadow: 0 12px 26px rgba(140, 93, 176, 0.16);
+}
+
+.workshop-radio-card input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.workshop-radio-number {
+  width: 34px;
+  height: 34px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--dark-green);
+  background: #f1e7d6;
+  font-family: Georgia, serif;
   font-size: 14px;
   font-weight: 700;
-  line-height: 1.35;
 }
 
-.workshop-radio-group input {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--purple);
-  flex: 0 0 auto;
+.workshop-radio-card input:checked + .workshop-radio-number {
+  border-color: var(--purple);
+  color: var(--purple-dark);
+  background: #eadcf4;
+}
+
+.workshop-radio-card strong {
+  position: relative;
+  z-index: 1;
+  color: var(--dark-green);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.workshop-radio-card:focus-within {
+  outline: 3px solid rgba(140, 93, 176, 0.2);
+  outline-offset: 3px;
 }
 
 .workshop-form-grid .workshop-radio-group:first-child,
-.workshop-form-grid label:nth-child(5) {
+.workshop-form-grid .workshop-notes-field {
   grid-column: 1 / -1;
 }
 
@@ -400,7 +622,7 @@ textarea {
   width: 100%;
   border: 1px solid var(--border);
   border-radius: 9px;
-  color: var(--dark-green);
+  color: #626b70;
   background: var(--white);
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 15px;
@@ -598,12 +820,53 @@ textarea {
 .workshop-booking-summary {
   position: relative;
   min-height: 640px;
-  padding: 28px 24px 150px;
+  padding: 28px 24px 180px;
   overflow: hidden;
 }
 
 .workshop-booking-summary h3 {
-  margin-bottom: 22px;
+  margin-bottom: 28px;
+}
+
+.workshop-admin-location {
+  margin: 0 0 30px;
+  border: 0;
+  display: grid;
+  gap: 16px;
+  padding: 0;
+  color: var(--dark-green);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.workshop-admin-location legend {
+  margin: 0 0 16px;
+  color: var(--dark-green);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.workshop-admin-location > div {
+  display: grid;
+  gap: 22px;
+}
+
+.workshop-admin-location label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--dark-green);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.workshop-admin-location input {
+  width: 17px;
+  height: 17px;
+  margin: 1px 0 0;
+  accent-color: var(--purple);
+  flex: 0 0 auto;
 }
 
 .workshop-booking-summary dl {
@@ -612,7 +875,7 @@ textarea {
   gap: 8px;
 }
 
-.workshop-booking-summary div {
+.workshop-booking-summary dl > div {
   min-height: 66px;
   border-bottom: 1px solid var(--border);
   display: grid;
@@ -625,7 +888,7 @@ textarea {
 .workshop-booking-summary dd {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .workshop-booking-summary dt {
@@ -636,7 +899,13 @@ textarea {
 .workshop-booking-summary dd {
   min-height: 22px;
   border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding: 7px 10px;
+  color: var(--dark-green);
   background: rgba(255, 255, 255, 0.46);
+  font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 .workshop-booking-summary .summary-total {
@@ -646,13 +915,91 @@ textarea {
 
 .workshop-booking-summary .summary-total dt {
   color: var(--purple-dark);
-  font-size: 18px;
+  font-size: 20px;
+}
+
+.workshop-plan-section {
+  margin: 0 0 110px;
+  padding-top: 0 !important;
+  text-align: center;
+  transform: none !important;
+}
+
+.workshop-visible-gap {
+  height: 110px;
+  margin-bottom: 48px;
+}
+
+.workshop-plan-section h2 {
+  margin: 0;
+  color: var(--dark-green);
+  font-family: Georgia, serif;
+  font-size: 44px;
+  line-height: 1.15;
+}
+
+.workshop-plan-card-grid {
+  margin-top: 76px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 400px));
+  gap: 80px;
+  justify-content: space-between;
+}
+
+.workshop-plan-card {
+  position: relative;
+  height: 360px;
+  border: 0;
+  border-radius: 10px;
+  padding: 0;
+  background: var(--soft-cream);
+  box-shadow: 0 18px 34px rgba(49, 92, 56, 0.12);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.workshop-plan-card:hover {
+  z-index: 3;
+  transform: translateY(-14px) scale(1.04);
+  box-shadow: 0 26px 48px rgba(49, 92, 56, 0.22);
+}
+
+.workshop-plan-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.workshop-plan-card-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(88%, 260px);
+  min-height: 145px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 12px 30px rgba(49, 92, 56, 0.12);
+  transform: translate(-50%, -50%);
+}
+
+.workshop-plan-card-label strong {
+  color: #c6a66f;
+  font-family: Georgia, serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.18;
+  text-align: center;
 }
 
 .workshop-summary-image {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -6px;
   z-index: 2;
   width: min(62%, 255px);
   height: auto;
@@ -691,6 +1038,235 @@ textarea {
   top: 16px;
   right: 16px;
   z-index: 3;
+}
+
+.workshop-request-modal {
+  position: relative;
+  width: min(100% - 32px, 980px);
+  max-height: calc(100vh - 32px);
+  padding: 34px;
+  border-radius: 14px;
+  background: var(--white);
+  font-family: "Segoe UI", Arial, sans-serif;
+  box-shadow: 0 24px 70px rgba(23, 63, 39, 0.24);
+  overflow-y: auto;
+}
+
+.workshop-request-close {
+  top: 18px;
+  right: 18px;
+  z-index: 3;
+}
+
+.workshop-request-modal h3 {
+  margin: 0 44px 42px;
+  color: var(--dark-green);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 34px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.workshop-request-intro {
+  max-width: 760px;
+  margin: 0 0 30px;
+  color: var(--text-muted);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.workshop-request-modal h4 {
+  margin: 30px 0 28px;
+  color: var(--purple-dark);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.workshop-request-modal .workshop-request-section-title {
+  margin-top: 78px;
+}
+
+.workshop-request-modal .workshop-request-event-title {
+  margin-top: 52px;
+}
+
+.workshop-request-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.workshop-request-customer-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.workshop-request-email-field {
+  grid-column: 1 / -1;
+  margin-top: 14px;
+}
+
+.workshop-request-details-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.workshop-request-details-grid > label:last-child {
+  grid-column: 1 / -1;
+}
+
+.workshop-request-details-grid > label {
+  align-content: start;
+}
+
+.workshop-request-location-field,
+.workshop-request-time-field {
+  margin-top: 18px;
+}
+
+.workshop-request-participants-field {
+  margin-top: 18px;
+}
+
+.workshop-request-special-field {
+  margin-top: 18px;
+}
+
+.workshop-request-grid label {
+  display: grid;
+  gap: 8px;
+  color: var(--dark-green);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.workshop-request-name-list {
+  margin: 0;
+  border: 0;
+  display: grid;
+  gap: 16px;
+  padding: 0;
+  color: var(--dark-green);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.workshop-request-name-list legend {
+  margin: 0 0 6px;
+  padding: 0;
+  color: var(--dark-green);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.workshop-request-name-list div {
+  display: grid;
+  gap: 18px;
+}
+
+.workshop-request-name-list label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--dark-green);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.workshop-request-name-list input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--purple);
+  flex: 0 0 auto;
+}
+
+.workshop-request-grid input,
+.workshop-request-grid select,
+.workshop-request-grid textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--dark-green);
+  background: var(--white);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  outline: none;
+}
+
+.workshop-request-grid input,
+.workshop-request-grid select {
+  min-height: 48px;
+  padding: 0 14px;
+}
+
+.workshop-request-grid textarea {
+  min-height: 112px;
+  resize: vertical;
+  padding: 14px;
+}
+
+.workshop-request-grid input:focus,
+.workshop-request-grid select:focus,
+.workshop-request-grid textarea:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(166, 122, 197, 0.15);
+}
+
+.workshop-request-grid .workshop-participant-input {
+  appearance: auto;
+  -webkit-appearance: auto;
+  padding-right: 34px;
+}
+
+.workshop-request-grid .workshop-participant-input::-webkit-inner-spin-button,
+.workshop-request-grid .workshop-participant-input::-webkit-outer-spin-button {
+  opacity: 1;
+  display: block;
+  width: 18px;
+  height: 42px;
+  margin: 0;
+  -webkit-appearance: inner-spin-button;
+}
+
+.workshop-request-grid .workshop-request-name-list input[type="radio"] {
+  width: 18px;
+  min-height: 0;
+  height: 18px;
+  padding: 0;
+  box-shadow: none;
+}
+
+.workshop-request-event-grid {
+  grid-template-columns: 1fr;
+}
+
+.workshop-request-submit {
+  width: min(100%, 210px);
+  min-height: 48px;
+  margin: 30px 0 0 auto;
+  border: 0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--purple);
+  color: var(--white);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(166, 122, 197, 0.2);
+}
+
+.workshop-request-submit:hover {
+  background: #9568b8;
 }
 
 .knowledge-page .primary-btn,
@@ -745,7 +1321,7 @@ textarea {
   border-radius: 18px;
   overflow: hidden;
   position: relative;
-  min-height: 335px;
+  min-height: 520px;
   display: flex;
   align-items: center;
   background: var(--soft-cream);
@@ -760,6 +1336,7 @@ textarea {
   object-position: center;
   position: absolute;
   inset: 0;
+  transform: scale(1.3);
   filter: saturate(1.08) contrast(1.02) brightness(1);
 }
 
@@ -781,7 +1358,7 @@ textarea {
   position: relative;
   z-index: 2;
   width: min(520px, 54%);
-  padding: 48px 52px;
+  padding: 64px 52px;
 }
 
 .knowledge-hero-content h1 {
@@ -794,7 +1371,7 @@ textarea {
 }
 
 .knowledge-hero-subtitle {
-  margin: 18px 0 12px;
+  margin: 30px 0 40px;
   color: var(--purple-dark);
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 26px;
@@ -2208,6 +2785,11 @@ textarea {
     justify-content: space-around;
   }
 
+  .workshop-plan-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 400px));
+    justify-content: space-between;
+  }
+
   .workshop-booking-area {
     grid-template-columns: 1fr;
   }
@@ -2262,7 +2844,7 @@ textarea {
   }
 
   .workshop-header {
-    min-height: 360px;
+    min-height: 500px;
     margin-top: 18px;
     border-radius: 14px;
     align-items: flex-start;
@@ -2289,7 +2871,8 @@ textarea {
   }
 
   .workshop-header-content h1 {
-    font-size: 38px;
+    font-size: 46px;
+    line-height: 1.2;
   }
 
   .workshop-header-subtitle {
@@ -2298,6 +2881,7 @@ textarea {
   }
 
   .workshop-header-text {
+    margin-top: 26px;
     max-width: 420px;
     font-size: 15px;
     line-height: 1.55;
@@ -2308,8 +2892,12 @@ textarea {
   }
 
   .workshop-choices h2 {
-    margin-bottom: 46px;
-    font-size: 26px;
+    margin-bottom: 70px;
+    font-size: 34px;
+  }
+
+  .workshop-choices .workshop-enrollment-title {
+    font-size: 34px;
   }
 
   .workshop-card-grid {
@@ -2318,7 +2906,7 @@ textarea {
   }
 
   .workshop-choice-card {
-    min-height: 220px;
+    min-height: 300px;
     padding: 18px;
   }
 
@@ -2334,7 +2922,7 @@ textarea {
   }
 
   .workshop-booking-area {
-    margin-top: 84px;
+    margin: 84px 0 0;
     gap: 20px;
   }
 
@@ -2345,16 +2933,84 @@ textarea {
 
   .workshop-booking-summary {
     min-height: 560px;
-    padding-bottom: 135px;
+    padding-bottom: 165px;
+  }
+
+  .workshop-plan-section {
+    margin: 0 0 80px;
+    padding-top: 0 !important;
+    transform: none !important;
+  }
+
+  .workshop-visible-gap {
+    height: 86px;
+    margin-bottom: 38px;
+  }
+
+  .workshop-plan-section h2 {
+    font-size: 34px;
+  }
+
+  .workshop-plan-card-grid {
+    margin-top: 46px;
+    grid-template-columns: minmax(0, 400px);
+    gap: 24px;
+    justify-content: center;
+  }
+
+  .workshop-plan-card {
+    height: 360px;
+  }
+
+  .workshop-plan-card-label {
+    min-height: 145px;
+  }
+
+  .workshop-plan-card-label strong {
+    font-size: 24px;
+  }
+
+  .workshop-request-modal {
+    padding: 24px;
+  }
+
+  .workshop-request-modal h3 {
+    font-size: 30px;
+  }
+
+  .workshop-request-grid,
+  .workshop-request-event-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .workshop-request-submit {
+    width: 100%;
   }
 
   .workshop-form-grid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 28px;
+  }
+
+  .workshop-radio-group .workshop-radio-card-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 88px;
+    row-gap: 22px;
+  }
+
+  .workshop-radio-group .workshop-radio-card {
+    height: 88px;
+    min-height: 0;
+    gap: 7px;
+    padding: 9px 28% 9px 13px;
+  }
+
+  .workshop-radio-group {
+    margin-bottom: 34px;
   }
 
   .workshop-form-grid .workshop-radio-group:first-child,
-  .workshop-form-grid label:nth-child(5) {
+  .workshop-form-grid .workshop-notes-field {
     grid-column: auto;
   }
 
@@ -2378,7 +3034,7 @@ textarea {
   .knowledge-hero {
     margin-top: 18px;
     border-radius: 14px;
-    min-height: 360px;
+    min-height: 500px;
     align-items: flex-start;
   }
 
@@ -2397,7 +3053,7 @@ textarea {
 
   .knowledge-hero-content {
     width: 100%;
-    padding: 30px 24px;
+    padding: 38px 24px;
   }
 
   .knowledge-hero-content h1 {
@@ -2405,7 +3061,7 @@ textarea {
   }
 
   .knowledge-hero-subtitle {
-    margin: 12px 0 10px;
+    margin: 22px 0 30px;
     font-size: 21px;
   }
 
