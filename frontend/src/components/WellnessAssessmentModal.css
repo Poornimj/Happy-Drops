@@ -26,9 +26,9 @@
   justify-content:center;
   align-items:center;
 
-  background:rgba(0,0,0,.65);
+  background:rgba(0, 0, 0, 0.539);
 
-  backdrop-filter:blur(16px);
+  backdrop-filter:blur(0px);
   -webkit-backdrop-filter:blur(16px);
 
   z-index:9999;
@@ -55,8 +55,8 @@
 
   background:
     linear-gradient(
-      rgba(114, 127, 146, 0.35),
-      rgba(63, 77, 97, 0.35)
+      rgba(114, 127, 146, 0),
+      rgba(63, 77, 97, 0.064)
     ),
     url("../assets/images/assess.png");
 
@@ -79,7 +79,7 @@
   background:
   radial-gradient(
     circle at top right,
-    rgba(201,168,106,.06),
+    rgba(201, 168, 106, 0.091),
     transparent 40%
   );
 
@@ -100,12 +100,12 @@
   background:
   linear-gradient(
     180deg,
-    rgba(255,255,255,.75),
+    rgba(255, 255, 255, 0.646),
     rgba(255,255,255,.45)
   );
 
   border-bottom:
-  1px solid rgba(201,168,106,.15);
+  1px solid rgba(201, 168, 106, 0.781);
 
   flex-shrink:0;
   min-height: auto;
@@ -131,15 +131,15 @@
   background:
   linear-gradient(
     135deg,
-    #fff,
+    #ffffffed,
     #f7f3ee
   );
 
   border:
-  1px solid rgba(201,168,106,.25);
+  1px solid rgba(201, 168, 106, 0.676);
 
   box-shadow:
-    0 10px 25px rgba(0,0,0,.08);
+    0 10px 25px rgba(0, 0, 0, 0.084);
 }
 
 .header-logo{
@@ -245,7 +245,7 @@
   background:
   linear-gradient(
     180deg,
-    #6e8b57eb,
+    #6e8b57ed,
     #55694df6
   );
 
@@ -276,7 +276,7 @@
   border-radius:12px;
 
   background:
-  rgba(255,255,255,.12);
+  rgba(255, 255, 255, 0.116);
 
   border:
   1px solid rgba(255,255,255,.12);
@@ -432,7 +432,7 @@
 }
 
 .question-area::-webkit-scrollbar-thumb{
-  background:rgba(201,168,106,.35);
+  background:rgba(201, 168, 106, 0.281);
   border-radius:20px;
 }
 
@@ -1314,15 +1314,25 @@
 }
 
 .score-circle{
+  position:relative;
   width:120px;
   height:120px;
   border-radius:50%;
-  background:linear-gradient(135deg,var(--sage) 0%,var(--olive-green) 100%);
+  background:linear-gradient(135deg,#7a9d5f 0%,#6e8b57 100%);
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  box-shadow:0 8px 30px rgba(110,139,87,0.3);
+  box-shadow:0 0 30px rgba(201,168,106,0.4),
+             0 8px 30px rgba(110,139,87,0.5),
+             inset 0 0 20px rgba(255,255,255,0.1);
+  border:2px solid rgba(201,168,106,0.3);
+  animation:rotate360 4s linear infinite;
+}
+
+@keyframes rotate360{
+  0%{ transform:rotateY(0deg); }
+  100%{ transform:rotateY(360deg); }
 }
 
 .score-value{
@@ -1505,20 +1515,72 @@
 }
 
 .insight-card{
+  position:relative;
   display:flex;
   align-items:flex-start;
   gap:16px;
-  background:white;
+  background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.92));
   padding:20px;
   border-radius:16px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.06);
-  transition:all 0.3s ease;
-  text-align: left;
+  border:1px solid rgba(255,255,255,0.6);
+  box-shadow:0 6px 20px rgba(0, 0, 0, 0.06);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  transition:transform 0.25s ease, box-shadow 0.25s ease;
+  text-align:left;
+  overflow:hidden;
+}
+
+.insight-card::after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  background:linear-gradient(120deg, rgba(201,168,106,0.04), rgba(255,255,255,0) 50%);
+  pointer-events:none;
+  mix-blend-mode:soft-light;
 }
 
 .insight-card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+  transform:translateY(-4px);
+  box-shadow:0 14px 30px rgba(0,0,0,0.10);
+}
+
+/* Subtle shimmer effect - insights only */
+.insight-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-150%;
+  width:200%;
+  height:100%;
+  /* gold-tinted shimmer for better visibility */
+  background:linear-gradient(90deg, rgba(255,255,255,0), rgba(201,168,106,0.28), rgba(255,255,255,0));
+  transform:skewX(-15deg) translateX(-100%);
+  filter:blur(8px);
+  opacity:0.9;
+  pointer-events:none;
+  mix-blend-mode:normal;
+  z-index:1;
+  animation:shimmerMove 3.2s linear infinite;
+}
+
+@keyframes shimmerMove{
+  0%{ transform:skewX(-15deg) translateX(-100%); }
+  50%{ transform:skewX(-15deg) translateX(0%); }
+  100%{ transform:skewX(-15deg) translateX(100%); }
+}
+
+/* Slightly stronger white highlight on hover */
+.insight-card:hover::after,
+.completion-card:hover::after{
+  opacity:1;
+}
+
+/* ensure card content sits above shimmer */
+.insight-card > *{
+  position:relative;
+  z-index:2;
 }
 
 .insight-icon{
@@ -1559,20 +1621,35 @@
   margin-top:20px;
   margin-bottom:40px;
 }
+
 .completion-card{
-  background:white;
-
-  border-radius:24px;
-
-  padding:24px;
-
+  position:relative;
+  background:linear-gradient(180deg, rgba(255, 255, 255, 0.311), rgba(255,255,255,0.92));
+  border-radius:20px;
+  padding:22px;
   text-align:center;
+  border:1px solid rgba(255,255,255,0.65);
+  box-shadow:0 6px 20px rgba(0,0,0,0.06);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  overflow:hidden;
+  transition:transform .22s ease, box-shadow .22s ease;
+}
 
-  border:
-  1px solid rgba(201,168,106,.12);
+.completion-card::after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  background:linear-gradient(120deg, rgba(201,168,106,0.04), rgba(255,255,255,0) 50%);
+  pointer-events:none;
+  mix-blend-mode:soft-light;
+  opacity:0.9;
+}
 
-  box-shadow:
-  0 10px 25px rgba(0,0,0,.06);
+.completion-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 28px rgba(0,0,0,0.10);
 }
 /* ======================================
    SOFT GLASS EFFECT
@@ -1580,7 +1657,7 @@
 ====================================== */
 
 .question-card{
-  background:rgba(255,255,255,.72) !important;
+  background:rgba(255, 255, 255, 0.591) !important;
 
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
@@ -1646,7 +1723,7 @@
 }
 
 .status-badge{
-  background:rgba(255,255,255,.45) !important;
+  background:rgba(255, 255, 255, 0.418) !important;
 
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);

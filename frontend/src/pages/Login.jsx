@@ -8,6 +8,7 @@ import {
 } from "react-icons/hi";
 
 import loginWellnessScene from "../assets/images/login-wellness-scene-happy-drops.png";
+import { apiRequest, saveAuthSession } from "../lib/api";
 
 import "./Login.css";
 
@@ -17,6 +18,8 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({ email: "", password: "", remember: false });
   const [errors, setErrors] = useState({});
+  const [submitError, setSubmitError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const destination = location.state?.from || "/";
 
@@ -29,8 +32,9 @@ function Login() {
     setErrors((current) => ({ ...current, [name]: "" }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setSubmitError("");
 
     const nextErrors = {};
     if (!form.email.trim()) {
@@ -44,8 +48,27 @@ function Login() {
     }
 
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length === 0) {
+    if (Object.keys(nextErrors).length > 0) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const session = await apiRequest("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({
+          email: form.email,
+          password: form.password,
+        }),
+      });
+
+      saveAuthSession(session);
       navigate(destination, { replace: true });
+    } catch (error) {
+      setSubmitError(error.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -113,6 +136,7 @@ function Login() {
             {errors.password && (
               <p className="login-error" id="login-password-error">{errors.password}</p>
             )}
+            {submitError && <p className="login-error">{submitError}</p>}
 
             <label className="login-remember">
               <input
@@ -124,7 +148,9 @@ function Login() {
               <span>Remember me</span>
             </label>
 
-            <button className="login-submit" type="submit">Log in</button>
+            <button className="login-submit" type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Logging in..." : "Log in"}
+            </button>
           </form>
 
           <p className="login-signup">
