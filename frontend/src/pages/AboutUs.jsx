@@ -72,6 +72,18 @@ function LightIcon() {
   );
 }
 
+function MovementIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M13 4.5a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4Z" />
+      <path d="m9.6 21 1.6-5.2-2.8-2.1-2.1 3.1" />
+      <path d="m11.2 15.8 2.4-4.7 2.2 2.4 2.9.4" />
+      <path d="m12.5 11-3.1 1.8-2.5-.7" />
+      <path d="m13.8 16.2 2.1 4.8" />
+    </svg>
+  );
+}
+
 function BagIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -198,56 +210,62 @@ const storyJourney = [
   {
     time: "The first ritual",
     title: "A calmer evening",
-    text: "She began with a diffuser in the evening, It make her sleep better and less emotion up and down.",
+    text: "She began using ADAPTIVE essential oil blend in a diffuser every night while she slept. After one week, her employees told her they sensed more calm in her daily voice.",
     detail:
       "From there, she started her journey to learn about essential oil and changed all her DIOR face cream into essential oil and rose water. The miracle showed up after three months, the pigment is gone and less wrinkle.",
   },
   {
     time: "A turning point",
     title: "Surprise shock",
-    text: "A routine health check in Finland brought encouraging news: The cysts at both ovary are gone. The shock is that I was not targeting at all for the treatment of cysts.",
+    text: "The chocolate cysts, which were over 6 cm, were gone. She had been told they would stay with her for the rest of her life, even after surgery.",
     detail:
-      "The shock brought me to lead me to learn as theraphist and start to practice the different combination for different wellbeing related issues.",
+      "That surprise led her to study as a therapist and begin practicing different combinations for different well-being concerns.",
   },
   {
     time: "Deeper study",
     title: "Whole-life wellness",
-    text: "Over the following years, Suvi dedicated herself to studying essential oils alongside Traditional Chinese Medicine, holistic health principles, nutrition, preventive wellness, and healthy lifestyle practices.",
+    text: "It was not only effective for herself. She also made oils for family members that significantly helped with flu and coughing, as well as anxiety, stress, hair growth, skin tightening, pain relief, arthritis, and varicose veins.",
     detail:
       "She came to understand that true well-being is not created by a single product, but through healthy habits, nourishing food, physical movement, emotional balance, meaningful relationships, and connection with nature.",
   },
   {
     time: "Today",
     title: "Happy Drops begins",
-    text: "Today, Happy Drops is built on the belief that nature provides powerful tools to support our well-being. Essential oils, nutritious food, mindful movement, quality sleep, and positive daily habits work together to help us live healthier and happier lives.",
+    text: "Happy Drops is built on friends who joined workshops, used the oils for different purposes, saw results, and placed repeat orders. We want to make this process easier, more accessible, and easier to manage.",
     detail:
-      "It empowers people with practical knowledge, natural wellness solutions, and holistic lifestyle practices that support physical, emotional, and mental well-being.",
+      "We also want to help more therapists share this amazing knowledge and improve the well-being of other families.",
   },
 ];
 
 const philosophyPillars = [
   {
     title: "Nature",
+    icon: <LeafIcon />,
     text: "Understand the power of nature and relation to our body, with personal advisor we discover natural living stye together.",
   },
   {
     title: "Nutrition",
+    icon: <SproutIcon />,
     text: "Encouraging eating whole foods with simple and tasty anti-inflammatory cooking recipes to support vitality and long-term health.",
   },
   {
     title: "Movement",
+    icon: <MovementIcon />,
     text: "Encouraging daily physical movements, even when you are cooking or driving in a car, or practising mushroom-picking Taiji.",
   },
   {
     title: "Prevention",
+    icon: <BadgeIcon />,
     text: "Focus on holistic preventive knowledge from around the world and shape healthy habits that support lifelong well-being.",
   },
   {
     title: "Mindset",
+    icon: <LightIcon />,
     text: "Cultivating gratitude, resilience, and inner peace for a happier life mindset.",
   },
   {
     title: "Community",
+    icon: <UserIcon />,
     text: "Learning, growing and thriving in a trusted environment together.",
   },
 ];
@@ -306,7 +324,10 @@ function AboutUs() {
               key={pillar.title}
               style={{ "--pillar-delay": `${index * 0.06}s` }}
             >
-              <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <span className="about-philosophy-icon" aria-hidden="true">{pillar.icon}</span>
+              <span className="about-philosophy-number" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
               <h3>{pillar.title}</h3>
               <p>{pillar.text}</p>
             </article>

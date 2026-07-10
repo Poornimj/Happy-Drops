@@ -1,4 +1,5 @@
-﻿import {
+import { useState } from "react";
+import {
   HiOutlineCalendar,
   HiOutlineClipboardList,
   HiOutlineHeart,
@@ -9,9 +10,11 @@
 
 import profileHeroBanner from "../assets/images/wellness-profile-hero-banner.png";
 import profileSideProduct from "../assets/images/wellness-profile-side-product.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { apiRequest, saveAuthSession } from "../lib/api";
 
 import "./Signup.css";
+
 const benefits = [
   {
     icon: <HiOutlineSparkles />,
@@ -41,6 +44,49 @@ const benefits = [
 ];
 
 function Signup() {
+  const navigate = useNavigate();
+  const [form, setForm] = useState({
+    firstName: "",
+    familyName: "",
+    email: "",
+    password: "",
+    phone: "",
+    address: "",
+    age: "",
+    preferredLanguage: "English",
+  });
+  const [submitError, setSubmitError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setForm((current) => ({
+      ...current,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event, destination = "/wellness-assessment") => {
+    event.preventDefault();
+    setSubmitError("");
+    setIsSubmitting(true);
+
+    try {
+      const session = await apiRequest("/api/auth/signup", {
+        method: "POST",
+        body: JSON.stringify(form),
+      });
+
+      saveAuthSession(session);
+      navigate(destination);
+    } catch (error) {
+      setSubmitError(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <main className="profile-page">
@@ -69,19 +115,84 @@ function Signup() {
         </div>
 
         <section className="profile-layout">
-          <form className="profile-form">
+          <form className="profile-form" onSubmit={handleSubmit}>
             <div className="form-section-title">
               <span><HiOutlineUserGroup /></span>
               <h2>1. Personal Information</h2>
             </div>
 
             <div className="form-grid">
-              <label>First Name <strong>*</strong><input placeholder="Enter your first name" /></label>
-              <label>Family Name <strong>*</strong><input placeholder="Enter your family name" /></label>
-              <label>Email Address <strong>*</strong><input placeholder="Enter your email" type="email" /></label>
-              <label>Phone Number<input placeholder="+358  Enter your phone number" /></label>
-              <label>Address<input placeholder="Enter your address" /></label>
-              <label>Age<input placeholder="Enter your age" type="number" /></label>
+              <label>
+                First Name <strong>*</strong>
+                <input
+                  name="firstName"
+                  value={form.firstName}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter your first name"
+                />
+              </label>
+              <label>
+                Family Name <strong>*</strong>
+                <input
+                  name="familyName"
+                  value={form.familyName}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter your family name"
+                />
+              </label>
+              <label>
+                Email Address <strong>*</strong>
+                <input
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter your email"
+                  type="email"
+                />
+              </label>
+              <label>
+                Password <strong>*</strong>
+                <input
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  required
+                  minLength="8"
+                  placeholder="Create a password"
+                  type="password"
+                />
+              </label>
+              <label>
+                Phone Number
+                <input
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  placeholder="+358  Enter your phone number"
+                />
+              </label>
+              <label>
+                Address
+                <input
+                  name="address"
+                  value={form.address}
+                  onChange={handleChange}
+                  placeholder="Enter your address"
+                />
+              </label>
+              <label>
+                Age
+                <input
+                  name="age"
+                  value={form.age}
+                  onChange={handleChange}
+                  placeholder="Enter your age"
+                  type="number"
+                />
+              </label>
             </div>
 
             <div className="form-section-title">
@@ -90,9 +201,18 @@ function Signup() {
             </div>
 
             <div className="form-grid">
-              <label>Current Symptoms <strong>*</strong><select><option>Select all that apply</option></select></label>
-              <label>How long have you had these symptoms? <strong>*</strong><select><option>Select duration</option></select></label>
-              <label>How often do they occur? <strong>*</strong><select><option>Select frequency</option></select></label>
+              <label>
+                Current Symptoms <strong>*</strong>
+                <input required placeholder="Describe your current symptoms" />
+              </label>
+              <label>
+                How long have you had these symptoms? <strong>*</strong>
+                <input required placeholder="For example, 2 weeks or 3 months" />
+              </label>
+              <label>
+                How often do they occur? <strong>*</strong>
+                <input required placeholder="For example, daily or a few times per week" />
+              </label>
               <fieldset>
                 <legend>Are you taking any medication?</legend>
                 <label className="radio-option"><input type="radio" name="medication" /> Yes</label>
@@ -108,19 +228,55 @@ function Signup() {
 
             <div className="language-options">
               <p>Preferred Language</p>
-              <label><input type="radio" name="language" defaultChecked /> English</label>
-              <label><input type="radio" name="language" /> Finnish</label>
-              <label><input type="radio" name="language" /> Chinese</label>
+              <label>
+                <input
+                  type="radio"
+                  name="preferredLanguage"
+                  value="English"
+                  checked={form.preferredLanguage === "English"}
+                  onChange={handleChange}
+                /> English
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="preferredLanguage"
+                  value="Finnish"
+                  checked={form.preferredLanguage === "Finnish"}
+                  onChange={handleChange}
+                /> Finnish
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="preferredLanguage"
+                  value="Chinese"
+                  checked={form.preferredLanguage === "Chinese"}
+                  onChange={handleChange}
+                /> Chinese
+              </label>
             </div>
 
             <label className="privacy-check">
-              <input type="checkbox" defaultChecked />
+              <input type="checkbox" defaultChecked required />
               I agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a>
             </label>
 
-            <button className="profile-submit" type="button">
-              Continue to Wellness Assessment
-            </button>
+            {submitError && <p className="profile-error">{submitError}</p>}
+
+            <div className="profile-actions">
+              <button className="profile-submit" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Creating account..." : "Continue to Wellness Assessment"}
+              </button>
+              <button
+                className="profile-submit profile-submit-secondary"
+                type="button"
+                disabled={isSubmitting}
+                onClick={(event) => handleSubmit(event, "/")}
+              >
+                Create Profile Without Assessment
+              </button>
+            </div>
             <p className="profile-login-link">
               Already have an account? <Link to="/login">Log in</Link>
             </p>
@@ -147,11 +303,9 @@ function Signup() {
             </div>
           </aside>
         </section>
-      </main></>
+      </main>
+    </>
   );
 }
 
 export default Signup;
-
-
-
