@@ -305,11 +305,24 @@
   font-weight: 700;
 }
 
+.profile-error {
+  margin: 0 0 16px;
+  color: #b42318;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
 .profile-submit {
   min-width: 250px;
   padding: 15px 22px;
-  margin-top: 28px;
-  margin-left: 28px;
   border: 0;
   border-radius: 12px;
   background: #a67ac5;
@@ -317,6 +330,17 @@
   font-size: 16px;
   font-weight: 800;
   cursor: pointer;
+}
+
+.profile-submit-secondary {
+  border: 1px solid #a67ac5;
+  background: #fff;
+  color: #7b3fa5;
+}
+
+.profile-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
 }
 
 /* Benefits panel */
@@ -516,8 +540,11 @@
     gap: 10px;
   }
 
+  .profile-actions {
+    flex-direction: column;
+  }
+
   .profile-submit {
-    margin-left: 0;
     width: 100%;
   }
 
