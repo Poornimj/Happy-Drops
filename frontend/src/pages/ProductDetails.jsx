@@ -3,25 +3,27 @@ import "./Shop.css";
 
 import { HiOutlineShoppingCart } from "react-icons/hi";
 
-import DewOil from "../assets/images/SkinMoistures.png";
-import TimelessOil from "../assets/images/AntiWrincles.png";
-import RadianceOil from "../assets/images/SkinTightnings.png";
-import ReleaseOil from "../assets/images/StressReliefs.png";
-import FlowOil from "../assets/images/WaistEasses.png";
-import StrideOil from "../assets/images/JointEasses.png";
-import PeaceOil from "../assets/images/SleepSupportOil.png";
-import BloomOil from "../assets/images/BoostHairGrowths.png";
-import ClarityOil from "../assets/images/TwilightDropss.png";
-import NourishOil from "../assets/images/SkinDrynesses.png";
-import CalmOil from "../assets/images/HeadacheReliefs.png";
-import FlexibilityOil from "../assets/images/JointMoves.png";
-import BalanceOil from "../assets/images/VitalGuards.png";
-import HarmonyOil from "../assets/images/Cherishmoods.png";
-import PassionOil from "../assets/images/VitalGuards.png";
-import GraceOil from "../assets/images/Cherishmoods.png";
-import JoyOil from "../assets/images/Cherishmoods.png";
-import PresenceOil from "../assets/images/TwilightDropss.png";
-import VitalityOil from "../assets/images/VitalGuards.png";
+import DewOil from "../assets/images/Shop_SkinMoistures.png";
+import TimelessOil from "../assets/images/Shop_AntiWrincles.png";
+import RadianceOil from "../assets/images/Shop_SkinTightnings.png";
+import ReleaseOil from "../assets/images/Shop_StressReliefs.png";
+import FlowOil from "../assets/images/Shop_WaistEasses.png";
+import StrideOil from "../assets/images/Shop_JointEasses.png";
+import PeaceOil from "../assets/images/Shop_SleepSupportOil.png";
+import BloomOil from "../assets/images/Shop_BoostHairGrowths.png";
+import ClarityOil from "../assets/images/Shop_TwilightDropss.png";
+import NourishOil from "../assets/images/Shop_SkinDrynesses.png";
+import CalmOil from "../assets/images/Shop_HeadacheReliefs.png";
+import FlexibilityOil from "../assets/images/Shop_JointMoves.png";
+import BalanceOil from "../assets/images/Shop_VitalGuards.png";
+import HarmonyOil from "../assets/images/Shop_Cherishmoods.png";
+import PassionOil from "../assets/images/Shop_MensEnergy.png";
+import GraceOil from "../assets/images/Shop_FeminieBalance.png";
+import JoyOil from "../assets/images/Shop_Joymoods.png";
+import PresenceOil from "../assets/images/Shop_SpiritualFocus.png";
+import VitalityOil from "../assets/images/Shop_EnergyGain.png";
+import SummerOil from "../assets/images/Shop_MosquitoSpray.png";
+import WinterOil from "../assets/images/Shop_SaunaRelaxation.png";
 
 const products = [
   {
@@ -40,7 +42,7 @@ const products = [
     name: "Timeless",
     function: "Anti-Wrinkle",
     desc: "Timeless is created for anti-aging beauty care. It supports a graceful skin-care routine and helps the skin feel smooth, cared for, and refreshed with every gentle application.",
-    price: "29.90",
+    price: "19.90",
     badge: "Popular",
     reviews: 98,
     amount: "15 ml",
@@ -51,7 +53,7 @@ const products = [
     name: "Radiance",
     function: "Skin Tightening",
     desc: "Radiance is designed for skin tightening and glow. It is ideal for beauty routines focused on firm, fresh, and youthful-looking skin with a naturally confident finish.",
-    price: "26.90",
+    price: "16.90",
     reviews: 76,
     amount: "15 ml",
     image: RadianceOil,
@@ -61,7 +63,7 @@ const products = [
     name: "Release",
     function: "Neck & Shoulder Comfort",
     desc: "Release is made for neck and shoulder comfort. It is suitable for gentle massage after a long day, helping the body feel relaxed, lighter, and more comfortable.",
-    price: "27.90",
+    price: "17.90",
     reviews: 120,
     amount: "15 ml",
     image: ReleaseOil,
@@ -101,7 +103,7 @@ const products = [
     name: "Bloom",
     function: "Hair Growth",
     desc: "Bloom is designed for hair growth support and scalp care. It is ideal for gentle scalp massage, helping the hair feel nourished, fresh, and full of vitality.",
-    price: "27.90",
+    price: "21.90",
     reviews: 120,
     amount: "15 ml",
     image: BloomOil,
@@ -121,7 +123,7 @@ const products = [
     name: "Nourish",
     function: "Dry Skin Relief",
     desc: "Nourish is made for dry skin relief. It helps rough or dry areas feel softer, smoother, and deeply cared for during your daily body-care routine.",
-    price: "25.90",
+    price: "21.90",
     reviews: 98,
     amount: "15 ml",
     image: NourishOil,
@@ -131,7 +133,7 @@ const products = [
     name: "Calm",
     function: "Headache Comfort",
     desc: "Calm is created for headache comfort and stress relief. It is ideal for quiet relaxation, helping you feel balanced, soothed, and more peaceful after a busy day.",
-    price: "27.90",
+    price: "23.90",
     reviews: 76,
     amount: "15 ml",
     image: CalmOil,
@@ -171,7 +173,7 @@ const products = [
     name: "Passion",
     function: "Men’s Vitality",
     desc: "Passion supports men’s vitality and confidence. It is ideal for personal wellness routines that encourage energy, connection, and a refreshed feeling.",
-    price: "25.50",
+    price: "22.50",
     reviews: 120,
     amount: "15 ml",
     image: PassionOil,
@@ -191,7 +193,7 @@ const products = [
     name: "Joy",
     function: "Mood Enhancement",
     desc: "Joy is designed for mood enhancement. It helps create a bright, positive, and uplifting feeling, making it perfect for daily emotional wellness routines.",
-    price: "26.90",
+    price: "16.90",
     reviews: 120,
     amount: "15 ml",
     image: JoyOil,
@@ -211,10 +213,33 @@ const products = [
     name: "Vitality",
     function: "Energy Boost",
     desc: "Vitality is created for energy boost and motivation. It is ideal for morning routines or moments when you want to feel fresh, active, and inspired.",
-    price: "24.90",
+    price: "23.50",
     reviews: 120,
     amount: "15 ml",
     image: VitalityOil,
+  },
+
+    {
+    id: 20,
+    name: "Mosquito Spray",
+    function: "Summer Protection",
+    desc: "Mosquito Spray is made for summer outdoor comfort. It helps you enjoy fresh air, garden time, and evening relaxation with a clean and refreshing protective feeling.",
+    price: "18.90",
+    badge: "Summer",
+    reviews: 120,
+    amount: "15 ml",
+    image: SummerOil,
+  },
+  {
+    id: 21,
+    name: "Sauna Relaxation",
+    function: "Winter Relaxation",
+    desc: "Sauna Relaxation is created for warm winter self-care moments. It supports deep calm, cozy relaxation, and a peaceful sauna-inspired wellness routine.",
+    price: "22.90",
+    badge: "Winter",
+    reviews: 120,
+    amount: "15 ml",
+    image: WinterOil,
   },
 ];
 
