@@ -221,7 +221,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
         name: "Metabolism",
         icon: <Zap size={20} color="var(--gold)" />,
         questions: [
-          "I have good energy during the day.",
+          "I have good energy during the day. I don't suffer from brain fog or sugar cravings or need caffeine or energy drinks.",
           "I use smart supplementation to complement targeted metabolic health effects.",
           "I stay satiated for hours after eating.",
         ],
@@ -244,8 +244,8 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
         icon: <Brain size={20} color="var(--gold)" />,
         questions: [
           "I know my main sources of stress and I have adequate resources to manage them.",
-          "I have self-care strategies and use them.",
-          "I'm familiar with products that help me relax and unwind.",
+          "I have self-care strategies and use them to help my manage stress.",
+          "I'm familiar with and use supplements and products that help as I relax and unwind.",
         ],
       },
 
@@ -254,9 +254,9 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
         name: "Reduce Toxic Burden",
         icon: <Sprout size={20} color="var(--gold)" />,
         questions: [
-          "I'm familiar with environmental toxins and ways to avoid them.",
-          "I use non-toxic eco-friendly products at home.",
-          "I focus on supporting my body's natural detoxification process.",
+          "I'm familiar with the most common environmental toxins and ways to avoid them.",
+          "I use non-toxic, eco-friendly products at home and advocate for them with friends and family.",
+          "I focus on supporting my body's natural detoxification process, such as by limiting alcohol intake.",
         ],
       },
 
@@ -266,7 +266,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
         icon: <Heart size={20} color="var(--gold)" />,
         questions: [
           "I educate myself on proactive wellness habits.",
-          "I continuously support my immune function.",
+          "I work hard to continuously support my immune function.",
           "I use smart supplementation to complement self-care efforts.",
         ],
       },
