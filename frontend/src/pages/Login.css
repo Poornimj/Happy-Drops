@@ -152,6 +152,19 @@
   font-size: 13px;
 }
 
+.login-success {
+  color: #276749;
+  background: #edfdf4;
+  border: 1px solid #9ae6b4;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+}
+
+.login-success a {
+  color: inherit;
+  font-weight: 700;
+}
+
 .login-remember {
   margin-top: 20px;
   display: inline-flex;

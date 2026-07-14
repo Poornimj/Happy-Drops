@@ -1,12 +1,15 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:4000";
 
 export async function apiRequest(path, options = {}) {
+  const { auth = false, headers = {}, ...fetchOptions } = options;
+  const token = getAuthToken();
   const response = await fetch(`${API_BASE_URL}${path}`, {
+    ...fetchOptions,
     headers: {
       "Content-Type": "application/json",
-      ...(options.headers || {}),
+      ...(auth && token ? { Authorization: `Bearer ${token}` } : {}),
+      ...headers,
     },
-    ...options,
   });
 
   const data = await response.json().catch(() => ({}));
@@ -18,7 +21,31 @@ export async function apiRequest(path, options = {}) {
   return data;
 }
 
-export function saveAuthSession({ token, user }) {
-  localStorage.setItem("happyDropsToken", token);
-  localStorage.setItem("happyDropsUser", JSON.stringify(user));
+export function saveAuthSession({ token, user }, remember = true) {
+  clearAuthSession();
+  const storage = remember ? localStorage : sessionStorage;
+  storage.setItem("happyDropsToken", token);
+  storage.setItem("happyDropsUser", JSON.stringify(user));
+}
+
+export function getAuthToken() {
+  return localStorage.getItem("happyDropsToken") || sessionStorage.getItem("happyDropsToken");
+}
+
+export function getStoredUser() {
+  const value = localStorage.getItem("happyDropsUser") || sessionStorage.getItem("happyDropsUser");
+  if (!value) return null;
+  try {
+    return JSON.parse(value);
+  } catch {
+    clearAuthSession();
+    return null;
+  }
+}
+
+export function clearAuthSession() {
+  for (const storage of [localStorage, sessionStorage]) {
+    storage.removeItem("happyDropsToken");
+    storage.removeItem("happyDropsUser");
+  }
 }

@@ -11,7 +11,8 @@ import {
 import profileHeroBanner from "../assets/images/wellness-profile-hero-banner.png";
 import profileSideProduct from "../assets/images/wellness-profile-side-product.png";
 import { Link, useNavigate } from "react-router-dom";
-import { apiRequest, saveAuthSession } from "../lib/api";
+import { apiRequest } from "../lib/api";
+import { useAuth } from "../context/AuthContext";
 
 import "./Signup.css";
 
@@ -45,6 +46,7 @@ const benefits = [
 
 function Signup() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [form, setForm] = useState({
     firstName: "",
     familyName: "",
@@ -57,6 +59,7 @@ function Signup() {
   });
   const [submitError, setSubmitError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [createdWithoutAssessment, setCreatedWithoutAssessment] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -78,14 +81,57 @@ function Signup() {
         body: JSON.stringify(form),
       });
 
-      saveAuthSession(session);
-      navigate(destination);
+      login(session, true);
+      if (destination === "/") {
+        setCreatedWithoutAssessment(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate(destination);
+      }
     } catch (error) {
       setSubmitError(error.message);
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  if (createdWithoutAssessment) {
+    return (
+      <main className="profile-page">
+        <section className="profile-hero profile-hero-with-image">
+          <img src={profileHeroBanner} alt="Happy Drops lavender wellness profile banner" />
+          <div className="profile-hero-copy">
+            <h1>Profile Created Successfully</h1>
+            <p>
+              Welcome to Happy Drops, {form.firstName}. Your account has been saved
+              and you are now logged in.
+            </p>
+          </div>
+        </section>
+        <section className="profile-layout">
+          <div className="profile-form">
+            <div className="form-section-title">
+              <span><HiOutlineHeart /></span>
+              <h2>Your wellness profile is ready</h2>
+            </div>
+            <p>
+              You can continue to the website now or complete your wellness
+              assessment whenever you are ready.
+            </p>
+            <div className="profile-actions">
+              <Link className="profile-submit" to="/">Continue to Happy Drops</Link>
+              <Link
+                className="profile-submit profile-submit-secondary"
+                to="/wellness-assessment"
+              >
+                Start Wellness Assessment
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <>
