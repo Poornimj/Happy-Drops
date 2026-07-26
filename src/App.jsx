@@ -10,6 +10,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import { AuthProvider } from "./context/AuthContext";
 import Welcome from "./pages/Welcome";
 import WellnessAssessmentModal from "./components/WellnessAssessmentModal";
 import AboutUs from "./pages/AboutUs";
@@ -79,6 +82,8 @@ function AppShell() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/knowledge" element={<Knowledge />} />
         <Route path="/workshops" element={<Workshops />} />
         <Route path="/supplier" element={<Supplier />} />
@@ -101,7 +106,9 @@ function AppShell() {
 function App() {
   return (
     <Router>
-      <AppShell />
+      <AuthProvider>
+        <AppShell />
+      </AuthProvider>
     </Router>
   );
 }

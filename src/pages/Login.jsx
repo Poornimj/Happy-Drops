@@ -8,13 +8,15 @@ import {
 } from "react-icons/hi";
 
 import loginWellnessScene from "../assets/images/login-wellness-scene-happy-drops.png";
-import { apiRequest, saveAuthSession } from "../lib/api";
+import { apiRequest } from "../lib/api";
+import { useAuth } from "../context/AuthContext";
 
 import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({ email: "", password: "", remember: false });
   const [errors, setErrors] = useState({});
@@ -63,7 +65,7 @@ function Login() {
         }),
       });
 
-      saveAuthSession(session);
+      login(session, form.remember);
       navigate(destination, { replace: true });
     } catch (error) {
       setSubmitError(error.message);
@@ -86,6 +88,7 @@ function Login() {
           <p className="login-intro">
             Access your profile, bookings, orders, and wellness recommendations.
           </p>
+          {location.state?.message && <p className="login-success">{location.state.message}</p>}
 
           <form className="login-form" onSubmit={handleSubmit} noValidate>
             <label htmlFor="login-email">Email address</label>
@@ -108,9 +111,9 @@ function Login() {
 
             <div className="login-label-row">
               <label htmlFor="login-password">Password</label>
-              <button type="button" className="login-text-button">
+              <Link to="/forgot-password" className="login-text-button">
                 Forgot password?
-              </button>
+              </Link>
             </div>
             <div className={`login-input ${errors.password ? "has-error" : ""}`}>
               <HiOutlineLockClosed aria-hidden="true" />

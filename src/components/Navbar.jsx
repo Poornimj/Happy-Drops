@@ -6,6 +6,7 @@ import {
   HiOutlineUser,
 } from "react-icons/hi";
 import happyDropsLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
+import { useAuth } from "../context/AuthContext";
 
 const navLinks = [
   { href: "/knowledge", label: "Knowledge" },
@@ -17,6 +18,8 @@ const navLinks = [
 ];
 
 function Navbar() {
+  const { user, logout } = useAuth();
+
   return (
     <nav className="navbar" aria-label="Primary navigation">
       <Link className="brand" to="/" aria-label="Happy Drops home">
@@ -49,9 +52,21 @@ function Navbar() {
             <HiOutlineSearch />
           </a>
 
-          <a href="/login" className="nav-icon" aria-label="Log in or create an account">
-            <HiOutlineUser />
-          </a>
+          {user ? (
+            <button
+              type="button"
+              className="nav-icon nav-logout"
+              aria-label={`Log out ${user.firstName}`}
+              title={`Log out ${user.firstName}`}
+              onClick={logout}
+            >
+              <HiOutlineUser />
+            </button>
+          ) : (
+            <Link to="/login" className="nav-icon" aria-label="Log in or create an account">
+              <HiOutlineUser />
+            </Link>
+          )}
 
           <Link to="/shop" className="nav-icon" aria-label="Shopping cart">
             <HiOutlineShoppingCart />
