@@ -17,6 +17,9 @@ import workshopDumplingCard from "../assets/images/workshop-dumpling2.png";
 import workshopSpecialEventCard from "../assets/images/workshop- specialevent2.png";
 import workshopOfficeCard from "../assets/images/workshop-office.png";
 import workshopSummaryImage from "../assets/images/workshop-summary-image.png";
+import kombuchaMenuImage from "../assets/images/kombucha.png";
+import saladMenuImage from "../assets/images/salad.png";
+import dumplingsMenuImage from "../assets/images/dumplings.png";
 import "../index.css";
 
 const workshops = [
@@ -90,6 +93,24 @@ const workshopLocations = [
   "XR Center, Hämeentie 135 A, 00560 Helsinki",
 ];
 
+const healthyMenuItems = [
+  {
+    name: "Kompucha",
+    price: "€5.00",
+    image: kombuchaMenuImage,
+  },
+  {
+    name: "Salad",
+    price: "€4.50",
+    image: saladMenuImage,
+  },
+  {
+    name: "Dumplings",
+    price: "400 g - €8.50",
+    image: dumplingsMenuImage,
+  },
+];
+
 function formatDate(date) {
   return new Intl.DateTimeFormat("en-GB", {
     day: "2-digit",
@@ -131,6 +152,9 @@ export default function Workshops() {
   const [adminLocation, setAdminLocation] = useState("");
   const [pricePerPerson, setPricePerPerson] = useState("");
   const [workshopThemes, setWorkshopThemes] = useState({});
+  const [frontHealthyMenuItem, setFrontHealthyMenuItem] = useState(
+    healthyMenuItems[0].name
+  );
   const calendarDays = getCalendarDays(calendarMonth);
   const summaryMatchesLocation =
     adminLocation && selectedLocation === adminLocation;
@@ -139,6 +163,10 @@ export default function Workshops() {
     month: "long",
     year: "numeric",
   }).format(calendarMonth);
+  const orderedHealthyMenuItems = [
+    ...healthyMenuItems.filter((item) => item.name === frontHealthyMenuItem),
+    ...healthyMenuItems.filter((item) => item.name !== frontHealthyMenuItem),
+  ];
 
   return (
     <div className="workshop-page">
@@ -674,6 +702,26 @@ export default function Workshops() {
                 <span>Purpose of the Workshop</span>
                 <textarea placeholder="Example: birthday, team building, family gathering, wellness session, business event" />
               </label>
+
+              <section className="workshop-healthy-menu" aria-labelledby="workshop-healthy-menu-title">
+                <h5 id="workshop-healthy-menu-title">Our Healthy Menu</h5>
+                <div className="workshop-healthy-menu-grid">
+                  {orderedHealthyMenuItems.map((item, index) => (
+                    <button
+                      className={`workshop-healthy-menu-card ${index === 0 ? "is-front" : ""}`}
+                      key={item.name}
+                      type="button"
+                      onClick={() => setFrontHealthyMenuItem(item.name)}
+                    >
+                      <img src={item.image} alt={item.name} />
+                      <div className="workshop-healthy-menu-content">
+                        <strong>{item.name}</strong>
+                        <span>{item.price}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </section>
 
               <label className="workshop-request-special-field">
                 <span>Special Requests</span>
