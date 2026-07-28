@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import "./Shop.css";
 
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { addProductToCart } from "../lib/api";
 
 import DriedLavenderHero from "../assets/images/Shop_DriedLavenderHero.jpeg?shopHero=1";
 import SleepSupOil from "../assets/images/Shop_SleepSupOil.png";
@@ -101,13 +102,52 @@ const seasonProducts = [
 
 ];
 
+const concernFilters = [
+  { slug: "all", label: "All Oils", ids: products.map((product) => product.id) },
+  { slug: "skin-care", label: "Skin Care", ids: [1, 2, 3, 10] },
+  { slug: "sleep", label: "Sleep", ids: [7] },
+  { slug: "stress", label: "Stress & Comfort", ids: [4, 11, 17] },
+  { slug: "hair-care", label: "Hair Care", ids: [8] },
+  { slug: "movement", label: "Movement", ids: [5, 6, 12] },
+  { slug: "focus", label: "Focus", ids: [9, 18] },
+  { slug: "digestion", label: "Digestion", ids: [14] },
+  { slug: "energy", label: "Energy & Vitality", ids: [15, 19] },
+  { slug: "wellness", label: "Daily Wellness", ids: [13, 16] },
+];
+
 function Shop() {
   const [hoveredProductId, setHoveredProductId] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedConcern = searchParams.get("concern") || "all";
+  const appliedSearch = searchParams.get("q") || "";
+  const activeConcern = concernFilters.find((item) => item.slug === selectedConcern) || concernFilters[0];
+  const normalizedSearch = appliedSearch.trim().toLowerCase();
+  const filteredProducts = products.filter((product) => (
+    activeConcern.ids.includes(product.id)
+    && (!normalizedSearch || [product.name, product.function, product.desc]
+      .some((value) => value.toLowerCase().includes(normalizedSearch)))
+  ));
+
+  const applyConcern = (slug) => {
+    const next = new URLSearchParams(searchParams);
+    if (slug === "all") next.delete("concern");
+    else next.set("concern", slug);
+    setSearchParams(next);
+  };
+
+  const clearFilters = () => {
+    setSearchParams({});
+  };
   
 
-  const addToCart = (event, product) => {
+  const addToCart = async (event, product) => {
     event.preventDefault();
-    alert(`${product.name} added to cart`);
+    try {
+      await addProductToCart(product.name);
+      alert(`${product.name} added to cart`);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
@@ -167,7 +207,22 @@ function Shop() {
              Food Related
            </Link>
         </div>
-        
+
+        <div className="shop-concern-browser">
+          <h3>Shop by wellness concern</h3>
+          <div className="shop-concern-list" aria-label="Wellness concerns">
+            {concernFilters.map((concern) => (
+              <button
+                className={`category ${activeConcern.slug === concern.slug ? "active" : ""}`}
+                type="button"
+                key={concern.slug}
+                onClick={() => applyConcern(concern.slug)}
+              >
+                {concern.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </section>
  
 
@@ -175,14 +230,17 @@ function Shop() {
 
       <section className="featured-products" id="featured">
         <div className="featured-header">
-           <h2>Featured Products</h2>
-
-
+           <h2>{activeConcern.label}{appliedSearch ? ` — “${appliedSearch}”` : ""}</h2>
+           {(appliedSearch || selectedConcern !== "all") && (
+             <button className="shop-clear-filters" type="button" onClick={clearFilters}>
+               Clear filters
+             </button>
+           )}
         </div>
 
 
         <div className="product-grid">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <Link to={`/shop/product/${product.id}`} className="product-card" key={product.id}>
               {product.badge && (
                 <span className={`product-badge ${product.badge === "Popular" ? "purple" : "dark"}`}>
@@ -221,9 +279,16 @@ function Shop() {
             </Link>
           ))}
         </div>
+        {filteredProducts.length === 0 && (
+          <div className="shop-no-results">
+            <h3>No matching products</h3>
+            <p>Try another search term or clear the selected concern.</p>
+            <button type="button" onClick={clearFilters}>View all products</button>
+          </div>
+        )}
       </section>
 
-      <section className="featured-products" id="seasons">
+      {selectedConcern === "all" && !appliedSearch && <section className="featured-products" id="seasons">
   <div className="featured-header">
     <h2>Seasonal Oils</h2>
   </div>
@@ -272,7 +337,7 @@ function Shop() {
       </Link>
     ))}
   </div>
-</section>
+</section>}
 
       <section className="bundle">
     <div className="bundle-visual">

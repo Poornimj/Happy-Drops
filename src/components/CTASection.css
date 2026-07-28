@@ -161,6 +161,8 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .workshop-btn:hover {

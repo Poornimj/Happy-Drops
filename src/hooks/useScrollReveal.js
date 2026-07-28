@@ -4,19 +4,17 @@ function useScrollReveal(options = {}) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
 
-  const defaultOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-    ...options,
-  };
+  const threshold = options.threshold ?? 0.1;
+  const rootMargin = options.rootMargin ?? "0px 0px -50px 0px";
 
   useEffect(() => {
+    const observerOptions = { threshold, rootMargin };
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsVisible(true);
         observer.unobserve(entry.target);
       }
-    }, defaultOptions);
+    }, observerOptions);
 
     const currentRef = ref.current;
     if (currentRef) {
@@ -28,7 +26,7 @@ function useScrollReveal(options = {}) {
         observer.unobserve(currentRef);
       }
     };
-  }, [defaultOptions]);
+  }, [rootMargin, threshold]);
 
   return [ref, isVisible];
 }

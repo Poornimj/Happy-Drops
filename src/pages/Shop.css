@@ -149,6 +149,87 @@
   color: white;
 }
 
+.shop-concern-browser {
+  margin-top: 28px;
+  padding: 22px;
+  border-radius: 14px;
+  background: #f8f3fb;
+}
+
+.shop-concern-browser h3 {
+  margin: 0 0 14px;
+  color: #173f27;
+}
+
+.shop-clear-filters,
+.shop-no-results button {
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: #173f27;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.shop-concern-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.shop-concern-list .category {
+  min-width: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.shop-no-results {
+  padding: 42px 20px;
+  border: 1px dashed #d9c9e4;
+  border-radius: 12px;
+  text-align: center;
+  background: #fbf8fd;
+}
+
+.shop-no-results h3 {
+  margin: 0 0 8px;
+}
+
+.shop-no-results p {
+  margin: 0 0 18px;
+  color: #4f655a;
+}
+
+.food-search-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.food-search-summary h2 {
+  margin: 0;
+}
+
+.food-search-summary button {
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: #173f27;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .food-search-summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
 .shop-page .product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

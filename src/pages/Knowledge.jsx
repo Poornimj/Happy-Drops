@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { apiRequest } from "../lib/api";
+import { useAuth } from "../context/AuthContext";
 import knowledgeHeader from "../assets/images/knowledge-header.png";
 import knowledgeReady from "../assets/images/knowledg-ready.png";
 import knowledgeWellnessImage from "../assets/images/knowledge-wellness-image.png";
@@ -159,15 +161,15 @@ const questionHistory = [
   },
 ];
 
-function getOrderSteps(stage) {
+function getOrderSteps(stage, questionText = "Submit a question to begin.", submittedAt = "", answerText = "") {
   const rank = stageRank[stage] || 1;
 
   return [
     {
       icon: "question",
       title: "You",
-      text: customerQuestion,
-      time: "25 Aug 2026 - 10:30 AM",
+      text: questionText,
+      time: submittedAt,
       status: rank >= 1 ? "done" : "processing",
     },
     {
@@ -175,7 +177,7 @@ function getOrderSteps(stage) {
       title: "Aromatherapist Review",
       text:
         rank >= 3
-          ? "Our aromatherapist has reviewed your question."
+          ? answerText || "Our aromatherapist has reviewed your question."
           : "Your question has been sent to our aromatherapist by email.",
       time: "25 Aug 2026 - 11:15 AM",
       status: rank >= 3 ? "done" : "processing",
@@ -262,18 +264,123 @@ function CalendarIcon() {
 }
 
 export default function Knowledge() {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [isRecipeOpen, setIsRecipeOpen] = useState(false);
   const [isWellnessOpen, setIsWellnessOpen] = useState(false);
   const [activeWellnessTopic, setActiveWellnessTopic] = useState(null);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
-  const [activeHistoryId, setActiveHistoryId] = useState(questionHistory[0].id);
+  const [activeHistoryId, setActiveHistoryId] = useState(null);
   const [isPickupConfirmed, setIsPickupConfirmed] = useState(false);
   const [isPickupDateOpen, setIsPickupDateOpen] = useState(false);
   const [pickupDate, setPickupDate] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [pickupError, setPickupError] = useState("");
-  const orderSteps = getOrderSteps(orderStage);
-  const readyEmailSent = true;
+  const [questionText, setQuestionText] = useState("");
+  const [questions, setQuestions] = useState([]);
+  const [questionError, setQuestionError] = useState("");
+  const [questionSuccess, setQuestionSuccess] = useState("");
+  const [isSubmittingQuestion, setIsSubmittingQuestion] = useState(false);
+  const [historyView, setHistoryView] = useState("questions");
+  const [isSavingPickup, setIsSavingPickup] = useState(false);
+
+  const loadQuestions = useCallback(async () => {
+    if (!user) {
+      setQuestions([]);
+      return;
+    }
+    try {
+      const result = await apiRequest("/api/knowledge/questions", { auth: true });
+      setQuestions(result.questions);
+      setActiveHistoryId((current) => current || result.questions[0]?.id || null);
+    } catch (error) {
+      setQuestionError(error.message);
+    }
+  }, [user]);
+
+  useEffect(() => { loadQuestions(); }, [loadQuestions]);
+
+  const activeQuestion = questions.find((item) => item.id === activeHistoryId) || questions[0] || null;
+  const activeRecipe = activeQuestion?.recipe || null;
+  const liveStage = !activeQuestion ? "question_saved"
+    : activeRecipe?.preparation_status === "ready" || activeRecipe?.preparation_status === "collected" ? "oil_sent"
+      : ["paid", "preparing"].includes(activeRecipe?.preparation_status) ? "paid"
+        : activeRecipe ? "recipe_sent"
+          : activeQuestion.status === "reviewing" || activeQuestion.status === "answered" ? "sent_to_aromatherapist"
+            : "question_saved";
+  const submittedAt = activeQuestion?.created_at
+    ? new Date(activeQuestion.created_at).toLocaleString("en-FI", { dateStyle: "medium", timeStyle: "short" })
+    : "";
+  const latestAnswer = activeQuestion?.answers?.[activeQuestion.answers.length - 1]?.answer || "";
+  const orderSteps = getOrderSteps(liveStage, activeQuestion?.question, submittedAt, latestAnswer);
+  const readyEmailSent = ["ready", "collected"].includes(activeRecipe?.preparation_status);
+  const historyItems = questions.map((item) => ({
+    id: item.id,
+    question: item.question,
+    submittedDate: new Date(item.created_at).toLocaleDateString("en-FI", { dateStyle: "medium" }),
+    recipe: item.recipe?.title || (item.status === "answered" ? "Recipe preparation pending" : "Under review"),
+    price: item.recipe?.price ? `${item.recipe.currency?.trim() || "EUR"} ${Number(item.recipe.price).toFixed(2)}` : "Not available yet",
+    paymentDate: item.recipe?.paid_at ? new Date(item.recipe.paid_at).toLocaleDateString("en-FI") : "Not paid",
+    pickupLocation: item.recipe?.pickup_location || "Not assigned yet",
+    purchasedDate: item.recipe?.paid_at ? new Date(item.recipe.paid_at).toLocaleDateString("en-FI") : "Not purchased",
+  }));
+  const visibleHistoryItems = historyView === "purchases"
+    ? historyItems.filter((item) => item.purchasedDate !== "Not purchased")
+    : historyItems;
+
+  const savePickup = async () => {
+    if (!activeRecipe || !pickupDate || !pickupTime) {
+      setPickupError("Pickup date and time are required.");
+      return;
+    }
+    setIsSavingPickup(true);
+    setPickupError("");
+    try {
+      const result = await apiRequest(`/api/knowledge/recipes/${activeRecipe.id}/pickup`, {
+        method: "PATCH",
+        auth: true,
+        body: JSON.stringify({ pickupDate, pickupTime }),
+      });
+      setQuestions((current) => current.map((question) => (
+        question.id === activeQuestion.id ? { ...question, recipe: result.recipe } : question
+      )));
+      setIsPickupConfirmed(true);
+      setIsPickupDateOpen(false);
+    } catch (error) {
+      setPickupError(error.message);
+    } finally {
+      setIsSavingPickup(false);
+    }
+  };
+
+  const submitQuestion = async () => {
+    if (!user) {
+      navigate("/login", { state: { from: "/knowledge", message: "Log in to ask a wellness question." } });
+      return;
+    }
+    if (questionText.trim().length < 10) {
+      setQuestionError("Please enter a question with at least 10 characters.");
+      return;
+    }
+    setIsSubmittingQuestion(true);
+    setQuestionError("");
+    setQuestionSuccess("");
+    try {
+      const result = await apiRequest("/api/knowledge/questions", {
+        method: "POST",
+        auth: true,
+        body: JSON.stringify({ topic: "Wellness question", question: questionText }),
+      });
+      setQuestionText("");
+      setQuestionSuccess("Your question was submitted for aromatherapist review.");
+      setQuestions((current) => [{ ...result.question, answers: [], recipe: null }, ...current]);
+      setActiveHistoryId(result.question.id);
+    } catch (error) {
+      setQuestionError(error.message);
+    } finally {
+      setIsSubmittingQuestion(false);
+    }
+  };
 
   return (
     <div className="knowledge-page">
@@ -316,7 +423,9 @@ export default function Knowledge() {
         <section className="access-banner">
           <div>
             <LockIcon />
-            <span>Please register or login to access the Knowledge Hub and ask your questions.</span>
+            <span>{user
+              ? `Signed in as ${user.firstName}. Your questions and recommendations are saved securely.`
+              : "Please register or login to access the Knowledge Hub and ask your questions."}</span>
           </div>
         </section>
 
@@ -326,11 +435,23 @@ export default function Knowledge() {
               <h3>Ask Your Question</h3>
             </div>
 
-            <textarea placeholder="Type your question here" />
+            <textarea
+              placeholder="Type your question here"
+              value={questionText}
+              onChange={(event) => {
+                setQuestionText(event.target.value);
+                setQuestionError("");
+                setQuestionSuccess("");
+              }}
+            />
 
             <div className="question-actions">
-              <button className="primary-btn" type="button">Submit</button>
+              <button className="primary-btn" type="button" disabled={isSubmittingQuestion} onClick={submitQuestion}>
+                {isSubmittingQuestion ? "Submitting…" : "Submit"}
+              </button>
             </div>
+            {questionError && <p className="form-error" role="alert">{questionError}</p>}
+            {questionSuccess && <p className="supplier-success" role="status">{questionSuccess}</p>}
           </section>
 
           <section className="history-prompt-card">
@@ -339,7 +460,7 @@ export default function Knowledge() {
               <p>Your wellness journey is saved here.</p>
             </div>
 
-            <button className="history-prompt-btn" type="button" onClick={() => setIsHistoryOpen(true)}>
+            <button className="history-prompt-btn" type="button" onClick={() => user ? setIsHistoryOpen(true) : navigate("/login", { state: { from: "/knowledge" } })}>
               <LuShoppingBag aria-hidden="true" />
               <span>Click me</span>
             </button>
@@ -390,9 +511,9 @@ export default function Knowledge() {
                     )}
 
                     {step.action === "payment" && (
-                      <a className="mini-btn" href="/payment">
-                        Pay Now
-                      </a>
+                      <span className="mini-btn" title="Secure payment will be enabled when the payment provider is connected">
+                        Payment Pending
+                      </span>
                     )}
                   </div>
 
@@ -421,11 +542,10 @@ export default function Knowledge() {
             </div>
 
             <div className="pickup-detail-content">
-              <p>
+              {readyEmailSent ? <><p>
                 <LuMapPin aria-hidden="true" />
                 <span>
-                  Your essential oil is ready for pickup at Helsinki XR Center,
-                  Hämeentie 135 A, 00560 Helsinki.
+                  Your essential oil is ready for pickup at {activeRecipe.pickup_location || "Nature Power Happiness Academy"}.
                 </span>
               </p>
               <p>
@@ -440,6 +560,14 @@ export default function Knowledge() {
               >
                 {isPickupConfirmed ? "Pickup Confirmed" : "Save Pickup Date"}
               </button>
+              </> : <p>
+                <LuClock aria-hidden="true" />
+                <span>
+                  {activeRecipe
+                    ? "Your personalized blend is being processed. Pickup scheduling will open when it is ready."
+                    : "Submit a question to begin your personalized wellness journey."}
+                </span>
+              </p>}
             </div>
           </div>
 
@@ -465,12 +593,25 @@ export default function Knowledge() {
             </div>
 
             <div className="recipe-display-space">
-              <span>Recipe details will display here.</span>
+              {activeRecipe ? (
+                <div>
+                  <strong>{activeRecipe.title}</strong>
+                  <p>{activeRecipe.instructions || "Your aromatherapist will add preparation instructions."}</p>
+                  {Array.isArray(activeRecipe.ingredients) && activeRecipe.ingredients.length > 0 && (
+                    <ul>{activeRecipe.ingredients.map((ingredient) => <li key={String(ingredient)}>{String(ingredient)}</li>)}</ul>
+                  )}
+                  {activeRecipe.safety_notes && <p><strong>Safety:</strong> {activeRecipe.safety_notes}</p>}
+                </div>
+              ) : <span>No personalized recipe is available yet.</span>}
             </div>
 
             <div className="price-row">
               <span>Total Price</span>
-              <strong className="price-placeholder">Price will display here</strong>
+              <strong className="price-placeholder">
+                {activeRecipe?.price
+                  ? `${activeRecipe.currency?.trim() || "EUR"} ${Number(activeRecipe.price).toFixed(2)}`
+                  : "Not available yet"}
+              </strong>
             </div>
 
             <p className="payment-note">
@@ -559,18 +700,23 @@ export default function Knowledge() {
             </p>
 
             <div className="history-tabs" aria-label="History views">
-              <button className="active" type="button">
+              <button className={historyView === "questions" ? "active" : ""} type="button" onClick={() => setHistoryView("questions")}>
                 <LuMessageCircle aria-hidden="true" />
                 My Questions
               </button>
-              <button type="button">
+              <button className={historyView === "purchases" ? "active" : ""} type="button" onClick={() => setHistoryView("purchases")}>
                 <LuShoppingBag aria-hidden="true" />
                 Purchase History
               </button>
             </div>
 
             <div className="history-list">
-              {questionHistory.map((item) => (
+              {visibleHistoryItems.length === 0 && (
+                <p className="history-intro">
+                  {historyView === "purchases" ? "No purchases yet." : "No questions yet. Submit your first question to begin."}
+                </p>
+              )}
+              {visibleHistoryItems.map((item) => (
                 <button
                   className={`history-card ${activeHistoryId === item.id ? "active" : ""}`}
                   type="button"
@@ -640,8 +786,7 @@ export default function Knowledge() {
                 <span>Date</span>
                 <input
                   className="pickup-date-input"
-                  type="text"
-                  placeholder="Example: Friday 25 Aug 2026"
+                  type="date"
                   value={pickupDate}
                   readOnly={isPickupConfirmed}
                   onChange={(event) => setPickupDate(event.target.value)}
@@ -652,8 +797,7 @@ export default function Knowledge() {
                 <span>Time</span>
                 <input
                   className="pickup-date-input"
-                  type="text"
-                  placeholder="Example: 3:30 PM"
+                  type="time"
                   value={pickupTime}
                   readOnly={isPickupConfirmed}
                   onChange={(event) => setPickupTime(event.target.value)}
@@ -678,17 +822,10 @@ export default function Knowledge() {
               <button
                 className={`confirm-btn ${isPickupConfirmed ? "confirmed" : ""}`}
                 type="button"
-                onClick={() => {
-                  if (!pickupDate.trim() || !pickupTime.trim()) {
-                    setPickupError("Pickup date and time are required.");
-                    return;
-                  }
-
-                  setPickupError("");
-                  setIsPickupConfirmed(true);
-                }}
+                disabled={isSavingPickup}
+                onClick={savePickup}
               >
-                {isPickupConfirmed ? "Pickup Confirmed" : "Confirm"}
+                {isSavingPickup ? "Saving…" : isPickupConfirmed ? "Pickup Confirmed" : "Confirm"}
               </button>
             </div>
           </div>

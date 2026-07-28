@@ -24,6 +24,7 @@ import Shop from "./pages/Shop";
 import ProductDetails from "./pages/ProductDetails";
 import CategoryPage from "./pages/CategoryPage";
 import FoodRelated from "./pages/FoodRelated";
+import Cart from "./pages/Cart";
 
 const simplePages = {
   "/therapists": {
@@ -89,6 +90,7 @@ function AppShell() {
         <Route path="/supplier" element={<Supplier />} />
         <Route path="/suppliers" element={<Supplier />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/product/:id" element={<ProductDetails />} />
         <Route path="/shop/category/:categoryName" element={<CategoryPage />} />

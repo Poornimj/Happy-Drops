@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import "./Shop.css";
+import { addProductToCart } from "../lib/api";
 
 import foodHero from "../assets/images/FoodR_FoodHero.png";
 
@@ -51,6 +52,15 @@ const foodProducts = [
 
 function FoodRelated() {
   const [quantities, setQuantities] = useState({});
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("q")?.trim() || "";
+  const normalizedSearch = searchQuery.toLowerCase();
+  const filteredFoodProducts = foodProducts.filter((product) => (
+    !normalizedSearch
+    || [product.name, product.description, product.amount]
+      .some((value) => value.toLowerCase().includes(normalizedSearch))
+    || ["food", "food related", "culinary", "supplement"].includes(normalizedSearch)
+  ));
 
   const updateQuantity = (productId, quantity) => {
     setQuantities((current) => ({
@@ -59,9 +69,14 @@ function FoodRelated() {
     }));
   };
 
-  const addToCart = (product) => {
+  const addToCart = async (product) => {
     const quantity = quantities[product.id] || 1;
-    alert(`${quantity} × ${product.name} added to cart`);
+    try {
+      await addProductToCart(product.name, quantity);
+      alert(`${quantity} × ${product.name} added to cart`);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
@@ -91,8 +106,15 @@ function FoodRelated() {
 
          
 
+        {searchQuery && (
+          <div className="food-search-summary">
+            <h2>Food results for “{searchQuery}”</h2>
+            <button type="button" onClick={() => setSearchParams({})}>View all food products</button>
+          </div>
+        )}
+
         <div className="food-product-list">
-          {foodProducts.map((product) => {
+          {filteredFoodProducts.map((product) => {
             const quantity = quantities[product.id] || 1;
 
             return (
@@ -143,6 +165,14 @@ function FoodRelated() {
             );
           })}
         </div>
+
+        {filteredFoodProducts.length === 0 && (
+          <div className="shop-no-results">
+            <h2>No matching food products</h2>
+            <p>Try another search or view all Food Related products.</p>
+            <button type="button" onClick={() => setSearchParams({})}>View all food products</button>
+          </div>
+        )}
     </main>
   );
 }

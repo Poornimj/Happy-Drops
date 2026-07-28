@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import "./Shop.css";
 
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { addProductToCart } from "../lib/api";
 
 import DewOil from "../assets/images/Shop_SkinMoistures.png";
 import TimelessOil from "../assets/images/Shop_AntiWrincles.png";
@@ -248,8 +249,13 @@ function ProductDetails() {
 
   const product = products.find((item) => item.id === Number(id));
 
-  const addToCart = () => {
-    alert(`${product.name} added to cart`);
+  const addToCart = async () => {
+    try {
+      await addProductToCart(product.name);
+      alert(`${product.name} added to cart`);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   if (!product) {

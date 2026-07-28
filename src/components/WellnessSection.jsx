@@ -16,6 +16,7 @@ import boost from "../assets/images/boost.png";
 import hairgrowth from "../assets/images/hairgrowth.png";
 import stress from "../assets/images/stress.png";
 import painrelief from "../assets/images/painrelief.png";
+import { Link } from "react-router-dom";
 
 function WellnessSection() {
   const [titleRef, titleVisible] = useScrollReveal();
@@ -83,7 +84,7 @@ function WellnessSection() {
     }, 3500);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [allCards.length]);
 
   return (
     <section className="wellness-section" ref={sectionRef}>
@@ -154,7 +155,8 @@ function WellnessSection() {
           })}
         </div>
 
-        <button
+        <Link
+          to="/knowledge"
           className="concerns-btn scroll-reveal"
           ref={buttonRef}
           style={{
@@ -165,7 +167,7 @@ function WellnessSection() {
           }}
         >
           View All Concerns
-        </button>
+        </Link>
       </div>
     </section>
   );

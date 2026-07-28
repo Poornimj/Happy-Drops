@@ -4,6 +4,7 @@ import { useState } from "react";
 import WellnessAssessmentModal from "./WellnessAssessmentModal";
 import LavenderParticles from "./LavenderParticles";
 import { HeartPulse, CalendarDays, ShoppingBag } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Hero() {
   const [particlesActive] = useState(true);
@@ -51,15 +52,15 @@ function Hero() {
               Free Health Assessment
             </button>
 
-            <button className="secondary-btn">
+            <Link className="secondary-btn" to="/workshops">
               <CalendarDays size={18} />
               Book a Workshop
-            </button>
+            </Link>
 
-            <button className="secondary-btn">
+            <Link className="secondary-btn" to="/shop">
               <ShoppingBag size={18} />
               Explore Products
-            </button>
+            </Link>
 
           </div>
 

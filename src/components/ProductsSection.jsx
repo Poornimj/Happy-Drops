@@ -48,19 +48,7 @@ function ProductsSection() {
       <div className="products-grid scroll-reveal" ref={gridRef} style={{ opacity: gridVisible ? 1 : 0, transform: gridVisible ? 'translateY(0)' : 'translateY(40px)' }}>
         {products.map((product, index) => (
           <Link
-            to="/checkout?type=product"
-            state={{
-              checkout: {
-                type: "product",
-                title: product.title,
-                description: product.description,
-                quantity: 1,
-                unitPrice: product.price,
-                shipping: 6.9,
-                tax: 0,
-                image: product.image,
-              },
-            }}
+            to="/shop"
             className="product-card"
             key={index}
           >
@@ -79,9 +67,9 @@ function ProductsSection() {
         ))}
       </div>
 
-      <button className="products-btn scroll-reveal" ref={buttonRef} style={{ opacity: buttonVisible ? 1 : 0, transform: buttonVisible ? 'translateY(0)' : 'translateY(40px)' }}>
+      <Link to="/shop" className="products-btn scroll-reveal" ref={buttonRef} style={{ opacity: buttonVisible ? 1 : 0, transform: buttonVisible ? 'translateY(0)' : 'translateY(40px)' }}>
         View All Products
-      </button>
+      </Link>
 
       <img src={leafOnly} alt="Leaf decoration" className="leaf-decoration" />
     </section>

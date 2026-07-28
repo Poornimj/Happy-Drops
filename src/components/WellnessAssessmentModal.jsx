@@ -1,6 +1,7 @@
 import "./WellnessAssessmentModal.css";
 import { useState, useEffect } from "react";
 import newlogo from "../assets/images/drop.png";
+import { apiRequest } from "../lib/api";
 import { 
   Apple, 
   Leaf, 
@@ -26,6 +27,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [isComplete, setIsComplete] = useState(false);
   const [validationError, setValidationError] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   // Load saved progress from localStorage (hostname-agnostic key)
   useEffect(() => {
@@ -306,7 +308,7 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
     return allAnswered;
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (!validateCurrentStep()) {
       setValidationError(true);
       return;
@@ -317,8 +319,39 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
     if (currentStep < assessmentData.categories.length) {
       setCurrentStep(currentStep + 1);
     } else {
-      // Directly complete assessment on final step
-      setIsComplete(true);
+      try {
+        setSubmitError("");
+        const answers = assessmentData.categories.flatMap((category, categoryIndex) =>
+          category.questions.map((_, questionIndex) => ({
+            questionKey: `${categoryIndex + 1}-${questionIndex}`,
+            categoryKey: category.name.toLowerCase().replace(/\s+/g, "-"),
+            answer: selectedAnswers[`${categoryIndex + 1}-${questionIndex}`],
+            score: selectedAnswers[`${categoryIndex + 1}-${questionIndex}`],
+          })),
+        );
+        await apiRequest("/api/assessments", {
+          method: "POST",
+          auth: true,
+          body: JSON.stringify({
+            consentGiven: true,
+            overallScore: calculateOverallScore(),
+            categoryScores: Object.fromEntries(
+              assessmentData.categories.map((category) => [
+                category.name,
+                calculateCategoryScore(category.id),
+              ]),
+            ),
+            recommendations: generateInsights().map(({ category, recommendation }) => ({
+              category,
+              recommendation,
+            })),
+            answers,
+          }),
+        });
+        setIsComplete(true);
+      } catch (error) {
+        setSubmitError(error.message);
+      }
     }
   };
 
@@ -581,6 +614,9 @@ function WellnessAssessmentModal({ isOpen, onClose }) {
                     <div className="validation-error">
                       Please answer all questions before proceeding
                     </div>
+                  )}
+                  {submitError && (
+                    <div className="validation-error" role="alert">{submitError}</div>
                   )}
 
                   {currentCategory.questions.map(

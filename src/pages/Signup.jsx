@@ -56,17 +56,28 @@ function Signup() {
     address: "",
     age: "",
     preferredLanguage: "English",
+    currentSymptoms: "",
+    symptomsDuration: "",
+    symptomsFrequency: "",
+    takesMedication: "false",
+    medicationDetails: "",
+    ongoingConditions: "",
+    familyMedicalHistory: "",
+    treatmentsTried: "",
+    chronicDiseases: "",
+    wellnessGoals: "",
+    consentGiven: true,
   });
   const [submitError, setSubmitError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [createdWithoutAssessment, setCreatedWithoutAssessment] = useState(false);
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, checked, type } = event.target;
 
     setForm((current) => ({
       ...current,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
@@ -78,10 +89,27 @@ function Signup() {
     try {
       const session = await apiRequest("/api/auth/signup", {
         method: "POST",
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          firstName: form.firstName,
+          familyName: form.familyName,
+          email: form.email,
+          password: form.password,
+          phone: form.phone,
+          address: form.address,
+          age: form.age,
+          preferredLanguage: form.preferredLanguage,
+        }),
       });
 
       login(session, true);
+      await apiRequest("/api/account/wellness-profile", {
+        method: "PUT",
+        auth: true,
+        body: JSON.stringify({
+          ...form,
+          takesMedication: form.takesMedication === "true",
+        }),
+      });
       if (destination === "/") {
         setCreatedWithoutAssessment(true);
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -249,27 +277,27 @@ function Signup() {
             <div className="form-grid">
               <label>
                 Current Symptoms <strong>*</strong>
-                <input required placeholder="Describe your current symptoms" />
+                <input name="currentSymptoms" value={form.currentSymptoms} onChange={handleChange} required placeholder="Describe your current symptoms" />
               </label>
               <label>
                 How long have you had these symptoms? <strong>*</strong>
-                <input required placeholder="For example, 2 weeks or 3 months" />
+                <input name="symptomsDuration" value={form.symptomsDuration} onChange={handleChange} required placeholder="For example, 2 weeks or 3 months" />
               </label>
               <label>
                 How often do they occur? <strong>*</strong>
-                <input required placeholder="For example, daily or a few times per week" />
+                <input name="symptomsFrequency" value={form.symptomsFrequency} onChange={handleChange} required placeholder="For example, daily or a few times per week" />
               </label>
               <fieldset>
                 <legend>Are you taking any medication?</legend>
-                <label className="radio-option"><input type="radio" name="medication" /> Yes</label>
-                <label className="radio-option"><input type="radio" name="medication" defaultChecked /> No</label>
+                <label className="radio-option"><input type="radio" name="takesMedication" value="true" checked={form.takesMedication === "true"} onChange={handleChange} /> Yes</label>
+                <label className="radio-option"><input type="radio" name="takesMedication" value="false" checked={form.takesMedication === "false"} onChange={handleChange} /> No</label>
               </fieldset>
-              <label className="full-width">If yes, please specify the medication and reason<input placeholder="Medication name and reason" /></label>
-              <label>Do you have any ongoing illness or medical condition?<textarea placeholder="Please describe"></textarea></label>
-              <label>Do you have any relevant family medical history?<textarea placeholder="Please describe"></textarea></label>
-              <label>What treatments have you already tried?<textarea placeholder="Medication, physiotherapy, nutrition plan, essential oils, other"></textarea></label>
-              <label>Do you have any chronic diseases?<textarea placeholder="Please describe"></textarea></label>
-              <label className="full-width">What are your current wellness goals?<input placeholder="Tell us what you would like to improve in your health and wellbeing" /></label>
+              <label className="full-width">If yes, please specify the medication and reason<input name="medicationDetails" value={form.medicationDetails} onChange={handleChange} placeholder="Medication name and reason" /></label>
+              <label>Do you have any ongoing illness or medical condition?<textarea name="ongoingConditions" value={form.ongoingConditions} onChange={handleChange} placeholder="Please describe"></textarea></label>
+              <label>Do you have any relevant family medical history?<textarea name="familyMedicalHistory" value={form.familyMedicalHistory} onChange={handleChange} placeholder="Please describe"></textarea></label>
+              <label>What treatments have you already tried?<textarea name="treatmentsTried" value={form.treatmentsTried} onChange={handleChange} placeholder="Medication, physiotherapy, nutrition plan, essential oils, other"></textarea></label>
+              <label>Do you have any chronic diseases?<textarea name="chronicDiseases" value={form.chronicDiseases} onChange={handleChange} placeholder="Please describe"></textarea></label>
+              <label className="full-width">What are your current wellness goals?<input name="wellnessGoals" value={form.wellnessGoals} onChange={handleChange} placeholder="Tell us what you would like to improve in your health and wellbeing" /></label>
             </div>
 
             <div className="language-options">
@@ -304,8 +332,8 @@ function Signup() {
             </div>
 
             <label className="privacy-check">
-              <input type="checkbox" defaultChecked required />
-              I agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a>
+              <input name="consentGiven" type="checkbox" checked={form.consentGiven} onChange={handleChange} required />
+              I agree to the <Link to="/privacy-policy" target="_blank">Privacy Policy</Link> and <Link to="/terms-conditions" target="_blank">Terms of Service</Link>
             </label>
 
             {submitError && <p className="profile-error">{submitError}</p>}

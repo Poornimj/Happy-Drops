@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   HiOutlineGlobeAlt,
   HiOutlineSearch,
@@ -17,8 +17,71 @@ const navLinks = [
   { href: "/about-us", label: "About Us" },
 ];
 
+const concernSearches = [
+  { concern: "skin-care", terms: ["skin", "skin care", "skincare", "wrinkle", "moisture"] },
+  { concern: "sleep", terms: ["sleep", "rest", "relaxation"] },
+  { concern: "stress", terms: ["stress", "comfort", "headache", "mood"] },
+  { concern: "hair-care", terms: ["hair", "hair care", "hair growth"] },
+  { concern: "movement", terms: ["movement", "joint", "flexibility"] },
+  { concern: "focus", terms: ["focus", "concentration", "meditation"] },
+  { concern: "digestion", terms: ["digestion", "digestive"] },
+  { concern: "energy", terms: ["energy", "vitality"] },
+  { concern: "wellness", terms: ["daily wellness", "wellness"] },
+];
+
+const foodSearchTerms = [
+  "food", "food related", "sauce", "biotin", "supplement",
+  "olive oil", "hemp seed", "culinary",
+];
+
+const sectionSearches = [
+  { path: "/knowledge", terms: ["knowledge", "article", "articles", "wellness information"] },
+  { path: "/workshops", terms: ["workshop", "workshops", "booking", "book workshop"] },
+  { path: "/suppliers", terms: ["supplier", "suppliers"] },
+  { path: "/therapists", terms: ["therapist", "therapists", "therapy"] },
+  { path: "/about-us", terms: ["about", "about us", "our story"] },
+  { path: "/cart", terms: ["cart", "shopping cart"] },
+];
+
 function Navbar() {
   const { user, logout } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const searchProducts = () => {
+    const currentSearch = new URLSearchParams(location.search).get("q") || "";
+    const query = window.prompt("Search products or website sections", currentSearch);
+    if (query === null) return;
+
+    const trimmedQuery = query.trim();
+    const normalizedQuery = trimmedQuery.toLowerCase().replace(/\s+/g, " ");
+
+    if (!normalizedQuery) {
+      navigate("/shop");
+      return;
+    }
+
+    const concernMatch = concernSearches.find(({ terms }) => (
+      terms.some((term) => normalizedQuery === term || normalizedQuery.includes(`${term} products`))
+    ));
+    if (concernMatch) {
+      navigate(`/shop?concern=${concernMatch.concern}`);
+      return;
+    }
+
+    if (foodSearchTerms.some((term) => normalizedQuery.includes(term))) {
+      navigate(`/shop/food-related?q=${encodeURIComponent(trimmedQuery)}`);
+      return;
+    }
+
+    const sectionMatch = sectionSearches.find(({ terms }) => terms.includes(normalizedQuery));
+    if (sectionMatch) {
+      navigate(sectionMatch.path);
+      return;
+    }
+
+    navigate(`/shop?q=${encodeURIComponent(trimmedQuery)}`);
+  };
 
   return (
     <nav className="navbar" aria-label="Primary navigation">
@@ -48,9 +111,15 @@ function Navbar() {
         </div>
 
         <div className="nav-icons">
-          <a href="#" className="nav-icon" aria-label="Search">
+          <button
+            type="button"
+            className="nav-icon"
+            aria-label="Search products"
+            title="Search products"
+            onClick={searchProducts}
+          >
             <HiOutlineSearch />
-          </a>
+          </button>
 
           {user ? (
             <button
@@ -68,7 +137,7 @@ function Navbar() {
             </Link>
           )}
 
-          <Link to="/shop" className="nav-icon" aria-label="Shopping cart">
+          <Link to="/cart" className="nav-icon" aria-label="Shopping cart">
             <HiOutlineShoppingCart />
           </Link>
         </div>

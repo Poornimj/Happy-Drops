@@ -12,6 +12,7 @@ import {
 
 import confirmedBottle from "../assets/images/confirmed-bottle.png";
 import checkoutWellnessScene from "../assets/images/checkout-secure-anti-wrinkle.png";
+import { apiRequest, findApiProduct } from "../lib/api";
 import applePayLogo from "../assets/payment/apple-pay.svg";
 import googlePayLogo from "../assets/payment/google-pay.svg";
 import mastercardLogo from "../assets/payment/mastercard.svg";
@@ -21,11 +22,11 @@ import "./Checkout.css";
 
 const fallbackProduct = {
   type: "product",
-  title: "Happy Drops Anti Wrinkle",
+  title: "Timeless",
   description: "Personalized essential oil blend · 15 mL",
   quantity: 1,
-  unitPrice: 49,
-  shipping: 6.9,
+  unitPrice: 19.9,
+  shipping: 5.9,
   tax: 0,
   image: confirmedBottle,
 };
@@ -86,24 +87,94 @@ function Checkout() {
   const fallback = requestedType === "workshop" ? fallbackWorkshop : fallbackProduct;
   const checkout = { ...fallback, ...(location.state?.checkout || {}) };
   const isWorkshop = checkout.type === "workshop";
+  const isWorkshopPaymentPreview = isWorkshop && Boolean(checkout.requestId);
+  const isCart = checkout.type === "cart" && Array.isArray(checkout.items);
 
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [quantity, setQuantity] = useState(
     isWorkshop ? checkout.participants || 1 : checkout.quantity || 1,
   );
   const [submitted, setSubmitted] = useState(false);
+  const [reference, setReference] = useState("");
+  const [submitError, setSubmitError] = useState("");
 
   const totals = useMemo(() => {
-    const subtotal = checkout.unitPrice * quantity;
+    const subtotal = isCart
+      ? checkout.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+      : checkout.unitPrice * quantity;
     const shipping = isWorkshop ? 0 : checkout.shipping || 0;
     const tax = checkout.tax || 0;
     return { subtotal, shipping, tax, total: subtotal + shipping + tax };
-  }, [checkout.shipping, checkout.tax, checkout.unitPrice, isWorkshop, quantity]);
+  }, [checkout.items, checkout.shipping, checkout.tax, checkout.unitPrice, isCart, isWorkshop, quantity]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setSubmitError("");
+    const form = new FormData(event.currentTarget);
+    const address = {
+      fullName: form.get("fullName"),
+      street: form.get("street"),
+      city: form.get("city"),
+      postalCode: form.get("postalCode"),
+      country: form.get("country"),
+    };
+    try {
+      if (isWorkshop) {
+        if (isWorkshopPaymentPreview) {
+          setReference(checkout.requestId);
+        } else {
+          const result = await apiRequest("/api/workshops/requests", {
+            method: "POST",
+            auth: true,
+            body: JSON.stringify({
+              workshopId: checkout.workshopId || null,
+              fullName: address.fullName,
+              email: form.get("email"),
+              phone: form.get("phone"),
+              preferredDate: null,
+              preferredTime: checkout.time,
+              location: checkout.location,
+              participantCount: quantity,
+              purpose: checkout.title,
+            }),
+          });
+          setReference(result.request.id);
+        }
+      } else {
+        let orderItems;
+        if (isCart) {
+          orderItems = checkout.items.map((item) => ({
+            productId: item.productId,
+            quantity: item.quantity,
+          }));
+        } else {
+          const product = await findApiProduct(checkout.title);
+          if (!product) throw new Error("This product is not available.");
+          orderItems = [{ productId: product.id, quantity }];
+        }
+        const result = await apiRequest("/api/orders", {
+          method: "POST",
+          auth: true,
+          headers: { "Idempotency-Key": crypto.randomUUID() },
+          body: JSON.stringify({
+            email: form.get("email"),
+            phone: form.get("phone"),
+            billingAddress: address,
+            shippingAddress: address,
+            paymentMethod,
+            items: orderItems,
+          }),
+        });
+        setReference(result.order.order_number);
+        if (isCart) {
+          await apiRequest("/api/cart", { method: "DELETE", auth: true });
+        }
+      }
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (error) {
+      setSubmitError(error.message);
+    }
   };
 
   if (submitted) {
@@ -112,17 +183,21 @@ function Checkout() {
         <section className="checkout-confirmation">
           <span><HiOutlineCheckCircle /></span>
           <p className="checkout-kicker">Payment prototype complete</p>
-          <h1>{isWorkshop ? "Your workshop is reserved." : "Your order is confirmed."}</h1>
+          <h1>{isWorkshopPaymentPreview ? "Workshop payment preview complete." : isWorkshop ? "Your workshop is reserved." : "Your order is confirmed."}</h1>
           <p>
-            This demonstration did not process a real payment. A verified order
-            or booking reference will appear here after a payment provider is connected.
+            {isWorkshopPaymentPreview
+              ? "No money was charged and the booking remains approved but unpaid. Stripe will later replace this preview step."
+              : "This demonstration did not process a real payment. A verified order or booking reference will appear here after a payment provider is connected."}
           </p>
           <div className="checkout-confirmation-summary">
             <strong>{checkout.title}</strong>
+            {reference && <span>Reference: {reference}</span>}
             <span>
               {isWorkshop
                 ? `${quantity} participant${quantity > 1 ? "s" : ""}`
-                : `Quantity ${quantity}`}
+                : isCart
+                  ? `${checkout.items.length} product${checkout.items.length === 1 ? "" : "s"}`
+                  : `Quantity ${quantity}`}
             </span>
             <span>{formatCurrency(totals.total)}</span>
           </div>
@@ -150,6 +225,11 @@ function Checkout() {
       </section>
 
       <form className="checkout-layout" onSubmit={handleSubmit}>
+        {isWorkshopPaymentPreview && (
+          <p className="checkout-preview-notice" role="note">
+            Payment Preview: no card will be charged and this booking will not be marked as paid.
+          </p>
+        )}
         <section className="checkout-card checkout-order-card">
           <div className="checkout-card-heading">
             {isWorkshop ? <HiOutlineCalendar /> : <HiOutlineShoppingBag />}
@@ -163,6 +243,7 @@ function Checkout() {
                 <span>Participants:</span>
                 <select
                   value={quantity}
+                  disabled={isWorkshopPaymentPreview}
                   onChange={(event) => setQuantity(Number(event.target.value))}
                   aria-label="Number of workshop participants"
                 >
@@ -174,6 +255,15 @@ function Checkout() {
               <div><span>Date:</span><strong>{checkout.date}</strong></div>
               <div><span>Time:</span><strong>{checkout.time}</strong></div>
               <div><span>Location:</span><strong>{checkout.location}</strong></div>
+            </div>
+          ) : isCart ? (
+            <div className="checkout-reference-summary">
+              {checkout.items.map((item) => (
+                <div key={item.productId}>
+                  <span>{item.quantity} × {item.name}</span>
+                  <strong>{formatCurrency(item.price * item.quantity)}</strong>
+                </div>
+              ))}
             </div>
           ) : (
             <>
@@ -271,31 +361,31 @@ function Checkout() {
           <div className="checkout-fields">
             <label>
               Full Name
-              <input required autoComplete="name" placeholder="John Snow" />
+              <input name="fullName" required autoComplete="name" placeholder="John Snow" />
             </label>
             <label>
               Email Address
-              <input required type="email" autoComplete="email" placeholder="john.snow@email.com" />
+              <input name="email" required type="email" autoComplete="email" placeholder="john.snow@email.com" />
             </label>
             <label>
               Phone Number
-              <input required type="tel" autoComplete="tel" placeholder="+358 40 123 4567" />
+              <input name="phone" required type="tel" autoComplete="tel" placeholder="+358 40 123 4567" />
             </label>
             <label>
               Street Address
-              <input required autoComplete="street-address" placeholder="123 Hill Street" />
+              <input name="street" required autoComplete="street-address" placeholder="123 Hill Street" />
             </label>
             <label>
               City
-              <input required autoComplete="address-level2" placeholder="Helsinki" />
+              <input name="city" required autoComplete="address-level2" placeholder="Helsinki" />
             </label>
             <label>
               Postal Code
-              <input required autoComplete="postal-code" placeholder="00100" />
+              <input name="postalCode" required autoComplete="postal-code" placeholder="00100" />
             </label>
             <label>
               Country
-              <select required defaultValue="Finland">
+              <select name="country" required defaultValue="Finland">
                 <option>Finland</option>
                 <option>Sweden</option>
                 <option>Norway</option>
@@ -316,8 +406,9 @@ function Checkout() {
 
           <button className="checkout-pay-button" type="submit">
             <HiOutlineLockClosed />
-            Pay Now
+            {isWorkshopPaymentPreview ? "Complete Payment Preview" : "Pay Now"}
           </button>
+          {submitError && <p className="form-error" role="alert">{submitError}</p>}
 
           <div className="checkout-security">
             <HiOutlineLockClosed />

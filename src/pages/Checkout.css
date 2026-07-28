@@ -103,6 +103,18 @@
   align-items: start;
 }
 
+.checkout-preview-notice {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 14px 18px;
+  border: 1px solid #d8b66d;
+  border-radius: 12px;
+  color: #624b16;
+  background: #fff8df;
+  font-weight: 700;
+  text-align: center;
+}
+
 .checkout-main,
 .checkout-sidebar {
   display: grid;
