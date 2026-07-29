@@ -1,8 +1,9 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./Shop.css";
 
-import { HiOutlineShoppingCart } from "react-icons/hi";
-import { addProductToCart } from "../lib/api";
+import { HiOutlineHeart, HiOutlineShoppingCart } from "react-icons/hi";
+import { addProductToCart, apiRequest, findApiProduct } from "../lib/api";
+import { useAuth } from "../context/AuthContext";
 
 import DewOil from "../assets/images/Shop_SkinMoistures.png";
 import TimelessOil from "../assets/images/Shop_AntiWrincles.png";
@@ -246,6 +247,8 @@ const products = [
 
 function ProductDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { user } = useAuth();
 
   const product = products.find((item) => item.id === Number(id));
 
@@ -253,6 +256,25 @@ function ProductDetails() {
     try {
       await addProductToCart(product.name);
       alert(`${product.name} added to cart`);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const saveToWishlist = async () => {
+    if (!user) {
+      navigate("/login", { state: { from: `/shop/product/${id}`, message: "Log in to save products to your wishlist." } });
+      return;
+    }
+    try {
+      const apiProduct = await findApiProduct(product.name);
+      if (!apiProduct) throw new Error("This product is not available.");
+      const result = await apiRequest("/api/account/favorites", {
+        method: "POST",
+        auth: true,
+        body: JSON.stringify({ productId: apiProduct.id }),
+      });
+      alert(result.favorite ? `${product.name} saved to your wishlist` : `${product.name} is already in your wishlist`);
     } catch (error) {
       alert(error.message);
     }
@@ -328,6 +350,10 @@ function ProductDetails() {
             <button className="detail-cart" onClick={addToCart}>
               <HiOutlineShoppingCart />
               Add to Cart
+            </button>
+            <button className="detail-wishlist" type="button" onClick={saveToWishlist}>
+              <HiOutlineHeart />
+              Save to Wishlist
             </button>
           </div>
         </section>

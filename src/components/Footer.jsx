@@ -1,5 +1,7 @@
 ﻿import footerLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <footer className="shared-footer">
@@ -13,27 +15,27 @@ function Footer() {
 
       <div className="footer-column">
         <h3>Quick Links</h3>
-        <a href="/">Home</a>
-        <a href="/shop">Shop</a>
-        <a href="/workshops">Workshops</a>
-        <a href="/about-us">About Us</a>
-        <a href="/therapists">Therapists</a>
-        <a href="/suppliers">Suppliers</a>
+        <Link to="/">Home</Link>
+        <Link to="/shop">Shop</Link>
+        <Link to="/workshops">Workshops</Link>
+        <Link to="/about-us">About Us</Link>
+        <Link to="/therapists">Therapists</Link>
+        <Link to="/suppliers">Suppliers</Link>
       </div>
 
       <div className="footer-column">
         <h3>Customer Care</h3>
-        <a href="/shipping-delivery">Shipping &amp; Delivery</a>
-        <a href="/privacy-policy">Privacy Policy</a>
-        <a href="/terms-conditions">Terms &amp; Conditions</a>
+        <Link to="/shipping-delivery">Shipping &amp; Delivery</Link>
+        <Link to="/privacy-policy">Privacy Policy</Link>
+        <Link to="/terms-conditions">Terms &amp; Conditions</Link>
       </div>
 
       <div className="footer-column">
         <h3>My Account</h3>
-        <a href="/login">Login / Register</a>
-        <a href="/login">My Profile</a>
-        <a href="/wishlist">Wishlist</a>
-        <a href="/track-order">Track Order</a>
+        <Link to="/login">Login / Register</Link>
+        <Link to="/my-profile">My Profile</Link>
+        <Link to="/wishlist">Wishlist</Link>
+        <Link to="/track-order">Track Order</Link>
       </div>
 
       <div className="footer-column">

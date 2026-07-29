@@ -656,6 +656,28 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+.detail-wishlist {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: 1px solid #17492c;
+  border-radius: 999px;
+  background: #fff;
+  color: #17492c;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .detail-wishlist {
+    margin: 10px 0 0;
+  }
+}
 .detail-box {
   background: #f7f1fa !important;
 }
