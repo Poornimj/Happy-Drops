@@ -4,6 +4,49 @@ import { HiOutlineShoppingBag, HiOutlineTrash } from "react-icons/hi";
 import { apiRequest } from "../lib/api";
 import "./Cart.css";
 
+const productAssets = import.meta.glob("../assets/images/*", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+
+const productImageNames = {
+  Dew: "Shop_SkinMoistures.png",
+  Timeless: "Shop_AntiWrincles.png",
+  Radiance: "Shop_SkinTightnings.png",
+  Release: "Shop_StressReliefs.png",
+  Flow: "Shop_WaistEasses.png",
+  Stride: "Shop_JointEasses.png",
+  Peace: "Shop_SleepSupportOil.png",
+  Bloom: "Shop_BoostHairGrowths.png",
+  Clarity: "Shop_TwilightDropss.png",
+  Nourish: "Shop_SkinDrynesses.png",
+  Calm: "Shop_HeadacheReliefs.png",
+  Flexibility: "Shop_JointMoves.png",
+  Balance: "Shop_VitalGuards.png",
+  Harmony: "Shop_Cherishmoods.png",
+  Passion: "Shop_MensEnergy.png",
+  Grace: "Shop_FeminieBalance.png",
+  Joy: "Shop_Joymoods.png",
+  Presence: "Shop_SpiritualFocus.png",
+  Vitality: "Shop_EnergyGain.png",
+  "Mosquito Spray": "Shop_MosquitoSpray.png",
+  "Sauna Relaxation": "Shop_SaunaRelaxation.png",
+  "Magic Sauce": "FoodR_magicSauce.png",
+  "Biotin Beauty Supplement": "FoodR_BiotinSupplement.png",
+  "Extra Virgin Olive Oil": "FoodR_OliveOil.png",
+  "Hemp Seed Oil": "FoodR_HempSeedOil.png",
+  Kombucha: "kombucha.png",
+  Kefir: "FoodR_Kefir.png",
+};
+
+const productImages = Object.fromEntries(
+  Object.entries(productImageNames).map(([name, filename]) => [
+    name,
+    productAssets[`../assets/images/${filename}`],
+  ])
+);
+
 const money = (value) => new Intl.NumberFormat("en-FI", {
   style: "currency",
   currency: "EUR",
@@ -106,7 +149,13 @@ function Cart() {
           <section className="cart-items" aria-label="Cart items">
             {cart.items.map((item) => (
               <article className="cart-item-card" key={item.id}>
-                <div className="cart-item-mark">{item.name.slice(0, 1)}</div>
+                <div className="cart-item-mark">
+                  {productImages[item.name] ? (
+                    <img src={productImages[item.name]} alt={item.name} />
+                  ) : (
+                    <span aria-hidden="true">{item.name.slice(0, 1)}</span>
+                  )}
+                </div>
                 <div className="cart-item-copy">
                   <p>{item.sku}</p>
                   <h2>{item.name}</h2>

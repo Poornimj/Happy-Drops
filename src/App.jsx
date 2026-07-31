@@ -4,6 +4,7 @@ import {
   Route,
   Routes,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -62,6 +63,18 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
+function AssessmentRoute() {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  return (
+    <WellnessAssessmentModal
+      isOpen
+      onClose={() => navigate(user ? "/my-profile" : "/")}
+    />
+  );
+}
+
 function AppShell() {
   const location = useLocation();
 
@@ -70,7 +83,7 @@ function AppShell() {
       <Navbar currentPath={location.pathname.toLowerCase()} />
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/wellness-assessment" element={<WellnessAssessmentModal />} />
+        <Route path="/wellness-assessment" element={<AssessmentRoute />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

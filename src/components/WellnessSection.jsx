@@ -16,12 +16,10 @@ import boost from "../assets/images/boost.png";
 import hairgrowth from "../assets/images/hairgrowth.png";
 import stress from "../assets/images/stress.png";
 import painrelief from "../assets/images/painrelief.png";
-import { Link } from "react-router-dom";
 
 function WellnessSection() {
   const [titleRef, titleVisible] = useScrollReveal();
   const [subtitleRef, subtitleVisible] = useScrollReveal();
-  const [buttonRef, buttonVisible] = useScrollReveal();
 
   const sectionRef = useRef(null);
 
@@ -113,7 +111,7 @@ function WellnessSection() {
       >
         Discover personalized wellness solutions designed to support
         long-term health, vitality, and prevention through natural
-        ingredients, lifestyle medicine, and holistic wellbeing
+        ingredients, lifestyle rituals, and holistic wellbeing
         practices.
       </p>
 
@@ -155,19 +153,6 @@ function WellnessSection() {
           })}
         </div>
 
-        <Link
-          to="/knowledge"
-          className="concerns-btn scroll-reveal"
-          ref={buttonRef}
-          style={{
-            opacity: buttonVisible ? 1 : 0,
-            transform: buttonVisible
-              ? "translateY(0)"
-              : "translateY(40px)",
-          }}
-        >
-          View All Concerns
-        </Link>
       </div>
     </section>
   );

@@ -19,25 +19,21 @@ function ProductsSection() {
       image: essentialOil,
       title: "Essential Oils",
       description: "Personalized blends",
-      price: 49,
     },
     {
       image: nutrition,
       title: "Nutritions",
       description: "Whole-body support",
-      price: 39,
     },
     {
       image: sleepSounds,
       title: "Sleep Sounds",
       description: "Therapeutic audio",
-      price: 18,
     },
     {
       image: wellnessAccessories,
       title: "Wellness Tools & Accessories",
       description: "Massage tools, sleep aids & care products",
-      price: 32,
     },
   ];
 
@@ -61,8 +57,6 @@ function ProductsSection() {
             <h3>{product.title}</h3>
 
             <p>{product.description}</p>
-            <span className="product-price">From €{product.price.toFixed(2)}</span>
-            <span className="product-buy-action">Buy now</span>
           </Link>
         ))}
       </div>

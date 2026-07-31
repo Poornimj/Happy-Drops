@@ -32,6 +32,7 @@ const concernSearches = [
 const foodSearchTerms = [
   "food", "food related", "sauce", "biotin", "supplement",
   "olive oil", "hemp seed", "culinary",
+  "kombucha", "kompucha", "kefir", "cafffeir", "fermented drink",
 ];
 
 const sectionSearches = [

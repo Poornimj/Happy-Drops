@@ -111,7 +111,7 @@ textarea {
 .nav-links a {
   padding: 12px 2px;
   color: #0f1d31;
-  font-size: 15.5px;
+  font-size: 18px;
   line-height: 1.3;
   font-weight: 400;
   text-decoration: none;
@@ -135,7 +135,7 @@ textarea {
   align-items: center;
   gap: 8px;
   color: #0f1d31;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.2;
   font-weight: 700;
   white-space: nowrap;
@@ -225,7 +225,7 @@ textarea {
   max-width: 285px;
   margin: 0;
   color: var(--text-green);
-  font-size: 14.5px;
+  font-size: 16.5px;
   line-height: 1.55;
   font-weight: 400;
   text-decoration: none;
@@ -241,7 +241,7 @@ textarea {
 .shared-footer .footer-column h3 {
   margin: 0 0 8px;
   color: var(--green);
-  font-size: 15.5px;
+  font-size: 17.5px;
   line-height: 1.3;
   font-weight: 800;
 }
@@ -250,7 +250,7 @@ textarea {
 .shared-footer .footer-column span {
   margin: 0;
   color: #0f1d31;
-  font-size: 14.5px;
+  font-size: 16.5px;
   line-height: 1.55;
   font-weight: 400;
   text-decoration: none;

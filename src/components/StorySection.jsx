@@ -26,11 +26,11 @@ function StorySection() {
         className="story-content"
         style={{ backgroundImage: `url(${storyBg})` }}
       >
-        <div className="story-center scroll-reveal" ref={centerRef} style={{ opacity: centerVisible ? 1 : 0, transform: centerVisible ? 'translateY(0)' : 'translateY(40px)' }}>
+        <div className="story-center scroll-reveal" ref={centerRef} style={{ opacity: centerVisible ? 1 : 0 }}>
           <p>
             Happy Drops helps individuals and families improve their wellbeing
             through personalized essential oils, nutrition guidance, lifestyle
-            medicine, and holistic wellness solutions that combine Eastern
+            rituals, and holistic wellness solutions that combine Eastern
             wisdom and Western science.
           </p>
         </div>

@@ -49,6 +49,17 @@ const steps = [
   ["bag", "Ready for Pickup", "Your essential oil is ready. You can pick it up at Nature Power Happiness Academy."],
 ];
 
+const educationCategories = [
+  { icon: "leaf", title: "Essential Oil Basics", summary: "Understand what essential oils are and how they are commonly used.", guide: "Essential oils are concentrated aromatic extracts from plants. They are commonly enjoyed through carefully controlled diffusion or properly diluted topical use. A small amount goes a long way, and the label directions should always be followed." },
+  { icon: "check", title: "Safe Use & Dilution", summary: "Learn responsible dilution, patch testing and important precautions.", guide: "Never apply an essential oil undiluted unless its label and a qualified professional specifically support that use. Dilute with a suitable carrier oil, patch test first, avoid eyes and sensitive areas, and keep oils away from children and pets." },
+  { icon: "bottle", title: "Aromatherapy", summary: "Explore how aroma can support a calm and pleasant environment.", guide: "Aromatherapy uses plant aromas as part of a wellbeing routine. Follow diffuser instructions, use good ventilation, begin with short sessions, and stop if anyone experiences headache, irritation, nausea or breathing discomfort." },
+  { icon: "user", title: "Skin & Beauty", summary: "Discover gentle ways to include oils in skin-care routines.", guide: "For skin use, choose skin-appropriate oils, dilute them correctly and test a small area first. Some citrus oils can increase sensitivity to sunlight. Avoid broken or irritated skin and seek professional advice for persistent skin concerns." },
+  { icon: "bag", title: "Sleep & Relaxation", summary: "Build calming evening rituals that encourage better rest.", guide: "A quiet bedtime routine, reduced evening screen time and a comfortable sleep environment are the foundation. Some people enjoy gently diffused lavender as part of relaxation, provided it is used according to its directions." },
+  { icon: "question", title: "Stress & Mood", summary: "Combine mindful habits with uplifting or calming aromas.", guide: "Slow breathing, movement, regular meals and restorative sleep can support emotional wellbeing. A personally pleasant aroma may complement these habits, but it should not replace professional support for persistent or severe anxiety or low mood." },
+  { icon: "card", title: "Seasonal Wellness", summary: "Use oils responsibly throughout changing seasons.", guide: "Seasonal routines should focus on sleep, hydration, nutrition, fresh air and good hygiene. Aromatic products may make the environment feel refreshing, but they do not prevent or cure infections or allergies." },
+  { icon: "check", title: "Storage & Quality", summary: "Protect oil quality with correct storage and careful selection.", guide: "Keep bottles tightly closed in a cool, dark place and follow their expiry guidance. Choose clearly labelled products from reputable suppliers, and check the botanical name, usage directions, batch information and safety warnings." },
+];
+
 const wellnessTopics = [
   {
     title: "Uplevel",
@@ -230,15 +241,6 @@ function OrderIcon({ name }) {
   return <Icon aria-hidden="true" />;
 }
 
-function LockIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="5" y="10" width="14" height="10" rx="2" />
-      <path d="M8 10V7a4 4 0 0 1 8 0v3" />
-    </svg>
-  );
-}
-
 function StepIcon({ name }) {
   const icons = {
     question: LuHeart,
@@ -263,6 +265,8 @@ function CalendarIcon() {
   );
 }
 
+const showKnowledgeWorkflow = false;
+
 export default function Knowledge() {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -280,9 +284,11 @@ export default function Knowledge() {
   const [questions, setQuestions] = useState([]);
   const [questionError, setQuestionError] = useState("");
   const [questionSuccess, setQuestionSuccess] = useState("");
+  const [aiAnswer, setAiAnswer] = useState("");
   const [isSubmittingQuestion, setIsSubmittingQuestion] = useState(false);
   const [historyView, setHistoryView] = useState("questions");
   const [isSavingPickup, setIsSavingPickup] = useState(false);
+  const [activeEducation, setActiveEducation] = useState(educationCategories[0].title);
 
   const loadQuestions = useCallback(async () => {
     if (!user) {
@@ -354,10 +360,6 @@ export default function Knowledge() {
   };
 
   const submitQuestion = async () => {
-    if (!user) {
-      navigate("/login", { state: { from: "/knowledge", message: "Log in to ask a wellness question." } });
-      return;
-    }
     if (questionText.trim().length < 10) {
       setQuestionError("Please enter a question with at least 10 characters.");
       return;
@@ -365,16 +367,14 @@ export default function Knowledge() {
     setIsSubmittingQuestion(true);
     setQuestionError("");
     setQuestionSuccess("");
+    setAiAnswer("");
     try {
-      const result = await apiRequest("/api/knowledge/questions", {
+      const result = await apiRequest("/api/knowledge/ai-answer", {
         method: "POST",
-        auth: true,
-        body: JSON.stringify({ topic: "Wellness question", question: questionText }),
+        body: JSON.stringify({ question: questionText }),
       });
-      setQuestionText("");
-      setQuestionSuccess("Your question was submitted for aromatherapist review.");
-      setQuestions((current) => [{ ...result.question, answers: [], recipe: null }, ...current]);
-      setActiveHistoryId(result.question.id);
+      setAiAnswer(result.answer);
+      setQuestionSuccess("");
     } catch (error) {
       setQuestionError(error.message);
     } finally {
@@ -420,13 +420,28 @@ export default function Knowledge() {
           </button>
         </section>
 
-        <section className="access-banner">
-          <div>
-            <LockIcon />
-            <span>{user
-              ? `Signed in as ${user.firstName}. Your questions and recommendations are saved securely.`
-              : "Please register or login to access the Knowledge Hub and ask your questions."}</span>
+        <section className="knowledge-learning-section">
+          <div className="knowledge-learning-heading">
+            <p className="section-kicker">Knowledge for everyday wellbeing</p>
+            <h2>Learn About Essential Oils</h2>
+            <p>Explore practical guidance on common uses, safe dilution, application, storage and responsible everyday wellness routines.</p>
           </div>
+          <div className="knowledge-learning-grid">
+            {educationCategories.map((category) => (
+              <button className={`knowledge-learning-card ${activeEducation === category.title ? "active" : ""}`} type="button" key={category.title} onClick={() => setActiveEducation(category.title)}>
+                <span className="knowledge-learning-icon"><StepIcon name={category.icon} /></span>
+                <strong>{category.title}</strong>
+                <span>{category.summary}</span>
+              </button>
+            ))}
+          </div>
+          {educationCategories.filter((category) => category.title === activeEducation).map((category) => (
+            <article className="knowledge-learning-guide" key={category.title}>
+              <div><StepIcon name={category.icon} /></div>
+              <section><h3>{category.title}</h3><p>{category.guide}</p></section>
+            </article>
+          ))}
+          <p className="knowledge-learning-note">Essential-oil information is for general education. Consult a qualified professional when pregnant, breastfeeding, using medication, managing a health condition, or choosing products for children or pets.</p>
         </section>
 
         <section className="ask-section">
@@ -452,6 +467,19 @@ export default function Knowledge() {
             </div>
             {questionError && <p className="form-error" role="alert">{questionError}</p>}
             {questionSuccess && <p className="supplier-success" role="status">{questionSuccess}</p>}
+            {aiAnswer && <div className="knowledge-ai-answer" aria-live="polite">
+              <h4>Answer</h4>
+              <p>{aiAnswer}</p>
+              <div className="knowledge-profile-cta">
+                <div>
+                  <strong>Would you like a personalized oil blend?</strong>
+                  <span>Register and complete your wellness profile with your current symptoms. Our team can then review your needs and prepare a personalized recommendation for you.</span>
+                </div>
+                <Link className="primary-btn knowledge-profile-cta-button" to={user ? "/my-profile" : "/signup"}>
+                  {user ? "Update My Profile" : "Create My Profile"}
+                </Link>
+              </div>
+            </div>}
           </section>
 
           <section className="history-prompt-card">
@@ -460,14 +488,14 @@ export default function Knowledge() {
               <p>Your wellness journey is saved here.</p>
             </div>
 
-            <button className="history-prompt-btn" type="button" onClick={() => user ? setIsHistoryOpen(true) : navigate("/login", { state: { from: "/knowledge" } })}>
+            <button className="history-prompt-btn" type="button" onClick={() => user ? navigate("/my-profile") : navigate("/login", { state: { from: "/my-profile" } })}>
               <LuShoppingBag aria-hidden="true" />
               <span>Click me</span>
             </button>
           </section>
         </section>
 
-        <section className="hub-layout">
+        {showKnowledgeWorkflow && <><section className="hub-layout">
           <section className="how-card">
             <h3>How It Works</h3>
 
@@ -574,7 +602,7 @@ export default function Knowledge() {
           <div className="pickup-image-box">
             <img src={knowledgeReady} alt="Pickup order summary" />
           </div>
-        </section>
+        </section></>}
       </main>
 
       {isRecipeOpen && (

@@ -247,7 +247,7 @@
   border: none;
   border-radius: 999px;
   padding: 12px 40px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -289,7 +289,7 @@
   border: 1px solid rgba(110, 139, 87, 0.15);
   border-radius: 999px;
   padding: 12px 40px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);

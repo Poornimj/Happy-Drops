@@ -9,6 +9,8 @@ import magicSauce from "../assets/images/FoodR_magicSauce.png";
 import biotinSupplement from "../assets/images/FoodR_BiotinSupplement.png";
 import oliveOil from "../assets/images/FoodR_OliveOil.png";
 import hempSeedOil from "../assets/images/FoodR_HempSeedOil.png";
+import kombucha from "../assets/images/kombucha.png";
+import kefir from "../assets/images/FoodR_Kefir.png";
 
 const foodProducts = [
   {
@@ -47,6 +49,26 @@ const foodProducts = [
     price: "22.90",
     image: hempSeedOil,
   },
+  {
+    id: 105,
+    name: "Kombucha",
+    description:
+      "A refreshing fermented tea with a gently tangy flavour. Enjoy chilled as part of a balanced lifestyle and everyday food routine.",
+    amount: "330 ml",
+    price: "5.00",
+    image: kombucha,
+    searchAliases: "kompucha fermented tea probiotic drink",
+  },
+  {
+    id: 106,
+    name: "Kefir",
+    description:
+      "A naturally fermented milk drink with a smooth, mildly tangy flavour. Enjoy chilled with breakfast, snacks, or balanced meals.",
+    amount: "500 ml",
+    price: "6.50",
+    image: kefir,
+    searchAliases: "cafffeir fermented milk probiotic drink",
+  },
 ];
 
 
@@ -57,7 +79,7 @@ function FoodRelated() {
   const normalizedSearch = searchQuery.toLowerCase();
   const filteredFoodProducts = foodProducts.filter((product) => (
     !normalizedSearch
-    || [product.name, product.description, product.amount]
+    || [product.name, product.description, product.amount, product.searchAliases || ""]
       .some((value) => value.toLowerCase().includes(normalizedSearch))
     || ["food", "food related", "culinary", "supplement"].includes(normalizedSearch)
   ));
