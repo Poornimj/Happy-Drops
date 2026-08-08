@@ -16,7 +16,7 @@ import knowledgeSeasonalSupport from "../assets/images/knowledge-seasonal-suppor
 import knowledgeImmuneHealth from "../assets/images/knowledge-immune-health.png";
 import knowledgeDigestiveSupport from "../assets/images/knowledge-digestive-support.png";
 import knowledgeMetabolicHealth from "../assets/images/knowledge-metabolic-health.png";
-import knowledgeCleanEnergy from "../assets/images/knowledge-clean-enery.png";
+import knowledgeCleanEnergy from "../assets/images/knowledge-clean-energy.png";
 import knowledgeMovement from "../assets/images/knowledge-movement.png";
 import knowledgeManagingStress from "../assets/images/knowledge-managing-stress.png";
 import knowledgeSkinCare from "../assets/images/knowledge-skin-care.png";
