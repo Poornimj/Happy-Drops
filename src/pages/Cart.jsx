@@ -22,7 +22,7 @@ const productImageNames = {
   Clarity: "Shop_TwilightDropss.png",
   Nourish: "Shop_SkinDrynesses.png",
   Calm: "Shop_HeadacheReliefs.png",
-  Flexibility: "Shop_JointMoves.png",
+  "Circle Calm": "Shop_CircleCalm.png",
   Balance: "Shop_VitalGuards.png",
   Harmony: "Shop_Cherishmoods.png",
   Passion: "Shop_MensEnergy.png",

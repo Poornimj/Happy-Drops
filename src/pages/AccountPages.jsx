@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { apiRequest } from "../lib/api";
 import personalizedBlendImage from "../assets/images/knowledg-ready.png";
+import customerProfileBanner from "../assets/images/customer-profile-family-banner.png";
+import happyWishesBanner from "../assets/images/happy-wishes-banner.png";
 import "./CustomerCare.css";
 import "./AccountPages.css";
 
@@ -14,6 +16,119 @@ const formatMoney = (value, currency = "EUR") => new Intl.NumberFormat("en-FI", 
   style: "currency",
   currency,
 }).format(Number(value || 0));
+
+const ageFromBirthDate = (value) => {
+  if (!value) return null;
+  const birthDate = new Date(`${String(value).slice(0, 10)}T00:00:00`);
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  if (today.getMonth() < birthDate.getMonth() || (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())) age -= 1;
+  return age;
+};
+
+const emptyFamilyMember = { firstName: "", familyName: "", relationship: "", dateOfBirth: "", wellnessNotes: "", guardianConfirmed: false };
+
+function FamilyMembersManager() {
+  const [members, setMembers] = useState([]);
+  const [form, setForm] = useState(emptyFamilyMember);
+  const [editingId, setEditingId] = useState(null);
+  const [message, setMessage] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const loadMembers = () => apiRequest("/api/account/family-members", { auth: true })
+    .then((result) => setMembers(result.familyMembers || []))
+    .catch((error) => setMessage(error.message));
+
+  useEffect(() => { loadMembers(); }, []);
+
+  const startEdit = (member) => {
+    setEditingId(member.id);
+    setForm({ firstName: member.first_name, familyName: member.family_name, relationship: member.relationship, dateOfBirth: String(member.date_of_birth).slice(0, 10), wellnessNotes: member.wellness_notes || "", guardianConfirmed: member.guardian_confirmed });
+    setIsOpen(true);
+    setMessage("");
+  };
+
+  const submit = async (event) => {
+    event.preventDefault();
+    setMessage("");
+    try {
+      await apiRequest(editingId ? `/api/account/family-members/${editingId}` : "/api/account/family-members", { method: editingId ? "PATCH" : "POST", auth: true, body: JSON.stringify(form) });
+      setMessage(editingId ? "Family member updated." : "Family member added.");
+      setForm(emptyFamilyMember);
+      setEditingId(null);
+      setIsOpen(false);
+      await loadMembers();
+    } catch (error) { setMessage(error.message); }
+  };
+
+  const remove = async (member) => {
+    if (!window.confirm(`Remove ${member.first_name} ${member.family_name} from your family profiles?`)) return;
+    try {
+      await apiRequest(`/api/account/family-members/${member.id}`, { method: "DELETE", auth: true });
+      setMembers((current) => current.filter((item) => item.id !== member.id));
+      setMessage("Family member removed.");
+    } catch (error) { setMessage(error.message); }
+  };
+
+  const age = ageFromBirthDate(form.dateOfBirth);
+  return <article className="account-card account-card-wide family-manager">
+    <div className="family-manager-heading"><div><h2>Family Members</h2><p>Manage family wellness profiles securely from your account.</p></div><button className="account-action" type="button" onClick={() => { setIsOpen((current) => !current); setEditingId(null); setForm(emptyFamilyMember); }}>{isOpen ? "Close" : "+ Add Family Member"}</button></div>
+    {message && <p className="family-manager-message" role="status">{message}</p>}
+    {!members.length ? <p>No family members have been added yet.</p> : <div className="family-member-list">{members.map((member) => <div key={member.id}><span><strong>{member.first_name} {member.family_name}</strong><small>{member.relationship} · Age {ageFromBirthDate(member.date_of_birth)}</small></span><span>{member.wellness_notes || "No wellness notes"}</span><div><button type="button" onClick={() => startEdit(member)}>Edit</button><button type="button" onClick={() => remove(member)}>Remove</button></div></div>)}</div>}
+    {isOpen && <form className="family-member-form" onSubmit={submit}>
+      <h3>{editingId ? "Edit Family Member" : "Add Family Member"}</h3>
+      <div className="family-member-form-grid">
+        <label>First Name <strong>*</strong><input required value={form.firstName} onChange={(event) => setForm({ ...form, firstName: event.target.value })} /></label>
+        <label>Family Name <strong>*</strong><input required value={form.familyName} onChange={(event) => setForm({ ...form, familyName: event.target.value })} /></label>
+        <label>Relationship <strong>*</strong><select required value={form.relationship} onChange={(event) => setForm({ ...form, relationship: event.target.value })}><option value="" disabled>Select relationship</option><option>Child</option><option>Spouse / Partner</option><option>Parent</option><option>Sibling</option><option>Other dependent</option></select></label>
+        <label>Date of Birth <strong>*</strong><input required type="date" max={new Date().toISOString().slice(0, 10)} value={form.dateOfBirth} onChange={(event) => setForm({ ...form, dateOfBirth: event.target.value })} />{age !== null && <small>Current age: {age}</small>}</label>
+        <label className="family-member-notes">Wellness Notes <strong>*</strong><textarea required value={form.wellnessNotes} onChange={(event) => setForm({ ...form, wellnessNotes: event.target.value })} placeholder="Current symptoms, allergies, wellness goals, or other helpful notes" /></label>
+      </div>
+      {age !== null && age < 18 && <label className="family-guardian"><input required type="checkbox" checked={form.guardianConfirmed} onChange={(event) => setForm({ ...form, guardianConfirmed: event.target.checked })} /> I confirm that I am the parent or legal guardian and may manage this minor's information.</label>}
+      <button className="account-action" type="submit">{editingId ? "Save Changes" : "Add Family Member"}</button>
+    </form>}
+  </article>;
+}
+
+function PersonalDetailsCard() {
+  const { user, updateUser } = useAuth();
+  const [editing, setEditing] = useState(false);
+  const [message, setMessage] = useState("");
+  const [form, setForm] = useState({ email: user.email, firstName: user.firstName, familyName: user.familyName, phone: user.phone || "", address: user.address || "", dateOfBirth: user.dateOfBirth ? String(user.dateOfBirth).slice(0, 10) : "", preferredLanguage: user.preferredLanguage || "English" });
+
+  const save = async (event) => {
+    event.preventDefault();
+    setMessage("");
+    try {
+      const result = await apiRequest("/api/auth/me", { method: "PATCH", auth: true, body: JSON.stringify(form) });
+      updateUser(result.user);
+      setEditing(false);
+      setMessage("Your personal details have been updated.");
+    } catch (error) { setMessage(error.message); }
+  };
+
+  return <article className="account-card personal-details-card">
+    <div className="personal-details-heading"><h2>Personal Details</h2><button type="button" onClick={() => setEditing((current) => !current)}>{editing ? "Cancel" : "Edit Details"}</button></div>
+    {message && <p className="family-manager-message" role="status">{message}</p>}
+    {!editing ? <dl>
+      <div><dt>Name</dt><dd>{user.firstName} {user.familyName}</dd></div>
+      <div><dt>Email</dt><dd>{user.email}</dd></div>
+      <div><dt>Phone</dt><dd>{user.phone || "Not provided"}</dd></div>
+      <div><dt>Address</dt><dd>{user.address || "Not provided"}</dd></div>
+      <div><dt>Date of birth</dt><dd>{user.dateOfBirth ? `${formatDate(user.dateOfBirth)} (Age ${ageFromBirthDate(user.dateOfBirth)})` : "Not provided"}</dd></div>
+      <div><dt>Language</dt><dd>{user.preferredLanguage || "English"}</dd></div>
+      <div><dt>Member since</dt><dd>{formatDate(user.createdAt)}</dd></div>
+    </dl> : <form className="personal-details-form" onSubmit={save}>
+      <div><label>First Name <strong>*</strong><input required value={form.firstName} onChange={(event) => setForm({ ...form, firstName: event.target.value })} /></label><label>Family Name <strong>*</strong><input required value={form.familyName} onChange={(event) => setForm({ ...form, familyName: event.target.value })} /></label></div>
+      <label>Email <strong>*</strong><input required type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} /></label>
+      <label>Phone<input value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} /></label>
+      <label>Address<input value={form.address} onChange={(event) => setForm({ ...form, address: event.target.value })} /></label>
+      <label>Date of Birth<input type="date" max={new Date().toISOString().slice(0, 10)} value={form.dateOfBirth} onChange={(event) => setForm({ ...form, dateOfBirth: event.target.value })} /></label>
+      <label>Preferred Language<select value={form.preferredLanguage} onChange={(event) => setForm({ ...form, preferredLanguage: event.target.value })}><option>English</option><option>Finnish</option><option>Chinese</option></select></label>
+      <button className="account-action" type="submit">Save Details</button>
+    </form>}
+  </article>;
+}
 
 const wellnessSteps = [
   { key: "SUBMITTED", label: "Profile Submitted", text: "Your wellness profile has been received." },
@@ -223,13 +338,15 @@ export function MyProfile() {
       apiRequest("/api/orders/me", { auth: true }),
       apiRequest("/api/assessments/me", { auth: true }),
       apiRequest("/api/workshops/requests/me", { auth: true }),
-    ]).then(([wellness, wellnessCases, orders, assessments, workshops]) => {
+      apiRequest("/api/account/happy-wishes", { auth: true }),
+    ]).then(([wellness, wellnessCases, orders, assessments, workshops, happyWishes]) => {
       setData({
         wellness: wellness.wellnessProfile,
         wellnessCases: wellnessCases.cases || [],
         orders: orders.orders || [],
         assessments: assessments.assessments || [],
         workshops: workshops.requests || [],
+        wishes: happyWishes.wishes || [],
       });
     }).catch((requestError) => setError(requestError.message));
   }, []);
@@ -254,9 +371,14 @@ export function MyProfile() {
   return (
     <main className="account-page">
       <header className="account-hero">
-        <p className="section-kicker">My Account</p>
-        <h1>{user.firstName} {user.familyName}</h1>
-        <p>Review your account, wellness journey, workshop requests, and product orders.</p>
+        <img src={customerProfileBanner} alt="A happy multigenerational family together at home" />
+        <div className="account-hero-shade"></div>
+        <div className="account-hero-content">
+          <p className="section-kicker">My Account</p>
+          <h1>{user.firstName} {user.familyName}</h1>
+          <p>Review your account, wellness journey, workshop requests, and product orders.</p>
+        </div>
+        <Link className="account-hero-assessment" to="/wellness-assessment">Complete Assessment</Link>
       </header>
 
       {error && <p className="account-error" role="alert">{error}</p>}
@@ -265,28 +387,20 @@ export function MyProfile() {
       <section className="account-grid">
         {data?.wellnessCases[0] && <WellnessProgress reviewCase={data.wellnessCases[0]} />}
 
-        <article className="account-card">
-          <h2>Personal details</h2>
-          <dl>
-            <div><dt>Email</dt><dd>{user.email}</dd></div>
-            <div><dt>Phone</dt><dd>{user.phone || "Not provided"}</dd></div>
-            <div><dt>Address</dt><dd>{user.address || "Not provided"}</dd></div>
-            <div><dt>Language</dt><dd>{user.preferredLanguage || "English"}</dd></div>
-            <div><dt>Member since</dt><dd>{formatDate(user.createdAt)}</dd></div>
-          </dl>
+        <article className="account-card account-card-wide profile-happy-wishes">
+          <div className="profile-happy-wishes-heading">
+            <div><p className="section-kicker">Dream · Celebrate · Share</p><h2>My Happy Wishes</h2><p>Your meaningful wishes for yourself and the people you care about.</p></div>
+            <Link className="account-action" to="/wishlist">Add New Wish</Link>
+          </div>
+          {!data?.wishes.length ? <div className="profile-wishes-empty"><strong>Your wish space is ready</strong><p>Add a dream, birthday surprise, wellbeing goal, or thoughtful wish for someone special.</p></div> : <div className="profile-wish-list">
+            {data.wishes.map((wish) => <div className="profile-wish-item" key={wish.id}>
+              <div><span className="profile-wish-recipient">{wish.recipient_type === "MYSELF" ? "For me" : `For ${wish.recipient_name || wish.recipient_type.toLowerCase().replaceAll("_", " ")}`}</span><strong>{wish.title}</strong><span>{wish.wish_type.toLowerCase().replaceAll("_", " ")} · {wish.target_date ? formatDate(wish.target_date) : "Open date"}</span></div>
+              <div className="profile-wish-momentum"><strong>{wish.momentum_score}</strong><span>Momentum</span></div><span className="account-status">{wish.status}</span>
+            </div>)}
+          </div>}
         </article>
 
-        <article className="account-card">
-          <h2>Wellness profile</h2>
-          {data?.wellness ? (
-            <dl>
-              <div><dt>Current symptoms</dt><dd>{data.wellness.current_symptoms}</dd></div>
-              <div><dt>Wellness goals</dt><dd>{data.wellness.wellness_goals || "Not provided"}</dd></div>
-              <div><dt>Updated</dt><dd>{formatDate(data.wellness.updated_at)}</dd></div>
-            </dl>
-          ) : <p>No wellness intake has been saved yet.</p>}
-          <Link className="account-action" to="/wellness-assessment">Complete assessment</Link>
-        </article>
+        <FamilyMembersManager />
 
         <article className="account-card account-card-wide">
           <h2>Workshop requests</h2>
@@ -330,11 +444,7 @@ export function MyProfile() {
           {data?.assessments[0] && <p>Latest score: {data.assessments[0].overall_score}/5</p>}
         </article>
 
-        <article className="account-card">
-          <h2>Saved items</h2>
-          <p>Open your wishlist to review products, workshops, and knowledge articles.</p>
-          <Link className="account-action" to="/wishlist">Open wishlist</Link>
-        </article>
+        <PersonalDetailsCard />
 
         {["STAFF", "ADMIN"].includes(user.role) && (
           <article className="account-card account-card-wide wellness-admin-panel">
@@ -357,21 +467,43 @@ export function MyProfile() {
 }
 
 export function Wishlist() {
-  const [favorites, setFavorites] = useState([]);
+  const emptyWish = { title: "", wishType: "DREAM", recipientType: "MYSELF", recipientName: "", description: "", targetDate: "", importance: 3, firstStep: "", status: "ACTIVE" };
+  const [wishes, setWishes] = useState([]);
+  const [form, setForm] = useState(emptyWish);
+  const [editingId, setEditingId] = useState(null);
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    apiRequest("/api/account/favorites", { auth: true })
-      .then(({ favorites: items }) => setFavorites(items || []))
+  const loadWishes = () => apiRequest("/api/account/happy-wishes", { auth: true })
+      .then(({ wishes: items }) => setWishes(items || []))
       .catch((requestError) => setError(requestError.message))
       .finally(() => setLoading(false));
-  }, []);
 
-  const removeFavorite = async (id) => {
+  useEffect(() => { loadWishes(); }, []);
+
+  const submitWish = async (event) => {
+    event.preventDefault();
+    setError(""); setMessage("");
     try {
-      await apiRequest(`/api/account/favorites/${id}`, { method: "DELETE", auth: true });
-      setFavorites((items) => items.filter((item) => item.id !== id));
+      await apiRequest(editingId ? `/api/account/happy-wishes/${editingId}` : "/api/account/happy-wishes", { method: editingId ? "PATCH" : "POST", auth: true, body: JSON.stringify(form) });
+      setMessage(editingId ? "Your Happy Wish has been updated and rescored." : "Your Happy Wish and Momentum Score are ready.");
+      setForm(emptyWish); setEditingId(null); await loadWishes();
+    } catch (requestError) { setError(requestError.message); }
+  };
+
+  const editWish = (wish) => {
+    setEditingId(wish.id);
+    setForm({ title: wish.title, wishType: wish.wish_type, recipientType: wish.recipient_type || "MYSELF", recipientName: wish.recipient_name || "", description: wish.description, targetDate: wish.target_date ? String(wish.target_date).slice(0, 10) : "", importance: wish.importance, firstStep: wish.first_step, status: wish.status });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const removeWish = async (id) => {
+    if (!window.confirm("Remove this Happy Wish?")) return;
+    try {
+      await apiRequest(`/api/account/happy-wishes/${id}`, { method: "DELETE", auth: true });
+      setWishes((items) => items.filter((item) => item.id !== id));
+      setMessage("Happy Wish removed.");
     } catch (requestError) {
       setError(requestError.message);
     }
@@ -379,40 +511,43 @@ export function Wishlist() {
 
   return (
     <main className="account-page">
-      <header className="account-hero">
-        <p className="section-kicker">My Account</p>
-        <h1>Wishlist</h1>
-        <p>Your saved Happy Drops products, workshops, and knowledge articles.</p>
+      <header className="account-hero happy-wishes-hero">
+        <img src={happyWishesBanner} alt="A peaceful Happy Wishes journal beside candles and natural greenery" />
+        <div className="account-hero-shade"></div>
+        <div className="account-hero-content">
+          <p className="section-kicker">Dream · Celebrate · Share</p>
+          <h1>My Happy Wishes</h1>
+          <p>Capture the wishes that matter most—for yourself or someone special—and turn each meaningful hope into a thoughtful path forward.</p>
+        </div>
       </header>
       {error && <p className="account-error" role="alert">{error}</p>}
-      {loading ? <p className="account-loading">Loading saved items…</p> : (
-        <section className="wishlist-grid">
-          {!favorites.length && (
-            <article className="account-card wishlist-empty">
-              <h2>Your wishlist is empty</h2>
-              <p>Open a product and select “Save to Wishlist” to keep it here.</p>
-              <Link className="account-action" to="/shop">Browse products</Link>
-            </article>
-          )}
-          {favorites.map((item) => {
-            const title = item.name || item.title;
-            const destination = item.product_id
-              ? `/shop?q=${encodeURIComponent(item.name)}`
-              : item.workshop_id ? "/workshops" : "/knowledge";
-            return (
-              <article className="account-card" key={item.id}>
-                <p className="section-kicker">{item.product_id ? "Product" : item.workshop_id ? "Workshop" : "Knowledge"}</p>
-                <h2>{title}</h2>
-                {item.price && <p>{formatMoney(item.price, item.currency)}</p>}
-                <div className="wishlist-actions">
-                  <Link className="account-action" to={destination}>View item</Link>
-                  <button className="wishlist-remove" type="button" onClick={() => removeFavorite(item.id)}>Remove</button>
-                </div>
-              </article>
-            );
-          })}
-        </section>
-      )}
+      <section className="happy-wishes-layout">
+        <form className="account-card happy-wish-form" onSubmit={submitWish}>
+          <p className="section-kicker">A wish becomes a path</p><h2>{editingId ? "Refine Your Happy Wish" : "Create a Happy Wish"}</h2><p>Describe what would bring more happiness or meaning to your life. We will generate a Wish Momentum score and thoughtful guidance.</p>
+          <div className="wish-recipient-section"><span className="wish-recipient-label">Who is this wish for? <strong>*</strong></span><div className="wish-recipient-options">{[["MYSELF","Myself","For my own happiness"],["PARTNER","Partner / Spouse","For the person I love"],["FRIEND","Friend","Something meaningful for a friend"],["CHILD","Child","A loving wish for a child"],["PARENT","Parent","A special wish for a parent"],["FAMILY","Our Family","A dream to share together"],["SOMEONE_SPECIAL","Someone Special","For another important person"]].map(([value,label,help]) => <button className={form.recipientType === value ? "selected" : ""} type="button" key={value} onClick={() => setForm({ ...form, recipientType: value, recipientName: value === "MYSELF" ? "" : form.recipientName })}><strong>{label}</strong><span>{help}</span></button>)}</div></div>
+          {form.recipientType !== "MYSELF" && <label>Recipient's Name <strong>*</strong><input required maxLength="160" value={form.recipientName} onChange={(event) => setForm({ ...form, recipientName: event.target.value })} placeholder="Who would you love to make happy?" /></label>}
+          <label>Wish Title <strong>*</strong><input required maxLength="180" value={form.title} onChange={(event) => setForm({ ...form, title: event.target.value })} placeholder="For example: A joyful birthday surprise" /></label>
+          <div className="happy-wish-form-row"><label>Wish Type <strong>*</strong><select value={form.wishType} onChange={(event) => setForm({ ...form, wishType: event.target.value })}><option value="DREAM">Personal Dream</option><option value="BIRTHDAY">Birthday Wish</option><option value="WELLNESS">Wellbeing Goal</option><option value="FAMILY">Family Wish</option><option value="EXPERIENCE">Meaningful Experience</option><option value="OTHER">Something Else</option></select></label><label>Importance <strong>*</strong><select value={form.importance} onChange={(event) => setForm({ ...form, importance: Number(event.target.value) })}>{[1,2,3,4,5].map((number) => <option key={number} value={number}>{"★".repeat(number)} {number}/5</option>)}</select></label></div>
+          <label>Tell Us About Your Wish <strong>*</strong><textarea required maxLength="4000" value={form.description} onChange={(event) => setForm({ ...form, description: event.target.value })} placeholder="What do you wish for, why does it matter, and how would it make you feel?" /></label>
+          <label>My First Positive Step <strong>*</strong><input required maxLength="500" value={form.firstStep} onChange={(event) => setForm({ ...form, firstStep: event.target.value })} placeholder="One small action you can take next" /></label>
+          <div className="happy-wish-form-row"><label>Target Date (Optional)<input type="date" value={form.targetDate} onChange={(event) => setForm({ ...form, targetDate: event.target.value })} /></label>{editingId && <label>Status<select value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value })}><option value="ACTIVE">Active</option><option value="PAUSED">Paused</option><option value="ACHIEVED">Achieved</option></select></label>}</div>
+          <div className="wishlist-actions"><button className="account-action" type="submit">{editingId ? "Update & Recalculate" : "Create My Happy Wish"}</button>{editingId && <button className="wishlist-remove" type="button" onClick={() => { setEditingId(null); setForm(emptyWish); }}>Cancel</button>}</div>
+          {message && <p className="family-manager-message" role="status">{message}</p>}
+        </form>
+        <aside className="happy-wish-explainer"><p className="section-kicker">Wish Momentum</p><h2>More than a rating</h2><p>Your score reflects how clearly your wish is described and whether it has a meaningful first step. It encourages progress—it never judges the size or value of your dream.</p><div><strong>Clarity</strong><span>Express why the wish matters.</span></div><div><strong>Direction</strong><span>Choose a realistic first step.</span></div><div><strong>Celebration</strong><span>Recognize every milestone.</span></div></aside>
+      </section>
+      {loading ? <p className="account-loading">Loading Happy Wishes…</p> : <section className="happy-wish-grid">
+        {!wishes.length && <article className="account-card wishlist-empty"><h2>Your first Happy Wish begins here</h2><p>Use the form above to capture something meaningful you would love to experience, achieve, or celebrate.</p></article>}
+        {wishes.map((wish) => <article className={`account-card happy-wish-card ${wish.status.toLowerCase()}`} key={wish.id}>
+          <div className="happy-wish-card-heading"><div><p className="section-kicker">{wish.wish_type.replaceAll("_", " ")} · {wish.recipient_type === "MYSELF" ? "FOR ME" : `FOR ${wish.recipient_name || wish.recipient_type.replaceAll("_", " ")}`}</p><h2>{wish.title}</h2></div><span className="account-status">{wish.status}</span></div>
+          <p>{wish.description}</p>
+          <div className="happy-wish-score"><div><strong>{wish.momentum_score}</strong><span>/100</span></div><div><strong>Wish Momentum</strong><span>{"★".repeat(Math.max(1, Math.ceil(wish.momentum_score / 20)))}</span></div></div>
+          <div className="happy-wish-meter"><span style={{ width: `${wish.momentum_score}%` }}></span></div>
+          <p className="happy-wish-guidance"><strong>Your guidance:</strong> {wish.guidance}</p>
+          <dl><div><dt>First positive step</dt><dd>{wish.first_step}</dd></div><div><dt>Target</dt><dd>{wish.target_date ? formatDate(wish.target_date) : "When the time feels right"}</dd></div><div><dt>Importance</dt><dd>{"★".repeat(wish.importance)}</dd></div></dl>
+          <div className="wishlist-actions"><button className="account-action" type="button" onClick={() => editWish(wish)}>Edit Wish</button><button className="wishlist-remove" type="button" onClick={() => removeWish(wish.id)}>Remove</button></div>
+        </article>)}
+      </section>}
     </main>
   );
 }

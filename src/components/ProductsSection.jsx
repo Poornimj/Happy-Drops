@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import useScrollReveal from "../hooks/useScrollReveal";
 
 import essentialOil from "../assets/images/essential-oils.png";
-import nutrition from "../assets/images/nutritions.jpg";
-import sleepSounds from "../assets/images/sleep-sounds.png";
+import nutrition from "../assets/images/nutritions.png";
+import sleepSounds from "../assets/images/sleep-sounds-new.png";
 import wellnessAccessories from "../assets/images/Accessories.png";
 import leafOnly from "../assets/images/leaveonly.png";
 

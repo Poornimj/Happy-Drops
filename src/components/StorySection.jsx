@@ -5,7 +5,7 @@ import useScrollReveal from "../hooks/useScrollReveal";
 
 import {
   FaLeaf,
-  FaRecycle,
+  FaSpa,
   FaHeart,
   FaUsers,
 } from "react-icons/fa";
@@ -22,19 +22,19 @@ function StorySection() {
         Growing <span className="wellness">Wellness</span> Together
       </h2>
 
+      <div className="story-center scroll-reveal" ref={centerRef} style={{ opacity: centerVisible ? 1 : 0 }}>
+        <p>
+          Happy Drops helps individuals and families improve their wellbeing
+          through personalized essential oils, nutrition guidance, lifestyle
+          rituals, and holistic wellness solutions that combine Eastern
+          wisdom and Western science.
+        </p>
+      </div>
+
       <div
         className="story-content"
         style={{ backgroundImage: `url(${storyBg})` }}
       >
-        <div className="story-center scroll-reveal" ref={centerRef} style={{ opacity: centerVisible ? 1 : 0 }}>
-          <p>
-            Happy Drops helps individuals and families improve their wellbeing
-            through personalized essential oils, nutrition guidance, lifestyle
-            rituals, and holistic wellness solutions that combine Eastern
-            wisdom and Western science.
-          </p>
-        </div>
-
         {/* Left Top */}
         <div className="story-card natural-card scroll-reveal" ref={cardsRef} style={{ opacity: cardsVisible ? 1 : 0, transform: cardsVisible ? 'translateY(0)' : 'translateY(40px)' }}>
           <div className="icon-circle green">
@@ -46,9 +46,9 @@ function StorySection() {
         {/* Left Bottom */}
         <div className="story-card sustainability-card scroll-reveal" ref={cardsRef} style={{ opacity: cardsVisible ? 1 : 0, transform: cardsVisible ? 'translateY(0)' : 'translateY(40px)' }}>
           <div className="icon-circle green">
-            <FaRecycle />
+            <FaSpa />
           </div>
-          <h3>Practical Workshops</h3>
+          <h3>Guided Wellness Workshops</h3>
         </div>
 
         {/* Right Top */}

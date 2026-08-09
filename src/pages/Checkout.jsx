@@ -128,10 +128,11 @@ function Checkout() {
             auth: true,
             body: JSON.stringify({
               workshopId: checkout.workshopId || null,
+              sessionId: checkout.sessionId || null,
               fullName: address.fullName,
               email: form.get("email"),
               phone: form.get("phone"),
-              preferredDate: null,
+              preferredDate: checkout.isoDate || null,
               preferredTime: checkout.time,
               location: checkout.location,
               participantCount: quantity,

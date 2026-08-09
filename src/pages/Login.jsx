@@ -66,7 +66,10 @@ function Login() {
       });
 
       login(session, form.remember);
-      navigate(destination, { replace: true });
+      navigate(destination, {
+        replace: true,
+        state: location.state?.workshopTitle ? { openWorkshopRequestTitle: location.state.workshopTitle } : undefined,
+      });
     } catch (error) {
       setSubmitError(error.message);
     } finally {

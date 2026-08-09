@@ -600,6 +600,11 @@
   background: white;
 }
 
+.detail-image-box img.circle-calm-image {
+  object-fit: cover;
+  object-position: center center;
+}
+
 .product-id {
   margin: 0 0 10px;
   color:#173f27;

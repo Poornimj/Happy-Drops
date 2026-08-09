@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Handlee&family=Comic+Neue:wght@400;700&display=swap');
 
 .story-section {
-  padding: 30px 40px 70px;
+  padding: 82px 40px 70px;
   text-align: center;
   background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
   position: relative;
@@ -48,7 +48,7 @@
   font-weight: 700;
   line-height: 1.2;
   max-width: 900px;
-  margin: 0 auto 20px;
+  margin: 0 auto 42px;
   letter-spacing: -0.5px;
   opacity: 0;
   animation: fadeInDown 0.6s ease 0.1s forwards;
@@ -74,7 +74,8 @@
 
 .story-content {
   position: relative;
-  max-width: 1300px;
+  width: 100%;
+  max-width: 1500px;
   height: 600px;
   margin: auto;
   min-height: 620px;
@@ -106,25 +107,18 @@
 
 /* Keep Content Above Overlay */
 
-.story-card,
-.story-center {
+.story-card {
   position: absolute;
   z-index: 2;
 }
 
 .story-center {
-  position: absolute;
-  z-index: 2;
-
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: calc(100% - 80px);
-  max-width: 900px;
-
+  position: relative;
+  width: min(100% - 40px, 980px);
+  max-width: 920px;
+  margin: 0 auto;
+  padding-bottom: 58px;
   text-align: center;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,9 +126,10 @@
 
 .story-center p {
   margin: 0;
+  padding: 0 24px;
 
-  font-size: 18px;
-  line-height: 1.8;
+  font-size: 20px;
+  line-height: 1.5;
 
   color: #7a7a7a;
   font-weight: 400;
@@ -194,7 +189,7 @@
 
 .story-card h3 {
   font-family: Georgia, serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: #4a4a4a;
   margin: 0;
@@ -287,9 +282,9 @@
     justify-content: center;
     gap: 30px;
     padding: 30px;
+    background-position: center center;
   }
 
-  .story-center,
   .natural-card,
   .family-card,
   .sustainability-card,
@@ -302,24 +297,24 @@
     transform: none;
   }
 
-  .story-center {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
   .story-section h2 {
     font-size: 42px;
   }
 }
 
 @media (max-width: 700px) {
+  .story-section { padding: 55px 20px 55px; }
   .story-section h2 {
     font-size: 34px;
+    margin-bottom: 34px;
   }
 
   .story-center p {
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 1.5;
+    padding: 0 4px;
   }
+  .story-center { padding-bottom: 38px; }
 
   .story-card {
     width: 163px;

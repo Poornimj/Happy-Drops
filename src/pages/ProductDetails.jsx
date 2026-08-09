@@ -16,7 +16,7 @@ import BloomOil from "../assets/images/Shop_BoostHairGrowths.png";
 import ClarityOil from "../assets/images/Shop_TwilightDropss.png";
 import NourishOil from "../assets/images/Shop_SkinDrynesses.png";
 import CalmOil from "../assets/images/Shop_HeadacheReliefs.png";
-import FlexibilityOil from "../assets/images/Shop_JointMoves.png";
+import CircleCalmOil from "../assets/images/Shop_CircleCalm.png";
 import BalanceOil from "../assets/images/Shop_VitalGuards.png";
 import HarmonyOil from "../assets/images/Shop_Cherishmoods.png";
 import PassionOil from "../assets/images/Shop_MensEnergy.png";
@@ -73,8 +73,8 @@ const products = [
   {
     id: 5,
     name: "Flow",
-    function: "Waist Comfort",
-    desc: "Flow supports waist comfort and easy movement. It is ideal for gentle body massage when you want to feel relaxed, flexible, and comfortable in your daily routine.",
+    function: "Body Comfort",
+    desc: "Flow is designed for a soothing body-care routine. It helps create a relaxed, comfortable feeling during gentle self-care moments.",
     price: "22.00",
     reviews: 120,
     amount: "15 ml",
@@ -93,8 +93,8 @@ const products = [
   {
     id: 7,
     name: "Peace",
-    function: "Sleep Like a Baby",
-    desc: "Peace is made for sleep and relaxation routines. It helps create a calm night-time feeling, making it perfect for quiet evenings, rest, and peaceful self-care moments.",
+    function: "Evening Calm",
+    desc: "Peace is made for quiet evening routines and relaxation. It helps create a calm, peaceful atmosphere for rest and self-care.",
     price: "21.90",
     reviews: 120,
     amount: "15 ml",
@@ -123,8 +123,8 @@ const products = [
   {
     id: 10,
     name: "Nourish",
-    function: "Dry Skin Relief",
-    desc: "Nourish is made for dry skin relief. It helps rough or dry areas feel softer, smoother, and deeply cared for during your daily body-care routine.",
+    function: "Skin Nourishment",
+    desc: "Nourish is designed for gentle skin care and daily body-care routines. It helps the skin feel soft, smooth, and well cared for.",
     price: "21.90",
     reviews: 98,
     amount: "15 ml",
@@ -142,13 +142,13 @@ const products = [
   },
   {
     id: 12,
-    name: "Flexibility",
-    function: "Joint Comfort",
-    desc: "Flexibility supports joint comfort and easy movement. It is suitable for gentle massage when the body feels stiff, tired, or in need of extra care.",
+    name: "Circle Calm",
+    function: "Calm Support",
+    desc: "Circle Calm is designed for quiet self-care moments and a peaceful atmosphere. It brings a soft, soothing feel to your everyday routine.",
     price: "24.90",
     reviews: 120,
     amount: "15 ml",
-    image: FlexibilityOil,
+    image: CircleCalmOil,
   },
   {
     id: 13,

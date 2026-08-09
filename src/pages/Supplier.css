@@ -8,7 +8,7 @@
   padding-bottom: 96px;
   background: #fff;
   color: var(--supplier-green);
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .supplier-page h1,
@@ -42,7 +42,7 @@
 .supplier-kicker {
   margin-bottom: 15px !important;
   color: var(--supplier-gold) !important;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -102,7 +102,7 @@
   max-width: 590px;
   margin-bottom: 32px;
   color: #55675a;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .supplier-primary-action {
@@ -150,7 +150,7 @@
 
 .supplier-intro > p {
   margin-bottom: 5px;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .supplier-benefits {
@@ -255,7 +255,7 @@
 
 .supplier-standards-copy > p:not(.supplier-kicker) {
   max-width: 660px;
-  font-size: 19px;
+  font-size: 21px;
 }
 
 .supplier-standard-list {
@@ -295,7 +295,7 @@
 .supplier-standards aside > p {
   margin: 18px 0 8px;
   color: var(--supplier-purple);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -392,7 +392,7 @@
 .supplier-application-intro > div span {
   display: grid;
   gap: 2px;
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .supplier-application-intro > div a {
@@ -417,7 +417,7 @@
   display: grid;
   gap: 8px;
   color: #294734;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 800;
 }
 
@@ -488,7 +488,7 @@
 .supplier-space-fields > p {
   margin: 0 0 20px;
   color: #657168;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.6;
 }
 

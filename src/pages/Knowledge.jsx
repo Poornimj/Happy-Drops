@@ -50,14 +50,51 @@ const steps = [
 ];
 
 const educationCategories = [
-  { icon: "leaf", title: "Essential Oil Basics", summary: "Understand what essential oils are and how they are commonly used.", guide: "Essential oils are concentrated aromatic extracts from plants. They are commonly enjoyed through carefully controlled diffusion or properly diluted topical use. A small amount goes a long way, and the label directions should always be followed." },
-  { icon: "check", title: "Safe Use & Dilution", summary: "Learn responsible dilution, patch testing and important precautions.", guide: "Never apply an essential oil undiluted unless its label and a qualified professional specifically support that use. Dilute with a suitable carrier oil, patch test first, avoid eyes and sensitive areas, and keep oils away from children and pets." },
-  { icon: "bottle", title: "Aromatherapy", summary: "Explore how aroma can support a calm and pleasant environment.", guide: "Aromatherapy uses plant aromas as part of a wellbeing routine. Follow diffuser instructions, use good ventilation, begin with short sessions, and stop if anyone experiences headache, irritation, nausea or breathing discomfort." },
-  { icon: "user", title: "Skin & Beauty", summary: "Discover gentle ways to include oils in skin-care routines.", guide: "For skin use, choose skin-appropriate oils, dilute them correctly and test a small area first. Some citrus oils can increase sensitivity to sunlight. Avoid broken or irritated skin and seek professional advice for persistent skin concerns." },
-  { icon: "bag", title: "Sleep & Relaxation", summary: "Build calming evening rituals that encourage better rest.", guide: "A quiet bedtime routine, reduced evening screen time and a comfortable sleep environment are the foundation. Some people enjoy gently diffused lavender as part of relaxation, provided it is used according to its directions." },
-  { icon: "question", title: "Stress & Mood", summary: "Combine mindful habits with uplifting or calming aromas.", guide: "Slow breathing, movement, regular meals and restorative sleep can support emotional wellbeing. A personally pleasant aroma may complement these habits, but it should not replace professional support for persistent or severe anxiety or low mood." },
-  { icon: "card", title: "Seasonal Wellness", summary: "Use oils responsibly throughout changing seasons.", guide: "Seasonal routines should focus on sleep, hydration, nutrition, fresh air and good hygiene. Aromatic products may make the environment feel refreshing, but they do not prevent or cure infections or allergies." },
-  { icon: "check", title: "Storage & Quality", summary: "Protect oil quality with correct storage and careful selection.", guide: "Keep bottles tightly closed in a cool, dark place and follow their expiry guidance. Choose clearly labelled products from reputable suppliers, and check the botanical name, usage directions, batch information and safety warnings." },
+  { icon: "leaf", title: "Why Use Essential Oils?", summary: "Discover the timeless relationship between aromatic plants, daily rituals and personal wellbeing.", details: [
+    { title: "Nature's concentrated aromas", body: "Essential oils are highly concentrated aromatic extracts obtained from flowers, leaves, bark, roots, fruits, seeds and herbs. Unlike ordinary vegetable oils, their tiny volatile molecules evaporate easily, allowing us to experience each plant's distinctive aroma." },
+    { title: "A tradition across cultures", body: "For thousands of years, aromatic plants have been valued in Egypt, Greece, Rome, India and China as part of bathing, massage, skincare, ceremonies and traditional wellbeing practices. Today they remain a simple way to bring mindful moments of nature into modern life." },
+    { title: "Body, mind and everyday rituals", body: "When an aroma is inhaled, scent signals connect with brain regions involved in emotion, memory and stress responses. Correctly diluted oils may also be included in massage and skincare. People often choose lavender for a peaceful evening atmosphere, citrus for freshness, peppermint for an invigorating sensation, or frankincense for quiet reflection." },
+    { title: "Wellbeing with perspective", body: "Essential oils can complement healthy routines such as sleep, movement, balanced nutrition and relaxation. They are not medicines and should not replace diagnosis, treatment or advice from a qualified healthcare professional." },
+  ] },
+  { icon: "bottle", title: "Aromatherapy", summary: "Learn how scent can become a mindful language of calm, connection and renewal.", details: [
+    { title: "The healing language of nature", body: "Imagine the fresh scent of a Finnish pine forest after summer rain. That immediate feeling of calm and connection illustrates aromatherapy: the thoughtful use of natural plant aromas to support emotional, mental and physical wellbeing." },
+    { title: "How aroma is experienced", body: "Aromatic molecules travel through the nose and create scent signals associated with memory, mood and stress responses. This is why a familiar fragrance can quickly bring back a memory or change the atmosphere of a room. When oils are properly diluted in a carrier oil, aromatherapy can also accompany gentle massage." },
+    { title: "Simple ways to begin", body: "Create an evening ritual with lavender, enjoy a bright citrus aroma in the morning, or use a refreshing forest-inspired scent after sauna. Follow diffuser directions, ventilate the room, begin with short sessions and choose aromas that feel comfortable to everyone present." },
+    { title: "Listen to your body", body: "Stop using an aroma if it causes headache, nausea, skin irritation or breathing discomfort. Persistent sleep, mood, breathing or pain concerns should always be discussed with a healthcare professional." },
+  ] },
+  { icon: "user", title: "Skin & Beauty", summary: "Find gentle ways to care for your skin in everyday routines.", details: [
+    { title: "Start with gentle care", body: "Choose skin-appropriate oils and use them as part of a simple daily routine. A small amount, properly diluted, can help keep the experience comfortable and easy to enjoy." },
+    { title: "Patch test first", body: "Before using a new product more widely, test a small area of skin first. This helps you notice whether the oil feels comfortable for your skin before you use it more often." },
+    { title: "Be mindful with sensitive skin", body: "Keep essential oils away from broken or irritated skin, and use extra care with citrus oils that may increase sun sensitivity. If your skin is already sensitive, it is best to keep the routine simple and gentle." },
+  ] },
+  { icon: "bag", title: "Sleep & Relaxation", summary: "Create a calm evening routine that helps you unwind before bed.", details: [
+    { title: "Build a calming rhythm", body: "A quiet bedtime routine, less evening screen time and a comfortable sleep space can help your nights feel more restful. Small habits repeated each evening can make winding down feel easier." },
+    { title: "Use scent as part of the setting", body: "Some people enjoy a gently diffused lavender aroma as part of their evening routine. Follow the product directions and keep the atmosphere light, comfortable and relaxing." },
+    { title: "Keep the experience comfortable", body: "If an aroma feels too strong, reduce the amount, improve ventilation or stop using it for the moment. The goal is a calm space that supports rest, not an overpowering scent." },
+  ] },
+  { icon: "question", title: "Stress & Mood", summary: "Support calmer days with simple habits and comforting aromas.", details: [
+    { title: "Support everyday balance", body: "Slow breathing, movement, regular meals and good sleep can help you feel more balanced through the day. These small habits often work best when they are consistent and realistic." },
+    { title: "Add a comforting aroma", body: "A pleasant aroma may complement those habits and help your routine feel more calming. Choose scents that feel pleasant and light rather than intense or distracting." },
+    { title: "Know when to seek extra support", body: "Comforting routines are helpful, but they should not replace professional support for ongoing low mood or anxiety. If stress or mood concerns continue or affect daily life, speak with a qualified professional." },
+  ] },
+  { icon: "card", title: "Everyday Comfort", summary: "Build small daily rituals that help you feel more comfortable.", details: [
+    { title: "Make comfort part of the day", body: "Rest, gentle movement and hydration can help everyday life feel easier. Simple routines often create the most dependable sense of comfort over time." },
+    { title: "Use aromatic products as a small support", body: "Aromatic products may be part of a comforting self-care routine and can make the moment feel more pleasant. Keep the experience gentle and easy to maintain." },
+    { title: "Stay mindful of your needs", body: "If you have ongoing discomfort or health concerns, get advice from a qualified healthcare professional. Everyday comfort should support your routine, not replace medical care." },
+  ] },
+  { icon: "check", title: "Safe Use & Dilution", summary: "Use concentrated plant extracts thoughtfully with label-first guidance and careful dilution.", details: [
+    { title: "Read the product label first", body: "Every oil has a different chemistry and intended use. Follow the directions and warnings on its own label rather than applying one rule to every essential oil. Use the smallest practical amount and never assume that natural means risk-free." },
+    { title: "Dilute for topical use", body: "Mix essential oil with a suitable carrier oil to reduce the chance of skin sensitivity and slow evaporation. doTERRA's general educational guidance suggests beginning around one drop of essential oil to five drops of carrier oil, and around one to ten for stronger oils, but the individual product label must take priority." },
+    { title: "Protect sensitive areas", body: "Avoid the eyes, inner ears, nose, broken skin and other sensitive areas. Patch test a small area before wider use. Some citrus oils can increase sensitivity to sunlight, so check the label and avoid direct sunlight or UV exposure for the stated period after topical use." },
+    { title: "Children and individual needs", body: "Keep oils out of children's reach and supervise any use around children. Seek professional advice during pregnancy or breastfeeding, when using medication, when managing a medical condition, and before using oils for infants, children or pets." },
+    { title: "If a reaction occurs", body: "Stop use immediately. Leave the area and increase ventilation after an inhalation reaction; discontinue topical use after skin irritation. Seek urgent medical help for breathing difficulty or a severe or persistent reaction." },
+  ] },
+  { icon: "check", title: "Storage & Quality", summary: "Preserve each oil by protecting it from light, heat, air and uncertain sourcing.", details: [
+    { title: "Store bottles correctly", body: "Keep essential oils in securely capped glass bottles at a stable room temperature. Protect them from direct sunlight, UV exposure, window sills, hot cars and other temperature extremes." },
+    { title: "Limit air exposure", body: "Close the cap tightly after every use. Prolonged exposure to oxygen can contribute to oxidation, while an unsecured cap also allows aromatic compounds to evaporate." },
+    { title: "Choose transparent quality", body: "Look for the botanical identity, clear usage instructions, warnings, a lot or batch number and an expiry or best-use date. Choose suppliers that explain where their plants come from, how oils are produced and how each batch is tested." },
+    { title: "Purity and testing matter", body: "Quality testing can help verify botanical identity, chemical composition and the absence of contamination, synthetic fragrance or undisclosed fillers. Keep the original label and packaging so safety and traceability information remain available." },
+  ] },
 ];
 
 const wellnessTopics = [
@@ -288,7 +325,7 @@ export default function Knowledge() {
   const [isSubmittingQuestion, setIsSubmittingQuestion] = useState(false);
   const [historyView, setHistoryView] = useState("questions");
   const [isSavingPickup, setIsSavingPickup] = useState(false);
-  const [activeEducation, setActiveEducation] = useState(educationCategories[0].title);
+  const [activeEducation, setActiveEducation] = useState(null);
 
   const loadQuestions = useCallback(async () => {
     if (!user) {
@@ -435,12 +472,6 @@ export default function Knowledge() {
               </button>
             ))}
           </div>
-          {educationCategories.filter((category) => category.title === activeEducation).map((category) => (
-            <article className="knowledge-learning-guide" key={category.title}>
-              <div><StepIcon name={category.icon} /></div>
-              <section><h3>{category.title}</h3><p>{category.guide}</p></section>
-            </article>
-          ))}
           <p className="knowledge-learning-note">Essential-oil information is for general education. Consult a qualified professional when pregnant, breastfeeding, using medication, managing a health condition, or choosing products for children or pets.</p>
         </section>
 
@@ -604,6 +635,24 @@ export default function Knowledge() {
           </div>
         </section></>}
       </main>
+
+      {educationCategories.filter((category) => category.title === activeEducation).map((category) => (
+        <div className="modal-backdrop" role="presentation" key={category.title} onClick={() => setActiveEducation(null)}>
+          <article className="knowledge-education-modal" role="dialog" aria-modal="true" aria-labelledby="education-modal-title" onClick={(event) => event.stopPropagation()}>
+            <button className="modal-close" type="button" aria-label="Close essential oil information" onClick={() => setActiveEducation(null)}>
+              ×
+            </button>
+            <div className="knowledge-education-modal-icon"><StepIcon name={category.icon} /></div>
+            <p className="section-kicker">Essential oil knowledge</p>
+            <h3 id="education-modal-title">{category.title}</h3>
+            <strong>{category.summary}</strong>
+            {category.details ? <div className="knowledge-education-sections">{category.details.map((section) => <section key={section.title}><h4>{section.title}</h4><p>{section.body}</p></section>)}</div> : <p>{category.guide}</p>}
+            <aside>
+              Essential-oil information is for general education. Consult a qualified professional when pregnant, breastfeeding, using medication, managing a health condition, or choosing products for children or pets.
+            </aside>
+          </article>
+        </div>
+      ))}
 
       {isRecipeOpen && (
         <div className="modal-backdrop" role="presentation">

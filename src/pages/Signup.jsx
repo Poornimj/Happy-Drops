@@ -54,7 +54,7 @@ function Signup() {
     password: "",
     phone: "",
     address: "",
-    age: "",
+    dateOfBirth: "",
     preferredLanguage: "English",
     currentSymptoms: "",
     symptomsDuration: "",
@@ -71,6 +71,23 @@ function Signup() {
   const [submitError, setSubmitError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [createdWithoutAssessment, setCreatedWithoutAssessment] = useState(false);
+  const [familyMembers, setFamilyMembers] = useState([]);
+
+  const addFamilyMember = () => setFamilyMembers((current) => [...current, {
+    id: crypto.randomUUID(), firstName: "", familyName: form.familyName, relationship: "", dateOfBirth: "", wellnessNotes: "", guardianConfirmed: false,
+  }]);
+
+  const updateFamilyMember = (id, field, value) => setFamilyMembers((current) => current.map((member) => member.id === id ? { ...member, [field]: value } : member));
+  const removeFamilyMember = (id) => setFamilyMembers((current) => current.filter((member) => member.id !== id));
+
+  const calculateAge = (dateOfBirth) => {
+    if (!dateOfBirth) return null;
+    const birthDate = new Date(`${dateOfBirth}T00:00:00`);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    if (today.getMonth() < birthDate.getMonth() || (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())) age -= 1;
+    return age;
+  };
 
   const handleChange = (event) => {
     const { name, value, checked, type } = event.target;
@@ -96,8 +113,16 @@ function Signup() {
           password: form.password,
           phone: form.phone,
           address: form.address,
-          age: form.age,
+          dateOfBirth: form.dateOfBirth,
           preferredLanguage: form.preferredLanguage,
+          familyMembers: familyMembers.map((member) => ({
+            firstName: member.firstName,
+            familyName: member.familyName,
+            relationship: member.relationship,
+            dateOfBirth: member.dateOfBirth,
+            wellnessNotes: member.wellnessNotes,
+            guardianConfirmed: member.guardianConfirmed,
+          })),
         }),
       });
 
@@ -258,16 +283,40 @@ function Signup() {
                 />
               </label>
               <label>
-                Age
+                Date of Birth <strong>*</strong>
                 <input
-                  name="age"
-                  value={form.age}
+                  name="dateOfBirth"
+                  value={form.dateOfBirth}
                   onChange={handleChange}
-                  placeholder="Enter your age"
-                  type="number"
+                  max={new Date().toISOString().slice(0, 10)}
+                  required
+                  type="date"
                 />
+                {form.dateOfBirth && <small>Your current age: {calculateAge(form.dateOfBirth)}</small>}
               </label>
             </div>
+
+            <section className="profile-family-section">
+              <div className="profile-family-heading">
+                <div><h2>Family Members</h2><p>Optional: add family members whose wellness journeys you would like to manage from your account.</p></div>
+                <button type="button" className="profile-family-add" onClick={addFamilyMember}>+ Add Family Member</button>
+              </div>
+              {familyMembers.map((member, index) => {
+                const memberAge = calculateAge(member.dateOfBirth);
+                return <fieldset className="profile-family-member" key={member.id}>
+                  <legend>Family Member {index + 1}</legend>
+                  <button type="button" className="profile-family-remove" onClick={() => removeFamilyMember(member.id)}>Remove</button>
+                  <div className="form-grid">
+                    <label>First Name <strong>*</strong><input value={member.firstName} onChange={(event) => updateFamilyMember(member.id, "firstName", event.target.value)} required /></label>
+                    <label>Family Name <strong>*</strong><input value={member.familyName} onChange={(event) => updateFamilyMember(member.id, "familyName", event.target.value)} required /></label>
+                    <label>Relationship <strong>*</strong><select value={member.relationship} onChange={(event) => updateFamilyMember(member.id, "relationship", event.target.value)} required><option value="" disabled>Select relationship</option><option>Child</option><option>Spouse / Partner</option><option>Parent</option><option>Sibling</option><option>Other dependent</option></select></label>
+                    <label>Date of Birth <strong>*</strong><input type="date" max={new Date().toISOString().slice(0, 10)} value={member.dateOfBirth} onChange={(event) => updateFamilyMember(member.id, "dateOfBirth", event.target.value)} required />{memberAge !== null && <small>Current age: {memberAge}</small>}</label>
+                    <label className="full-width">Wellness Notes <strong>*</strong><textarea required value={member.wellnessNotes} onChange={(event) => updateFamilyMember(member.id, "wellnessNotes", event.target.value)} placeholder="Current symptoms, allergies, wellness goals, or other helpful notes" /></label>
+                  </div>
+                  {memberAge !== null && memberAge < 18 && <label className="profile-guardian-confirm"><input type="checkbox" checked={member.guardianConfirmed} onChange={(event) => updateFamilyMember(member.id, "guardianConfirmed", event.target.checked)} required /> I confirm that I am the parent or legal guardian and may manage this minor's information.</label>}
+                </fieldset>;
+              })}
+            </section>
 
             <div className="form-section-title">
               <span><HiOutlineHeart /></span>

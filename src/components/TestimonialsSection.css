@@ -410,7 +410,7 @@
   color: #4b5563;
   line-height: 1.8;
   min-height: 60px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .user-info {
@@ -428,6 +428,10 @@
   border-radius: 14px;
   border: 2px solid rgba(212, 196, 225, 0.3);
   transition: border-color 0.3s ease;
+}
+
+.user-info .profile-name {
+  font-size: 18px;
 }
 
 /* ==================================

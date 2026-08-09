@@ -72,15 +72,15 @@ textarea {
   min-height: 92px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 178px minmax(0, 1fr) auto;
+  grid-template-columns: 200px minmax(0, 1fr) auto;
   gap: clamp(18px, 2.8vw, 40px);
   align-items: center;
   background: #ffffff;
 }
 
 .brand {
-  width: 178px;
-  flex: 0 0 178px;
+  width: 200px;
+  flex: 0 0 200px;
   display: flex;
   align-items: center;
   background: transparent;
@@ -89,7 +89,7 @@ textarea {
 
 .brand img {
   width: 100%;
-  height: 72px;
+  height: 80px;
   display: block;
   object-fit: contain;
   object-position: left center;
@@ -113,7 +113,7 @@ textarea {
   color: #0f1d31;
   font-size: 18px;
   line-height: 1.3;
-  font-weight: 400;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -304,12 +304,12 @@ textarea {
   }
 
   .brand {
-    width: 170px;
-    flex-basis: 170px;
+    width: 185px;
+    flex-basis: 185px;
   }
 
   .brand img {
-    height: 66px;
+    height: 72px;
   }
 
   .nav-links {

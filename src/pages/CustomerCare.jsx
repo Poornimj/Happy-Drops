@@ -13,7 +13,7 @@ const shippingPage = {
     { title: "Estimated delivery time", paragraphs: ["Orders are normally prepared within 1–3 business days and delivered within approximately 2–5 business days after dispatch. Weekends, holidays, remote locations, and exceptional demand may add time."] },
     { title: "Order tracking", paragraphs: ["Keep your order number from checkout. You can use it with the order email on the Track Order page to see the latest recorded status."] },
     { title: "Delivery details", paragraphs: ["Customers are responsible for entering a complete name, street address, postal code, city, country, email, and phone number. Contact us promptly if a delivery detail is incorrect."] },
-    { title: "Problems with delivery", paragraphs: ["If a package is delayed, damaged, or missing, contact info@happydrops.com with your order number. Please retain the packaging and photographs when reporting damage."] },
+    { title: "Problems with delivery", paragraphs: ["If a package is delayed, damaged, or missing, contact info@happydrops.fi with your order number. Please retain the packaging and photographs when reporting damage."] },
   ],
 };
 
@@ -27,7 +27,7 @@ const privacyPage = {
       title: "Who is responsible for your data?",
       paragraphs: [
         "Happy Drops is the controller of personal data processed through this website. Our contact address is Helsinki XR Center, Hämeentie 135 A, 00560 Helsinki, Finland.",
-        "Questions, privacy requests, and concerns can be sent to info@happydrops.com.",
+        "Questions, privacy requests, and concerns can be sent to info@happydrops.fi.",
       ],
     },
     {
@@ -129,7 +129,7 @@ const privacyPage = {
         "Receive eligible data in a structured, commonly used, machine-readable format.",
         "Submit a complaint to the Office of the Data Protection Ombudsman in Finland.",
       ],
-      closing: "To exercise a right, email info@happydrops.com. We may need to verify your identity before completing the request.",
+      closing: "To exercise a right, email info@happydrops.fi. We may need to verify your identity before completing the request.",
     },
     {
       title: "Cookies and similar technologies",
@@ -159,7 +159,7 @@ const privacyPage = {
     {
       title: "Contact us",
       paragraphs: [
-        "Email: info@happydrops.com",
+        "Email: info@happydrops.fi",
         "Postal address: Happy Drops, Helsinki XR Center, Hämeentie 135 A, 00560 Helsinki, Finland.",
       ],
     },
@@ -175,7 +175,7 @@ const termsPage = {
     {
       title: "About Happy Drops",
       paragraphs: [
-        "The website is operated by Happy Drops from Helsinki XR Center, Hämeentie 135 A, 00560 Helsinki, Finland. You can contact us at info@happydrops.com.",
+        "The website is operated by Happy Drops from Helsinki XR Center, Hämeentie 135 A, 00560 Helsinki, Finland. You can contact us at info@happydrops.fi.",
         "The registered business name, Business ID, and other mandatory trader information must be displayed here before commercial production launch.",
       ],
     },
@@ -302,13 +302,13 @@ const termsPage = {
       title: "Governing law and disputes",
       paragraphs: [
         "These terms are governed by Finnish law, without removing mandatory protections available to consumers in their country of residence.",
-        "Please contact info@happydrops.com first so we can try to resolve a concern. Finnish consumers may also seek guidance from the Finnish Competition and Consumer Authority’s Consumer Advisory Services and refer an eligible dispute to the Finnish Consumer Disputes Board. You may also use any court or dispute process available under mandatory law.",
+        "Please contact info@happydrops.fi first so we can try to resolve a concern. Finnish consumers may also seek guidance from the Finnish Competition and Consumer Authority’s Consumer Advisory Services and refer an eligible dispute to the Finnish Consumer Disputes Board. You may also use any court or dispute process available under mandatory law.",
       ],
     },
     {
       title: "Contact us",
       paragraphs: [
-        "Email: info@happydrops.com",
+        "Email: info@happydrops.fi",
         "Postal address: Happy Drops, Helsinki XR Center, Hämeentie 135 A, 00560 Helsinki, Finland.",
       ],
     },
@@ -379,7 +379,7 @@ function CustomerCare({ type }) {
           <h2>Need help?</h2>
           <p>Contact Happy Drops and include your order or booking number when relevant.</p>
         </div>
-        <a href="mailto:info@happydrops.com">info@happydrops.com</a>
+        <a href="mailto:info@happydrops.fi">info@happydrops.fi</a>
         <Link to="/track-order">Track an order</Link>
       </aside>
     </main>

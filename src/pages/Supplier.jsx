@@ -317,7 +317,7 @@ function Supplier() {
             <HiOutlineMail />
             <span>
               Prefer email?
-              <a href="mailto:info@happydrops.com">info@happydrops.com</a>
+              <a href="mailto:info@happydrops.fi">info@happydrops.fi</a>
             </span>
           </div>
         </div>

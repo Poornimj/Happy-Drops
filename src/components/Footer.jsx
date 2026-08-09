@@ -7,10 +7,6 @@ function Footer() {
     <footer className="shared-footer">
       <div className="footer-brand">
         <img src={footerLogo} alt="Happy Drops" />
-        <p>
-          Empowering people to live happier, healthier lives and achieve
-          longevity through the healing power of nature.
-        </p>
       </div>
 
       <div className="footer-column">
@@ -34,13 +30,13 @@ function Footer() {
         <h3>My Account</h3>
         <Link to="/login">Login / Register</Link>
         <Link to="/my-profile">My Profile</Link>
-        <Link to="/wishlist">Wishlist</Link>
+        <Link to="/wishlist">Happy Wishes</Link>
         <Link to="/track-order">Track Order</Link>
       </div>
 
       <div className="footer-column">
         <h3>Get in Touch</h3>
-        <a href="mailto:info@happydrops.com">info@happydrops.com</a>
+        <a href="mailto:info@happydrops.fi">info@happydrops.fi</a>
         <span>Helsinki XR Center</span>
         <span>Hameentie 135 A</span>
         <span>00560 Helsinki</span>
