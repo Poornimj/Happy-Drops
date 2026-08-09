@@ -20,7 +20,7 @@ function LavenderParticles({ active }) {
         id: Date.now() + Math.random(),
         x: Math.random() * 100 - 50, // Relative to center of welcome-header2
         y: 0,
-        size: Math.random() * 8 + 4,
+        size: Math.random() * 10 + 6,
         speed: Math.random() * 0.5 + 0.3,
         opacity: Math.random() * 0.5 + 0.3,
         sway: Math.random() * 2 - 1,

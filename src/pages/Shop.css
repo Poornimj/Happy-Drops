@@ -149,6 +149,87 @@
   color: white;
 }
 
+.shop-concern-browser {
+  margin-top: 28px;
+  padding: 22px;
+  border-radius: 14px;
+  background: #f8f3fb;
+}
+
+.shop-concern-browser h3 {
+  margin: 0 0 14px;
+  color: #173f27;
+}
+
+.shop-clear-filters,
+.shop-no-results button {
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: #173f27;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.shop-concern-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.shop-concern-list .category {
+  min-width: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.shop-no-results {
+  padding: 42px 20px;
+  border: 1px dashed #d9c9e4;
+  border-radius: 12px;
+  text-align: center;
+  background: #fbf8fd;
+}
+
+.shop-no-results h3 {
+  margin: 0 0 8px;
+}
+
+.shop-no-results p {
+  margin: 0 0 18px;
+  color: #4f655a;
+}
+
+.food-search-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.food-search-summary h2 {
+  margin: 0;
+}
+
+.food-search-summary button {
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: #173f27;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .food-search-summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
 .shop-page .product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -184,7 +265,7 @@
   border-radius: 999px;
   background: #173f27;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   font-family: "Segoe UI", Arial, sans-serif;
 }
@@ -212,30 +293,30 @@
 .shop-page .product-info p {
   margin: 4px 0 8px;
   font-family: Georgia, serif;
-  font-size: 13px;
+  font-size: 15px;
   color: #4f655a;
 }
 :is(.shop-page, .detail-page) .product-function {
   display: block;
   margin: 4px 0 8px;
   color: #12192b;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
 }
 
 :is(.shop-page, .detail-page) .rating span {
   color: #ddb742;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 :is(.shop-page, .detail-page) .rating small {
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .shop-page .product-info h4 {
   margin: 0 0 8px;
   color:  #a67ac5;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .cart-btn {
@@ -250,7 +331,7 @@
   border-radius: 999px;
   background: #c3cbb9;
   color: #173f27;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -438,13 +519,13 @@
 
 .shop-page .benefit h4 {
   margin: 0;
-  font-size: 13px;
+  font-size: 16px;
   color: #173f27;
 }
 
 .shop-page .benefit p {
   margin: 2px 0 0;
-  font-size: 11px;
+  font-size: 15px;
   color: #4f655a;
 }
 
@@ -519,6 +600,11 @@
   background: white;
 }
 
+.detail-image-box img.circle-calm-image {
+  object-fit: cover;
+  object-position: center center;
+}
+
 .product-id {
   margin: 0 0 10px;
   color:#173f27;
@@ -533,7 +619,7 @@
 
 .detail-description {
   color: #4f655a;
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.6;
 }
 
@@ -561,7 +647,7 @@
   border: 1px solid #dcc8ef;
   border-radius: 999px;
   background: white;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #173f27;
 }
@@ -574,6 +660,28 @@
   color: #173f27;
   font-weight: 700;
   cursor: pointer;
+}
+
+.detail-wishlist {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: 1px solid #17492c;
+  border-radius: 999px;
+  background: #fff;
+  color: #17492c;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .detail-wishlist {
+    margin: 10px 0 0;
+  }
 }
 .detail-box {
   background: #f7f1fa !important;
@@ -644,10 +752,21 @@
   border-top: 1px solid #dcc8ef;
 }
 
+.food-product-image {
+  width: 100%;
+  padding: 0 16px;
+  border-radius: 18px;
+  background: white;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
 .food-product-image img {
   width: 100%;
   height: 300px;
-  object-fit: contain;
+  display: block;
+  object-fit: cover;
+  object-position: center;
   border-radius: 14px;
   background: white;
 }
@@ -682,7 +801,7 @@
   border: 2px solid #dcc8ef;
   border-radius: 999px;
   background: white;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 @media (max-width: 750px) {
@@ -721,7 +840,7 @@
   max-width: 580px;
   margin: 0 0 24px;
   color: #4f655a;
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.6;
 }
 
@@ -762,7 +881,7 @@
 
   color: #173f27;
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
 
   appearance: none;
@@ -777,13 +896,13 @@
 .quantity-label select option {
   color: #173f27;
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
 }
 
 .food-product-info select,
 .food-product-info select option {
-  font-size: 18px !important;
+  font-size: 20px !important;
   font-weight: 600;
 }
 .food-quantity select {
@@ -806,4 +925,9 @@
   top: 24px;
   left: 24px;
   z-index: 5;
+}
+.shop-page,
+.detail-page,
+.food-page {
+  font-size: 18px;
 }

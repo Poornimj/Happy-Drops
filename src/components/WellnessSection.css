@@ -258,7 +258,7 @@
 }
 
 .premium-card p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   color: #374151;
   font-weight: 500;
@@ -450,6 +450,10 @@
 
   position: relative;
   overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .concerns-btn::before {
@@ -559,7 +563,7 @@
 }
 
   .premium-card p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
 
   color: #6b7280;

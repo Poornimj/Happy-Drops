@@ -1,0 +1,289 @@
+/*
+ * Cross-device safeguards.
+ * These rules only adapt the existing layouts; visual styling remains owned by
+ * the component and page stylesheets.
+ */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 0;
+}
+
+body {
+  overflow-x: clip;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+}
+
+main,
+section,
+article,
+aside,
+header,
+footer,
+nav,
+form,
+div {
+  min-width: 0;
+}
+
+/* Keep the shop hero copy fluid instead of forcing a desktop width. */
+.shop-page .hero .hero-text {
+  width: min(760px, 100%) !important;
+}
+
+/* Large tablets and compact laptops. */
+@media (max-width: 1100px) {
+  .shop-page .product-grid,
+  .shop-page .season-products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-us-page [class*="grid"],
+  .about-page [class*="grid"] {
+    min-width: 0;
+  }
+}
+
+/* Tablets and landscape phones. */
+@media (max-width: 900px) {
+  .detail-main,
+  .detail-box,
+  .category-layout,
+  .food-product {
+    min-width: 0;
+  }
+
+  .shop-page .hero .hero-text,
+  .shop-page .hero .hero-text h1 {
+    max-width: 100% !important;
+  }
+
+  .modal-backdrop {
+    padding: 16px;
+  }
+
+  .recipe-modal,
+  .wellness-modal,
+  .history-modal {
+    width: min(100%, 980px);
+    max-height: calc(100dvh - 32px);
+  }
+}
+
+/* Phones. */
+@media (max-width: 680px) {
+  :root {
+    --hd-page-width: calc(100% - 24px);
+  }
+
+  .page-container,
+  .shop-container,
+  .detail-page,
+  .food-page {
+    width: min(100% - 24px, var(--hd-page-width, 100%));
+    margin-inline: auto;
+  }
+
+  h1 {
+    overflow-wrap: anywhere;
+  }
+
+  .shop-page .hero .hero-text h1 {
+    font-size: clamp(32px, 10vw, 40px) !important;
+  }
+
+  .shop-page .product-grid,
+  .shop-page .season-products {
+    grid-template-columns: 1fr;
+  }
+
+  .food-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .food-hero-content {
+    padding: 30px 22px;
+  }
+
+  .food-hero-image-wrap,
+  .food-hero-image {
+    min-height: 220px;
+  }
+
+  .food-hero-image-wrap::before {
+    background: linear-gradient(
+      180deg,
+      #fbf8f1 0%,
+      rgba(251, 248, 241, 0.25) 22%,
+      transparent 48%
+    );
+  }
+
+  .food-product-list {
+    padding: 12px 18px;
+  }
+
+  .food-product {
+    gap: 20px;
+    padding: 24px 0;
+  }
+
+  .food-product-image img {
+    height: min(70vw, 300px);
+  }
+
+  .quantity-label,
+  .quantity-label select,
+  .food-product-info label {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .modal-backdrop {
+    padding: 0;
+  }
+
+  .recipe-modal,
+  .wellness-modal,
+  .history-modal {
+    width: 100%;
+    max-height: 100dvh;
+    border-radius: 0;
+  }
+
+  .pickup-modal-actions,
+  .history-grid,
+  .history-card {
+    grid-template-columns: 1fr;
+  }
+
+  .history-modal h3 {
+    margin-inline: 36px;
+    font-size: clamp(26px, 8vw, 34px);
+  }
+
+  .history-tabs {
+    height: auto;
+    min-height: 50px;
+  }
+
+  .wellness-topic-panel {
+    padding-left: 0;
+  }
+
+  .supplier-primary-action,
+  .supplier-form button,
+  .checkout-pay-button,
+  .detail-cart {
+    width: 100%;
+  }
+}
+
+/* Narrow phones. */
+@media (max-width: 420px) {
+  .navbar-container {
+    padding-inline: 12px;
+  }
+
+  .navbar-logo img {
+    max-width: 132px;
+  }
+
+  .header-icon-container {
+    display: none;
+  }
+
+  .header-subtitle {
+    display: none;
+  }
+
+  .modal-overlay {
+    padding: 0;
+  }
+
+  .modal-container {
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+
+  .modal-content {
+    padding: 8px;
+  }
+
+  .sidebar-item {
+    min-width: 72px;
+  }
+
+  .answer-scale {
+    grid-template-columns: 1fr;
+  }
+
+  .status-row {
+    display: none;
+  }
+
+  .completion-page {
+    padding: 28px 16px;
+  }
+
+  .completion-page h2 {
+    font-size: clamp(32px, 11vw, 48px);
+  }
+
+  .checkout-fields,
+  .supplier-form-grid,
+  .supplier-standard-list {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-card,
+  .supplier-form {
+    padding-inline: 16px;
+  }
+}
+
+/* Short screens, including landscape phones and small laptop windows. */
+@media (max-height: 700px) {
+  .modal-overlay {
+    align-items: stretch;
+  }
+
+  .modal-container {
+    max-height: calc(100dvh - 16px);
+  }
+
+  .modal-content {
+    overscroll-behavior: contain;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

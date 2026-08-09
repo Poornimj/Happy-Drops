@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import "./Shop.css";
 
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { addProductToCart } from "../lib/api";
 
 import DriedLavenderHero from "../assets/images/Shop_DriedLavenderHero.jpeg?shopHero=1";
 import SleepSupOil from "../assets/images/Shop_SleepSupOil.png";
@@ -19,7 +20,8 @@ import BloomOil from "../assets/images/Shop_BoostHairGrowths.png";
 import ClarityOil from "../assets/images/Shop_TwilightDropss.png";        
 import NourishOil from "../assets/images/Shop_SkinDrynesses.png";         
 import CalmOil from "../assets/images/Shop_HeadacheReliefs.png";          
-import FlexibilityOil from "../assets/images/Shop_JointMoves.png";       
+import CircleCalmOil from "../assets/images/Shop_CircleCalm.png";
+import CircleCalmOilHover from "../assets/images/Shop_CircleCalm_Hover.png";
 import BalanceOil from "../assets/images/Shop_VitalGuards.png";           
 import HarmonyOil from "../assets/images/Shop_Cherishmoods.png";          
 import PassionOil from "../assets/images/Shop_MensEnergy.png";           
@@ -28,15 +30,6 @@ import JoyOil from "../assets/images/Shop_Joymoods.png";
 import PresenceOil from "../assets/images/Shop_SpiritualFocus.png";       
 import VitalityOil from "../assets/images/Shop_EnergyGain.png"; 
          
-// Season product images
-
-
-import SummerOil from "../assets/images/Shop_MosquitoSpray.png";
-import WinterOil from "../assets/images/Shop_SaunaRelaxation.png";
-
-
-
-
 // Hover images 
 
 import DewOilHover from "../assets/images/Shop_SkinMoisturesHover.png"; 
@@ -50,7 +43,6 @@ import BloomOilHover from "../assets/images/Shop_BoostHairGrowthsHover.png";
 import ClarityOilHover from "../assets/images/Shop_ConcentrationOilHover.png";
 import NourishOilHover from "../assets/images/Shop_SkinCaresHover.png";
 import CalmOilHover from "../assets/images/Shop_HeadacheReliefsHover.png";
-import FlexibilityOilHover from "../assets/images/Shop_JointEasesHover.png";
 import BalanceOilHover from "../assets/images/Shop_HealthylifeHover.png";
 import HarmonyOilHover from "../assets/images/Shop_SleepSupportOilHover.png";
 import PassionOilHover from "../assets/images/Shop_VitalityOilHover.png";
@@ -59,55 +51,74 @@ import JoyOilHover from "../assets/images/Shop_JoyMoodHover.png";
 import PresenceOilHover from "../assets/images/Shop_MeditationHover.png";
 import VitalityOilHover from "../assets/images/Shop_EnergyBoostHover.png";
 
-// Season hover images
-
-
-import SummerOilHover from "../assets/images/Shop_SummerOilHover.png";
-
-import WinterOilHover from "../assets/images/Shop_WinterOilHover.png";
-
 const products = [
   { id: 1, name: "Dew", function: "Skin Moisture", desc: "Fresh, soft, glowing,silky smooth, hydrated skin", price: "24.90", badge: "Best Seller", reviews: 120, image: DewOil, hoverImage: DewOilHover },
-  { id: 2, name: "Timeless", function: "Anti-Wrinkle", desc: "Beauty that stays graceful with no limits of age", price: "19.90", badge: "Popular", reviews: 98, image: TimelessOil, hoverImage: TimelessOilHover },
-  { id: 3, name: "Radiance", function: "Skin Tightening", desc: "Firm, young-looking, glowing radiant skin", price: "16.90", reviews: 76, image: RadianceOil, hoverImage: RadianceOilHover },
+  { id: 2, name: "Timeless", function: "Skin Care", desc: "Gentle care for a graceful everyday routine", price: "19.90", badge: "Popular", reviews: 98, image: TimelessOil, hoverImage: TimelessOilHover },
+  { id: 3, name: "Radiance", function: "Radiance Care", desc: "Fresh, glowing support for your daily self-care", price: "16.90", reviews: 76, image: RadianceOil, hoverImage: RadianceOilHover },
   { id: 4, name: "Release", function: "Neck & Shoulder Comfort", desc: "Let go of tension, stiffness, and stress", price: "17.90", reviews: 120, image: ReleaseOil, hoverImage: ReleaseOilHover },
   { id: 5, name: "Flow", function: "Waist Comfort", desc: "Easy movement quickly and body comfort", price: "22.00", reviews: 120, image: FlowOil, hoverImage: FlowOilHover },
   { id: 6, name: "Stride", function: "Joint & Knee Support", desc: "Walk and move with confidence everywhere", price: "19.90", reviews: 120, image: StrideOil, hoverImage: StrideOilHover },
   { id: 7, name: "Peace", function: "Sleep Like a Baby", desc: "Deep sleep in sweeet dreams, rest, and calm feeling", price: "21.90", reviews: 120, image: PeaceOil, hoverImage: PeaceOilHover },
-  { id: 8, name: "Bloom", function: "Hair Growth", desc: "Hair growth, health, strong and vitality", price: "21.90", reviews: 120, image: BloomOil, hoverImage: BloomOilHover },
+  { id: 8, name: "Bloom", function: "Hair Care", desc: "Nourishing care for healthy-looking hair and scalp", price: "21.90", reviews: 120, image: BloomOil, hoverImage: BloomOilHover },
   { id: 9, name: "Clarity", function: "Concentration", desc: "Clear mind, focus, and sharp thinking", price: "22.90", reviews: 120, image: ClarityOil, hoverImage: ClarityOilHover },
   { id: 10, name: "Nourish", function: "Dry Skin Relief", desc: "Deep care for dry, cracked, and sensitive skin", price: "21.90", reviews: 98, image: NourishOil, hoverImage: NourishOilHover },
-  { id: 11, name: "Calm", function: "Headache Comfort", desc: "Relaxation, balance, easy and  comfort", price: "23.90", reviews: 76, image: CalmOil, hoverImage: CalmOilHover },
-  { id: 12, name: "Flexibility", function: "Joint Comfort", desc: "Better movement and joint comfort forever young", price: "24.90", reviews: 120, image: FlexibilityOil, hoverImage: FlexibilityOilHover },
-  { id: 13, name: "Balance", function: "Weight Management", desc: "Support for a healthyand balanced lifestyle", price: "24.90", reviews: 120, image: BalanceOil, hoverImage: BalanceOilHover },
-  { id: 14, name: "Harmony", function: "Digestive Wellness", desc: "Stomach comfort and inner balance like never before", price: "21.90", reviews: 120, image: HarmonyOil, hoverImage: HarmonyOilHover },
-  { id: 15, name: "Passion", function: "Men’s Vitality", desc: "Confidence, energy, and connection with your inner self", price: "22.50", reviews: 120, image: PassionOil, hoverImage: PassionOilHover },
-  { id: 16, name: "Grace", function: "Women’s Wellness", desc: "Feminine balance and self-care rituals", price: "24.00", reviews: 120, image: GraceOil, hoverImage: GraceOilHover },
-  { id: 17, name: "Joy", function: "Mood Enhancement", desc: "Happiness, positivity, good mood in every moment", price: "16.90", reviews: 120, image: JoyOil, hoverImage: JoyOilHover },
-  { id: 18, name: "Presence", function: "Meditation & Spirituality", desc: "Mindfulness, inner peace, spiritual focus", price: "24.90", reviews: 120, image: PresenceOil, hoverImage: PresenceOilHover },
-  { id: 19, name: "Vitality", function: "Energy Boost", desc: "Natural energy and motivation boost for a vibrant life", price: "23.50", reviews: 120, image: VitalityOil, hoverImage: VitalityOilHover },
+  { id: 11, name: "Calm", function: "Calming Comfort", desc: "Relaxing support for a peaceful everyday routine", price: "23.90", reviews: 76, image: CalmOil, hoverImage: CalmOilHover },
+  { id: 12, name: "Circle Calm", function: "Calm Support", desc: "A soothing blend for quiet self-care moments and a peaceful atmosphere", price: "24.90", reviews: 120, image: CircleCalmOil, hoverImage: CircleCalmOilHover },
+  { id: 13, name: "Balance", function: "Daily Balance", desc: "Support for a steady and balanced lifestyle", price: "24.90", reviews: 120, image: BalanceOil, hoverImage: BalanceOilHover },
+  { id: 14, name: "Harmony", function: "Digestive Comfort", desc: "Gentle care for a calm and comfortable routine", price: "21.90", reviews: 120, image: HarmonyOil, hoverImage: HarmonyOilHover },
+  { id: 15, name: "Passion", function: "Men’s Wellness", desc: "Confidence and care for your personal routine", price: "22.50", reviews: 120, image: PassionOil, hoverImage: PassionOilHover },
+  { id: 16, name: "Grace", function: "Self-Care", desc: "Feminine balance and gentle daily rituals", price: "24.00", reviews: 120, image: GraceOil, hoverImage: GraceOilHover },
+  { id: 17, name: "Joy", function: "Mood Support", desc: "Uplifting support for positive everyday moments", price: "16.90", reviews: 120, image: JoyOil, hoverImage: JoyOilHover },
+  { id: 18, name: "Presence", function: "Mindful Living", desc: "Calm focus and peaceful presence for daily routines", price: "24.90", reviews: 120, image: PresenceOil, hoverImage: PresenceOilHover },
+  { id: 19, name: "Vitality", function: "Daily Vitality", desc: "Fresh support for an active and vibrant day", price: "23.50", reviews: 120, image: VitalityOil, hoverImage: VitalityOilHover },
 ];
 
-const seasonProducts = [
-
-  { ...products.find((product) => product.id === 1), badge: "Spring" },
-  { ...products.find((product) => product.id === 10), badge: "Spring" },
-
-  { id: 20, name: "Mosquito Spray", function: "Summer Protection", desc: "Fresh outdoor comfort and mosquito protection", price: "18.90", badge: "Summer", reviews: 120, image: SummerOil, hoverImage: SummerOilHover },
-
-  { ...products.find((product) => product.id === 17), badge: "Autumn" },
-
-  { id: 21, name: "Sauna Relaxation", function: "Winter Relaxation", desc: "Warm sauna comfort, deep calm, and relaxation", price: "22.90", badge: "Winter", reviews: 120, image: WinterOil, hoverImage: WinterOilHover },
-
+const concernFilters = [
+  { slug: "all", label: "All Oils", ids: products.map((product) => product.id) },
+  { slug: "skin-care", label: "Skin Care", ids: [1, 2, 3, 10] },
+  { slug: "sleep", label: "Sleep", ids: [7] },
+  { slug: "stress", label: "Stress & Comfort", ids: [4, 11, 17] },
+  { slug: "hair-care", label: "Hair Care", ids: [8] },
+  { slug: "movement", label: "Comfort", ids: [5, 6, 12] },
+  { slug: "focus", label: "Focus", ids: [9, 18] },
+  { slug: "digestion", label: "Digestion", ids: [14] },
+  { slug: "energy", label: "Energy & Vitality", ids: [15, 19] },
+  { slug: "wellness", label: "Daily Wellness", ids: [13, 16] },
 ];
 
 function Shop() {
   const [hoveredProductId, setHoveredProductId] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedConcern = searchParams.get("concern") || "all";
+  const appliedSearch = searchParams.get("q") || "";
+  const activeConcern = concernFilters.find((item) => item.slug === selectedConcern) || concernFilters[0];
+  const normalizedSearch = appliedSearch.trim().toLowerCase();
+  const filteredProducts = products.filter((product) => (
+    activeConcern.ids.includes(product.id)
+    && (!normalizedSearch || [product.name, product.function, product.desc]
+      .some((value) => value.toLowerCase().includes(normalizedSearch)))
+  ));
+
+  const applyConcern = (slug) => {
+    const next = new URLSearchParams(searchParams);
+    if (slug === "all") next.delete("concern");
+    else next.set("concern", slug);
+    setSearchParams(next);
+  };
+
+  const clearFilters = () => {
+    setSearchParams({});
+  };
   
 
-  const addToCart = (event, product) => {
+  const addToCart = async (event, product) => {
     event.preventDefault();
-    alert(`${product.name} added to cart`);
+    try {
+      await addProductToCart(product.name);
+      alert(`${product.name} added to cart`);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
@@ -146,10 +157,6 @@ function Shop() {
             Ready-Made Oils
           </button>
 
-          <a href="#seasons" className="category">
-              Seasonal Oils
-          </a>
-
           <a
             href="https://www.doterra.com/US/en/shop"
             className="category"
@@ -167,7 +174,22 @@ function Shop() {
              Food Related
            </Link>
         </div>
-        
+
+        <div className="shop-concern-browser">
+          <h3>Shop by wellness concern</h3>
+          <div className="shop-concern-list" aria-label="Wellness concerns">
+            {concernFilters.map((concern) => (
+              <button
+                className={`category ${activeConcern.slug === concern.slug ? "active" : ""}`}
+                type="button"
+                key={concern.slug}
+                onClick={() => applyConcern(concern.slug)}
+              >
+                {concern.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </section>
  
 
@@ -175,14 +197,17 @@ function Shop() {
 
       <section className="featured-products" id="featured">
         <div className="featured-header">
-           <h2>Featured Products</h2>
-
-
+           <h2>{activeConcern.label}{appliedSearch ? ` — “${appliedSearch}”` : ""}</h2>
+           {(appliedSearch || selectedConcern !== "all") && (
+             <button className="shop-clear-filters" type="button" onClick={clearFilters}>
+               Clear filters
+             </button>
+           )}
         </div>
 
 
         <div className="product-grid">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <Link to={`/shop/product/${product.id}`} className="product-card" key={product.id}>
               {product.badge && (
                 <span className={`product-badge ${product.badge === "Popular" ? "purple" : "dark"}`}>
@@ -221,58 +246,14 @@ function Shop() {
             </Link>
           ))}
         </div>
-      </section>
-
-      <section className="featured-products" id="seasons">
-  <div className="featured-header">
-    <h2>Seasonal Oils</h2>
-  </div>
-
-  <div className="product-grid">
-    {seasonProducts.map((product) => (
-      <Link to={`/shop/product/${product.id}`} className="product-card" key={product.id}>
-        {product.badge && (
-          <span className={`product-badge ${product.badge === "Popular" ? "purple" : "dark"}`}>
-            {product.badge}
-          </span>
-        )}
-
-        <img
-          src={
-            hoveredProductId === product.id && product.hoverImage
-              ? product.hoverImage
-              : product.image
-          }
-          alt={product.name}
-          onMouseEnter={() => setHoveredProductId(product.id)}
-          onMouseLeave={() => setHoveredProductId(null)}
-        />
-
-        <div className="product-info">
-          <h3>{product.name}</h3>
-
-          <small className="product-function">
-            {product.function}
-          </small>
-
-          <p>{product.desc}</p>
-
-          <div className="rating">
-            <span>★★★★★</span>
-            <small>({product.reviews})</small>
+        {filteredProducts.length === 0 && (
+          <div className="shop-no-results">
+            <h3>No matching products</h3>
+            <p>Try another search term or clear the selected concern.</p>
+            <button type="button" onClick={clearFilters}>View all products</button>
           </div>
-
-          <h4>€ {product.price}</h4>
-
-          <button className="cart-btn" onClick={(event) => addToCart(event, product)}>
-            <HiOutlineShoppingCart />
-            Add to Cart
-          </button>
-        </div>
-      </Link>
-    ))}
-  </div>
-</section>
+        )}
+      </section>
 
       <section className="bundle">
     <div className="bundle-visual">

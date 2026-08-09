@@ -20,7 +20,6 @@ import painrelief from "../assets/images/painrelief.png";
 function WellnessSection() {
   const [titleRef, titleVisible] = useScrollReveal();
   const [subtitleRef, subtitleVisible] = useScrollReveal();
-  const [buttonRef, buttonVisible] = useScrollReveal();
 
   const sectionRef = useRef(null);
 
@@ -83,7 +82,7 @@ function WellnessSection() {
     }, 3500);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [allCards.length]);
 
   return (
     <section className="wellness-section" ref={sectionRef}>
@@ -112,7 +111,7 @@ function WellnessSection() {
       >
         Discover personalized wellness solutions designed to support
         long-term health, vitality, and prevention through natural
-        ingredients, lifestyle medicine, and holistic wellbeing
+        ingredients, lifestyle rituals, and holistic wellbeing
         practices.
       </p>
 
@@ -154,18 +153,6 @@ function WellnessSection() {
           })}
         </div>
 
-        <button
-          className="concerns-btn scroll-reveal"
-          ref={buttonRef}
-          style={{
-            opacity: buttonVisible ? 1 : 0,
-            transform: buttonVisible
-              ? "translateY(0)"
-              : "translateY(40px)",
-          }}
-        >
-          View All Concerns
-        </button>
       </div>
     </section>
   );

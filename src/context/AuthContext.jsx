@@ -32,6 +32,9 @@ export function AuthProvider({ children }) {
       saveAuthSession(session, remember);
       setUser(session.user);
     },
+    updateUser(updatedUser) {
+      setUser(updatedUser);
+    },
     async logout() {
       try {
         if (getAuthToken()) await apiRequest("/api/auth/logout", { method: "POST", auth: true });

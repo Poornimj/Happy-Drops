@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import "./Shop.css";
+import { addProductToCart } from "../lib/api";
 
 import foodHero from "../assets/images/FoodR_FoodHero.png";
 
@@ -8,6 +9,8 @@ import magicSauce from "../assets/images/FoodR_magicSauce.png";
 import biotinSupplement from "../assets/images/FoodR_BiotinSupplement.png";
 import oliveOil from "../assets/images/FoodR_OliveOil.png";
 import hempSeedOil from "../assets/images/FoodR_HempSeedOil.png";
+import kombucha from "../assets/images/kombucha.png";
+import kefir from "../assets/images/FoodR_Kefir.png";
 
 const foodProducts = [
   {
@@ -46,11 +49,40 @@ const foodProducts = [
     price: "22.90",
     image: hempSeedOil,
   },
+  {
+    id: 105,
+    name: "Kombucha",
+    description:
+      "A refreshing fermented tea with a gently tangy flavour. Enjoy chilled as part of a balanced lifestyle and everyday food routine.",
+    amount: "330 ml",
+    price: "5.00",
+    image: kombucha,
+    searchAliases: "kompucha fermented tea probiotic drink",
+  },
+  {
+    id: 106,
+    name: "Kefir",
+    description:
+      "A naturally fermented milk drink with a smooth, mildly tangy flavour. Enjoy chilled with breakfast, snacks, or balanced meals.",
+    amount: "500 ml",
+    price: "6.50",
+    image: kefir,
+    searchAliases: "cafffeir fermented milk probiotic drink",
+  },
 ];
 
 
 function FoodRelated() {
   const [quantities, setQuantities] = useState({});
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("q")?.trim() || "";
+  const normalizedSearch = searchQuery.toLowerCase();
+  const filteredFoodProducts = foodProducts.filter((product) => (
+    !normalizedSearch
+    || [product.name, product.description, product.amount, product.searchAliases || ""]
+      .some((value) => value.toLowerCase().includes(normalizedSearch))
+    || ["food", "food related", "culinary", "supplement"].includes(normalizedSearch)
+  ));
 
   const updateQuantity = (productId, quantity) => {
     setQuantities((current) => ({
@@ -59,9 +91,14 @@ function FoodRelated() {
     }));
   };
 
-  const addToCart = (product) => {
+  const addToCart = async (product) => {
     const quantity = quantities[product.id] || 1;
-    alert(`${quantity} × ${product.name} added to cart`);
+    try {
+      await addProductToCart(product.name, quantity);
+      alert(`${quantity} × ${product.name} added to cart`);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
@@ -91,8 +128,15 @@ function FoodRelated() {
 
          
 
+        {searchQuery && (
+          <div className="food-search-summary">
+            <h2>Food results for “{searchQuery}”</h2>
+            <button type="button" onClick={() => setSearchParams({})}>View all food products</button>
+          </div>
+        )}
+
         <div className="food-product-list">
-          {foodProducts.map((product) => {
+          {filteredFoodProducts.map((product) => {
             const quantity = quantities[product.id] || 1;
 
             return (
@@ -143,6 +187,14 @@ function FoodRelated() {
             );
           })}
         </div>
+
+        {filteredFoodProducts.length === 0 && (
+          <div className="shop-no-results">
+            <h2>No matching food products</h2>
+            <p>Try another search or view all Food Related products.</p>
+            <button type="button" onClick={() => setSearchParams({})}>View all food products</button>
+          </div>
+        )}
     </main>
   );
 }

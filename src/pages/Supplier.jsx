@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   HiOutlineBadgeCheck,
   HiOutlineBeaker,
@@ -13,6 +13,8 @@ import {
 } from "react-icons/hi";
 
 import supplierHero from "../assets/images/supplier-hero-premium-v2.png";
+import { apiRequest } from "../lib/api";
+import { useAuth } from "../context/AuthContext";
 
 import "./Supplier.css";
 
@@ -89,13 +91,104 @@ const processSteps = [
   },
 ];
 
+async function fileToDocument(file, type) {
+  if (!file) return null;
+  if (file.size > 3 * 1024 * 1024) throw new Error("Each uploaded file must be smaller than 3 MB.");
+  const dataUrl = await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error("An uploaded file could not be read."));
+    reader.readAsDataURL(file);
+  });
+  return { type, name: file.name, dataUrl };
+}
+
 function Supplier() {
+  const { user } = useAuth();
   const [submitted, setSubmitted] = useState(false);
   const [supplierType, setSupplierType] = useState("");
+  const [submitError, setSubmitError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [applicationReference, setApplicationReference] = useState("");
+  const [adminApplications, setAdminApplications] = useState([]);
+  const [adminSearch, setAdminSearch] = useState("");
+  const [adminStatus, setAdminStatus] = useState("");
+  const [expandedApplicationId, setExpandedApplicationId] = useState(null);
+  const [adminMessage, setAdminMessage] = useState("");
 
-  const handleSubmit = (event) => {
+  const loadAdminApplications = useCallback(async () => {
+    if (user?.role !== "ADMIN") return;
+    const params = new URLSearchParams();
+    if (adminSearch.trim()) params.set("search", adminSearch.trim());
+    if (adminStatus) params.set("status", adminStatus);
+    try {
+      const result = await apiRequest(`/api/admin/suppliers?${params}`, { auth: true });
+      setAdminApplications(result.applications);
+    } catch (error) {
+      setAdminMessage(error.message);
+    }
+  }, [adminSearch, adminStatus, user]);
+
+  useEffect(() => {
+    loadAdminApplications();
+  }, [loadAdminApplications]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    setSubmitError("");
+    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    setIsSubmitting(true);
+    try {
+      const documents = (await Promise.all([
+        fileToDocument(form.get("spacePicture")?.size ? form.get("spacePicture") : null, "space-picture"),
+        fileToDocument(form.get("qualityCertificate")?.size ? form.get("qualityCertificate") : null, "quality-certificate"),
+      ])).filter(Boolean);
+      const result = await apiRequest("/api/suppliers", {
+        method: "POST",
+        body: JSON.stringify({
+          companyName: form.get("company"),
+          contactName: form.get("contact"),
+          email: form.get("email"),
+          address: form.get("address"),
+          website: form.get("website"),
+          supplierType: form.get("supplierType"),
+          spaceLocation: form.get("spaceLocation"),
+          dailyCustomers: form.get("dailyCustomers") || null,
+          averageCustomerSpend: form.get("averageCustomerSpend") || null,
+          hourlyPrice: form.get("hourlyPrice") || null,
+          partnershipStyle: form.get("partnershipStyle"),
+          availableTimes: form.get("availableTimes"),
+          offering: form.get("offering"),
+          documents,
+          consentGiven: true,
+        }),
+      });
+      setSubmitted(true);
+      setApplicationReference(result.application.id);
+      formElement.reset();
+      setSupplierType("");
+      await loadAdminApplications();
+    } catch (error) {
+      setSubmitError(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const updateApplication = async (application, status, adminNotes) => {
+    setAdminMessage("");
+    try {
+      const result = await apiRequest(`/api/admin/suppliers/${application.id}`, {
+        method: "PATCH",
+        auth: true,
+        body: JSON.stringify({ status, adminNotes }),
+      });
+      setAdminApplications((current) => current.map((item) => item.id === application.id ? { ...item, ...result.application } : item));
+      setAdminMessage("Supplier application updated.");
+    } catch (error) {
+      setAdminMessage(error.message);
+    }
   };
 
   return (
@@ -224,7 +317,7 @@ function Supplier() {
             <HiOutlineMail />
             <span>
               Prefer email?
-              <a href="mailto:info@happydrops.com">info@happydrops.com</a>
+              <a href="mailto:info@happydrops.fi">info@happydrops.fi</a>
             </span>
           </div>
         </div>
@@ -380,15 +473,88 @@ function Supplier() {
               be contacted about this supplier application.
             </span>
           </label>
-          <button type="submit">Submit supplier application</button>
+          <button type="submit" disabled={isSubmitting}>{isSubmitting ? "Submitting…" : "Submit supplier application"}</button>
           {submitted && (
             <p className="supplier-success" role="status">
               Thank you. Your supplier introduction is ready for review.
+              {applicationReference && <span> Reference: {applicationReference}</span>}
             </p>
           )}
+          {submitError && <p className="form-error" role="alert">{submitError}</p>}
         </form>
       </section>
+
+      {user?.role === "ADMIN" && (
+        <section className="supplier-admin-review">
+          <div className="supplier-section-heading">
+            <p className="supplier-kicker">Admin only</p>
+            <h2>Supplier application review</h2>
+          </div>
+          <div className="supplier-admin-filters">
+            <input type="search" value={adminSearch} onChange={(event) => setAdminSearch(event.target.value)} placeholder="Search company, contact, email, or type" />
+            <select value={adminStatus} onChange={(event) => setAdminStatus(event.target.value)}>
+              <option value="">All statuses</option>
+              <option value="SUBMITTED">Submitted</option>
+              <option value="UNDER_REVIEW">Under review</option>
+              <option value="APPROVED">Approved</option>
+              <option value="REJECTED">Rejected</option>
+              <option value="WITHDRAWN">Withdrawn</option>
+            </select>
+          </div>
+          {adminMessage && <p className="supplier-success">{adminMessage}</p>}
+          <div className="supplier-admin-list">
+            {adminApplications.length === 0 && <p>No supplier applications match these filters.</p>}
+            {adminApplications.map((application) => {
+              const isExpanded = expandedApplicationId === application.id;
+              return (
+                <article key={application.id}>
+                  <button type="button" onClick={() => setExpandedApplicationId(isExpanded ? null : application.id)}>
+                    <span><strong>{application.company_name}</strong><small>{application.email}</small></span>
+                    <span>{application.supplier_type}</span>
+                    <span>{application.status}</span>
+                    <span>{isExpanded ? "Hide" : "Review"}</span>
+                  </button>
+                  {isExpanded && (
+                    <SupplierAdminDetails application={application} onUpdate={updateApplication} />
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </main>
+  );
+}
+
+function SupplierAdminDetails({ application, onUpdate }) {
+  const [status, setStatus] = useState(application.status);
+  const [notes, setNotes] = useState(application.admin_notes || "");
+  return (
+    <div className="supplier-admin-details">
+      <dl>
+        <div><dt>Contact</dt><dd>{application.contact_name}</dd></div>
+        <div><dt>Address</dt><dd>{application.address || "—"}</dd></div>
+        <div><dt>Website</dt><dd>{application.website || "—"}</dd></div>
+        <div><dt>Offering</dt><dd>{application.offering || "—"}</dd></div>
+        {application.space_location && <div><dt>Space</dt><dd>{application.space_location}</dd></div>}
+        {application.daily_customers != null && <div><dt>Daily customers</dt><dd>{application.daily_customers}</dd></div>}
+        {application.hourly_price != null && <div><dt>Hourly price</dt><dd>{application.hourly_price}</dd></div>}
+      </dl>
+      {application.documents?.length > 0 && (
+        <div className="supplier-admin-documents">
+          {application.documents.map((document) => (
+            <a key={document.id} href={document.file_url} target="_blank" rel="noreferrer">{document.original_name}</a>
+          ))}
+        </div>
+      )}
+      <label>Status<select value={status} onChange={(event) => setStatus(event.target.value)}>
+        <option value="SUBMITTED">Submitted</option><option value="UNDER_REVIEW">Under review</option>
+        <option value="APPROVED">Approved</option><option value="REJECTED">Rejected</option><option value="WITHDRAWN">Withdrawn</option>
+      </select></label>
+      <label>Admin notes<textarea value={notes} onChange={(event) => setNotes(event.target.value)} /></label>
+      <button type="button" onClick={() => onUpdate(application, status, notes)}>Save review</button>
+    </div>
   );
 }
 

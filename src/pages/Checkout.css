@@ -103,6 +103,18 @@
   align-items: start;
 }
 
+.checkout-preview-notice {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 14px 18px;
+  border: 1px solid #d8b66d;
+  border-radius: 12px;
+  color: #624b16;
+  background: #fff8df;
+  font-weight: 700;
+  text-align: center;
+}
+
 .checkout-main,
 .checkout-sidebar {
   display: grid;
@@ -428,26 +440,26 @@
 }
 
 .checkout-pay-button {
-  width: 100%;
+  width: min(100%, 275px);
   min-height: 54px;
-  margin-top: 24px;
+  margin: 24px auto 0;
   border: 0;
-  border-radius: 9px;
+  border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
-  background: #234c35;
+  background: #a67ac5;
   color: #fff;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 800;
   transition: transform 160ms ease, background 160ms ease;
 }
 
 .checkout-pay-button:hover {
   transform: translateY(-2px);
-  background: #173f27;
+  background: #8f64b0;
 }
 
 .checkout-pay-button svg {
@@ -594,7 +606,7 @@
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
-  background: #315c38;
+  background: #a67ac5;
   color: #fff;
   font-weight: 800;
 }
@@ -873,7 +885,9 @@
 
 .checkout-billing-card .checkout-pay-button {
   grid-column: 1;
-  max-width: none;
+  width: min(100%, 275px);
+  max-width: 275px;
+  justify-self: center;
 }
 
 .checkout-billing-card .checkout-security {

@@ -1,6 +1,6 @@
 import "./TestimonialsSection.css";
-import { FaChevronLeft, FaChevronRight, FaHeart } from "react-icons/fa";
-import { useState, useRef, useEffect } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useState } from "react";
 import white2Decoration from "../assets/images/white2.png";
 
 function TestimonialsSection() {
@@ -9,7 +9,7 @@ function TestimonialsSection() {
       name: "Emma L.",
       image: "https://i.pravatar.cc/50?img=32",
       review:
-        "The personalized oil blend helped me sleep better and feel more relaxed every day.",
+        "I learned how to moisturize my sensitive skin with essential oils, and the healing effect was clearly visible after only one week. The results were so impressive that I stopped using my usual commercial products and now follow the Happy Drops oil method.",
       bio: "Yoga instructor and wellness enthusiast passionate about natural remedies.",
       location: "San Francisco, CA",
       wellnessInterests: ["Aromatherapy", "Yoga", "Meditation"],
@@ -20,7 +20,7 @@ function TestimonialsSection() {
       name: "Sophie M.",
       image: "https://i.pravatar.cc/50?img=47",
       review:
-        "Amazing workshops! Learned so much about natural wellness with my friends.",
+        "I attended the natural wellness workshops with my friends, and we learned so much together. The guidance was clear, practical, and easy to follow, giving us useful techniques that we can confidently include in our everyday routines.",
       bio: "Holistic nutrition coach helping families achieve balanced lifestyles.",
       location: "New York, NY",
       wellnessInterests: ["Nutrition", "Herbal Medicine", "Family Wellness"],
@@ -31,7 +31,7 @@ function TestimonialsSection() {
       name: "Daniel K.",
       image: "https://i.pravatar.cc/50?img=15",
       review:
-        "Finally, a wellness platform that understands my family's needs.",
+        "Happy Drops is finally a wellness platform that understands the different needs of my whole family. The personalized guidance has helped us make healthier choices and build simple wellness habits that are realistic and easy to maintain every day.",
       bio: "Father of three focused on creating healthy home environments.",
       location: "Austin, TX",
       wellnessInterests: ["Essential Oils", "Sleep Health", "Family Care"],
@@ -42,7 +42,7 @@ function TestimonialsSection() {
       name: "Maria R.",
       image: "https://i.pravatar.cc/50?img=23",
       review:
-        "The nutrition guidance has transformed my energy levels and overall wellbeing.",
+        "The nutrition guidance workshop transformed my energy levels and helped me concentrate better. It also supported my weight loss, reduced water retention and swelling, and made my body feel much lighter. The experience has been amazing, and I highly recommend it.",
       bio: "Corporate wellness advocate bringing balance to busy professionals.",
       location: "Chicago, IL",
       wellnessInterests: ["Stress Management", "Energy Healing", "Workplace Wellness"],
@@ -53,7 +53,7 @@ function TestimonialsSection() {
       name: "James T.",
       image: "https://i.pravatar.cc/50?img=12",
       review:
-        "Incredible results with the sleep sounds and relaxation techniques. Highly recommend!",
+        "I had incredible results from the sound bath and breathing-based relaxation techniques. I can now sleep much longer and more deeply, wake up feeling better, and notice that my brain fog has cleared. I would definitely recommend the experience.",
       bio: "Sleep specialist dedicated to helping people achieve restful nights.",
       location: "Seattle, WA",
       wellnessInterests: ["Sleep Science", "Sound Therapy", "Relaxation Techniques"],
@@ -65,31 +65,7 @@ function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState("next");
   const [isAnimating, setIsAnimating] = useState(false);
-  const [selectedProfile, setSelectedProfile] = useState(null);
-  const [showCard, setShowCard] = useState(false);
-  const [hoveredReviewKey, setHoveredReviewKey] = useState(null);
-  const [cardPosition, setCardPosition] = useState({ top: 0, left: 0 });
-  const hoverTimerRef = useRef(null);
-  const sectionRef = useRef(null);
   const testimonialsPerPage = 3;
-
-  const clearHoverTimer = () => {
-    if (hoverTimerRef.current) {
-      clearTimeout(hoverTimerRef.current);
-      hoverTimerRef.current = null;
-    }
-  };
-
-  const closeProfileCard = () => {
-    setShowCard(false);
-    setSelectedProfile(null);
-    setHoveredReviewKey(null);
-  };
-
-  const scheduleCloseProfileCard = () => {
-    clearHoverTimer();
-    hoverTimerRef.current = window.setTimeout(closeProfileCard, 120);
-  };
 
   const handlePrev = () => {
     if (isAnimating) return;
@@ -111,71 +87,10 @@ function TestimonialsSection() {
     });
   };
 
-  const handleProfileEnter = (testimonial, reviewKey, event) => {
-    clearHoverTimer();
-    setSelectedProfile(testimonial);
-    setHoveredReviewKey(reviewKey);
-
-    const triggerRect = event.currentTarget.getBoundingClientRect();
-    const sectionRect = sectionRef.current?.getBoundingClientRect();
-    const cardWidth = 320;
-    const cardHeight = 280;
-    const spacing = 12;
-
-    if (sectionRect) {
-      const availableBelow = sectionRect.bottom - triggerRect.bottom;
-      const availableAbove = triggerRect.top - sectionRect.top;
-      const placement = availableBelow >= cardHeight + spacing
-        ? "below"
-        : availableAbove >= cardHeight + spacing
-          ? "above"
-          : availableBelow >= availableAbove
-            ? "below"
-            : "above";
-
-      const triggerLeft = triggerRect.left - sectionRect.left;
-      const triggerRight = triggerRect.right - sectionRect.left;
-      const spaceRight = sectionRect.width - triggerLeft;
-      const spaceLeft = triggerRight;
-      const alignRight = spaceRight < cardWidth && spaceLeft >= cardWidth;
-
-      const top = placement === "below"
-        ? Math.min(sectionRect.height - cardHeight - spacing, triggerRect.bottom - sectionRect.top + spacing)
-        : Math.max(spacing, triggerRect.top - sectionRect.top - cardHeight - spacing);
-
-      const left = alignRight
-        ? Math.max(0, Math.min(sectionRect.width - cardWidth, triggerRight - cardWidth))
-        : Math.max(0, Math.min(sectionRect.width - cardWidth, triggerLeft));
-
-      setCardPosition({ top, left });
-    }
-
-    setShowCard(true);
-  };
-
-  const handleProfileLeave = () => {
-    scheduleCloseProfileCard();
-  };
-
-  const handleCardEnter = () => {
-    clearHoverTimer();
-    setShowCard(true);
-  };
-
-  const handleCardLeave = () => {
-    scheduleCloseProfileCard();
-  };
-
-  useEffect(() => {
-    return () => {
-      clearHoverTimer();
-    };
-  }, []);
-
   const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + testimonialsPerPage);
 
   return (
-    <section className="testimonials" ref={sectionRef}>
+    <section className="testimonials">
       <img src={white2Decoration} alt="White2 decoration" className="white2-decoration" />
       <h2>Loved by Our Community</h2>
 
@@ -197,11 +112,7 @@ function TestimonialsSection() {
 
                 <p>{item.review}</p>
 
-                <div
-                  className="user-info"
-                  onMouseEnter={(e) => handleProfileEnter(item, reviewKey, e)}
-                  onMouseLeave={handleProfileLeave}
-                >
+                <div className="user-info">
                   <img src={item.image} alt={item.name} />
                   <span className="profile-name">{item.name}</span>
                 </div>
@@ -215,38 +126,6 @@ function TestimonialsSection() {
         </button>
       </div>
 
-      {showCard && selectedProfile && (
-        <div
-          className="profile-card"
-          style={{
-            top: cardPosition.top,
-            left: cardPosition.left
-          }}
-          onMouseEnter={handleCardEnter}
-          onMouseLeave={handleCardLeave}
-        >
-          <div className="card-header">
-            <img src={selectedProfile.image} alt={selectedProfile.name} className="card-profile-image" />
-            <div className="card-info">
-              <h3 className="card-name">{selectedProfile.name}</h3>
-              <div className="card-rating">
-                <span className="card-stars">⭐</span>
-                <span className="card-rating-text">4.9</span>
-              </div>
-            </div>
-          </div>
-          <div className="card-body">
-            <p className="card-review">"{selectedProfile.review}"</p>
-          </div>
-          <div className="card-footer">
-            <div className="card-likes">
-              <FaHeart />
-              <span>24</span>
-            </div>
-            <button className="card-cta">View Profile</button>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

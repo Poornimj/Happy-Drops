@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { apiRequest } from "../lib/api";
+import { useAuth } from "../context/AuthContext";
 import knowledgeHeader from "../assets/images/knowledge-header.png";
 import knowledgeReady from "../assets/images/knowledg-ready.png";
 import knowledgeWellnessImage from "../assets/images/knowledge-wellness-image.png";
@@ -14,7 +16,7 @@ import knowledgeSeasonalSupport from "../assets/images/knowledge-seasonal-suppor
 import knowledgeImmuneHealth from "../assets/images/knowledge-immune-health.png";
 import knowledgeDigestiveSupport from "../assets/images/knowledge-digestive-support.png";
 import knowledgeMetabolicHealth from "../assets/images/knowledge-metabolic-health.png";
-import knowledgeCleanEnergy from "../assets/images/knowledge-clean-enery.png";
+import knowledgeCleanEnergy from "../assets/images/knowledge-clean-energy.png";
 import knowledgeMovement from "../assets/images/knowledge-movement.png";
 import knowledgeManagingStress from "../assets/images/knowledge-managing-stress.png";
 import knowledgeSkinCare from "../assets/images/knowledge-skin-care.png";
@@ -45,6 +47,54 @@ const steps = [
   ["card", "Payment", "Complete your payment securely."],
   ["bottle", "Oil Creation", "We create your custom essential oil blend with care."],
   ["bag", "Ready for Pickup", "Your essential oil is ready. You can pick it up at Nature Power Happiness Academy."],
+];
+
+const educationCategories = [
+  { icon: "leaf", title: "Why Use Essential Oils?", summary: "Discover the timeless relationship between aromatic plants, daily rituals and personal wellbeing.", details: [
+    { title: "Nature's concentrated aromas", body: "Essential oils are highly concentrated aromatic extracts obtained from flowers, leaves, bark, roots, fruits, seeds and herbs. Unlike ordinary vegetable oils, their tiny volatile molecules evaporate easily, allowing us to experience each plant's distinctive aroma." },
+    { title: "A tradition across cultures", body: "For thousands of years, aromatic plants have been valued in Egypt, Greece, Rome, India and China as part of bathing, massage, skincare, ceremonies and traditional wellbeing practices. Today they remain a simple way to bring mindful moments of nature into modern life." },
+    { title: "Body, mind and everyday rituals", body: "When an aroma is inhaled, scent signals connect with brain regions involved in emotion, memory and stress responses. Correctly diluted oils may also be included in massage and skincare. People often choose lavender for a peaceful evening atmosphere, citrus for freshness, peppermint for an invigorating sensation, or frankincense for quiet reflection." },
+    { title: "Wellbeing with perspective", body: "Essential oils can complement healthy routines such as sleep, movement, balanced nutrition and relaxation. They are not medicines and should not replace diagnosis, treatment or advice from a qualified healthcare professional." },
+  ] },
+  { icon: "bottle", title: "Aromatherapy", summary: "Learn how scent can become a mindful language of calm, connection and renewal.", details: [
+    { title: "The healing language of nature", body: "Imagine the fresh scent of a Finnish pine forest after summer rain. That immediate feeling of calm and connection illustrates aromatherapy: the thoughtful use of natural plant aromas to support emotional, mental and physical wellbeing." },
+    { title: "How aroma is experienced", body: "Aromatic molecules travel through the nose and create scent signals associated with memory, mood and stress responses. This is why a familiar fragrance can quickly bring back a memory or change the atmosphere of a room. When oils are properly diluted in a carrier oil, aromatherapy can also accompany gentle massage." },
+    { title: "Simple ways to begin", body: "Create an evening ritual with lavender, enjoy a bright citrus aroma in the morning, or use a refreshing forest-inspired scent after sauna. Follow diffuser directions, ventilate the room, begin with short sessions and choose aromas that feel comfortable to everyone present." },
+    { title: "Listen to your body", body: "Stop using an aroma if it causes headache, nausea, skin irritation or breathing discomfort. Persistent sleep, mood, breathing or pain concerns should always be discussed with a healthcare professional." },
+  ] },
+  { icon: "user", title: "Skin & Beauty", summary: "Find gentle ways to care for your skin in everyday routines.", details: [
+    { title: "Start with gentle care", body: "Choose skin-appropriate oils and use them as part of a simple daily routine. A small amount, properly diluted, can help keep the experience comfortable and easy to enjoy." },
+    { title: "Patch test first", body: "Before using a new product more widely, test a small area of skin first. This helps you notice whether the oil feels comfortable for your skin before you use it more often." },
+    { title: "Be mindful with sensitive skin", body: "Keep essential oils away from broken or irritated skin, and use extra care with citrus oils that may increase sun sensitivity. If your skin is already sensitive, it is best to keep the routine simple and gentle." },
+  ] },
+  { icon: "bag", title: "Sleep & Relaxation", summary: "Create a calm evening routine that helps you unwind before bed.", details: [
+    { title: "Build a calming rhythm", body: "A quiet bedtime routine, less evening screen time and a comfortable sleep space can help your nights feel more restful. Small habits repeated each evening can make winding down feel easier." },
+    { title: "Use scent as part of the setting", body: "Some people enjoy a gently diffused lavender aroma as part of their evening routine. Follow the product directions and keep the atmosphere light, comfortable and relaxing." },
+    { title: "Keep the experience comfortable", body: "If an aroma feels too strong, reduce the amount, improve ventilation or stop using it for the moment. The goal is a calm space that supports rest, not an overpowering scent." },
+  ] },
+  { icon: "question", title: "Stress & Mood", summary: "Support calmer days with simple habits and comforting aromas.", details: [
+    { title: "Support everyday balance", body: "Slow breathing, movement, regular meals and good sleep can help you feel more balanced through the day. These small habits often work best when they are consistent and realistic." },
+    { title: "Add a comforting aroma", body: "A pleasant aroma may complement those habits and help your routine feel more calming. Choose scents that feel pleasant and light rather than intense or distracting." },
+    { title: "Know when to seek extra support", body: "Comforting routines are helpful, but they should not replace professional support for ongoing low mood or anxiety. If stress or mood concerns continue or affect daily life, speak with a qualified professional." },
+  ] },
+  { icon: "card", title: "Everyday Comfort", summary: "Build small daily rituals that help you feel more comfortable.", details: [
+    { title: "Make comfort part of the day", body: "Rest, gentle movement and hydration can help everyday life feel easier. Simple routines often create the most dependable sense of comfort over time." },
+    { title: "Use aromatic products as a small support", body: "Aromatic products may be part of a comforting self-care routine and can make the moment feel more pleasant. Keep the experience gentle and easy to maintain." },
+    { title: "Stay mindful of your needs", body: "If you have ongoing discomfort or health concerns, get advice from a qualified healthcare professional. Everyday comfort should support your routine, not replace medical care." },
+  ] },
+  { icon: "check", title: "Safe Use & Dilution", summary: "Use concentrated plant extracts thoughtfully with label-first guidance and careful dilution.", details: [
+    { title: "Read the product label first", body: "Every oil has a different chemistry and intended use. Follow the directions and warnings on its own label rather than applying one rule to every essential oil. Use the smallest practical amount and never assume that natural means risk-free." },
+    { title: "Dilute for topical use", body: "Mix essential oil with a suitable carrier oil to reduce the chance of skin sensitivity and slow evaporation. doTERRA's general educational guidance suggests beginning around one drop of essential oil to five drops of carrier oil, and around one to ten for stronger oils, but the individual product label must take priority." },
+    { title: "Protect sensitive areas", body: "Avoid the eyes, inner ears, nose, broken skin and other sensitive areas. Patch test a small area before wider use. Some citrus oils can increase sensitivity to sunlight, so check the label and avoid direct sunlight or UV exposure for the stated period after topical use." },
+    { title: "Children and individual needs", body: "Keep oils out of children's reach and supervise any use around children. Seek professional advice during pregnancy or breastfeeding, when using medication, when managing a medical condition, and before using oils for infants, children or pets." },
+    { title: "If a reaction occurs", body: "Stop use immediately. Leave the area and increase ventilation after an inhalation reaction; discontinue topical use after skin irritation. Seek urgent medical help for breathing difficulty or a severe or persistent reaction." },
+  ] },
+  { icon: "check", title: "Storage & Quality", summary: "Preserve each oil by protecting it from light, heat, air and uncertain sourcing.", details: [
+    { title: "Store bottles correctly", body: "Keep essential oils in securely capped glass bottles at a stable room temperature. Protect them from direct sunlight, UV exposure, window sills, hot cars and other temperature extremes." },
+    { title: "Limit air exposure", body: "Close the cap tightly after every use. Prolonged exposure to oxygen can contribute to oxidation, while an unsecured cap also allows aromatic compounds to evaporate." },
+    { title: "Choose transparent quality", body: "Look for the botanical identity, clear usage instructions, warnings, a lot or batch number and an expiry or best-use date. Choose suppliers that explain where their plants come from, how oils are produced and how each batch is tested." },
+    { title: "Purity and testing matter", body: "Quality testing can help verify botanical identity, chemical composition and the absence of contamination, synthetic fragrance or undisclosed fillers. Keep the original label and packaging so safety and traceability information remain available." },
+  ] },
 ];
 
 const wellnessTopics = [
@@ -159,15 +209,15 @@ const questionHistory = [
   },
 ];
 
-function getOrderSteps(stage) {
+function getOrderSteps(stage, questionText = "Submit a question to begin.", submittedAt = "", answerText = "") {
   const rank = stageRank[stage] || 1;
 
   return [
     {
       icon: "question",
       title: "You",
-      text: customerQuestion,
-      time: "25 Aug 2026 - 10:30 AM",
+      text: questionText,
+      time: submittedAt,
       status: rank >= 1 ? "done" : "processing",
     },
     {
@@ -175,7 +225,7 @@ function getOrderSteps(stage) {
       title: "Aromatherapist Review",
       text:
         rank >= 3
-          ? "Our aromatherapist has reviewed your question."
+          ? answerText || "Our aromatherapist has reviewed your question."
           : "Your question has been sent to our aromatherapist by email.",
       time: "25 Aug 2026 - 11:15 AM",
       status: rank >= 3 ? "done" : "processing",
@@ -228,15 +278,6 @@ function OrderIcon({ name }) {
   return <Icon aria-hidden="true" />;
 }
 
-function LockIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="5" y="10" width="14" height="10" rx="2" />
-      <path d="M8 10V7a4 4 0 0 1 8 0v3" />
-    </svg>
-  );
-}
-
 function StepIcon({ name }) {
   const icons = {
     question: LuHeart,
@@ -261,19 +302,122 @@ function CalendarIcon() {
   );
 }
 
+const showKnowledgeWorkflow = false;
+
 export default function Knowledge() {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [isRecipeOpen, setIsRecipeOpen] = useState(false);
   const [isWellnessOpen, setIsWellnessOpen] = useState(false);
   const [activeWellnessTopic, setActiveWellnessTopic] = useState(null);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
-  const [activeHistoryId, setActiveHistoryId] = useState(questionHistory[0].id);
+  const [activeHistoryId, setActiveHistoryId] = useState(null);
   const [isPickupConfirmed, setIsPickupConfirmed] = useState(false);
   const [isPickupDateOpen, setIsPickupDateOpen] = useState(false);
   const [pickupDate, setPickupDate] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [pickupError, setPickupError] = useState("");
-  const orderSteps = getOrderSteps(orderStage);
-  const readyEmailSent = true;
+  const [questionText, setQuestionText] = useState("");
+  const [questions, setQuestions] = useState([]);
+  const [questionError, setQuestionError] = useState("");
+  const [questionSuccess, setQuestionSuccess] = useState("");
+  const [aiAnswer, setAiAnswer] = useState("");
+  const [isSubmittingQuestion, setIsSubmittingQuestion] = useState(false);
+  const [historyView, setHistoryView] = useState("questions");
+  const [isSavingPickup, setIsSavingPickup] = useState(false);
+  const [activeEducation, setActiveEducation] = useState(null);
+
+  const loadQuestions = useCallback(async () => {
+    if (!user) {
+      setQuestions([]);
+      return;
+    }
+    try {
+      const result = await apiRequest("/api/knowledge/questions", { auth: true });
+      setQuestions(result.questions);
+      setActiveHistoryId((current) => current || result.questions[0]?.id || null);
+    } catch (error) {
+      setQuestionError(error.message);
+    }
+  }, [user]);
+
+  useEffect(() => { loadQuestions(); }, [loadQuestions]);
+
+  const activeQuestion = questions.find((item) => item.id === activeHistoryId) || questions[0] || null;
+  const activeRecipe = activeQuestion?.recipe || null;
+  const liveStage = !activeQuestion ? "question_saved"
+    : activeRecipe?.preparation_status === "ready" || activeRecipe?.preparation_status === "collected" ? "oil_sent"
+      : ["paid", "preparing"].includes(activeRecipe?.preparation_status) ? "paid"
+        : activeRecipe ? "recipe_sent"
+          : activeQuestion.status === "reviewing" || activeQuestion.status === "answered" ? "sent_to_aromatherapist"
+            : "question_saved";
+  const submittedAt = activeQuestion?.created_at
+    ? new Date(activeQuestion.created_at).toLocaleString("en-FI", { dateStyle: "medium", timeStyle: "short" })
+    : "";
+  const latestAnswer = activeQuestion?.answers?.[activeQuestion.answers.length - 1]?.answer || "";
+  const orderSteps = getOrderSteps(liveStage, activeQuestion?.question, submittedAt, latestAnswer);
+  const readyEmailSent = ["ready", "collected"].includes(activeRecipe?.preparation_status);
+  const historyItems = questions.map((item) => ({
+    id: item.id,
+    question: item.question,
+    submittedDate: new Date(item.created_at).toLocaleDateString("en-FI", { dateStyle: "medium" }),
+    recipe: item.recipe?.title || (item.status === "answered" ? "Recipe preparation pending" : "Under review"),
+    price: item.recipe?.price ? `${item.recipe.currency?.trim() || "EUR"} ${Number(item.recipe.price).toFixed(2)}` : "Not available yet",
+    paymentDate: item.recipe?.paid_at ? new Date(item.recipe.paid_at).toLocaleDateString("en-FI") : "Not paid",
+    pickupLocation: item.recipe?.pickup_location || "Not assigned yet",
+    purchasedDate: item.recipe?.paid_at ? new Date(item.recipe.paid_at).toLocaleDateString("en-FI") : "Not purchased",
+  }));
+  const visibleHistoryItems = historyView === "purchases"
+    ? historyItems.filter((item) => item.purchasedDate !== "Not purchased")
+    : historyItems;
+
+  const savePickup = async () => {
+    if (!activeRecipe || !pickupDate || !pickupTime) {
+      setPickupError("Pickup date and time are required.");
+      return;
+    }
+    setIsSavingPickup(true);
+    setPickupError("");
+    try {
+      const result = await apiRequest(`/api/knowledge/recipes/${activeRecipe.id}/pickup`, {
+        method: "PATCH",
+        auth: true,
+        body: JSON.stringify({ pickupDate, pickupTime }),
+      });
+      setQuestions((current) => current.map((question) => (
+        question.id === activeQuestion.id ? { ...question, recipe: result.recipe } : question
+      )));
+      setIsPickupConfirmed(true);
+      setIsPickupDateOpen(false);
+    } catch (error) {
+      setPickupError(error.message);
+    } finally {
+      setIsSavingPickup(false);
+    }
+  };
+
+  const submitQuestion = async () => {
+    if (questionText.trim().length < 10) {
+      setQuestionError("Please enter a question with at least 10 characters.");
+      return;
+    }
+    setIsSubmittingQuestion(true);
+    setQuestionError("");
+    setQuestionSuccess("");
+    setAiAnswer("");
+    try {
+      const result = await apiRequest("/api/knowledge/ai-answer", {
+        method: "POST",
+        body: JSON.stringify({ question: questionText }),
+      });
+      setAiAnswer(result.answer);
+      setQuestionSuccess("");
+    } catch (error) {
+      setQuestionError(error.message);
+    } finally {
+      setIsSubmittingQuestion(false);
+    }
+  };
 
   return (
     <div className="knowledge-page">
@@ -313,11 +457,22 @@ export default function Knowledge() {
           </button>
         </section>
 
-        <section className="access-banner">
-          <div>
-            <LockIcon />
-            <span>Please register or login to access the Knowledge Hub and ask your questions.</span>
+        <section className="knowledge-learning-section">
+          <div className="knowledge-learning-heading">
+            <p className="section-kicker">Knowledge for everyday wellbeing</p>
+            <h2>Learn About Essential Oils</h2>
+            <p>Explore practical guidance on common uses, safe dilution, application, storage and responsible everyday wellness routines.</p>
           </div>
+          <div className="knowledge-learning-grid">
+            {educationCategories.map((category) => (
+              <button className={`knowledge-learning-card ${activeEducation === category.title ? "active" : ""}`} type="button" key={category.title} onClick={() => setActiveEducation(category.title)}>
+                <span className="knowledge-learning-icon"><StepIcon name={category.icon} /></span>
+                <strong>{category.title}</strong>
+                <span>{category.summary}</span>
+              </button>
+            ))}
+          </div>
+          <p className="knowledge-learning-note">Essential-oil information is for general education. Consult a qualified professional when pregnant, breastfeeding, using medication, managing a health condition, or choosing products for children or pets.</p>
         </section>
 
         <section className="ask-section">
@@ -326,11 +481,36 @@ export default function Knowledge() {
               <h3>Ask Your Question</h3>
             </div>
 
-            <textarea placeholder="Type your question here" />
+            <textarea
+              placeholder="Type your question here"
+              value={questionText}
+              onChange={(event) => {
+                setQuestionText(event.target.value);
+                setQuestionError("");
+                setQuestionSuccess("");
+              }}
+            />
 
             <div className="question-actions">
-              <button className="primary-btn" type="button">Submit</button>
+              <button className="primary-btn" type="button" disabled={isSubmittingQuestion} onClick={submitQuestion}>
+                {isSubmittingQuestion ? "Submitting…" : "Submit"}
+              </button>
             </div>
+            {questionError && <p className="form-error" role="alert">{questionError}</p>}
+            {questionSuccess && <p className="supplier-success" role="status">{questionSuccess}</p>}
+            {aiAnswer && <div className="knowledge-ai-answer" aria-live="polite">
+              <h4>Answer</h4>
+              <p>{aiAnswer}</p>
+              <div className="knowledge-profile-cta">
+                <div>
+                  <strong>Would you like a personalized oil blend?</strong>
+                  <span>Register and complete your wellness profile with your current symptoms. Our team can then review your needs and prepare a personalized recommendation for you.</span>
+                </div>
+                <Link className="primary-btn knowledge-profile-cta-button" to={user ? "/my-profile" : "/signup"}>
+                  {user ? "Update My Profile" : "Create My Profile"}
+                </Link>
+              </div>
+            </div>}
           </section>
 
           <section className="history-prompt-card">
@@ -339,14 +519,14 @@ export default function Knowledge() {
               <p>Your wellness journey is saved here.</p>
             </div>
 
-            <button className="history-prompt-btn" type="button" onClick={() => setIsHistoryOpen(true)}>
+            <button className="history-prompt-btn" type="button" onClick={() => user ? navigate("/my-profile") : navigate("/login", { state: { from: "/my-profile" } })}>
               <LuShoppingBag aria-hidden="true" />
               <span>Click me</span>
             </button>
           </section>
         </section>
 
-        <section className="hub-layout">
+        {showKnowledgeWorkflow && <><section className="hub-layout">
           <section className="how-card">
             <h3>How It Works</h3>
 
@@ -390,9 +570,9 @@ export default function Knowledge() {
                     )}
 
                     {step.action === "payment" && (
-                      <a className="mini-btn" href="/payment">
-                        Pay Now
-                      </a>
+                      <span className="mini-btn" title="Secure payment will be enabled when the payment provider is connected">
+                        Payment Pending
+                      </span>
                     )}
                   </div>
 
@@ -421,11 +601,10 @@ export default function Knowledge() {
             </div>
 
             <div className="pickup-detail-content">
-              <p>
+              {readyEmailSent ? <><p>
                 <LuMapPin aria-hidden="true" />
                 <span>
-                  Your essential oil is ready for pickup at Helsinki XR Center,
-                  Hämeentie 135 A, 00560 Helsinki.
+                  Your essential oil is ready for pickup at {activeRecipe.pickup_location || "Nature Power Happiness Academy"}.
                 </span>
               </p>
               <p>
@@ -440,14 +619,40 @@ export default function Knowledge() {
               >
                 {isPickupConfirmed ? "Pickup Confirmed" : "Save Pickup Date"}
               </button>
+              </> : <p>
+                <LuClock aria-hidden="true" />
+                <span>
+                  {activeRecipe
+                    ? "Your personalized blend is being processed. Pickup scheduling will open when it is ready."
+                    : "Submit a question to begin your personalized wellness journey."}
+                </span>
+              </p>}
             </div>
           </div>
 
           <div className="pickup-image-box">
             <img src={knowledgeReady} alt="Pickup order summary" />
           </div>
-        </section>
+        </section></>}
       </main>
+
+      {educationCategories.filter((category) => category.title === activeEducation).map((category) => (
+        <div className="modal-backdrop" role="presentation" key={category.title} onClick={() => setActiveEducation(null)}>
+          <article className="knowledge-education-modal" role="dialog" aria-modal="true" aria-labelledby="education-modal-title" onClick={(event) => event.stopPropagation()}>
+            <button className="modal-close" type="button" aria-label="Close essential oil information" onClick={() => setActiveEducation(null)}>
+              ×
+            </button>
+            <div className="knowledge-education-modal-icon"><StepIcon name={category.icon} /></div>
+            <p className="section-kicker">Essential oil knowledge</p>
+            <h3 id="education-modal-title">{category.title}</h3>
+            <strong>{category.summary}</strong>
+            {category.details ? <div className="knowledge-education-sections">{category.details.map((section) => <section key={section.title}><h4>{section.title}</h4><p>{section.body}</p></section>)}</div> : <p>{category.guide}</p>}
+            <aside>
+              Essential-oil information is for general education. Consult a qualified professional when pregnant, breastfeeding, using medication, managing a health condition, or choosing products for children or pets.
+            </aside>
+          </article>
+        </div>
+      ))}
 
       {isRecipeOpen && (
         <div className="modal-backdrop" role="presentation">
@@ -465,12 +670,25 @@ export default function Knowledge() {
             </div>
 
             <div className="recipe-display-space">
-              <span>Recipe details will display here.</span>
+              {activeRecipe ? (
+                <div>
+                  <strong>{activeRecipe.title}</strong>
+                  <p>{activeRecipe.instructions || "Your aromatherapist will add preparation instructions."}</p>
+                  {Array.isArray(activeRecipe.ingredients) && activeRecipe.ingredients.length > 0 && (
+                    <ul>{activeRecipe.ingredients.map((ingredient) => <li key={String(ingredient)}>{String(ingredient)}</li>)}</ul>
+                  )}
+                  {activeRecipe.safety_notes && <p><strong>Safety:</strong> {activeRecipe.safety_notes}</p>}
+                </div>
+              ) : <span>No personalized recipe is available yet.</span>}
             </div>
 
             <div className="price-row">
               <span>Total Price</span>
-              <strong className="price-placeholder">Price will display here</strong>
+              <strong className="price-placeholder">
+                {activeRecipe?.price
+                  ? `${activeRecipe.currency?.trim() || "EUR"} ${Number(activeRecipe.price).toFixed(2)}`
+                  : "Not available yet"}
+              </strong>
             </div>
 
             <p className="payment-note">
@@ -559,18 +777,23 @@ export default function Knowledge() {
             </p>
 
             <div className="history-tabs" aria-label="History views">
-              <button className="active" type="button">
+              <button className={historyView === "questions" ? "active" : ""} type="button" onClick={() => setHistoryView("questions")}>
                 <LuMessageCircle aria-hidden="true" />
                 My Questions
               </button>
-              <button type="button">
+              <button className={historyView === "purchases" ? "active" : ""} type="button" onClick={() => setHistoryView("purchases")}>
                 <LuShoppingBag aria-hidden="true" />
                 Purchase History
               </button>
             </div>
 
             <div className="history-list">
-              {questionHistory.map((item) => (
+              {visibleHistoryItems.length === 0 && (
+                <p className="history-intro">
+                  {historyView === "purchases" ? "No purchases yet." : "No questions yet. Submit your first question to begin."}
+                </p>
+              )}
+              {visibleHistoryItems.map((item) => (
                 <button
                   className={`history-card ${activeHistoryId === item.id ? "active" : ""}`}
                   type="button"
@@ -640,8 +863,7 @@ export default function Knowledge() {
                 <span>Date</span>
                 <input
                   className="pickup-date-input"
-                  type="text"
-                  placeholder="Example: Friday 25 Aug 2026"
+                  type="date"
                   value={pickupDate}
                   readOnly={isPickupConfirmed}
                   onChange={(event) => setPickupDate(event.target.value)}
@@ -652,8 +874,7 @@ export default function Knowledge() {
                 <span>Time</span>
                 <input
                   className="pickup-date-input"
-                  type="text"
-                  placeholder="Example: 3:30 PM"
+                  type="time"
                   value={pickupTime}
                   readOnly={isPickupConfirmed}
                   onChange={(event) => setPickupTime(event.target.value)}
@@ -678,17 +899,10 @@ export default function Knowledge() {
               <button
                 className={`confirm-btn ${isPickupConfirmed ? "confirmed" : ""}`}
                 type="button"
-                onClick={() => {
-                  if (!pickupDate.trim() || !pickupTime.trim()) {
-                    setPickupError("Pickup date and time are required.");
-                    return;
-                  }
-
-                  setPickupError("");
-                  setIsPickupConfirmed(true);
-                }}
+                disabled={isSavingPickup}
+                onClick={savePickup}
               >
-                {isPickupConfirmed ? "Pickup Confirmed" : "Confirm"}
+                {isSavingPickup ? "Saving…" : isPickupConfirmed ? "Pickup Confirmed" : "Confirm"}
               </button>
             </div>
           </div>
