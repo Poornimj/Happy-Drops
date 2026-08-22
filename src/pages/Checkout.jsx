@@ -5,7 +5,6 @@ import {
   HiOutlineCheckCircle,
   HiOutlineCreditCard,
   HiOutlineLockClosed,
-  HiOutlineQrcode,
   HiOutlineShoppingBag,
   HiOutlineUserGroup,
 } from "react-icons/hi";
@@ -46,31 +45,13 @@ const fallbackWorkshop = {
 const paymentMethods = [
   {
     id: "card",
-    title: "Credit / Debit Card",
-    text: "Pay securely using your card",
+    title: "Secure Stripe Checkout",
+    text: "Stripe will show the card and supported wallet options available on your device",
     icon: <HiOutlineCreditCard />,
     logos: [
       { src: visaLogo, alt: "Visa" },
       { src: mastercardLogo, alt: "Mastercard" },
     ],
-  },
-  {
-    id: "apple",
-    title: "Apple Pay",
-    text: "Pay using Apple Pay",
-    logos: [{ src: applePayLogo, alt: "Apple Pay" }],
-  },
-  {
-    id: "google",
-    title: "Google Pay",
-    text: "Pay using Google Pay",
-    logos: [{ src: googlePayLogo, alt: "Google Pay" }],
-  },
-  {
-    id: "qr",
-    title: "QR Payment",
-    text: "Scan QR code to pay",
-    icon: <HiOutlineQrcode />,
   },
 ];
 
@@ -87,7 +68,7 @@ function Checkout() {
   const fallback = requestedType === "workshop" ? fallbackWorkshop : fallbackProduct;
   const checkout = { ...fallback, ...(location.state?.checkout || {}) };
   const isWorkshop = checkout.type === "workshop";
-  const isWorkshopPaymentPreview = isWorkshop && Boolean(checkout.requestId);
+  const isApprovedWorkshopRequest = isWorkshop && Boolean(checkout.requestId);
   const isCart = checkout.type === "cart" && Array.isArray(checkout.items);
 
   const [paymentMethod, setPaymentMethod] = useState("card");
@@ -120,8 +101,27 @@ function Checkout() {
     };
     try {
       if (isWorkshop) {
-        if (isWorkshopPaymentPreview) {
-          setReference(checkout.requestId);
+        let paymentKind;
+        let paymentReference;
+        if (isApprovedWorkshopRequest) {
+          paymentKind = "workshop_request";
+          paymentReference = checkout.requestId;
+        } else if (checkout.sessionId) {
+          const result = await apiRequest("/api/workshops/bookings", {
+            method: "POST",
+            auth: true,
+            body: JSON.stringify({
+              sessionId: checkout.sessionId,
+              fullName: address.fullName,
+              email: form.get("email"),
+              phone: form.get("phone"),
+              participantCount: quantity,
+              selectedTheme: checkout.theme || checkout.title,
+              specialRequests: checkout.notes || "",
+            }),
+          });
+          paymentKind = "workshop_booking";
+          paymentReference = result.booking.id;
         } else {
           const result = await apiRequest("/api/workshops/requests", {
             method: "POST",
@@ -140,7 +140,16 @@ function Checkout() {
             }),
           });
           setReference(result.request.id);
+          setSubmitted(true);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
         }
+        const payment = await apiRequest("/api/payments/checkout-session", {
+          method: "POST",
+          auth: true,
+          body: JSON.stringify({ kind: paymentKind, referenceId: paymentReference, email: form.get("email") }),
+        });
+        window.location.assign(payment.url);
       } else {
         let orderItems;
         if (isCart) {
@@ -166,13 +175,14 @@ function Checkout() {
             items: orderItems,
           }),
         });
-        setReference(result.order.order_number);
-        if (isCart) {
-          await apiRequest("/api/cart", { method: "DELETE", auth: true });
-        }
+        const payment = await apiRequest("/api/payments/checkout-session", {
+          method: "POST",
+          auth: true,
+          body: JSON.stringify({ kind: "order", referenceId: result.order.id, email: form.get("email") }),
+        });
+        if (isCart) sessionStorage.setItem("happyDropsClearCartAfterPayment", "true");
+        window.location.assign(payment.url);
       }
-      setSubmitted(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
       setSubmitError(error.message);
     }
@@ -183,12 +193,10 @@ function Checkout() {
       <main className="checkout-page checkout-confirmation-page">
         <section className="checkout-confirmation">
           <span><HiOutlineCheckCircle /></span>
-          <p className="checkout-kicker">Payment prototype complete</p>
-          <h1>{isWorkshopPaymentPreview ? "Workshop payment preview complete." : isWorkshop ? "Your workshop is reserved." : "Your order is confirmed."}</h1>
+          <p className="checkout-kicker">Request received</p>
+          <h1>Your workshop request has been submitted.</h1>
           <p>
-            {isWorkshopPaymentPreview
-              ? "No money was charged and the booking remains approved but unpaid. Stripe will later replace this preview step."
-              : "This demonstration did not process a real payment. A verified order or booking reference will appear here after a payment provider is connected."}
+            We have received your tailor-made workshop request. Our team will review the details before payment becomes available.
           </p>
           <div className="checkout-confirmation-summary">
             <strong>{checkout.title}</strong>
@@ -226,11 +234,6 @@ function Checkout() {
       </section>
 
       <form className="checkout-layout" onSubmit={handleSubmit}>
-        {isWorkshopPaymentPreview && (
-          <p className="checkout-preview-notice" role="note">
-            Payment Preview: no card will be charged and this booking will not be marked as paid.
-          </p>
-        )}
         <section className="checkout-card checkout-order-card">
           <div className="checkout-card-heading">
             {isWorkshop ? <HiOutlineCalendar /> : <HiOutlineShoppingBag />}
@@ -244,7 +247,7 @@ function Checkout() {
                 <span>Participants:</span>
                 <select
                   value={quantity}
-                  disabled={isWorkshopPaymentPreview}
+                  disabled={isApprovedWorkshopRequest}
                   onChange={(event) => setQuantity(Number(event.target.value))}
                   aria-label="Number of workshop participants"
                 >
@@ -407,7 +410,7 @@ function Checkout() {
 
           <button className="checkout-pay-button" type="submit">
             <HiOutlineLockClosed />
-            {isWorkshopPaymentPreview ? "Complete Payment Preview" : "Pay Now"}
+            Pay Securely with Stripe
           </button>
           {submitError && <p className="form-error" role="alert">{submitError}</p>}
 

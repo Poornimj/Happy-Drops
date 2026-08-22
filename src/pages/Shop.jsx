@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import "./Shop.css";
 
@@ -74,7 +73,7 @@ const products = [
 ];
 
 const concernFilters = [
-  { slug: "all", label: "All Oils", ids: products.map((product) => product.id) },
+  { slug: "all", label: "All Wellness Services", ids: products.map((product) => product.id) },
   { slug: "skin-care", label: "Skin Care", ids: [1, 2, 3, 10] },
   { slug: "sleep", label: "Sleep", ids: [7] },
   { slug: "stress", label: "Stress & Comfort", ids: [4, 11, 17] },
@@ -87,7 +86,6 @@ const concernFilters = [
 ];
 
 function Shop() {
-  const [hoveredProductId, setHoveredProductId] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedConcern = searchParams.get("concern") || "all";
   const appliedSearch = searchParams.get("q") || "";
@@ -216,14 +214,8 @@ function Shop() {
               )}
 
               <img
-                 src={
-                   hoveredProductId === product.id && product.hoverImage
-                     ? product.hoverImage
-                     : product.image
-                }
-                alt={product.name}
-                onMouseEnter={() => setHoveredProductId(product.id)}
-                onMouseLeave={() => setHoveredProductId(null)}
+                src={product.hoverImage}
+                alt={`${product.function} wellness service`}
              />
 
               <div className="product-info">

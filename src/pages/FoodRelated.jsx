@@ -5,10 +5,10 @@ import { addProductToCart } from "../lib/api";
 
 import foodHero from "../assets/images/FoodR_FoodHero.png";
 
-import magicSauce from "../assets/images/FoodR_magicSauce.png";
-import biotinSupplement from "../assets/images/FoodR_BiotinSupplement.png";
-import oliveOil from "../assets/images/FoodR_OliveOil.png";
-import hempSeedOil from "../assets/images/FoodR_HempSeedOil.png";
+import magicSauce from "../assets/images/food-magic-sauce-new.png";
+import biotinSupplement from "../assets/images/food-biotin-beauty-supplement-new.png";
+import oliveOil from "../assets/images/food-extra-virgin-olive-oil-new.png";
+import hempSeedOil from "../assets/images/food-hemp-seed-oil-new.png";
 import kombucha from "../assets/images/kombucha.png";
 import kefir from "../assets/images/FoodR_Kefir.png";
 
@@ -19,7 +19,7 @@ const foodProducts = [
     description:
       "A fresh herb sauce made with rapeseed oil, parsley, dill, lemon, and mild Nordic seasonings. Suitable for salads, roasted vegetables, and everyday meals.",
     amount: "250 ml",
-    price: "18.90",
+    price: "10.00",
     image: magicSauce,
   },
   {
@@ -153,7 +153,7 @@ function FoodRelated() {
                     <strong>Amount:</strong> {product.amount}
                   </p>
 
-                  <h3>€ {product.price}</h3>
+                  {product.name === "Magic Sauce" && <h3>€ {product.price}</h3>}
 
                   <label className="food-quantity">
                     Quantity

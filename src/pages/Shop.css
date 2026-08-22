@@ -249,11 +249,11 @@
 }
 .shop-page .product-card img {
   width: 100% !important;
-  height: 190px !important;
+  height: 220px !important;
   display: block;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center !important;
-  background: #fbf8f1;
+  background: transparent;
 }
 
 :is(.shop-page, .detail-page) .product-badge {
@@ -754,9 +754,10 @@
 
 .food-product-image {
   width: 100%;
-  padding: 0 16px;
+  height: 300px;
+  padding: 0;
   border-radius: 18px;
-  background: white;
+  background: transparent;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -767,8 +768,8 @@
   display: block;
   object-fit: cover;
   object-position: center;
-  border-radius: 14px;
-  background: white;
+  border-radius: 0;
+  background: transparent;
 }
 
 .food-product-info h2 {
@@ -780,11 +781,6 @@
 .food-product-info p {
   color: #4f655a;
   line-height: 1.6;
-}
-
-.food-product-info h3 {
-  color: #a67ac5;
-  font-size: 26px;
 }
 
 .food-product-info label {
@@ -930,4 +926,8 @@
 .detail-page,
 .food-page {
   font-size: 18px;
+}
+.food-product-info h3 {
+  color: #a67ac5;
+  font-size: 26px;
 }
