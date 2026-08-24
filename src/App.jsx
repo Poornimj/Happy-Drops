@@ -21,6 +21,7 @@ import AboutUs from "./pages/AboutUs";
 import Knowledge from "./pages/Knowledge";
 import Workshops from "./pages/workshops";
 import Supplier from "./pages/Supplier";
+import Therapists from "./pages/Therapists";
 import Checkout from "./pages/Checkout";
 import PaymentResult from "./pages/PaymentResult";
 import Shop from "./pages/Shop";
@@ -34,26 +35,6 @@ import { MyProfile, TrackOrder, Wishlist } from "./pages/AccountPages";
 const routerBasename = import.meta.env.BASE_URL === "/"
   ? undefined
   : import.meta.env.BASE_URL.replace(/\/$/, "");
-
-const simplePages = {
-  "/therapists": {
-    kicker: "Expert Guidance",
-    title: "Therapists",
-    text: "Connect with wellness professionals who support natural, practical care.",
-  },
-};
-
-function SimpleRoutePage({ kicker, title, text }) {
-  return (
-    <main className="placeholder-page page-container">
-      <section className="placeholder-hero">
-        <p className="section-kicker">{kicker}</p>
-        <h1>{title}</h1>
-        <p>{text}</p>
-      </section>
-    </main>
-  );
-}
 
 function ProtectedRoute({ children }) {
   const { user, isCheckingSession } = useAuth();
@@ -96,6 +77,7 @@ function AppShell() {
         <Route path="/workshops" element={<Workshops />} />
         <Route path="/supplier" element={<Supplier />} />
         <Route path="/suppliers" element={<Supplier />} />
+        <Route path="/therapists" element={<Therapists />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/payment/success" element={<PaymentResult />} />
         <Route path="/payment/cancelled" element={<PaymentResult cancelled />} />
@@ -110,9 +92,6 @@ function AppShell() {
         <Route path="/my-profile" element={<ProtectedRoute><MyProfile /></ProtectedRoute>} />
         <Route path="/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
         <Route path="/track-order" element={<TrackOrder />} />
-        {Object.entries(simplePages).map(([path, page]) => (
-          <Route key={path} path={path} element={<SimpleRoutePage {...page} />} />
-        ))}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />

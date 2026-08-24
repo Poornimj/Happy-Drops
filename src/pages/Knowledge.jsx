@@ -150,11 +150,13 @@ const wellnessTopics = [
     title: "Clean Energy",
     text: "Naturally increase your energy with a healthy lifestyle to feel vibrant and productive all day.",
     image: knowledgeCleanEnergy,
+    signupPath: "/signup",
   },
   {
     title: "Movement",
     text: "Focus on effective solutions for flexibility and ease of movement.",
     image: knowledgeMovement,
+    signupPath: "/signup",
   },
   {
     title: "Managing Stress",
@@ -166,11 +168,13 @@ const wellnessTopics = [
     title: "Skin Care",
     text: "Achieve a clear, glowing complexion by protecting and nourishing your skin barrier from the inside out.",
     image: knowledgeSkinCare,
+    signupPath: "/signup",
   },
   {
     title: "Hair Care",
     text: "Support strong, vibrant hair growth by maintaining optimal scalp health and nourishment.",
     image: knowledgeHairCare,
+    signupPath: "/signup",
   },
 ];
 
@@ -751,7 +755,9 @@ export default function Knowledge() {
                               className="wellness-poster-join-link"
                               to={topic.signupPath}
                               aria-label={`Join us from ${topic.title}`}
-                            />
+                            >
+                              Join Us
+                            </Link>
                           )}
                         </div>
                       </div>

@@ -434,6 +434,81 @@
   font-size: 18px;
 }
 
+@media (max-width: 900px) {
+  .testimonials {
+    padding: 48px 18px 58px;
+    overflow: hidden;
+  }
+
+  .testimonials h2 {
+    margin-bottom: 24px;
+    transform: none;
+    font-size: clamp(34px, 8vw, 46px);
+  }
+
+  .testimonial-wrapper {
+    gap: 10px;
+  }
+
+  .testimonial-grid {
+    min-width: 0;
+    display: block;
+  }
+
+  .testimonial-card {
+    width: 100%;
+    min-height: 0;
+    padding: 22px;
+  }
+
+  .testimonial-card:not(:first-child) {
+    display: none;
+  }
+
+  .testimonial-card p {
+    min-height: 0;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .white2-decoration {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials {
+    padding-inline: 10px;
+  }
+
+  .testimonial-wrapper {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr) 38px;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .testimonial-card {
+    padding: 20px 17px;
+    border-radius: 18px;
+  }
+
+  .testimonial-card p,
+  .user-info .profile-name {
+    font-size: 17px;
+  }
+
+  .nav-btn {
+    width: 38px;
+    height: 38px;
+  }
+}
+
 /* ==================================
    REVIEWER HOVER CARD
 ================================== */

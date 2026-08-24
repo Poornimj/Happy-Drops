@@ -594,10 +594,11 @@
 
 .detail-image-box img {
   width: 100%;
-  height: 420px;
+  height: auto;
+  display: block;
   object-fit: contain;
   border-radius: 14px;
-  background: white;
+  background: transparent;
 }
 
 .detail-image-box img.circle-calm-image {

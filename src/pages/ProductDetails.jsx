@@ -5,27 +5,27 @@ import { HiOutlineHeart, HiOutlineShoppingCart } from "react-icons/hi";
 import { addProductToCart, apiRequest, findApiProduct } from "../lib/api";
 import { useAuth } from "../context/AuthContext";
 
-import DewOil from "../assets/images/Shop_SkinMoistures.png";
-import TimelessOil from "../assets/images/Shop_AntiWrincles.png";
-import RadianceOil from "../assets/images/Shop_SkinTightnings.png";
-import ReleaseOil from "../assets/images/Shop_StressReliefs.png";
-import FlowOil from "../assets/images/Shop_WaistEasses.png";
-import StrideOil from "../assets/images/Shop_JointEasses.png";
-import PeaceOil from "../assets/images/Shop_SleepSupportOil.png";
-import BloomOil from "../assets/images/Shop_BoostHairGrowths.png";
-import ClarityOil from "../assets/images/Shop_TwilightDropss.png";
-import NourishOil from "../assets/images/Shop_SkinDrynesses.png";
-import CalmOil from "../assets/images/Shop_HeadacheReliefs.png";
-import CircleCalmOil from "../assets/images/Shop_CircleCalm.png";
-import BalanceOil from "../assets/images/Shop_VitalGuards.png";
-import HarmonyOil from "../assets/images/Shop_Cherishmoods.png";
-import PassionOil from "../assets/images/Shop_MensEnergy.png";
-import GraceOil from "../assets/images/Shop_FeminieBalance.png";
-import JoyOil from "../assets/images/Shop_Joymoods.png";
-import PresenceOil from "../assets/images/Shop_SpiritualFocus.png";
-import VitalityOil from "../assets/images/Shop_EnergyGain.png";
-import SummerOil from "../assets/images/Shop_MosquitoSpray.png";
-import WinterOil from "../assets/images/Shop_SaunaRelaxation.png";
+import DewOil from "../assets/images/Shop_SkinMoisturesHover.png";
+import TimelessOil from "../assets/images/Shop_AntiWrinclesHover.png";
+import RadianceOil from "../assets/images/Shop_SkinTightningsHover.png";
+import ReleaseOil from "../assets/images/Shop_StressReliefsHover.png";
+import FlowOil from "../assets/images/Shop_WaistEassesHover.png";
+import StrideOil from "../assets/images/Shop_JointEasesHover.png";
+import PeaceOil from "../assets/images/Shop_SleepSupportOilHover.png";
+import BloomOil from "../assets/images/Shop_BoostHairGrowthsHover.png";
+import ClarityOil from "../assets/images/Shop_ConcentrationOilHover.png";
+import NourishOil from "../assets/images/Shop_SkinCaresHover.png";
+import CalmOil from "../assets/images/Shop_HeadacheReliefsHover.png";
+import CircleCalmOil from "../assets/images/Shop_CircleCalm_Hover.png";
+import BalanceOil from "../assets/images/Shop_HealthylifeHover.png";
+import HarmonyOil from "../assets/images/Shop_SleepSupportOilHover.png";
+import PassionOil from "../assets/images/Shop_VitalityOilHover.png";
+import GraceOil from "../assets/images/Shop_FeminineHover.png";
+import JoyOil from "../assets/images/Shop_JoyMoodHover.png";
+import PresenceOil from "../assets/images/Shop_MeditationHover.png";
+import VitalityOil from "../assets/images/Shop_EnergyBoostHover.png";
+import SummerOil from "../assets/images/Shop_SummerOilHover.png";
+import WinterOil from "../assets/images/Shop_WinterOilHover.png";
 
 const products = [
   {

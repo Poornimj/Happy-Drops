@@ -3714,13 +3714,25 @@ textarea {
 }
 
 .wellness-poster-join-link {
-  position: absolute;
-  left: 33%;
-  right: 33%;
-  bottom: 1.4%;
-  height: 4.4%;
+  width: fit-content;
+  min-width: 180px;
+  min-height: 48px;
+  margin: 18px auto 0;
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 999px;
+  background: var(--purple);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(166, 122, 197, 0.24);
   cursor: pointer;
+}
+
+.wellness-poster-join-link:hover {
+  background: var(--dark-green);
 }
 
 .wellness-poster-join-link:focus-visible {
