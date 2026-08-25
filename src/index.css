@@ -3731,6 +3731,10 @@ textarea {
   cursor: pointer;
 }
 
+.workshop-header-content h1 span {
+  display: block;
+}
+
 .wellness-poster-join-link:hover {
   background: var(--dark-green);
 }

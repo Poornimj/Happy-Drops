@@ -33,9 +33,9 @@ const workshops = [
     color: "green",
     sheet: workshopEssentialOil,
     price: 48,
-    date: "25 August 2026",
-    time: "14:00",
-    location: "Happy Drops Studio, Helsinki",
+    date: "Saturday, 12 September 2026",
+    time: "14:00–16:00",
+    location: "Peachy, Kamppi",
     duration: 120,
   },
   {
@@ -45,9 +45,9 @@ const workshops = [
     color: "purple",
     sheet: workshopDumplingCard,
     price: 55,
-    date: "30 August 2026",
-    time: "12:00",
-    location: "Happy Drops Studio, Helsinki",
+    date: "Sunday, 1 November 2026",
+    time: "13:00–15:00",
+    location: "Peachy, Kamppi",
     duration: 120,
   },
   {
@@ -662,11 +662,9 @@ export default function Workshops() {
 
           <div className="workshop-header-content">
             <h1>
-              Book Your
-              <br />
-              Wellness
-              <br />
-              Workshop
+              <span>Book Your</span>
+              <span>Wellness</span>
+              <span>Workshop</span>
             </h1>
             <p className="workshop-header-text">
               Explore practical and enjoyable workshops that bring natural wellness

@@ -31,6 +31,10 @@ import FoodRelated from "./pages/FoodRelated";
 import Cart from "./pages/Cart";
 import CustomerCare from "./pages/CustomerCare";
 import { MyProfile, TrackOrder, Wishlist } from "./pages/AccountPages";
+import OrientationHint from "./components/OrientationHint";
+// Keep responsive safeguards last so page-level desktop styles cannot override
+// the phone and tablet layout rules through import order.
+import "./responsive.css";
 
 const routerBasename = import.meta.env.BASE_URL === "/"
   ? undefined
@@ -64,6 +68,7 @@ function AppShell() {
   return (
     <>
       <Navbar currentPath={location.pathname.toLowerCase()} />
+      <OrientationHint />
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/wellness-assessment" element={<AssessmentRoute />} />

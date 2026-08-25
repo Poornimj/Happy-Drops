@@ -3,7 +3,7 @@ import footerLogo from "../assets/logos/happy-drops-exact-logo-no-box.png";
 import heroCalmImage from "../assets/images/happy-drops-hero-calm.jpeg";
 import ourStoryHomeWellnessImage from "../assets/images/happy-drops-our-story-home-wellness.png";
 import happyDropsLogo from "../assets/images/happy-drops-logo.jpeg";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Footer from "../components/Footer";
@@ -423,19 +423,30 @@ function AboutUs() {
 
         <div className="about-journey-path" role="tablist" aria-label="Happy Drops story timeline">
           {storyJourney.map((item, index) => (
-            <button
-              type="button"
-              className={`about-journey-step ${activeJourneyIndex === index ? "active" : ""}`}
-              key={item.title}
-              onClick={() => setActiveJourneyIndex(index)}
-              role="tab"
-              aria-selected={activeJourneyIndex === index}
-              aria-controls="happy-drops-journey-detail"
-              style={{ "--journey-delay": `${index * 0.08}s` }}
-            >
-              <span>{item.time}</span>
-              <h3>{item.title}</h3>
-            </button>
+            <Fragment key={item.title}>
+              <button
+                type="button"
+                className={`about-journey-step ${activeJourneyIndex === index ? "active" : ""}`}
+                onClick={() => setActiveJourneyIndex(index)}
+                role="tab"
+                aria-selected={activeJourneyIndex === index}
+                aria-controls={`happy-drops-journey-mobile-detail-${index}`}
+                style={{ "--journey-delay": `${index * 0.08}s` }}
+              >
+                <span>{item.time}</span>
+                <h3>{item.title}</h3>
+              </button>
+              {activeJourneyIndex === index && (
+                <article
+                  className="about-journey-inline-detail"
+                  id={`happy-drops-journey-mobile-detail-${index}`}
+                  role="tabpanel"
+                >
+                  <p>{item.text}</p>
+                  <p>{item.detail}</p>
+                </article>
+              )}
+            </Fragment>
           ))}
         </div>
 

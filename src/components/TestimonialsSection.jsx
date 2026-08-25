@@ -1,6 +1,6 @@
 import "./TestimonialsSection.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import white2Decoration from "../assets/images/white2.png";
 
 function TestimonialsSection() {
@@ -65,7 +65,21 @@ function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState("next");
   const [isAnimating, setIsAnimating] = useState(false);
-  const testimonialsPerPage = 3;
+  const [isCompact, setIsCompact] = useState(() => window.matchMedia("(max-width: 900px)").matches);
+  const touchStartX = useRef(null);
+  const testimonialsPerPage = isCompact ? 1 : 3;
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 900px)");
+    const updateLayout = (event) => {
+      setIsCompact(event.matches);
+      setCurrentIndex(0);
+      setIsAnimating(false);
+    };
+
+    media.addEventListener("change", updateLayout);
+    return () => media.removeEventListener("change", updateLayout);
+  }, []);
 
   const handlePrev = () => {
     if (isAnimating) return;
@@ -89,13 +103,26 @@ function TestimonialsSection() {
 
   const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + testimonialsPerPage);
 
+  const handleTouchStart = (event) => {
+    touchStartX.current = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (event) => {
+    if (touchStartX.current === null) return;
+    const distance = event.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(distance) < 45) return;
+    if (distance < 0) handleNext();
+    else handlePrev();
+  };
+
   return (
     <section className="testimonials">
       <img src={white2Decoration} alt="White2 decoration" className="white2-decoration" />
       <h2>Loved by Our Community</h2>
 
-      <div className="testimonial-wrapper">
-        <button className="nav-btn" onClick={handlePrev}>
+      <div className="testimonial-wrapper" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+        <button className="nav-btn" onClick={handlePrev} aria-label="Previous testimonial">
           <FaChevronLeft />
         </button>
 
@@ -121,9 +148,26 @@ function TestimonialsSection() {
           })}
         </div>
 
-        <button className="nav-btn" onClick={handleNext}>
+        <button className="nav-btn" onClick={handleNext} aria-label="Next testimonial">
           <FaChevronRight />
         </button>
+      </div>
+
+      <div className="testimonial-dots" aria-label="Choose a testimonial">
+        {testimonials.map((item, index) => (
+          <button
+            type="button"
+            className={currentIndex === index ? "active" : ""}
+            aria-label={`Show testimonial from ${item.name}`}
+            aria-current={currentIndex === index ? "true" : undefined}
+            onClick={() => {
+              setDirection(index >= currentIndex ? "next" : "prev");
+              setCurrentIndex(index);
+              setIsAnimating(false);
+            }}
+            key={item.name}
+          />
+        ))}
       </div>
 
     </section>

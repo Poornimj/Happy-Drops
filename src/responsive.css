@@ -287,3 +287,611 @@ div {
     transition-duration: 0.01ms !important;
   }
 }
+
+/*
+ * Mobile presentation pass.
+ * These overrides deliberately live below the page styles and only activate
+ * below tablet width, so the established laptop/desktop composition is kept.
+ */
+@media (max-width: 760px) {
+  /* A compact, horizontally scrollable header is more useful than wrapping
+     the desktop navigation into several tall rows. */
+  .navbar {
+    padding: 8px 12px 10px !important;
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    align-items: center !important;
+    gap: 8px 12px !important;
+  }
+
+  .navbar .brand {
+    grid-column: 1;
+    grid-row: 1;
+    width: auto !important;
+    flex-basis: auto !important;
+  }
+
+  .navbar .brand img {
+    width: auto !important;
+    height: 54px !important;
+  }
+
+  .navbar .nav-actions {
+    grid-column: 2;
+    grid-row: 1;
+    width: auto !important;
+    margin: 0 !important;
+    justify-self: end;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+  }
+
+  .navbar .language-switcher {
+    flex-wrap: nowrap !important;
+    gap: 5px !important;
+    font-size: 13px;
+  }
+
+  .navbar .language-switcher svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .navbar .language-switcher a {
+    font-size: 13px !important;
+  }
+
+  .navbar .nav-icons {
+    gap: 4px !important;
+  }
+
+  .navbar .nav-icon {
+    width: 34px !important;
+    height: 34px !important;
+    padding: 6px !important;
+  }
+
+  .navbar .nav-links {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100% !important;
+    padding: 3px 0 5px !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px 8px !important;
+    overflow: visible;
+  }
+
+  .navbar .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navbar .nav-links a {
+    display: block;
+    text-align: center;
+    font-size: 15px !important;
+  }
+
+  /* Shop hero and category controls. */
+  .shop-page .hero {
+    min-height: 360px !important;
+    padding: 0 !important;
+    align-items: flex-start !important;
+    border-radius: 0 0 16px 16px !important;
+  }
+
+  .shop-page .hero-image {
+    object-position: 68% center !important;
+  }
+
+  .shop-page .hero::before {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(255, 255, 255, 0.9) 46%,
+      rgba(255, 255, 255, 0.28) 78%,
+      rgba(255, 255, 255, 0.08) 100%
+    ) !important;
+  }
+
+  .shop-page .hero .hero-text {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 30px 22px !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    text-align: left;
+  }
+
+  .shop-page .hero .hero-text h1,
+  .shop-page .hero .hero-text p {
+    width: auto !important;
+    max-width: 100% !important;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .shop-page .hero .hero-text h1,
+  .shop-page .hero .hero-text p {
+    max-width: 78% !important;
+  }
+
+  .shop-page .hero .hero-text h1 {
+    margin-bottom: 14px !important;
+    font-size: clamp(34px, 11vw, 44px) !important;
+    line-height: 1.06 !important;
+  }
+
+  .shop-page .categories,
+  .shop-page .featured-products {
+    padding: 26px 12px !important;
+  }
+
+  .shop-page .category-list {
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    padding: 2px 0 8px;
+    overflow-x: auto;
+    scroll-snap-type: inline proximity;
+    scrollbar-width: none;
+  }
+
+  .shop-page .category-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .shop-page .category-list .category {
+    min-width: max-content !important;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  .shop-page .product-grid,
+  .shop-page .season-products {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 24px !important;
+  }
+
+  .shop-page .product-card {
+    width: 100% !important;
+    max-width: 430px;
+    margin-inline: auto;
+  }
+
+  .shop-page .product-card img {
+    height: min(92vw, 390px) !important;
+  }
+
+  /* Knowledge copy stays readable against the bottle photograph. */
+  .knowledge-hero {
+    min-height: 590px !important;
+  }
+
+  .knowledge-hero::before {
+    background: linear-gradient(
+      180deg,
+      rgba(251, 248, 241, 0.98) 0%,
+      rgba(251, 248, 241, 0.94) 44%,
+      rgba(251, 248, 241, 0.78) 68%,
+      rgba(251, 248, 241, 0.16) 100%
+    ) !important;
+  }
+
+  .knowledge-hero img {
+    width: 100% !important;
+    left: 0 !important;
+    object-position: 58% center !important;
+  }
+
+  .knowledge-hero-content {
+    width: 100% !important;
+    padding: 34px 22px !important;
+  }
+
+  .knowledge-hero-content h1 {
+    font-size: clamp(36px, 11vw, 48px) !important;
+  }
+
+  .knowledge-hero-content p:not(.knowledge-hero-subtitle) {
+    max-width: 100% !important;
+    color: #214633 !important;
+    font-size: 17px !important;
+    line-height: 1.65 !important;
+  }
+
+  /* Keep the workshop heading readable as complete words on narrow phones. */
+  .workshop-header-content {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 34px 28px !important;
+  }
+
+  .workshop-header .workshop-booking-action {
+    display: none !important;
+  }
+
+  .workshop-header-content h1 {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(40px, 12vw, 50px) !important;
+    line-height: 1.08 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+  }
+
+  .workshop-header-content h1 span {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .workshop-header-text {
+    width: 100% !important;
+    max-width: 320px !important;
+    font-size: 17px !important;
+    line-height: 1.6 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+  /* Home call-to-action and story sections must grow with wrapped content. */
+  .cta-section {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 0 24px !important;
+  }
+
+  .cta-image {
+    height: 180px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .cta-buttons {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    padding-inline: 18px !important;
+  }
+
+  .cta-buttons .recommend-btn,
+  .cta-buttons .workshop-btn {
+    width: 100%;
+    min-height: 54px;
+  }
+
+  .story-content {
+    width: 100% !important;
+    padding: 24px 12px !important;
+    gap: 16px !important;
+    background-size: cover !important;
+  }
+
+  .story-card {
+    width: min(100%, 330px) !important;
+    height: auto !important;
+    min-height: 210px !important;
+  }
+
+  .lavender-particles-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+  }
+
+  /* About values: remove the desktop-only logo-sized spacer and show each
+     value as a normal readable card. */
+  .about-values-interactive {
+    min-height: 0 !important;
+    padding: 32px 14px !important;
+    background-size: cover !important;
+  }
+
+  .about-values-header {
+    padding-top: 0 !important;
+    margin-bottom: 28px !important;
+  }
+
+  .about-values-logo-shine {
+    display: none !important;
+  }
+
+  /* Use one calm heading scale and balanced side gutters for the philosophy
+     and mission block on mobile. */
+  .about-philosophy {
+    width: calc(100% - 32px) !important;
+    margin-inline: auto !important;
+    padding-inline: 0 !important;
+  }
+
+  .about-philosophy .about-section-heading,
+  .about-philosophy-mission {
+    width: 100%;
+    margin-inline: auto !important;
+    text-align: left !important;
+  }
+
+  .about-philosophy .about-section-heading h2,
+  .about-philosophy-mission h3 {
+    max-width: 100% !important;
+    margin-inline: 0 !important;
+    font-size: clamp(34px, 9.5vw, 40px) !important;
+    line-height: 1.14 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+  .about-philosophy .about-section-heading > p:not(.section-kicker),
+  .about-philosophy-mission > p:last-child {
+    max-width: 100% !important;
+    margin-inline: 0 !important;
+    font-size: 18px !important;
+    line-height: 1.68 !important;
+  }
+
+  .about-values-card-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 18px !important;
+  }
+
+  .about-real-card {
+    width: 100% !important;
+    min-height: 0 !important;
+  }
+
+  .about-real-body p span {
+    white-space: normal !important;
+  }
+
+  /* Shared mobile safety for page cards, two-column forms and summaries. */
+  .therapist-hero,
+  .therapist-intro,
+  .therapist-application,
+  .supplier-hero,
+  .supplier-intro,
+  .supplier-standards,
+  .supplier-application,
+  .checkout-layout,
+  .cart-layout,
+  .profile-layout,
+  .workshop-signup-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .therapist-form-grid,
+  .supplier-form-grid,
+  .checkout-fields,
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .therapist-page,
+  .supplier-page,
+  .checkout-page,
+  .cart-page,
+  .profile-page,
+  .login-page {
+    overflow-x: clip;
+  }
+
+  .therapist-form,
+  .supplier-form,
+  .checkout-card,
+  .cart-summary,
+  .profile-form {
+    padding-inline: 18px !important;
+  }
+
+  .therapist-primary-action,
+  .supplier-primary-action,
+  .checkout-pay-button,
+  .profile-submit {
+    width: 100% !important;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .shared-footer {
+    padding-inline: 18px !important;
+  }
+
+  .shared-footer img {
+    max-width: min(220px, 72vw);
+  }
+}
+
+/* Center the Four Real card copy on tablets and phones. Desktop retains the
+   established left-aligned body copy. */
+@media (max-width: 900px) {
+  .about-values-interactive {
+    background:
+      linear-gradient(rgba(255, 252, 246, 0.78), rgba(255, 252, 246, 0.78)),
+      url("./assets/images/happy-drops-values-background.png") center 150px / min(88vw, 520px) auto no-repeat,
+      #fbf4e8 !important;
+  }
+
+  .about-real-card,
+  .about-real-body,
+  .about-real-body p,
+  .about-real-body p span,
+  .about-wealth-means,
+  .about-wealth-means strong,
+  .about-wealth-means ul,
+  .about-wealth-means li {
+    text-align: center !important;
+  }
+
+  .about-real-body p {
+    max-width: 30rem !important;
+    margin-inline: auto !important;
+  }
+
+  .about-wealth-means ul {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+  }
+
+  .about-wealth-means li {
+    width: auto !important;
+    white-space: normal !important;
+  }
+}
+
+/* Landscape phones need the same reflow, but can use two columns where they
+   are genuinely readable. This is independent of laptop breakpoints. */
+@media (max-width: 900px) and (max-height: 560px) and (orientation: landscape) {
+  .navbar {
+    position: relative;
+    min-height: 72px !important;
+    padding: 7px 10px !important;
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  .navbar .brand {
+    width: auto !important;
+    flex-basis: auto !important;
+  }
+
+  .navbar .brand img {
+    height: 56px !important;
+  }
+
+  .navbar .nav-links {
+    order: initial !important;
+    width: auto !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    gap: 14px !important;
+  }
+
+  .navbar .nav-links a {
+    font-size: 13px !important;
+  }
+
+  .navbar .nav-actions {
+    width: auto !important;
+    margin: 0 !important;
+    gap: 7px !important;
+  }
+
+  .navbar .language-switcher {
+    gap: 4px !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .navbar .language-switcher a {
+    font-size: 12px !important;
+  }
+
+  .navbar .nav-icons {
+    gap: 3px !important;
+  }
+
+  .navbar .nav-icon {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 5px !important;
+  }
+
+  .shop-page .hero {
+    min-height: 300px !important;
+  }
+
+  .shop-page .product-grid,
+  .shop-page .season-products {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .shop-page .product-card img {
+    height: min(42vw, 300px) !important;
+  }
+
+  .knowledge-hero {
+    min-height: 460px !important;
+  }
+
+  .knowledge-hero-content {
+    width: min(68%, 620px) !important;
+  }
+
+  .story-content {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+/* Keep the paired About page labels visually identical on every device.
+   Earlier page-specific selectors enlarged only the Philosophy label. */
+.about-philosophy .about-section-heading .section-kicker,
+.about-philosophy .about-philosophy-mission .section-kicker {
+  margin: 0 0 14px !important;
+  color: var(--green) !important;
+  font-family: inherit !important;
+  font-size: clamp(15px, 1.05vw, 17px) !important;
+  font-weight: 800 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+@media (max-width: 760px) {
+  .about-philosophy .about-section-heading .section-kicker,
+  .about-philosophy .about-philosophy-mission .section-kicker {
+    font-size: 15px !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  /* On phones, reveal the selected journey text where the customer tapped.
+     The full desktop detail panel remains unchanged for larger screens. */
+  .about-journey-path {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+  }
+
+  .about-journey-inline-detail {
+    width: calc(100% - 24px);
+    margin: -4px auto 12px;
+    padding: 20px;
+    border: 1px solid rgba(26, 86, 63, 0.14);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 12px 26px rgba(49, 92, 56, 0.08);
+    text-align: left;
+    animation: aboutJourneyDetailIn 0.3s ease both;
+  }
+
+  .about-journey-inline-detail p {
+    margin: 0 !important;
+    color: #304236 !important;
+    font-size: 17px !important;
+    line-height: 1.65 !important;
+  }
+
+  .about-journey-inline-detail p + p {
+    margin-top: 12px !important;
+    padding-top: 12px;
+    border-top: 1px solid rgba(26, 86, 63, 0.12);
+  }
+
+  .about-journey > .about-journey-detail {
+    display: none !important;
+  }
+}
+
+.about-journey-inline-detail {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .about-journey-inline-detail {
+    display: block;
+  }
+}
