@@ -12,6 +12,7 @@ import {
 import confirmedBottle from "../assets/images/confirmed-bottle.png";
 import checkoutWellnessScene from "../assets/images/checkout-secure-anti-wrinkle.png";
 import { apiRequest, findApiProduct } from "../lib/api";
+import { calculateCheckoutShipping } from "../lib/checkoutTotals";
 import applePayLogo from "../assets/payment/apple-pay.svg";
 import googlePayLogo from "../assets/payment/google-pay.svg";
 import mastercardLogo from "../assets/payment/mastercard.svg";
@@ -72,6 +73,7 @@ function Checkout() {
   const isCart = checkout.type === "cart" && Array.isArray(checkout.items);
 
   const [paymentMethod, setPaymentMethod] = useState("card");
+  const [deliveryMethod, setDeliveryMethod] = useState("DELIVERY");
   const [quantity, setQuantity] = useState(
     isWorkshop ? checkout.participants || 1 : checkout.quantity || 1,
   );
@@ -83,10 +85,10 @@ function Checkout() {
     const subtotal = isCart
       ? checkout.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
       : checkout.unitPrice * quantity;
-    const shipping = isWorkshop ? 0 : checkout.shipping || 0;
+    const shipping = calculateCheckoutShipping(subtotal, { isWorkshop, deliveryMethod });
     const tax = checkout.tax || 0;
     return { subtotal, shipping, tax, total: subtotal + shipping + tax };
-  }, [checkout.items, checkout.shipping, checkout.tax, checkout.unitPrice, isCart, isWorkshop, quantity]);
+  }, [checkout.items, checkout.tax, checkout.unitPrice, deliveryMethod, isCart, isWorkshop, quantity]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -170,7 +172,8 @@ function Checkout() {
             email: form.get("email"),
             phone: form.get("phone"),
             billingAddress: address,
-            shippingAddress: address,
+            shippingAddress: deliveryMethod === "PICKUP" ? null : address,
+            deliveryMethod,
             paymentMethod,
             items: orderItems,
           }),
@@ -293,10 +296,36 @@ function Checkout() {
             </>
           )}
 
+          {!isWorkshop && (
+            <fieldset className="checkout-delivery-method">
+              <legend>How would you like to receive your order?</legend>
+              <label className={deliveryMethod === "DELIVERY" ? "active" : ""}>
+                <input
+                  type="radio"
+                  name="deliveryMethod"
+                  value="DELIVERY"
+                  checked={deliveryMethod === "DELIVERY"}
+                  onChange={() => setDeliveryMethod("DELIVERY")}
+                />
+                <span><strong>Delivery</strong><small>{totals.subtotal >= 50 ? "Free delivery" : "€5.90 delivery charge"}</small></span>
+              </label>
+              <label className={deliveryMethod === "PICKUP" ? "active" : ""}>
+                <input
+                  type="radio"
+                  name="deliveryMethod"
+                  value="PICKUP"
+                  checked={deliveryMethod === "PICKUP"}
+                  onChange={() => setDeliveryMethod("PICKUP")}
+                />
+                <span><strong>Pickup</strong><small>No delivery charge</small></span>
+              </label>
+            </fieldset>
+          )}
+
           <div className="checkout-totals">
             <div><span>Subtotal:</span><strong>{formatCurrency(totals.subtotal)}</strong></div>
             {!isWorkshop && (
-              <div><span>Delivery:</span><strong>{formatCurrency(totals.shipping)}</strong></div>
+              <div><span>{deliveryMethod === "PICKUP" ? "Pickup:" : "Delivery:"}</span><strong>{formatCurrency(totals.shipping)}</strong></div>
             )}
             <div><span>Tax (0%):</span><strong>{formatCurrency(totals.tax)}</strong></div>
             <div className="checkout-total">

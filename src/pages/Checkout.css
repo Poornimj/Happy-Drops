@@ -252,6 +252,55 @@
   padding: 0 8px;
 }
 
+.checkout-delivery-method {
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  border: 0;
+}
+
+.checkout-delivery-method legend {
+  margin-bottom: 8px;
+  color: #314f3a;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.checkout-delivery-method label {
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #d5ddd5;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.checkout-delivery-method label.active {
+  border-color: #a984bd;
+  background: #fbf8fd;
+}
+
+.checkout-delivery-method input {
+  accent-color: #80628f;
+}
+
+.checkout-delivery-method span {
+  display: grid;
+  gap: 2px;
+}
+
+.checkout-delivery-method strong {
+  color: #294b35;
+  font-size: 13px;
+}
+
+.checkout-delivery-method small {
+  color: #7b887f;
+  font-size: 11px;
+}
+
 .checkout-totals {
   margin-top: 22px;
   display: grid;
